@@ -55,3 +55,6 @@ settings.gradle.projectsLoaded {
 		}
 	}
 }
+
+include 'my-test2'
+
