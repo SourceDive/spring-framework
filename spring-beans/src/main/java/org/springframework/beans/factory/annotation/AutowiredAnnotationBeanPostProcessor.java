@@ -135,6 +135,11 @@ import org.springframework.util.StringUtils;
  */
 public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationAwareBeanPostProcessor,
 		MergedBeanDefinitionPostProcessor, PriorityOrdered, BeanFactoryAware {
+	/**
+	 * @author ongoing
+	 * @date 2025-04-05 12:01:05
+	 * @description 说这个非常重要
+	 */
 
 	protected final Log logger = LogFactory.getLog(getClass());
 

@@ -56,6 +56,11 @@ import org.springframework.lang.Nullable;
  * @see BeanFactoryPostProcessor
  */
 public interface BeanPostProcessor {
+	/**
+	 * @author ongoing
+	 * @date 2025-04-05 11:44:21
+	 * @description 后置处理器
+	 */
 
 	/**
 	 * Apply this {@code BeanPostProcessor} to the given new bean instance <i>before</i> any bean

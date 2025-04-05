@@ -120,7 +120,12 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings("serial")
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
 		implements ConfigurableListableBeanFactory, BeanDefinitionRegistry, Serializable {
-
+	/**
+	 * @author ongoing
+	 * @date 2025-04-05 11:04:13
+	 * @description  {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}  的主要实现
+	 * 不仅是bean对象的统一管理容器，还是{@link BeanDefinition}的管理容器
+	 */
 	@Nullable
 	private static Class<?> javaxInjectProviderClass;
 

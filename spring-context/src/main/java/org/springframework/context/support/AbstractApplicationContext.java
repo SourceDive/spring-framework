@@ -559,6 +559,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
+			/**
+			 * @author ongoing
+			 * @date 2025-04-05 14:27:39
+			 * @description 这里就是 {@link GenericApplicationContext#refreshBeanFactory()} 只能刷新一次，有CAS检查
+			 *
+			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
@@ -576,6 +582,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				beanPostProcess.end();
 
 				// Initialize message source for this context.
+				// @ongoing 这个 message source 在书中叫作国际化组件
 				initMessageSource();
 
 				// Initialize event multicaster for this context.

@@ -28,6 +28,9 @@ import org.springframework.beans.BeansException;
  * {@link PropertyResourceConfigurer} and its concrete implementations for
  * out-of-the-box solutions that address such configuration needs.
  *
+ * <p>
+ * 这里说不会和bean实例进行交互
+ * </p>
  * <p>A {@code BeanFactoryPostProcessor} may interact with and modify bean
  * definitions, but never bean instances. Doing so may cause premature bean
  * instantiation, violating the container and causing unintended side effects.
@@ -71,5 +74,10 @@ public interface BeanFactoryPostProcessor {
 	 * @throws org.springframework.beans.BeansException in case of errors
 	 */
 	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
+	/**
+	 * @author ongoing
+	 * @date 2025-04-05 12:08:02
+	 * @description 说这里体现了依赖倒置，是如何体现的？
+	 */
 
 }
