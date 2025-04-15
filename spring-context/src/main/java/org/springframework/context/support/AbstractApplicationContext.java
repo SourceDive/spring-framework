@@ -627,6 +627,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
+	 * @author ongoing
+	 * @date 2025-04-15 10:25:19
+	 * @description 初始化前的预处理
+	 */
+	/**
 	 * Prepare this context for refreshing, setting its startup date and
 	 * active flag as well as performing any initialization of property sources.
 	 */
@@ -648,6 +653,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		// Initialize any placeholder property sources in the context environment.
 		initPropertySources();
 
+		// 属性校验
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
 		getEnvironment().validateRequiredProperties();
@@ -662,6 +668,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			this.applicationListeners.addAll(this.earlyApplicationListeners);
 		}
 
+		// 初始化早期事件的集合(?这个的作用不是很懂)
 		// Allow for the collection of early ApplicationEvents,
 		// to be published once the multicaster is available...
 		this.earlyApplicationEvents = new LinkedHashSet<>();
@@ -674,6 +681,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected void initPropertySources() {
 		// For subclasses: do nothing by default.
+		// 默认情况前不做任何事情，给子类准备的
 	}
 
 	/**
