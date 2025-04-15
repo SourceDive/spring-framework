@@ -1,5 +1,6 @@
 package com.ongoing.demo;
 
+import com.ongoing.demo.domain.Hello;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

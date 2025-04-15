@@ -1,4 +1,4 @@
-package com.ongoing.demo;
+package com.ongoing.demo.domain;
 
 public class Hello {
 
