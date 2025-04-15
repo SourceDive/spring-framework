@@ -113,6 +113,11 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 
 	/**
+	 * @author ongoing
+	 * @date 2025-04-15 11:34:54
+	 * @description xml驱动的refresh
+	 */
+	/**
 	 * This implementation performs an actual refresh of this context's underlying
 	 * bean factory, shutting down the previous bean factory (if any) and
 	 * initializing a fresh bean factory for the next phase of the context's lifecycle.
@@ -121,7 +126,9 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	protected final void refreshBeanFactory() throws BeansException {
 		// 第一步，关闭之前的 bean factory
 		if (hasBeanFactory()) {
+			// 销毁bean
 			destroyBeans();
+			// 关闭bean
 			closeBeanFactory();
 		}
 
