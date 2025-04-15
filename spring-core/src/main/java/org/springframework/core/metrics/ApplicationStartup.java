@@ -17,6 +17,11 @@
 package org.springframework.core.metrics;
 
 /**
+ * @author ongoing
+ * @date 2025-04-13 12:56:37
+ * @description 专门收集性能数据
+ */
+/**
  * Instruments the application startup phase using {@link StartupStep steps}.
  * <p>The core container and its infrastructure components can use the {@code ApplicationStartup}
  * to mark steps during the application startup and collect data about the execution context

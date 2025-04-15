@@ -66,6 +66,11 @@ public abstract class AnnotationConfigUtils {
 			"org.springframework.context.annotation.internalConfigurationAnnotationProcessor";
 
 	/**
+	 * @author ongoing
+	 * @date 2025-04-11 19:10:22
+	 * @description bean名称生成器
+	 */
+	/**
 	 * The bean name of the internally managed BeanNameGenerator for use when processing
 	 * {@link Configuration} classes. Set by {@link AnnotationConfigApplicationContext}
 	 * and {@code AnnotationConfigWebApplicationContext} during bootstrap in order to make
