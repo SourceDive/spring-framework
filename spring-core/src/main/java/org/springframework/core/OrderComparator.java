@@ -25,7 +25,7 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * {@link Comparator} implementation for {@link Ordered} objects, sorting
- * by order value ascending, respectively by priority descending.
+ * by order value ascending(升序), respectively by priority descending.
  *
  * <h3>{@code PriorityOrdered} Objects</h3>
  * <p>{@link PriorityOrdered} objects will be sorted with higher priority than

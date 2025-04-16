@@ -185,6 +185,7 @@ public abstract class WebApplicationContextUtils {
 
 		beanFactory.registerScope(WebApplicationContext.SCOPE_REQUEST, new RequestScope());
 		beanFactory.registerScope(WebApplicationContext.SCOPE_SESSION, new SessionScope());
+		// 默认情况下，外部调用送入的为null，所以不会注册 application 级别的作用域
 		if (sc != null) {
 			ServletContextScope appScope = new ServletContextScope(sc);
 			beanFactory.registerScope(WebApplicationContext.SCOPE_APPLICATION, appScope);
