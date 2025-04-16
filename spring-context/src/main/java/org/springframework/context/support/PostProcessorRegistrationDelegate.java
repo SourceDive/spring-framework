@@ -56,6 +56,11 @@ final class PostProcessorRegistrationDelegate {
 	}
 
 
+	/**
+	 * @author ongoing
+	 * @date 2025-04-16 14:02:54
+	 * @description todo 为什么这个方法只处理 BeanDefinitionRegistryPostProcessor 类型的 BeanFactoryPostProcessor?
+	 */
 	public static void invokeBeanFactoryPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
 
@@ -120,6 +125,11 @@ final class PostProcessorRegistrationDelegate {
 			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry, beanFactory.getApplicationStartup());
 			currentRegistryProcessors.clear();
 
+			/**
+			 * @author ongoing
+			 * @date 2025-04-16 13:41:36
+			 * @description 触发普通优先级的
+			 */
 			// Next, invoke the BeanDefinitionRegistryPostProcessors that implement Ordered.
 			postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
 			for (String ppName : postProcessorNames) {
@@ -134,6 +144,11 @@ final class PostProcessorRegistrationDelegate {
 			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry, beanFactory.getApplicationStartup());
 			currentRegistryProcessors.clear();
 
+			/**
+			 * @author ongoing
+			 * @date 2025-04-16 13:41:59
+			 * @description 触发其他的
+			 */
 			// Finally, invoke all other BeanDefinitionRegistryPostProcessors until no further ones appear.
 			boolean reiterate = true;
 			while (reiterate) {
@@ -154,6 +169,7 @@ final class PostProcessorRegistrationDelegate {
 
 			// Now, invoke the postProcessBeanFactory callback of all processors handled so far.
 			invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);
+			// 这里在书中被叫作编程式注入，这是什么意思？
 			invokeBeanFactoryPostProcessors(regularPostProcessors, beanFactory);
 		}
 
