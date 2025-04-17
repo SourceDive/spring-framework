@@ -147,10 +147,16 @@ public interface MergedAnnotations extends Iterable<MergedAnnotation<Annotation>
 	<A extends Annotation> boolean isPresent(Class<A> annotationType);
 
 	/**
+	 * @author ongoing
+	 * @date 2025-04-17 10:48:56
+	 * @description 检查注解是否存在
+	 */
+	/**
 	 * Determine if the specified annotation type is either directly present or
 	 * meta-present.
 	 * <p>Equivalent to calling {@code get(annotationType).isPresent()}.
-	 * @param annotationType the fully qualified class name of the annotation type
+	 * @param annotationType the fully qualified class name(全限定名) of the
+	 *                          annotation type
 	 * to check
 	 * @return {@code true} if the annotation is present
 	 */

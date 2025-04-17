@@ -290,6 +290,18 @@ public abstract class AnnotationConfigUtils {
 		return AnnotationAttributes.fromMap(metadata.getAnnotationAttributes(annotationClassName));
 	}
 
+	/**
+	 * @author ongoing
+	 * @date 2025-04-17 11:11:58
+	 * @description 处理可重复注解
+	 * {@link java.lang.annotation.Repeatable}
+	 *
+	 * 屏蔽新旧注解差异，统一返回 AnnotationAttributes
+	 *
+	 * containerClass 对应旧模式
+	 *
+	 * 返回合并后的列表
+	 */
 	static Set<AnnotationAttributes> attributesForRepeatable(AnnotationMetadata metadata,
 			Class<?> containerClass, Class<?> annotationClass) {
 

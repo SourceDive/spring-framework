@@ -53,6 +53,11 @@ import org.springframework.util.ObjectUtils;
 public class OrderComparator implements Comparator<Object> {
 
 	/**
+	 * @author ongoing
+	 * @date 2025-04-17 11:01:34
+	 * @description INSTANCE 是一个预定义的静态单例
+	 */
+	/**
 	 * Shared default instance of {@code OrderComparator}.
 	 */
 	public static final OrderComparator INSTANCE = new OrderComparator();

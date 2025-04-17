@@ -170,9 +170,11 @@ class ConfigurationClassParser {
 		for (BeanDefinitionHolder holder : configCandidates) {
 			BeanDefinition bd = holder.getBeanDefinition();
 			try {
+				// 注解类型的
 				if (bd instanceof AnnotatedBeanDefinition) {
 					parse(((AnnotatedBeanDefinition) bd).getMetadata(), holder.getBeanName());
 				}
+				// 编程式注入？
 				else if (bd instanceof AbstractBeanDefinition && ((AbstractBeanDefinition) bd).hasBeanClass()) {
 					parse(((AbstractBeanDefinition) bd).getBeanClass(), holder.getBeanName());
 				}
@@ -189,6 +191,10 @@ class ConfigurationClassParser {
 			}
 		}
 
+		/**
+		 * 执行{@link DeferredImportSelector}, 上面是配置类的解析。
+		 * 配置类解析完之后，才是 DeferredImportSelector 的解析。
+		 */
 		this.deferredImportSelectorHandler.process();
 	}
 
@@ -266,8 +272,13 @@ class ConfigurationClassParser {
 			ConfigurationClass configClass, SourceClass sourceClass, Predicate<String> filter)
 			throws IOException {
 
+		// 处理 @Component 注解
+		/**
+		 * 标注了{@link Configuration} 注解的类肯定标注了 @Component
+		 */
 		if (configClass.getMetadata().isAnnotated(Component.class.getName())) {
 			// Recursively process any member (nested) classes first
+			// 这里的解析逻辑不是很懂，只知道是在递归处理
 			processMemberClasses(configClass, sourceClass, filter);
 		}
 
@@ -276,6 +287,11 @@ class ConfigurationClassParser {
 				sourceClass.getMetadata(), PropertySources.class,
 				org.springframework.context.annotation.PropertySource.class)) {
 			if (this.environment instanceof ConfigurableEnvironment) {
+				// 书中说这里会把资源解析出来，并且存入 environment 中，存入的这个动作是在哪里呢？
+				/**
+				 * 存入的动作就在这个方法下的
+				 * {@link org.springframework.context.annotation.ConfigurationClassParser#addPropertySource}
+				 */
 				processPropertySource(propertySource);
 			}
 			else {
