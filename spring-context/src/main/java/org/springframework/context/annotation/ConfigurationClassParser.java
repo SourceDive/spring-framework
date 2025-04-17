@@ -272,7 +272,7 @@ class ConfigurationClassParser {
 			ConfigurationClass configClass, SourceClass sourceClass, Predicate<String> filter)
 			throws IOException {
 
-		// 处理 @Component 注解
+		// 处理注解 @Component
 		/**
 		 * 标注了{@link Configuration} 注解的类肯定标注了 @Component
 		 */
@@ -282,6 +282,7 @@ class ConfigurationClassParser {
 			processMemberClasses(configClass, sourceClass, filter);
 		}
 
+		// 处理注解 @PropertySource
 		// Process any @PropertySource annotations
 		for (AnnotationAttributes propertySource : AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), PropertySources.class,
@@ -300,6 +301,7 @@ class ConfigurationClassParser {
 			}
 		}
 
+		// 处理注解 @ComponentScan
 		// Process any @ComponentScan annotations
 		Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);
@@ -322,9 +324,11 @@ class ConfigurationClassParser {
 			}
 		}
 
+		// 处理注解 @Import
 		// Process any @Import annotations
 		processImports(configClass, sourceClass, getImports(sourceClass), filter, true);
 
+		// 处理注解 @ImportResource
 		// Process any @ImportResource annotations
 		AnnotationAttributes importResource =
 				AnnotationConfigUtils.attributesFor(sourceClass.getMetadata(), ImportResource.class);
@@ -337,6 +341,7 @@ class ConfigurationClassParser {
 			}
 		}
 
+		// 处理注解 @Bean
 		// Process individual @Bean methods
 		Set<MethodMetadata> beanMethods = retrieveBeanMethodMetadata(sourceClass);
 		for (MethodMetadata methodMetadata : beanMethods) {

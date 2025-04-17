@@ -196,7 +196,7 @@ final class PostProcessorRegistrationDelegate {
 		// Ordered, and the rest.
 		List<BeanFactoryPostProcessor> priorityOrderedPostProcessors = new ArrayList<>();  // PriorityOrdered
 		List<String> orderedPostProcessorNames = new ArrayList<>(); // Ordered
-		List<String> nonOrderedPostProcessorNames = new ArrayList<>(); // the rest
+		List<String> nonOrderedPostProcessorNames = new ArrayList<>(); // the rest: non order 类型的
 		// 先分成三组
 		for (String ppName : postProcessorNames) {
 			if (processedBeans.contains(ppName)) {

@@ -65,34 +65,40 @@ class ComponentScanAnnotationParser {
 	}
 
 
+	/**
+	 * {@link ComponentScan} 注解
+	 */
 	public Set<BeanDefinitionHolder> parse(AnnotationAttributes componentScan, String declaringClass) {
 		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(this.registry,
 				componentScan.getBoolean("useDefaultFilters"), this.environment, this.resourceLoader);
 
-		Class<? extends BeanNameGenerator> generatorClass = componentScan.getClass("nameGenerator");
+		Class<? extends BeanNameGenerator> generatorClass =
+				componentScan.getClass("nameGenerator"); // ComponentScan 注解中的属性
 		boolean useInheritedGenerator = (BeanNameGenerator.class == generatorClass);
 		scanner.setBeanNameGenerator(useInheritedGenerator ? this.beanNameGenerator :
 				BeanUtils.instantiateClass(generatorClass));
 
-		ScopedProxyMode scopedProxyMode = componentScan.getEnum("scopedProxy");
+		ScopedProxyMode scopedProxyMode = componentScan.getEnum("scopedProxy"); // ComponentScan 注解中的属性
 		if (scopedProxyMode != ScopedProxyMode.DEFAULT) {
 			scanner.setScopedProxyMode(scopedProxyMode);
 		}
 		else {
-			Class<? extends ScopeMetadataResolver> resolverClass = componentScan.getClass("scopeResolver");
+			Class<? extends ScopeMetadataResolver> resolverClass =
+					componentScan.getClass("scopeResolver"); // ComponentScan 注解中的属性
 			scanner.setScopeMetadataResolver(BeanUtils.instantiateClass(resolverClass));
 		}
 
-		scanner.setResourcePattern(componentScan.getString("resourcePattern"));
+		scanner.setResourcePattern(componentScan.getString("resourcePattern")); // ComponentScan 注解中的属性
 
-		for (AnnotationAttributes includeFilterAttributes : componentScan.getAnnotationArray("includeFilters")) {
+		for (AnnotationAttributes includeFilterAttributes :
+				componentScan.getAnnotationArray("includeFilters")) { // ComponentScan 注解中的属性
 			List<TypeFilter> typeFilters = TypeFilterUtils.createTypeFiltersFor(includeFilterAttributes, this.environment,
 					this.resourceLoader, this.registry);
 			for (TypeFilter typeFilter : typeFilters) {
 				scanner.addIncludeFilter(typeFilter);
 			}
 		}
-		for (AnnotationAttributes excludeFilterAttributes : componentScan.getAnnotationArray("excludeFilters")) {
+		for (AnnotationAttributes excludeFilterAttributes : componentScan.getAnnotationArray("excludeFilters")) { // ComponentScan 注解中的属性
 			List<TypeFilter> typeFilters = TypeFilterUtils.createTypeFiltersFor(excludeFilterAttributes, this.environment,
 				this.resourceLoader, this.registry);
 			for (TypeFilter typeFilter : typeFilters) {
@@ -100,22 +106,24 @@ class ComponentScanAnnotationParser {
 			}
 		}
 
-		boolean lazyInit = componentScan.getBoolean("lazyInit");
+		boolean lazyInit = componentScan.getBoolean("lazyInit"); // ComponentScan 注解中的属性
 		if (lazyInit) {
 			scanner.getBeanDefinitionDefaults().setLazyInit(true);
 		}
 
 		Set<String> basePackages = new LinkedHashSet<>();
-		String[] basePackagesArray = componentScan.getStringArray("basePackages");
+		String[] basePackagesArray = componentScan.getStringArray("basePackages"); // ComponentScan 注解中的属性
 		for (String pkg : basePackagesArray) {
 			String[] tokenized = StringUtils.tokenizeToStringArray(this.environment.resolvePlaceholders(pkg),
 					ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS);
 			Collections.addAll(basePackages, tokenized);
 		}
-		for (Class<?> clazz : componentScan.getClassArray("basePackageClasses")) {
+		for (Class<?> clazz : componentScan.getClassArray("basePackageClasses")) { // ComponentScan 注解中的属性
 			basePackages.add(ClassUtils.getPackageName(clazz));
 		}
+		// 没有声明配置类，当当前配置类所在的包为根包
 		if (basePackages.isEmpty()) {
+			// declaringClass 是当前配置类的名称
 			basePackages.add(ClassUtils.getPackageName(declaringClass));
 		}
 
@@ -125,6 +133,8 @@ class ComponentScanAnnotationParser {
 				return declaringClass.equals(className);
 			}
 		});
+
+		// 执行组件扫描
 		return scanner.doScan(StringUtils.toStringArray(basePackages));
 	}
 
