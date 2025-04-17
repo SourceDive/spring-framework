@@ -581,6 +581,7 @@ class ConfigurationClassParser {
 			return;
 		}
 
+		// 防止循环导入
 		if (checkForCircularImports && isChainedImportOnStack(configClass)) {
 			this.problemReporter.error(new CircularImportProblem(configClass, this.importStack));
 		}
@@ -588,7 +589,12 @@ class ConfigurationClassParser {
 			this.importStack.push(configClass);
 			try {
 				for (SourceClass candidate : importCandidates) {
-					if (candidate.isAssignable(ImportSelector.class)) {
+					/**
+					 * @author ongoing
+					 * @date 2025-04-17 15:47:14
+					 * @description  这里的 isAssignable()，一种类之间的关联关系
+					 */
+					if (candidate.isAssignable(ImportSelector.class)) { // ImportSelector 是否为 candidate 的上级（父类、接口）
 						// Candidate class is an ImportSelector -> delegate to it to determine imports
 						Class<?> candidateClass = candidate.loadClass();
 						ImportSelector selector = ParserStrategyUtils.instantiateClass(candidateClass, ImportSelector.class,
@@ -606,7 +612,7 @@ class ConfigurationClassParser {
 							processImports(configClass, currentSourceClass, importSourceClasses, exclusionFilter, false);
 						}
 					}
-					else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {
+					else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) { // ImportBeanDefinitionRegistrar 为 candidate 的上级
 						// Candidate class is an ImportBeanDefinitionRegistrar ->
 						// delegate to it to register additional bean definitions
 						Class<?> candidateClass = candidate.loadClass();
@@ -975,6 +981,11 @@ class ConfigurationClassParser {
 			return ClassUtils.forName(className, resourceLoader.getClassLoader());
 		}
 
+		/**
+		 * @author ongoing
+		 * @date 2025-04-17 16:51:22
+		 * @description 这里顺序和 isAssignableFrom 调反了下
+		 */
 		public boolean isAssignable(Class<?> clazz) throws IOException {
 			if (this.source instanceof Class) {
 				return clazz.isAssignableFrom((Class<?>) this.source);
