@@ -134,6 +134,11 @@ class ConfigurationClassParser {
 
 	private final ConditionEvaluator conditionEvaluator;
 
+	/**
+	 * @author ongoing
+	 * @date 2025-04-18 14:25:07
+	 * @description 这个map的键和值为什么都是相同的？
+	 */
 	private final Map<ConfigurationClass, ConfigurationClass> configurationClasses = new LinkedHashMap<>();
 
 	private final Map<String, ConfigurationClass> knownSuperclasses = new HashMap<>();
@@ -252,6 +257,7 @@ class ConfigurationClassParser {
 		// Recursively process the configuration class and its superclass hierarchy.
 		SourceClass sourceClass = asSourceClass(configClass, filter);
 		do {
+			// 处理解析，并把结果保存到 configuraton class 中
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass, filter);
 		}
 		while (sourceClass != null);
@@ -301,6 +307,7 @@ class ConfigurationClassParser {
 			}
 		}
 
+		// ongoing doscan 标记
 		// 处理注解 @ComponentScan
 		// Process any @ComponentScan annotations
 		Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(
@@ -309,6 +316,7 @@ class ConfigurationClassParser {
 				!this.conditionEvaluator.shouldSkip(sourceClass.getMetadata(), ConfigurationPhase.REGISTER_BEAN)) {
 			for (AnnotationAttributes componentScan : componentScans) {
 				// The config class is annotated with @ComponentScan -> perform the scan immediately
+				// parse 里会执行组件扫描
 				Set<BeanDefinitionHolder> scannedBeanDefinitions =
 						this.componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
 				// Check the set of scanned definitions for any further config classes and parse recursively if needed
@@ -329,6 +337,7 @@ class ConfigurationClassParser {
 		processImports(configClass, sourceClass, getImports(sourceClass), filter, true);
 
 		// 处理注解 @ImportResource
+		// 当需要导入xml配置文件时，可以借助此注解。但是由于spring boot已不推荐用xml配置，这里可以不用太关注。
 		// Process any @ImportResource annotations
 		AnnotationAttributes importResource =
 				AnnotationConfigUtils.attributesFor(sourceClass.getMetadata(), ImportResource.class);
@@ -341,13 +350,15 @@ class ConfigurationClassParser {
 			}
 		}
 
-		// 处理注解 @Bean
+		// 处理注解 @Bean(scope: method, type)
 		// Process individual @Bean methods
 		Set<MethodMetadata> beanMethods = retrieveBeanMethodMetadata(sourceClass);
 		for (MethodMetadata methodMetadata : beanMethods) {
+			// 处理完后和上面一样存入 ConfigurationClass 中
 			configClass.addBeanMethod(new BeanMethod(methodMetadata, configClass));
 		}
 
+		// 处理接口中的方法，处理完之后也是添加到 ConfigurationClass 中
 		// Process default methods on interfaces
 		processInterfaces(configClass, sourceClass);
 
@@ -383,6 +394,7 @@ class ConfigurationClassParser {
 			}
 			OrderComparator.sort(candidates);
 			for (SourceClass candidate : candidates) {
+				// 循环检查
 				if (this.importStack.contains(configClass)) {
 					this.problemReporter.error(new CircularImportProblem(configClass, this.importStack));
 				}
@@ -399,6 +411,7 @@ class ConfigurationClassParser {
 		}
 	}
 
+	// 也是递归的操作
 	/**
 	 * Register default methods on interfaces implemented by the configuration class.
 	 */
@@ -420,9 +433,12 @@ class ConfigurationClassParser {
 	 */
 	private Set<MethodMetadata> retrieveBeanMethodMetadata(SourceClass sourceClass) {
 		AnnotationMetadata original = sourceClass.getMetadata();
+		// 筛选出被 @Bean 标注的方法
 		Set<MethodMetadata> beanMethods = original.getAnnotatedMethods(Bean.class.getName());
 		if (beanMethods.size() > 1 && original instanceof StandardAnnotationMetadata) {
-			// Try reading the class file via ASM for deterministic declaration order...
+			// Try reading the class file via ASM
+			// (读取字节码的技术，可以保证读取方法的有序，JVM不能保证有序，就选择了ASM)
+			// for deterministic declaration order...
 			// Unfortunately, the JVM's standard reflection returns methods in arbitrary
 			// order, even between different runs of the same application on the same JVM.
 			try {
@@ -483,6 +499,7 @@ class ConfigurationClassParser {
 			try {
 				String resolvedLocation = this.environment.resolveRequiredPlaceholders(location);
 				Resource resource = this.resourceLoader.getResource(resolvedLocation);
+				// 在这里会把信息存入 environment
 				addPropertySource(factory.createPropertySource(name, new EncodedResource(resource, encoding)));
 			}
 			catch (IllegalArgumentException | FileNotFoundException | UnknownHostException | SocketException ex) {
@@ -576,6 +593,8 @@ class ConfigurationClassParser {
 	private void processImports(ConfigurationClass configClass, SourceClass currentSourceClass,
 			Collection<SourceClass> importCandidates, Predicate<String> exclusionFilter,
 			boolean checkForCircularImports) {
+
+		// 这里第一步没有去解析 @Import 注解，是因为送进来里的 importCandidates 已经是解析好了的
 
 		if (importCandidates.isEmpty()) {
 			return;

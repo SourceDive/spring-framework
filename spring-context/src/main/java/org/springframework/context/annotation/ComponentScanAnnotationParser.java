@@ -67,6 +67,10 @@ class ComponentScanAnnotationParser {
 
 	/**
 	 * {@link ComponentScan} 注解
+	 *
+	 * 1、解析对应的属性
+	 * 2、设置 base package
+	 * 3、执行组件扫描
 	 */
 	public Set<BeanDefinitionHolder> parse(AnnotationAttributes componentScan, String declaringClass) {
 		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(this.registry,
@@ -121,7 +125,7 @@ class ComponentScanAnnotationParser {
 		for (Class<?> clazz : componentScan.getClassArray("basePackageClasses")) { // ComponentScan 注解中的属性
 			basePackages.add(ClassUtils.getPackageName(clazz));
 		}
-		// 没有声明配置类，当当前配置类所在的包为根包
+		// 没有声明配置类，当前配置类所在的包为根包
 		if (basePackages.isEmpty()) {
 			// declaringClass 是当前配置类的名称
 			basePackages.add(ClassUtils.getPackageName(declaringClass));
