@@ -258,6 +258,7 @@ class ConfigurationClassParser {
 		SourceClass sourceClass = asSourceClass(configClass, filter);
 		do {
 			// 处理解析，并把结果保存到 configuraton class 中
+			// 又回到入口那里
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass, filter);
 		}
 		while (sourceClass != null);
@@ -424,6 +425,7 @@ class ConfigurationClassParser {
 					configClass.addBeanMethod(new BeanMethod(methodMetadata, configClass));
 				}
 			}
+			// 递归
 			processInterfaces(configClass, ifc);
 		}
 	}
