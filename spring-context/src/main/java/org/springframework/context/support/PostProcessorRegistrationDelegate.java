@@ -256,8 +256,9 @@ final class PostProcessorRegistrationDelegate {
 		String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanPostProcessor.class, true, false);
 
 		// Register BeanPostProcessorChecker that logs an info message when
-		// a bean is created during BeanPostProcessor instantiation, i.e. when
-		// a bean is not eligible for getting processed by all BeanPostProcessors.
+		// a bean is created during BeanPostProcessor instantiation, i.e.
+		// (这个i.e. 的意思是 in other words)
+		// when a bean is not eligible for getting processed by all BeanPostProcessors.
 		int beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + 1 + postProcessorNames.length;
 		beanFactory.addBeanPostProcessor(new BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));
 
@@ -314,6 +315,13 @@ final class PostProcessorRegistrationDelegate {
 		sortPostProcessors(internalPostProcessors, beanFactory);
 		registerBeanPostProcessors(beanFactory, internalPostProcessors);
 
+		/**
+		 * 在方法
+		 * {@link AbstractApplicationContext#prepareBeanFactory}
+		 * 中已经被注册过一次了
+		 *
+		 * 目的就是为了调整顺序，放到处理链的末尾。
+		 */
 		// Re-register post-processor for detecting inner beans as ApplicationListeners,
 		// moving it to the end of the processor chain (for picking up proxies etc).
 		beanFactory.addBeanPostProcessor(new ApplicationListenerDetector(applicationContext));
@@ -381,9 +389,14 @@ final class PostProcessorRegistrationDelegate {
 
 
 	/**
+	 * @author ongoing
+	 * @date 2025-04-22 10:22:53
+	 * @description 在 beanPostProcessor 初始化期间，有bean被创建，会记录一条日志
+	 */
+	/**
 	 * BeanPostProcessor that logs an info message when a bean is created during
-	 * BeanPostProcessor instantiation, i.e. when a bean is not eligible for
-	 * getting processed by all BeanPostProcessors.
+	 * BeanPostProcessor instantiation, i.e. when a bean is not eligible(有资格的)
+	 * for getting processed by all BeanPostProcessors.
 	 */
 	private static final class BeanPostProcessorChecker implements BeanPostProcessor {
 
@@ -406,7 +419,7 @@ final class PostProcessorRegistrationDelegate {
 		@Override
 		public Object postProcessAfterInitialization(Object bean, String beanName) {
 			if (!(bean instanceof BeanPostProcessor) && !isInfrastructureBean(beanName) &&
-					this.beanFactory.getBeanPostProcessorCount() < this.beanPostProcessorTargetCount) {
+					this.beanFactory.getBeanPostProcessorCount() < this.beanPostProcessorTargetCount) { // 如果小于，代表有 bean 被提前创建
 				if (logger.isInfoEnabled()) {
 					logger.info("Bean '" + beanName + "' of type [" + bean.getClass().getName() +
 							"] is not eligible for getting processed by all BeanPostProcessors " +
