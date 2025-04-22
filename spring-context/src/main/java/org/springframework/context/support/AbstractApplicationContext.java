@@ -597,6 +597,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
+				// 模板方法，空实现。
 				onRefresh();
 
 				// Check for listener beans and register them.
@@ -802,6 +803,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
+	 * @author ongoing
+	 * @date 2025-04-22 14:50:47
+	 * @description 存在则赋值，不存在，创建一个注册到 BeanFactory 中
+	 */
+	/**
 	 * Initialize the {@link MessageSource}.
 	 * <p>Uses parent's {@code MessageSource} if none defined in this context.
 	 * @see #MESSAGE_SOURCE_BEAN_NAME
@@ -908,6 +914,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			getApplicationEventMulticaster().addApplicationListener(listener);
 		}
 
+		/**
+		 * @author ongoing
+		 * @date 2025-04-22 15:19:26
+		 * @description 组件注册的方式，关联bean对象的名称，不是bean对象本身
+		 */
 		// Do not initialize FactoryBeans here: We need to leave all regular beans
 		// uninitialized to let post-processors apply to them!
 		String[] listenerBeanNames = getBeanNamesForType(ApplicationListener.class, true, false);
@@ -915,6 +926,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
 		}
 
+		// 广播早期事件(至于早期事件是什么，看书上写的，不是很懂。)
 		// Publish early application events now that we finally have a multicaster...
 		Set<ApplicationEvent> earlyEventsToProcess = this.earlyApplicationEvents;
 		this.earlyApplicationEvents = null;
@@ -957,6 +969,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		beanFactory.freezeConfiguration();
 
 		// Instantiate all remaining (non-lazy-init) singletons.
+		// 初始化的核心步骤，重要！！！
 		beanFactory.preInstantiateSingletons();
 	}
 
@@ -1514,7 +1527,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * Subclasses must return their internal bean factory here. They should implement the
-	 * lookup efficiently, so that it can be called repeatedly without a performance penalty.
+	 * lookup efficiently, so that it can be called repeatedly without a
+	 * performance penalty(性能开销).
 	 * <p>Note: Subclasses should check whether the context is still active before
 	 * returning the internal bean factory. The internal factory should generally be
 	 * considered unavailable once the context has been closed.

@@ -49,6 +49,11 @@ import org.springframework.util.ErrorHandler;
  * @see #setTaskExecutor
  */
 public class SimpleApplicationEventMulticaster extends AbstractApplicationEventMulticaster {
+	/**
+	 * @author ongoing
+	 * @date 2025-04-22 15:08:30
+	 * @description 唯一具体的实现。在没有扩展的情况下，一定是这个类负责广播
+	 */
 
 	@Nullable
 	private Executor taskExecutor;
