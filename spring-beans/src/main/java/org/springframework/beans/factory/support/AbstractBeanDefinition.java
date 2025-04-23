@@ -536,6 +536,13 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * @author ongoing
+	 * @date 2025-04-23 10:39:30
+	 * @description
+	 * 抽象的 bean 定义不能被实例化
+	 * 只能被继承，作为模板
+	 */
+	/**
 	 * Return whether this bean is "abstract", i.e. not meant to be instantiated
 	 * itself but rather just serving as parent for concrete child bean definitions.
 	 */

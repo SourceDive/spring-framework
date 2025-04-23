@@ -107,9 +107,13 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/** Map between containing bean names: bean name to Set of bean names that the bean contains. */
 	private final Map<String, Set<String>> containedBeanMap = new ConcurrentHashMap<>(16);
 
+	// (反向依赖: 被谁依赖)存储某个 bean 的依赖者。 bean A -> [依赖 bean A 的其他 bean]
+	// 控制销毁
 	/** Map between dependent bean names: bean name to Set of dependent bean names. */
 	private final Map<String, Set<String>> dependentBeanMap = new ConcurrentHashMap<>(64);
 
+	// (正向依赖: 依赖谁)存储某个 bean 的依赖。 bean A -> [ bean A 依赖的其他 bean]
+	// 控制初始化
 	/** Map between depending bean names: bean name to Set of bean names for the bean's dependencies. */
 	private final Map<String, Set<String>> dependenciesForBeanMap = new ConcurrentHashMap<>(64);
 
@@ -430,7 +434,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * Determine whether the specified dependent bean has been registered as
-	 * dependent on the given bean or on any of its transitive dependencies.
+	 * dependent on the given bean or on any of its transitive dependencies
+	 * (传递性依赖，非直接依赖，间接依赖).
 	 * @param beanName the name of the bean to check
 	 * @param dependentBeanName the name of the dependent bean
 	 * @since 4.0
@@ -458,6 +463,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		}
 		alreadySeen.add(beanName);
 		for (String transitiveDependency : dependentBeans) {
+			// 递归检查传递性依赖
 			if (isDependent(transitiveDependency, dependentBeanName, alreadySeen)) {
 				return true;
 			}
