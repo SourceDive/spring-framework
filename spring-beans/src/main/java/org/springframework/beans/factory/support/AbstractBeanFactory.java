@@ -320,10 +320,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
 					for (String dep : dependsOn) {
+						// 检查 dependency bean 是不是 dependent bean
+						// 如果是的话，就是循环依赖，这里会报错。
 						if (isDependent(beanName, dep)) {
 							throw new BeanCreationException(mbd.getResourceDescription(), beanName,
 									"Circular depends-on relationship between '" + beanName + "' and '" + dep + "'");
 						}
+						// 依赖关系维护. dependent bean map 和 dependency bean map
 						registerDependentBean(dep, beanName);
 						try {
 							getBean(dep);
@@ -337,6 +340,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Create bean instance.
 				if (mbd.isSingleton()) {
+					// 这个 getSingleton 方法的参数是怎么回事？
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
 							return createBean(beanName, mbd, args);
@@ -2022,8 +2026,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	/**
 	 * Create a bean instance for the given merged bean definition (and arguments).
 	 * The bean definition will already have been merged with the parent definition
-	 * in case of a child definition.
+	 * in case of a child definition. (若存在子定义，则该 bean 的定义将已与父定义合并。)
 	 * <p>All bean retrieval methods delegate to this method for actual bean creation.
+	 * 所有 bean 的获取方法最终都会委托此方法来完成实际的 bean 创建。
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @param args explicit arguments to use for constructor or factory method invocation
