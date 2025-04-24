@@ -35,6 +35,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * @author ongoing
+ * @date 2025-04-23 16:32:18
+ * @description Spring 中表示 Bean 定义的最终形态，合并后不可变。
+ */
+/**
  * A root bean definition represents the merged bean definition that backs
  * a specific bean in a Spring BeanFactory at runtime. It might have been created
  * from multiple original bean definitions that inherit from each other,
