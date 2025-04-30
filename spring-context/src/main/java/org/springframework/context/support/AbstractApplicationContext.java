@@ -667,6 +667,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		// see ConfigurablePropertyResolver#setRequiredProperties
 		getEnvironment().validateRequiredProperties();
 
+		// 早期事件
 		// Store pre-refresh ApplicationListeners...
 		if (this.earlyApplicationListeners == null) {
 			this.earlyApplicationListeners = new LinkedHashSet<>(this.applicationListeners);
@@ -937,6 +938,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 	}
 
+	// 初始化完 bean factory 后，才开始初始化单例 bean
 	/**
 	 * Finish the initialization of this context's bean factory,
 	 * initializing all remaining singleton beans.
@@ -1513,7 +1515,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * or return a single BeanFactory instance that it holds. In the latter case, it will
 	 * usually throw an IllegalStateException if refreshing the context more than once.
 	 * @throws BeansException if initialization of the bean factory failed
-	 * @throws IllegalStateException if already initialized and multiple refresh
+	 * @throws IllegalStateException if already initialized and multiple refresh ({@link GenericApplicationContext} 不支持多次刷新)
 	 * attempts are not supported
 	 */
 	protected abstract void refreshBeanFactory() throws BeansException, IllegalStateException;
