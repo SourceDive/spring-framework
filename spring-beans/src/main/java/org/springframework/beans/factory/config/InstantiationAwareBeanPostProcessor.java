@@ -136,6 +136,7 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	 * @see #postProcessProperties
 	 * @see org.springframework.beans.MutablePropertyValues
 	 * @deprecated as of 5.1, in favor of {@link #postProcessProperties(PropertyValues, Object, String)}
+	 * 注意看这一句，这个方法自5.1版本后废弃了，替代者是上面这个方法
 	 */
 	@Deprecated
 	@Nullable
