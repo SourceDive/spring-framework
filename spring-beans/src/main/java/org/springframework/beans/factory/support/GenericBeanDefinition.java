@@ -21,7 +21,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * GenericBeanDefinition is a one-stop shop for standard bean definition purposes.
+ * GenericBeanDefinition is a one-stop shop(一站式解决方案) for standard bean
+ * definition purposes(todo 这里的 purpose 翻译成需求吗？感觉读起来不太通顺啊。).
  * Like any bean definition, it allows for specifying a class plus optionally
  * constructor argument values and property values. Additionally, deriving from a
  * parent bean definition can be flexibly configured through the "parentName" property.
