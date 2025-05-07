@@ -473,6 +473,11 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 	}
 
 	private InjectionMetadata buildAutowiringMetadata(Class<?> clazz) {
+		/**
+		 * {@link Autowired}
+		 * {@link Value}
+		 * 这里的 autowiredAnnotationTypes 支持的注解类型：@Autowired @Value
+		 */
 		if (!AnnotationUtils.isCandidateClass(clazz, this.autowiredAnnotationTypes)) {
 			return InjectionMetadata.EMPTY;
 		}
