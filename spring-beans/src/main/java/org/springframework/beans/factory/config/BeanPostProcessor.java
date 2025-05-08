@@ -20,6 +20,11 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
+ * @author ongoing
+ * @date 2025-04-05 11:44:21
+ * @description 后置处理器
+ */
+/**
  * Factory hook that allows for custom modification of new bean instances &mdash;
  * for example, checking for marker interfaces or wrapping beans with proxies.
  *
@@ -56,11 +61,6 @@ import org.springframework.lang.Nullable;
  * @see BeanFactoryPostProcessor
  */
 public interface BeanPostProcessor {
-	/**
-	 * @author ongoing
-	 * @date 2025-04-05 11:44:21
-	 * @description 后置处理器
-	 */
 
 	/**
 	 * Apply this {@code BeanPostProcessor} to the given new bean instance <i>before</i> any bean
@@ -79,6 +79,11 @@ public interface BeanPostProcessor {
 	 */
 	@Nullable
 	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		/**
+		 * @author ongoing
+		 * @date 2025-05-08 11:10:50
+		 * @description 前置拦截处理
+		 */
 		return bean;
 	}
 
@@ -105,6 +110,11 @@ public interface BeanPostProcessor {
 	 */
 	@Nullable
 	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		/**
+		 * @author ongoing
+		 * @date 2025-05-08 11:11:16
+		 * @description 后置拦截处理
+		 */
 		return bean;
 	}
 
