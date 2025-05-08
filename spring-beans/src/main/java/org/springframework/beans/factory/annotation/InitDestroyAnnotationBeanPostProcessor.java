@@ -154,6 +154,10 @@ public class InitDestroyAnnotationBeanPostProcessor
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		LifecycleMetadata metadata = findLifecycleMetadata(bean.getClass());
 		try {
+			// 这里的 initMethods 里装的都是 @PostConstruct 注解标注的方法
+			/**
+			 * @see InitDestroyAnnotationBeanPostProcessor#buildLifecycleMetadata(Class)
+			 */
 			metadata.invokeInitMethods(bean, beanName);
 		}
 		catch (InvocationTargetException ex) {
@@ -395,7 +399,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 		public void invoke(Object target) throws Throwable {
 			ReflectionUtils.makeAccessible(this.method);
-			this.method.invoke(target, (Object[]) null);
+			this.method.invoke(target, (Object[]) null); // 注意这里传入的参数是空对象
 		}
 
 		@Override
