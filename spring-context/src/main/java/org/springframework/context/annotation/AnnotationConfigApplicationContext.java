@@ -93,6 +93,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		refresh();
 	}
 
+	// 基于注解配置的应用上下文，用于替换传统 xml 配置
 	/**
 	 * Create a new AnnotationConfigApplicationContext, scanning for components
 	 * in the given packages, registering bean definitions for those components,
