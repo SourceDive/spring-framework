@@ -90,6 +90,13 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	private final Set<String> singletonsCurrentlyInCreation =
 			Collections.newSetFromMap(new ConcurrentHashMap<>(16));
 
+	/**
+	 * 这里句子翻译注意，需要注意语序:
+	 * currently excluded from in creation checks 作为 Names of beans 的修饰
+	 * 当前被排除在创建检查之外的 bean 名称。
+	 *
+	 * 主要作用：配置需要跳过创建检查的 bean 名称
+	 */
 	/** Names of beans currently excluded from in creation checks. */
 	private final Set<String> inCreationCheckExclusions =
 			Collections.newSetFromMap(new ConcurrentHashMap<>(16));
@@ -229,6 +236,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					logger.debug("Creating shared instance of singleton bean '" + beanName + "'");
 				}
 				// 标志 bean 正在创建中
+				// 检查是否存在循环依赖，存在则直接报错
 				beforeSingletonCreation(beanName);
 				boolean newSingleton = false;
 				boolean recordSuppressedExceptions = (this.suppressedExceptions == null);
@@ -358,6 +366,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * @see #isSingletonCurrentlyInCreation
 	 */
 	protected void beforeSingletonCreation(String beanName) {
+		// inCreationCheckExclusions 中的 bean 不需要参与循环依赖检测，例如内部 bean
+		// 1、不在排除列表中，进行创建状态检查
+		// 2、如果添加失败，则抛出异常；添加成功，则通过检查
 		if (!this.inCreationCheckExclusions.contains(beanName) && !this.singletonsCurrentlyInCreation.add(beanName)) {
 			throw new BeanCurrentlyInCreationException(beanName);
 		}
