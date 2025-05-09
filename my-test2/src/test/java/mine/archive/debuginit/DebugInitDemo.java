@@ -1,4 +1,4 @@
-package mine;
+package mine.archive.debuginit;
 
 /**
  * @author zero
