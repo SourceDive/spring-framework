@@ -184,7 +184,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * <p>Checks already instantiated singletons and also allows for an early
 	 * reference to a currently created singleton (resolving a circular reference).
 	 * @param beanName the name of the bean to look for
-	 * @param allowEarlyReference whether early references should be created or not
+	 * @param allowEarlyReference whether early references should be created
+	 *                               or not (是否允许创建早期引用)
 	 * @return the registered singleton object, or {@code null} if none found
 	 */
 	@Nullable
@@ -237,6 +238,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				}
 				// 标志 bean 正在创建中
 				// 检查是否存在循环依赖，存在则直接报错
+				// 把 bean 加入到集合 singletonsCurrentlyInCreation 中
 				beforeSingletonCreation(beanName);
 				boolean newSingleton = false;
 				boolean recordSuppressedExceptions = (this.suppressedExceptions == null);
@@ -245,6 +247,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				}
 				try {
 					// 缓存中没有，则新建
+					// 注意：上层传入的 lambda 这里会执行，调用 createBean 后创建一个 bean 返回。
 					singletonObject = singletonFactory.getObject();
 					newSingleton = true;
 				}
@@ -268,6 +271,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					if (recordSuppressedExceptions) {
 						this.suppressedExceptions = null;
 					}
+					// 把 bean 从集合 singletonsCurrentlyInCreation 中移除
 					afterSingletonCreation(beanName);
 				}
 				// 如果是新建，则需要加入到缓存中
