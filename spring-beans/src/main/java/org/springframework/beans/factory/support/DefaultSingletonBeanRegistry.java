@@ -274,7 +274,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					// 把 bean 从集合 singletonsCurrentlyInCreation 中移除
 					afterSingletonCreation(beanName);
 				}
-				// 如果是新建，则需要加入到缓存中
+				// 如果是新建，则需要加入到一级缓存 singtonObjects 中
 				if (newSingleton) {
 					addSingleton(beanName, singletonObject);
 				}

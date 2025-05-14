@@ -1869,9 +1869,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		return !this.alreadyCreated.isEmpty();
 	}
 
+	// 这里看起来就是针对 FactoryBean 的处理
+	// 如果不是 FactoryBean，直接原路返回
 	/**
 	 * Get the object for the given bean instance, either the bean
 	 * instance itself or its created object in case of a FactoryBean.
+	 * 如果 bean 为 FactoryBean，返回其创建的对象
+	 * 如果不是，返回 bean 实例本身。
 	 * @param beanInstance the shared bean instance
 	 * @param name the name that may include factory dereference prefix
 	 * @param beanName the canonical bean name
