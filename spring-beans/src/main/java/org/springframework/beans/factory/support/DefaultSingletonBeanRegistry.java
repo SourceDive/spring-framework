@@ -374,7 +374,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		// 1、不在排除列表中，进行创建状态检查
 		// 2、如果添加失败，则抛出异常；添加成功，则通过检查
 		if (!this.inCreationCheckExclusions.contains(beanName) && !this.singletonsCurrentlyInCreation.add(beanName)) {
-			throw new BeanCurrentlyInCreationException(beanName);
+			throw new BeanCurrentlyInCreationException(beanName); // 表示这种循环依赖框架不可解决。
 		}
 	}
 
