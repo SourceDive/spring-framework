@@ -57,12 +57,15 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	String SCOPE_PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 
-	/**
+	// 角色标识：表示某个 bean difinition 是应用的主要组成部分。
+	// 通常对应于用户自定义的 bean. 类似通过@Component注解定义的 bean
+/**
 	 * Role hint indicating that a {@code BeanDefinition} is a major part
 	 * of the application. Typically corresponds to a user-defined bean.
 	 */
 	int ROLE_APPLICATION = 0;
 
+	// 支撑性组件
 	/**
 	 * Role hint indicating that a {@code BeanDefinition} is a supporting
 	 * part of some larger configuration, typically an outer
@@ -74,6 +77,8 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	int ROLE_SUPPORT = 1;
 
+	// 框架底层基础设施
+	// spring 内部自动创建
 	/**
 	 * Role hint indicating that a {@code BeanDefinition} is providing an
 	 * entirely background role and has no relevance to the end-user. This hint is

@@ -48,6 +48,7 @@ import org.springframework.util.Assert;
  */
 @SuppressWarnings("serial")
 public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorAutoProxyCreator {
+	// 是一个后置处理器
 
 	@Nullable
 	private List<Pattern> includePatterns;
