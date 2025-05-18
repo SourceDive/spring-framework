@@ -26,6 +26,12 @@ import org.springframework.core.type.AnnotationMetadata;
  * AnnotationAwareAspectJAutoProxyCreator} against the current {@link BeanDefinitionRegistry}
  * as appropriate based on a given @{@link EnableAspectJAutoProxy} annotation.
  *
+ *
+ * 根据给定的 EnableAspectJAutoProxy 注解，
+ *
+ *
+ * 注意这里 against 的翻译：“向”或者“在...中”，隐含操作的目标或者上下文。
+ *
  * @author Chris Beams
  * @author Juergen Hoeller
  * @since 3.1

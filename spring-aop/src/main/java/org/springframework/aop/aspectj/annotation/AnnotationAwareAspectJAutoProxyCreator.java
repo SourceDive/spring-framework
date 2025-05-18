@@ -49,6 +49,7 @@ import org.springframework.util.Assert;
 @SuppressWarnings("serial")
 public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorAutoProxyCreator {
 	// 是一个后置处理器
+	// 实现了 Ordered 接口，且是最高优先级
 
 	@Nullable
 	private List<Pattern> includePatterns;
