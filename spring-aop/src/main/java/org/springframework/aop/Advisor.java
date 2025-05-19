@@ -18,6 +18,9 @@ package org.springframework.aop;
 
 import org.aopalliance.aop.Advice;
 
+// 增强器？ 书中的翻译
+// 通知器?  deepseek 的回答
+
 /**
  * Base interface holding AOP <b>advice</b> (action to take at a joinpoint)
  * and a filter determining the applicability of the advice (such as

@@ -74,6 +74,7 @@ public class BeanFactoryAdvisorRetrievalHelper {
 					this.beanFactory, Advisor.class, true, false);
 			this.cachedAdvisorBeanNames = advisorNames;
 		}
+		// 没有增强器，直接返回
 		if (advisorNames.length == 0) {
 			return new ArrayList<>();
 		}
