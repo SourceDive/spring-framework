@@ -38,6 +38,7 @@ import org.springframework.lang.Nullable;
  */
 public interface AspectJAdvisorFactory {
 
+	// 判断给定类是否为切面
 	/**
 	 * Determine whether the given class is an aspect, as reported
 	 * by AspectJ's {@link org.aspectj.lang.reflect.AjTypeSystem}.

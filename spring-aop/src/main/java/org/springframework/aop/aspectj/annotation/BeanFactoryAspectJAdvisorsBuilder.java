@@ -78,9 +78,12 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 	}
 
 
+	// Advisor 转换
 	/**
 	 * Look for AspectJ-annotated aspect beans in the current bean factory,
 	 * and return to a list of Spring AOP Advisors representing them.
+	 *
+	 * 在当前 bean 工厂寻找 AspectJ 注解的切面 bean，并返回 Spring AOP 通知器列表
 	 * <p>Creates a Spring Advisor for each AspectJ advice method.
 	 * @return the list of {@link org.springframework.aop.Advisor} beans
 	 * @see #isEligibleBean
@@ -103,7 +106,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 						}
 						// We must be careful not to instantiate beans eagerly as in this case they
 						// would be cached by the Spring container but would not have been weaved.
-						Class<?> beanType = this.beanFactory.getType(beanName, false);
+						Class<?> beanType = this.beanFactory.getType(beanName, false); // 这里只返回类型，不初始化 bean
 						if (beanType == null) {
 							continue;
 						}
