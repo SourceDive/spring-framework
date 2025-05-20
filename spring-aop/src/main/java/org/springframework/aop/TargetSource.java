@@ -45,11 +45,17 @@ public interface TargetSource extends TargetClassAware {
 	@Nullable
 	Class<?> getTargetClass();
 
+
 	/**
 	 * Will all calls to {@link #getTarget()} return the same object?
 	 * <p>In that case, there will be no need to invoke {@link #releaseTarget(Object)},
 	 * and the AOP framework can cache the return value of {@link #getTarget()}.
 	 * @return {@code true} if the target is immutable
+	 *
+	 * 单例 bean 是静态的
+	 * 原型 bean 是非静态的。
+	 *
+	 * 联系一下 Class 级别的成员和对象级别的成员。
 	 * @see #getTarget
 	 */
 	boolean isStatic();

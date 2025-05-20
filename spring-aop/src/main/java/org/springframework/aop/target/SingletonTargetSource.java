@@ -72,7 +72,7 @@ public class SingletonTargetSource implements TargetSource, Serializable {
 
 	@Override
 	public boolean isStatic() {
-		return true;
+		return true; // 单例 bean 默认 true
 	}
 
 

@@ -17,7 +17,7 @@
 package org.springframework.aop;
 
 /**
- * Superinterface for advisors that perform one or more AOP <b>introductions</b>.
+ * Superinterface for advisors that perform(执行) one or more AOP <b>introductions</b>.
  *
  * <p>This interface cannot be implemented directly; subinterfaces must
  * provide the advice type implementing the introduction.

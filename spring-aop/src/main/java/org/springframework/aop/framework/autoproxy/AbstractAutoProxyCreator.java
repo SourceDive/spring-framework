@@ -141,6 +141,8 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 	private final Map<Object, Class<?>> proxyTypes = new ConcurrentHashMap<>(16);
 
+	// 标记代理状态：记录已被 AOP 代理增强的 bean
+	// beanName -> Boolean ，如果为true，表示 bean 已被代理。
 	private final Map<Object, Boolean> advisedBeans = new ConcurrentHashMap<>(256);
 
 
@@ -267,7 +269,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 		TargetSource targetSource = getCustomTargetSource(beanClass, beanName);
 		if (targetSource != null) {
 			if (StringUtils.hasLength(beanName)) {
-				this.targetSourcedBeans.add(beanName);
+				this.targetSourcedBeans.add(beanName); // 创建之前会先加入到 targetSourcedBeans 中
 			}
 			Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(beanClass, beanName, targetSource);
 			Object proxy = createProxy(beanClass, beanName, specificInterceptors, targetSource);
@@ -337,23 +339,25 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 */
 	protected Object wrapIfNecessary(Object bean, String beanName, Object cacheKey) {
 		if (StringUtils.hasLength(beanName) && this.targetSourcedBeans.contains(beanName)) {
+			// 首次代理后，将beanName加入targetSourcedBeans，后续直接跳过。
+			// Bean已通过TargetSource动态管理（如池化、延迟加载或热替换），无需再次处理。
 			return bean;
 		}
 		if (Boolean.FALSE.equals(this.advisedBeans.get(cacheKey))) {
 			return bean;
 		}
 		if (isInfrastructureClass(bean.getClass()) || shouldSkip(bean.getClass(), beanName)) {
-			this.advisedBeans.put(cacheKey, Boolean.FALSE);
+			this.advisedBeans.put(cacheKey, Boolean.FALSE); // bean 无需被代理，跳过
 			return bean;
 		}
 
 		// Create proxy if we have advice.
 		Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(bean.getClass(), beanName, null);
 		if (specificInterceptors != DO_NOT_PROXY) {
-			this.advisedBeans.put(cacheKey, Boolean.TRUE);
+			this.advisedBeans.put(cacheKey, Boolean.TRUE); // bean 需要被代理，标记已处理
 			// 创建代理对象
 			Object proxy = createProxy(
-					bean.getClass(), beanName, specificInterceptors, new SingletonTargetSource(bean));
+					bean.getClass(), beanName, specificInterceptors, new SingletonTargetSource(bean)); // 默认是SingletonTargetSource
 			this.proxyTypes.put(cacheKey, proxy.getClass());
 			return proxy;
 		}
