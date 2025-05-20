@@ -167,9 +167,12 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 		return advisors;
 	}
 
+	// 获取切面类的所有通知方法
+	// @Aspect 只在类上进行作用
+	// todo 这里会返回普通的方法吗？
 	private List<Method> getAdvisorMethods(Class<?> aspectClass) {
 		List<Method> methods = new ArrayList<>();
-		ReflectionUtils.doWithMethods(aspectClass, methods::add, adviceMethodFilter);
+		ReflectionUtils.doWithMethods(aspectClass, methods::add, adviceMethodFilter); // 这里排除掉了 @PointCut 注解的方法
 		if (methods.size() > 1) {
 			methods.sort(adviceMethodComparator);
 		}
@@ -214,6 +217,8 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 		}
 
 		try {
+			// 创建 Advisor
+			// 这里可以看到 Advisor 的组成成分
 			return new InstantiationModelAwarePointcutAdvisorImpl(expressionPointcut, candidateAdviceMethod,
 					this, aspectInstanceFactory, declarationOrderInAspect, aspectName);
 		}
@@ -233,6 +238,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 			return null;
 		}
 
+		// todo 这里看一下结构
 		AspectJExpressionPointcut ajexp =
 				new AspectJExpressionPointcut(candidateAspectClass, new String[0], new Class<?>[0]);
 		ajexp.setExpression(aspectJAnnotation.getPointcutExpression());

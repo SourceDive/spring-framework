@@ -23,6 +23,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+// 表示会污染上下文。
 /**
  * Test annotation which indicates that the
  * {@link org.springframework.context.ApplicationContext ApplicationContext}

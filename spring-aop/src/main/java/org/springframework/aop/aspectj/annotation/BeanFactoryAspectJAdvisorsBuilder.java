@@ -113,9 +113,11 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 						if (this.advisorFactory.isAspect(beanType)) {
 							try {
 								AspectMetadata amd = new AspectMetadata(beanType, beanName);
+								// 单例切面 bean 处理
 								if (amd.getAjType().getPerClause().getKind() == PerClauseKind.SINGLETON) {
 									MetadataAwareAspectInstanceFactory factory =
 											new BeanFactoryAspectInstanceFactory(this.beanFactory, beanName);
+									// 构造 Advisor
 									List<Advisor> classAdvisors = this.advisorFactory.getAdvisors(factory);
 									if (this.beanFactory.isSingleton(beanName)) {
 										this.advisorsCache.put(beanName, classAdvisors);
@@ -125,6 +127,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 									}
 									advisors.addAll(classAdvisors);
 								}
+								// 原型切面 bean 处理
 								else {
 									// Per target or per this.
 									if (this.beanFactory.isSingleton(beanName)) {

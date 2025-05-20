@@ -31,6 +31,8 @@ import org.springframework.aop.aspectj.TypePatternClassFilter;
 import org.springframework.aop.framework.AopConfigException;
 import org.springframework.aop.support.ComposablePointcut;
 
+// per clause: per子句。类似 perthis/pertarget 这种额外的 Spring AOP 切入点
+// AspectJ 切面类的元数据。
 /**
  * Metadata for an AspectJ aspect class, with an additional Spring AOP pointcut
  * for the per clause.
