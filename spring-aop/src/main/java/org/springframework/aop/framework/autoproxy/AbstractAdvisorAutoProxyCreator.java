@@ -88,6 +88,10 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 	 * @param beanName the name of the currently proxied bean
 	 * @return the empty List, not {@code null},
 	 * if there are no pointcuts or interceptors
+	 *
+	 * 注意：
+	 * pointcut 定义哪里需要增强
+	 * interceptor 定义怎么去增强。需要去实现 {@link org.aopalliance.intercept.MethodInterceptor}
 	 * @see #findCandidateAdvisors
 	 * @see #sortAdvisors
 	 * @see #extendAdvisors

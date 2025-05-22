@@ -280,6 +280,7 @@ public abstract class AopUtils {
 	 * any introductions
 	 * @return whether the pointcut can apply on any method
 	 */
+	// todo advisor 的 introduction 是什么东西？
 	public static boolean canApply(Advisor advisor, Class<?> targetClass, boolean hasIntroductions) {
 		if (advisor instanceof IntroductionAdvisor) {
 			return ((IntroductionAdvisor) advisor).getClassFilter().matches(targetClass);

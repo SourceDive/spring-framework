@@ -110,6 +110,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 						if (beanType == null) {
 							continue;
 						}
+						// 查看类上是否有 @Aspect 注解
 						if (this.advisorFactory.isAspect(beanType)) {
 							try {
 								AspectMetadata amd = new AspectMetadata(beanType, beanName);

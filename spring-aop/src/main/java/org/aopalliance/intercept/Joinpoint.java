@@ -22,8 +22,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * This interface represents a generic runtime joinpoint (in the AOP
- * terminology).
+ * This interface represents a generic runtime joinpoint (in the AOP terminology 术语).
  *
  * <p>A runtime joinpoint is an <i>event</i> that occurs on a static
  * joinpoint (i.e. a location in a program). For instance, an
