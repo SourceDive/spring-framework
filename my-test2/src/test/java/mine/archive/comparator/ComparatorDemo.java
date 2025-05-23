@@ -1,4 +1,4 @@
-package mine.projects.comparator;
+package mine.archive.comparator;
 
 import com.ongoing.demo.domain.Person;
 
