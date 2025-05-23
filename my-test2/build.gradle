@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     api(project(":spring-context"))
+    api(project(":spring-aop"))
+    api(project(":spring-aspects"))
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
