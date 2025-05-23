@@ -60,6 +60,7 @@ public interface SmartFactoryBean<T> extends FactoryBean<T> {
 		return false;
 	}
 
+	// 是否提前初始化
 	/**
 	 * Does this FactoryBean expect eager initialization, that is,
 	 * eagerly initialize itself as well as expect eager initialization

@@ -3,6 +3,7 @@
 
 <beans>
 
+    <!--将 NullReturningFactoryBean 注册为 bean-->
 	<bean id="factoryBean" class="org.springframework.beans.factory.FactoryBeanTests$NullReturningFactoryBean"/>
 
 </beans>

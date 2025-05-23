@@ -47,12 +47,21 @@ public class FactoryBeanTests {
 	private static final Resource CIRCULAR_CONTEXT = qualifiedResource(CLASS, "circular.xml");
 
 
+	/**
+	 * 这个测试目的是什么？
+	 * @see FactoryBean#getObject()
+	 * 自从 spring 2.0之后，getObject() 返回null被视为正常。
+	 *
+	 * 定义一个 getObject() 返回null的FactoryBean
+	 * @see NullReturningFactoryBean
+	 * @throws Exception
+	 */
 	@Test
 	public void testFactoryBeanReturnsNull() throws Exception {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(RETURNS_NULL_CONTEXT);
 
-		assertThat(factory.getBean("factoryBean").toString()).isEqualTo("null");
+		assertThat(factory.getBean("factoryBean").toString()).isEqualTo("null"); // 注意这里是字符串null的对比
 	}
 
 	@Test
@@ -127,7 +136,7 @@ public class FactoryBeanTests {
 
 		@Override
 		public Object getObject() {
-			return null;
+			return null; // 定义会返回 null 的 FactoryBean
 		}
 
 		@Override
