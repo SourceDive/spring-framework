@@ -80,6 +80,7 @@ public final class EmptyTargetSource implements TargetSource, Serializable {
 	 * Create a new instance of the {@link EmptyTargetSource} class.
 	 * <p>This constructor is {@code private} to enforce the
 	 * Singleton pattern / factory method pattern.
+	 * <p>这里也是强制单例模式</p>
 	 * @param targetClass the target class to expose (may be {@code null})
 	 * @param isStatic whether the TargetSource is marked as static
 	 */

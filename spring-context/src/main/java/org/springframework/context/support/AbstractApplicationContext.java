@@ -1191,7 +1191,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * on an active context, i.e. in particular all bean accessor methods.
 	 * <p>The default implementation checks the {@link #isActive() 'active'} status
 	 * of this context overall. May be overridden for more specific checks, or for a
-	 * no-op if {@link #getBeanFactory()} itself throws an exception in such a case.
+	 * no-op(空操作) if {@link #getBeanFactory()} itself throws an exception in such a case.
 	 */
 	protected void assertBeanFactoryActive() {
 		if (!this.active.get()) {

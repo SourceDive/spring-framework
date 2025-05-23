@@ -70,8 +70,10 @@ public class StaticApplicationContext extends GenericApplicationContext {
 	}
 
 
+	// 这个方法就是空操作的实现
 	/**
-	 * Overridden to turn it into a no-op, to be more lenient towards test cases.
+	 * Overridden to turn it into a no-op(空操作), to be more lenient towards test
+	 * cases.
 	 */
 	@Override
 	protected void assertBeanFactoryActive() {

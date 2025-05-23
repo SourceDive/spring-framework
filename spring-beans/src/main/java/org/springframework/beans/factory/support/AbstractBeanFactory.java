@@ -338,6 +338,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					}
 				}
 
+				// 这里进行实例的创建！！！
 				// Create bean instance.
 				if (mbd.isSingleton()) {
 					// 这个 getSingleton 方法的参数是怎么回事？

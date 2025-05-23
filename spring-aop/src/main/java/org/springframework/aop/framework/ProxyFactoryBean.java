@@ -246,6 +246,7 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 	 * The instance will be cached for a singleton, and create on each call to
 	 * {@code getObject()} for a proxy.
 	 * @return a fresh AOP proxy reflecting the current state of this factory
+	 * <p>一个反映当前工厂状态的全新AOP代理对象</p>
 	 */
 	@Override
 	@Nullable
@@ -451,10 +452,12 @@ public class ProxyFactoryBean extends ProxyCreatorSupport
 					// If we get here, we need to add a named interceptor.
 					// We must check if it's a singleton or prototype.
 					Object advice;
+					// 单例的处理
 					if (this.singleton || this.beanFactory.isSingleton(name)) {
 						// Add the real Advisor/Advice to the chain.
 						advice = this.beanFactory.getBean(name);
 					}
+					// 原型的处理
 					else {
 						// It's a prototype Advice or Advisor: replace with a prototype.
 						// Avoid unnecessary creation of prototype bean just for advisor chain initialization.
