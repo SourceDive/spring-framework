@@ -938,7 +938,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			// 触发 bean 定义的合并
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
-				// FactoryBean 默认不初始化，除非 isEagerInit 为 true
+				// 1、FactoryBean 默认不初始化，除非 isEagerInit 为 true
 				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
 					if (bean instanceof FactoryBean) {
@@ -958,6 +958,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 						}
 					}
 				}
+				// 2、非 FactoryBean
 				else {
 					// 初始化就是这个 getBean()
 					// todo 这个方法在之前这里的步骤前面用过吗？
