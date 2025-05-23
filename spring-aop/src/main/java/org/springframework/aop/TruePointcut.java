@@ -19,15 +19,25 @@ package org.springframework.aop;
 import java.io.Serializable;
 
 /**
- * Canonical Pointcut instance that always matches.
+ * Canonical(标准 standard) Pointcut instance that always matches.
+ * <p>
+ * 始终匹配的标准切点实例。
+ * </p>
+ *
+ * 注意这个类：
+ * 1、非public的
+ * 2、构造函数私有
  *
  * @author Rod Johnson
  */
+
 @SuppressWarnings("serial")
 final class TruePointcut implements Pointcut, Serializable {
 
+	// 保证实例唯一
 	public static final TruePointcut INSTANCE = new TruePointcut();
 
+	// 注意这里强制单例模式，只有类自身能创建实例。
 	/**
 	 * Enforce Singleton pattern.
 	 */

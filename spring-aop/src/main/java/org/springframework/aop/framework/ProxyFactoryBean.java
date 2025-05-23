@@ -49,6 +49,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * <p>这里有对于AOP使用的封装。</p>
+ *
  * {@link org.springframework.beans.factory.FactoryBean} implementation that builds an
  * AOP proxy based on beans in a Spring {@link org.springframework.beans.factory.BeanFactory}.
  *

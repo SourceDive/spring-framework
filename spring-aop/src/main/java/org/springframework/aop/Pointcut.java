@@ -16,6 +16,7 @@
 
 package org.springframework.aop;
 
+// 切点
 /**
  * Core Spring pointcut abstraction.
  *
@@ -45,6 +46,8 @@ public interface Pointcut {
 	MethodMatcher getMethodMatcher();
 
 
+	// 全局匹配的通配符
+	// 单例实例(可以看下 TruePointcut 的实现)，节省资源
 	/**
 	 * Canonical Pointcut instance that always matches.
 	 */
