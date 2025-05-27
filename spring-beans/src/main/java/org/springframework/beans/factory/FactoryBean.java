@@ -84,7 +84,7 @@ public interface FactoryBean<T> {
 	 * <p>If this FactoryBean is not fully initialized yet at the time of
 	 * the call (for example because it is involved in a circular reference),
 	 * throw a corresponding {@link FactoryBeanNotInitializedException}.
-	 * <p>As of Spring 2.0, FactoryBeans are allowed to return {@code null}
+	 * <p>As of Spring 2.0, FactoryBeans are allowed to return {@code null} (注意，返回null是正常的)
 	 * objects. The factory will consider this as normal value to be used; it
 	 * will not throw a FactoryBeanNotInitializedException in this case anymore.
 	 * FactoryBean implementations are encouraged to throw

@@ -31,6 +31,7 @@ import org.springframework.lang.Nullable;
  */
 public interface AopProxy {
 
+	// 通过默认的 class loader
 	/**
 	 * Create a new proxy object.
 	 * <p>Uses the AopProxy's default class loader (if necessary for proxy creation):
@@ -40,6 +41,7 @@ public interface AopProxy {
 	 */
 	Object getProxy();
 
+	// 通过指定的 class loader
 	/**
 	 * Create a new proxy object.
 	 * <p>Uses the given class loader (if necessary for proxy creation).

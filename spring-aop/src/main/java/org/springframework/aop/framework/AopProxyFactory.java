@@ -16,6 +16,7 @@
 
 package org.springframework.aop.framework;
 
+// 只有一个默认的实现
 /**
  * Interface to be implemented by factories that are able to create
  * AOP proxies based on {@link AdvisedSupport} configuration objects.
