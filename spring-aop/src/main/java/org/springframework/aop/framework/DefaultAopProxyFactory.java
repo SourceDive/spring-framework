@@ -65,6 +65,9 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 						"Either an interface or a target is required for proxy creation.");
 			}
 			// 如果 targetClass 是接口类型，用 jdk 生成。
+			// 1、检查目标类是否是一个接口。如果目标类是一个接口，必须使用JDK动态代理。
+			// 2、检查目标类是否是一个代理类
+			// 3、判断目标类是否是 lamdba 表达式生成。lamdba表达式生成的类是final的
 			if (targetClass.isInterface() || Proxy.isProxyClass(targetClass) || ClassUtils.isLambdaClass(targetClass)) {
 				return new JdkDynamicAopProxy(config);
 			}
