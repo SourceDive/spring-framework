@@ -3,6 +3,10 @@ package mine.archive.factorybean;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+/**
+ * 有配置默认自动刷新
+ * 没有配置需要自行手动刷新
+ */
 public class FactoryBeanTests {
 
 	@Test
