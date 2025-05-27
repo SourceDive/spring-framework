@@ -265,6 +265,8 @@ final class PostProcessorRegistrationDelegate {
 		// Separate between BeanPostProcessors that implement PriorityOrdered,
 		// Ordered, and the rest.
 		List<BeanPostProcessor> priorityOrderedPostProcessors = new ArrayList<>();
+		// 这个变量命名为什么是 internal开头的? 表示是框架内部实现的
+		// 在这个方法中类型为 MergedBeanDefinitionPostProcessor 的都被加入了这个集合中
 		List<BeanPostProcessor> internalPostProcessors = new ArrayList<>();
 		List<String> orderedPostProcessorNames = new ArrayList<>();
 		List<String> nonOrderedPostProcessorNames = new ArrayList<>();
@@ -284,10 +286,12 @@ final class PostProcessorRegistrationDelegate {
 			}
 		}
 
+		// 1、注册最高优先级的
 		// First, register the BeanPostProcessors that implement PriorityOrdered.
 		sortPostProcessors(priorityOrderedPostProcessors, beanFactory);
 		registerBeanPostProcessors(beanFactory, priorityOrderedPostProcessors);
 
+		// 2、注册有优先级的
 		// Next, register the BeanPostProcessors that implement Ordered.
 		List<BeanPostProcessor> orderedPostProcessors = new ArrayList<>(orderedPostProcessorNames.size());
 		for (String ppName : orderedPostProcessorNames) {
@@ -300,6 +304,7 @@ final class PostProcessorRegistrationDelegate {
 		sortPostProcessors(orderedPostProcessors, beanFactory);
 		registerBeanPostProcessors(beanFactory, orderedPostProcessors);
 
+		// 3、注册普通的 BeanPostProcessor
 		// Now, register all regular BeanPostProcessors.
 		List<BeanPostProcessor> nonOrderedPostProcessors = new ArrayList<>(nonOrderedPostProcessorNames.size());
 		for (String ppName : nonOrderedPostProcessorNames) {
