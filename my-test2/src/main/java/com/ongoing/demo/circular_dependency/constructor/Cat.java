@@ -1,4 +1,4 @@
-package com.ongoing.demo.circular_dependency.construct;
+package com.ongoing.demo.circular_dependency.constructor;
 
 import org.springframework.stereotype.Component;
 
@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Cat {
-	private final Person person;
 
 	public Cat(Person person) {
-		this.person = person;
 	}
 }

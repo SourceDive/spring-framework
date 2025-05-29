@@ -1,4 +1,4 @@
-package com.ongoing.demo.circular_dependency.construct;
+package com.ongoing.demo.circular_dependency.constructor;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -9,6 +9,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ApplicationDemo {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext applicationContext =
-				new AnnotationConfigApplicationContext("com.ongoing.demo.circular_dependency.construct");
+				new AnnotationConfigApplicationContext("com.ongoing.demo.circular_dependency.constructor");
 	}
 }

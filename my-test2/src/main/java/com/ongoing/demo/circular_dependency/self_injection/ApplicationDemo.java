@@ -9,6 +9,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ApplicationDemo {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext applicationContext =
-				new AnnotationConfigApplicationContext("com.ongoing.demo.circular_dependency.mine");
+				new AnnotationConfigApplicationContext("com.ongoing.demo.circular_dependency.self_injection");
 	}
 }
