@@ -78,6 +78,7 @@ import org.springframework.beans.testfixture.beans.NestedTestBean;
 import org.springframework.beans.testfixture.beans.SideEffectBean;
 import org.springframework.beans.testfixture.beans.TestBean;
 import org.springframework.beans.testfixture.beans.factory.DummyFactory;
+import org.springframework.beans.testfixture.beans.factory.MyService;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
@@ -275,8 +276,8 @@ class DefaultListableBeanFactoryTests {
 		assertThat(DummyFactory.wasPrototypeCreated()).as("prototype not instantiated").isFalse();
 		assertBeanNamesForType(TestBean.class, true, false, "x1");
 		assertThat(lbf.containsSingleton("x1")).isTrue();
-		assertThat(lbf.containsBean("x1")).isTrue();
-		assertThat(lbf.containsBean("&x1")).isTrue();
+		assertThat(lbf.containsBean("x1")).isTrue(); // 获取 factoryBean 的产物
+		assertThat(lbf.containsBean("&x1")).isTrue(); // 获取 factoryBean
 		assertThat(lbf.containsLocalBean("x1")).isTrue();
 		assertThat(lbf.containsLocalBean("&x1")).isTrue();
 		assertThat(lbf.isSingleton("x1")).isFalse();
@@ -312,6 +313,26 @@ class DefaultListableBeanFactoryTests {
 		assertThat(lbf.getAliases("&x1")).containsExactly("&x2");
 		assertThat(lbf.getAliases("x2")).containsExactly("x1");
 		assertThat(lbf.getAliases("&x2")).containsExactly("&x1");
+	}
+
+	@Test
+	public void testMethodContainLocalBean() {
+		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+		// 创建本地工厂
+		RootBeanDefinition myServiceDef = new RootBeanDefinition(MyService.class);
+		beanFactory.registerBeanDefinition("myServiceDef", myServiceDef);
+
+		// 创建父工厂
+		DefaultListableBeanFactory parentBeanFactory = new DefaultListableBeanFactory();
+		beanFactory.setParentBeanFactory(parentBeanFactory);
+
+		// 查找本工厂中是否存在
+		assertThat(beanFactory.containsBean("myServiceDef")).isTrue();
+		assertThat(beanFactory.containsLocalBean("myServiceDef")).isTrue();
+
+		// 查找父工厂中是否存在
+		assertThat(parentBeanFactory.containsLocalBean("myServiceDef")).isFalse();
 	}
 
 	@Test
