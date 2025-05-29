@@ -432,10 +432,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		return (T) bean;
 	}
 
+	// 会检查父工厂
+	// 全局性查找
 	@Override
 	public boolean containsBean(String name) {
 		String beanName = transformedBeanName(name);
 		if (containsSingleton(beanName) || containsBeanDefinition(beanName)) {
+			// 如果输入的是 factoryBean 的产物bean，前一个条件返回true
+			// 如果输入的是 factoryBean本身，后一个条件返回 true
 			return (!BeanFactoryUtils.isFactoryDereference(name) || isFactoryBean(name));
 		}
 		// Not found -> check parent.
@@ -788,6 +792,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		return this.parentBeanFactory;
 	}
 
+	// 仅检查当前bean工厂，不检查父工厂
+	// 局部 bean 查找
 	@Override
 	public boolean containsLocalBean(String name) {
 		String beanName = transformedBeanName(name);
@@ -1695,6 +1701,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		return resolveBeanClass(mbd, beanName, typesToMatch);
 	}
 
+	// 这里直接使用 FactoryBean.isAssignableFrom() 来判断
+	// 如果指定的bean实现了 FactoryBean 接口，就会返回 true
 	/**
 	 * Check whether the given bean is defined as a {@link FactoryBean}.
 	 * @param beanName the name of the bean

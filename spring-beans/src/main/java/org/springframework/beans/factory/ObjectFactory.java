@@ -25,11 +25,15 @@ import org.springframework.beans.BeansException;
  * <p>This interface is typically used to encapsulate a generic factory which
  * returns a new instance (prototype) of some target object on each invocation.
  *
+ * <p>下面说了这个接口和 FactoryBean 很像，我看到这个 getObject() 方法，第一反应也是 FactoryBean</p>
  * <p>This interface is similar to {@link FactoryBean}, but implementations
  * of the latter are normally meant to be defined as SPI instances in a
  * {@link BeanFactory}, while implementations of this class are normally meant
  * to be fed as an API to other beans (through injection). As such, the
  * {@code getObject()} method has different exception handling behavior.
+ * <p>最后一句还说了 ObjectFactory 和 FactoryBean 的异常处理行为也是不同的: </p>
+ * <p>第一个 ObjectFactory getObject(): unchecked exception</p>
+ * <p>第二个 FactoryBean getObject(): checked exception</p>
  *
  * @author Colin Sampaleanu
  * @since 1.0.2
