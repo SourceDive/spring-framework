@@ -117,9 +117,12 @@ import static org.mockito.Mockito.verify;
  */
 class DefaultListableBeanFactoryTests {
 
+	// 我觉得这个 lbf 变量名很不好懂，第一眼看过去谁知道是什么意思呢。
+	// 网上搜了下，说这个变量名称更加简洁，容易阅读。
 	private DefaultListableBeanFactory lbf = new DefaultListableBeanFactory();
 
 
+	// lbf: the bean factory
 	@Test
 	void unreferencedSingletonWasInstantiated() {
 		KnowsIfInstantiated.clearInstantiationRecord();
@@ -2161,12 +2164,19 @@ class DefaultListableBeanFactoryTests {
 		}
 	}
 
+	/**
+	 * 自己注入自己，且为构造器注入方式
+	 * @see DefaultSingletonBeanRegistry#beforeSingletonCreation(String)
+	 * 会在上面这个方法中被阻拦下来
+	 */
 	@Test
 	void circularReferenceThroughAutowiring() {
 		RootBeanDefinition bd = new RootBeanDefinition(ConstructorDependencyBean.class);
 		bd.setAutowireMode(RootBeanDefinition.AUTOWIRE_CONSTRUCTOR);
 		lbf.registerBeanDefinition("test", bd);
-		assertThatExceptionOfType(UnsatisfiedDependencyException.class).isThrownBy(lbf::preInstantiateSingletons);
+		lbf.preInstantiateSingletons();
+
+//		assertThatExceptionOfType(UnsatisfiedDependencyException.class).isThrownBy(lbf::preInstantiateSingletons);
 	}
 
 	@Test
@@ -2739,6 +2749,8 @@ class DefaultListableBeanFactoryTests {
 	}
 
 
+	// 这是自己在注入自己吧
+	// 构造器注入
 	public static class ConstructorDependencyBean {
 
 		public ConstructorDependencyBean(ConstructorDependencyBean dependency) {

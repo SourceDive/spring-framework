@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Cat {
-	@Autowired
-	Cat cat;
+//	@Autowired
+//	Cat cat;
+	public Cat(Cat cat) {}
 }

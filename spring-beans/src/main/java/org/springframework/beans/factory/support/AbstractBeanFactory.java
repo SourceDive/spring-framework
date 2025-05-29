@@ -204,6 +204,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	// Implementation of BeanFactory interface
 	//---------------------------------------------------------------------
 
+	// 会触发 bean 的实例化.
 	@Override
 	public Object getBean(String name) throws BeansException {
 		return doGetBean(name, null, null, false);
@@ -436,12 +437,16 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	// 全局性查找
 	@Override
 	public boolean containsBean(String name) {
+		// 获取规范的名称。别名透明处理
 		String beanName = transformedBeanName(name);
+		// 1、检查已经存在的单例实例
+		// 2、检查当前容器的 bean 定义
 		if (containsSingleton(beanName) || containsBeanDefinition(beanName)) {
 			// 如果输入的是 factoryBean 的产物bean，前一个条件返回true
 			// 如果输入的是 factoryBean本身，后一个条件返回 true
 			return (!BeanFactoryUtils.isFactoryDereference(name) || isFactoryBean(name));
 		}
+		// 3、查询父容器
 		// Not found -> check parent.
 		BeanFactory parentBeanFactory = getParentBeanFactory();
 		return (parentBeanFactory != null && parentBeanFactory.containsBean(originalBeanName(name)));
