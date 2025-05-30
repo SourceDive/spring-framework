@@ -16,6 +16,7 @@
 
 package org.springframework.beans.factory;
 
+// 这个接口主要是框架内容使用，注释中有标明。
 /**
  * Extension of the {@link FactoryBean} interface. Implementations may
  * indicate whether they always return independent instances, for the
@@ -30,8 +31,8 @@ package org.springframework.beans.factory;
  * <p><b>NOTE:</b> This interface is a special purpose interface, mainly for
  * internal use within the framework and within collaborating frameworks.
  * In general, application-provided FactoryBeans should simply implement
- * the plain {@link FactoryBean} interface. New methods might be added
- * to this extended interface even in point releases.
+ * the plain {@link FactoryBean} interface.(通常而言，开发者实现的FactoryBean应直接实现标准的FactoryBean)
+ * New methods might be added to this extended interface even in point releases.
  *
  * @author Juergen Hoeller
  * @since 2.0.3
