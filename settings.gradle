@@ -8,7 +8,7 @@ pluginManagement {
 
 plugins {
 	id "com.gradle.develocity" version "3.17.2"
-	id "io.spring.ge.conventions" version "0.0.17"
+//	id "io.spring.ge.conventions" version "0.0.17" // 每次构建时控制台都会存在类似“Loading entry from 'https://ge.spring.io”的日志，注释掉这一句，就没有了
 }
 
 include "spring-aop"
