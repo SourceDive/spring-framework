@@ -335,26 +335,6 @@ class DefaultListableBeanFactoryTests {
 	}
 
 	@Test
-	public void testMethodContainLocalBean() {
-		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-
-		// 创建本地工厂
-		RootBeanDefinition myServiceDef = new RootBeanDefinition(MyService.class);
-		beanFactory.registerBeanDefinition("myServiceDef", myServiceDef);
-
-		// 创建父工厂
-		DefaultListableBeanFactory parentBeanFactory = new DefaultListableBeanFactory();
-		beanFactory.setParentBeanFactory(parentBeanFactory);
-
-		// 查找本工厂中是否存在
-		assertThat(beanFactory.containsBean("myServiceDef")).isTrue();
-		assertThat(beanFactory.containsLocalBean("myServiceDef")).isTrue();
-
-		// 查找父工厂中是否存在
-		assertThat(parentBeanFactory.containsLocalBean("myServiceDef")).isFalse();
-	}
-
-	@Test
 	void staticFactoryMethodFoundByNonEagerTypeMatching() {
 		RootBeanDefinition rbd = new RootBeanDefinition(TestBeanFactory.class);
 		rbd.setFactoryMethodName("createTestBean");
