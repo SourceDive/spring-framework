@@ -61,14 +61,7 @@ import org.springframework.beans.factory.config.InstantiationAwareBeanPostProces
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.beans.factory.config.RuntimeBeanReference;
 import org.springframework.beans.factory.config.TypedStringValue;
-import org.springframework.beans.factory.support.AbstractBeanDefinition;
-import org.springframework.beans.factory.support.AbstractBeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionBuilder;
-import org.springframework.beans.factory.support.BeanDefinitionOverrideException;
-import org.springframework.beans.factory.support.ChildBeanDefinition;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.support.ManagedList;
-import org.springframework.beans.factory.support.RootBeanDefinition;
+import org.springframework.beans.factory.support.*;
 import org.springframework.beans.factory.xml.ConstructorDependenciesBean;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.beans.testfixture.beans.DependenciesBean;
@@ -2166,8 +2159,10 @@ class DefaultListableBeanFactoryTests {
 
 	/**
 	 * 自己注入自己，且为构造器注入方式
-	 * @see DefaultSingletonBeanRegistry#beforeSingletonCreation(String)
-	 * 会在上面这个方法中被阻拦下来
+	 * <p>
+	 * DefaultSingletonBeanRegistry#beforeSingletonCreation(String)
+	 * 会在这个方法中被阻拦下来
+	 * </p>
 	 */
 	@Test
 	void circularReferenceThroughAutowiring() {
