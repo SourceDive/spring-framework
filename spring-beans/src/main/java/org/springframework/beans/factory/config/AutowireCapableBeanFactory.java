@@ -43,7 +43,8 @@ import org.springframework.lang.Nullable;
  *
  * <p>Note that this interface is not implemented by
  * {@link org.springframework.context.ApplicationContext} facades,
- * as it is hardly ever used by application code. That said, it is available
+ * as it is hardly ever used by application code(很少会被开发者用到). That said, it is
+ * available
  * from an application context too, accessible through ApplicationContext's
  * {@link org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()}
  * method.
