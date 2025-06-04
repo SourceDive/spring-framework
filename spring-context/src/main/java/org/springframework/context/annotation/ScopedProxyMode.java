@@ -44,12 +44,14 @@ public enum ScopedProxyMode {
 	 */
 	NO,
 
+	// 基于接口的动态代理(JDK)
 	/**
 	 * Create a JDK dynamic proxy implementing <i>all</i> interfaces exposed by
 	 * the class of the target object.
 	 */
 	INTERFACES,
 
+	// 基于类的动态代理(CGLIB)
 	/**
 	 * Create a class-based proxy (uses CGLIB).
 	 */
