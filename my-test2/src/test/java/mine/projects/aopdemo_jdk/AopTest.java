@@ -1,4 +1,4 @@
-package mine.projects.aopdemo_cglib;
+package mine.projects.aopdemo_jdk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.aop.support.AopUtils;
@@ -6,8 +6,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * @author zero
- * @description use spring framework to test aop cglib logic
- * @date 2025-05-27
+ * @description use spring framework to test aop jdk proxy logic
+ * @date 2025-06-04
  */
 public class AopTest {
 
@@ -15,14 +15,11 @@ public class AopTest {
 	public void testAop() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
 
-		// 获取代理对象
-		DemoService demoService = context.getBean(DemoService.class);
+		// 获取代理对象(注意，这里jdk代理获取bean必须要用接口的类型!)
+		DemoInterface demoInterface = context.getBean(DemoInterface.class);
 
 		// 触发切面方法
-		demoService.save();
-
-		// todo 为什么这里是 false 呢，明明是有代理的啊
-		boolean isAopProxy = AopUtils.isAopProxy(DemoService.class);
+		demoInterface.save();
 
 		context.close();
 	}
