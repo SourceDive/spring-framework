@@ -1,4 +1,4 @@
-package mine.projects.aopdemo;
+package mine.projects.aopdemo_cglib;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +11,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @Configuration
 @ComponentScan("mine.projects.aopdemo")
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy(proxyTargetClass = false)
 public class Application {
 }

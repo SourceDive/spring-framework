@@ -1,4 +1,4 @@
-package mine.projects.aopdemo;
+package mine.projects.aopdemo_cglib;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
