@@ -46,7 +46,7 @@ import org.springframework.lang.Nullable;
  * using the {@link #setUserAttribute} / {@link #getUserAttribute} methods.
  *
  * <p><b>NOTE:</b> This class is considered internal and should not be
- * directly accessed. The sole reason for it being public is compatibility
+ * directly accessed. The sole reason(唯一的原因) for it being public is compatibility
  * with existing framework integrations (e.g. Pitchfork). For any other
  * purposes, use the {@link ProxyMethodInvocation} interface instead.
  *

@@ -457,6 +457,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	}
 
 
+	// 使用缓存，首次更新缓存，后续直接使用缓存。
 	/**
 	 * Determine a list of {@link org.aopalliance.intercept.MethodInterceptor} objects
 	 * for the given method, based on this configuration.

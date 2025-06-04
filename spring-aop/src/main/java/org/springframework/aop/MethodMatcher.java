@@ -52,6 +52,7 @@ import java.lang.reflect.Method;
  */
 public interface MethodMatcher {
 
+	// 静态匹配器
 	/**
 	 * Perform static checking whether the given method matches.
 	 * <p>If this returns {@code false} or if the {@link #isRuntime()}
@@ -76,6 +77,7 @@ public interface MethodMatcher {
 	 */
 	boolean isRuntime();
 
+	// 动态匹配器
 	/**
 	 * Check whether there a runtime (dynamic) match for this method,
 	 * which must have matched statically.
