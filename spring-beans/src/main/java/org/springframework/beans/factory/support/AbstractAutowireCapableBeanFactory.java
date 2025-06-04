@@ -631,6 +631,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// 1、属性赋值
 			// 2、依赖注入
 			populateBean(beanName, mbd, instanceWrapper);
+
+			// 一些扩展性的操作
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
 		catch (Throwable ex) {
