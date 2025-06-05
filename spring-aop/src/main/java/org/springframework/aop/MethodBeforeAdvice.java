@@ -31,6 +31,9 @@ import org.springframework.lang.Nullable;
 public interface MethodBeforeAdvice extends BeforeAdvice {
 
 	/**
+	 * @see org.aspectj.lang.annotation.Before
+	 */
+	/**
 	 * Callback before a given method is invoked.
 	 * @param method the method being invoked
 	 * @param args the arguments to the method

@@ -27,6 +27,7 @@ import org.aspectj.weaver.tools.JoinPointMatch;
 import org.springframework.aop.ProxyMethodInvocation;
 import org.springframework.lang.Nullable;
 
+// 环绕通知
 /**
  * Spring AOP around advice (MethodInterceptor) that wraps
  * an AspectJ advice method. Exposes ProceedingJoinPoint.

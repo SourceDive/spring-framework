@@ -31,6 +31,9 @@ import org.springframework.lang.Nullable;
 public interface AfterReturningAdvice extends AfterAdvice {
 
 	/**
+	 * @see org.aspectj.lang.annotation.AfterReturning
+	 */
+	/**
 	 * Callback after a given method successfully returned.
 	 * @param returnValue the value returned by the method, if any
 	 * @param method the method being invoked
