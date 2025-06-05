@@ -1,8 +1,8 @@
 package mine.projects.aopdemo_jdk;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.aop.support.AopUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.util.AopTestUtils;
 
 /**
  * @author zero
@@ -22,5 +22,13 @@ public class AopTest {
 		demoInterface.save();
 
 		context.close();
+	}
+
+	/**
+	 * {@link AopTestUtils} 这个可以用来获取原始对象
+	 */
+	@Test
+	public void testUtil() {
+//		AopTestUtils.getTargetObject();
 	}
 }
