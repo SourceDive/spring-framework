@@ -161,7 +161,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * Add the given singleton factory for building the specified singleton
 	 * if necessary.
 	 * <p>To be called for eager registration of singletons, e.g. to be able to
-	 * resolve circular references.
+	 * resolve circular references. 例如，可以解决循环引用。
 	 * @param beanName the name of the bean
 	 * @param singletonFactory the factory for the singleton object
 	 */
