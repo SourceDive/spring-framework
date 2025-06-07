@@ -44,6 +44,7 @@ import org.springframework.lang.Nullable;
  * for example). See chapters 4 and 11 of "Expert One-on-One J2EE Design and
  * Development" for a discussion of the benefits of this approach.
  *
+ * <p>注意下面这一句</p>
  * <p>Note that it is generally better to rely on Dependency Injection
  * ("push" configuration) to configure application objects through setters
  * or constructors, rather than use any form of "pull" configuration like a
@@ -56,7 +57,8 @@ import org.springframework.lang.Nullable;
  * Java objects it creates as necessary directly in Java code. There are no
  * constraints on how the definitions could be stored: LDAP, RDBMS, XML,
  * properties file, etc. Implementations are encouraged to support references
- * amongst beans (Dependency Injection).
+ * amongst beans(bean之间的引用) (Dependency Injection).
+ * <p>上面这一句是建议开发者去实现时容器需要具有的能力。</p>
  *
  * <p>In contrast to the methods in {@link ListableBeanFactory}, all of the
  * operations in this interface will also check parent factories if this is a
@@ -263,6 +265,7 @@ public interface BeanFactory {
 	 * canonical bean name.
 	 * <p>If this factory is hierarchical, will ask any parent factory if the bean cannot
 	 * be found in this factory instance.
+	 * <p>在本工厂找不到，就到父工厂去找。</p>
 	 * <p>If a bean definition or singleton instance matching the given name is found,
 	 * this method will return {@code true} whether the named bean definition is concrete
 	 * or abstract, lazy or eager, in scope or not. Therefore, note that a {@code true}
