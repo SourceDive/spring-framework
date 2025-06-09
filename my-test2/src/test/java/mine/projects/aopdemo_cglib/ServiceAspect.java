@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ServiceAspect {
-	@Before("execution(public * mine.projects.aopdemo.DemoService.*(..))")
+	@Before("execution(public * mine.projects.aopdemo_cglib.DemoService.*(..))")
 	public void beforePrint() {
 		System.out.println("before run...");
 	}
