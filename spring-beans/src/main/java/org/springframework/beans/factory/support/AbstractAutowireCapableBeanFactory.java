@@ -498,7 +498,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * Central method of this class: creates a bean instance,
 	 * populates(populate在技术文档中通常指填充属性或依赖注入) the bean instance, applies post-processors, etc.
 	 *
+	 * <p>
 	 * 该类的核心方法：创建 bean 实例，填充 bean 属性，应用后置处理器等操作
+	 * </p>
 	 * @see #doCreateBean
 	 */
 	@Override
@@ -531,6 +533,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		try {
 			// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
 			// 实例化之前的处理
+			// 如果bean实现了BeanPostProcessor，这里返回的可能是一个 proxy
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 			if (bean != null) {
 				return bean;

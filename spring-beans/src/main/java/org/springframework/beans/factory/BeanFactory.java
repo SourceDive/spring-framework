@@ -135,6 +135,7 @@ public interface BeanFactory {
 	String FACTORY_BEAN_PREFIX = "&";
 
 
+	// 注意，所有的 getBean() 方法，如果找不到对应的 bean ，都会抛出异常。
 	/**
 	 * Return an instance, which may be shared or independent, of the specified bean.
 	 * <p>This method allows a Spring BeanFactory to be used as a replacement for the

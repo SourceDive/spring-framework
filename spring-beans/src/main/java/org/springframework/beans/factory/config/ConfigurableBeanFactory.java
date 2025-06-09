@@ -31,6 +31,8 @@ import org.springframework.core.metrics.ApplicationStartup;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
+
+// 可以 configure bean factory
 /**
  * Configuration interface to be implemented by most bean factories. Provides
  * facilities to configure a bean factory, in addition to the bean factory

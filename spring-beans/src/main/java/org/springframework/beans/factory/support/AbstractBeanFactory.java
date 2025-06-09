@@ -279,8 +279,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				throw new BeanCurrentlyInCreationException(beanName);
 			}
 
+			// 检查本工厂中是否存在bean定义，检查原始的bean定义
 			// Check if bean definition exists in this factory.
 			BeanFactory parentBeanFactory = getParentBeanFactory();
+			// 为什么这里的parentBeanFactory为null，就不执行后面的本beanfactory的定义检查了呢？
+			// 这里跳过的bean定义检查，后面会再检查一次。
 			if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
 				// Not found -> check parent.
 				// 本 BeanFactory 没有找到，去父容器中找
@@ -313,6 +316,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					beanCreation.tag("beanType", requiredType::toString);
 				}
 				// 获取合并的 bean 定义
+				// 这里同样也会检查bean定义（成本较高，可能触发合并）
 				RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 				// 检查 bean 定义不能是抽象的
 				checkMergedBeanDefinition(mbd, beanName, args);
@@ -1817,9 +1821,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	}
 
 	/**
+	 * <p>
 	 * 双锁检测机制：防止多线程同时进行到该步骤引发 bean 对象多次创建
+	 * </p>
 	 * Mark the specified bean as already created (or about to be created).
+	 * <p>
 	 * 将指定的 bean 标记为已创建（或即将被创建）
+	 * </p>
 	 * <p>This allows the bean factory to optimize its caching for repeated
 	 * creation of the specified bean.
 	 * @param beanName the name of the bean
