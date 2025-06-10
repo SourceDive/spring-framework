@@ -115,6 +115,9 @@ public class AnnotationTransactionNamespaceHandlerTests {
 	}
 
 
+	/**
+	 * 名称是testBean
+	 */
 	@Service
 	@ManagedResource("test:type=TestBean")
 	public static class TransactionalTestBean {

@@ -39,6 +39,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
+// 会扫描jar包文件下的META-INF/spring.factories文件
 /**
  * General purpose factory loading mechanism for internal use within the framework.
  *
@@ -53,6 +54,11 @@ import org.springframework.util.StringUtils;
  *
  * where {@code example.MyService} is the name of the interface, and {@code MyServiceImpl1}
  * and {@code MyServiceImpl2} are two implementations.
+ * <p>
+ * 上面说了META-INF/spring.factories文件内容的格式
+ * key: 接口或者抽象类的权限定名
+ * value: 实现类的名称
+ * </p>
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
