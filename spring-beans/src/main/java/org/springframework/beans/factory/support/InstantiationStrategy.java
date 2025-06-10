@@ -27,7 +27,8 @@ import org.springframework.lang.Nullable;
  * Interface responsible for creating instances corresponding to a root bean definition.
  *
  * <p>This is pulled out into a strategy as various approaches are possible,
- * including using CGLIB to create subclasses on the fly to support Method Injection.
+ * including using CGLIB to create subclasses on the fly(动态地) to support Method
+ * Injection.
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -48,6 +49,7 @@ public interface InstantiationStrategy {
 	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner)
 			throws BeansException;
 
+	// 通过构造器
 	/**
 	 * Return an instance of the bean with the given name in this factory,
 	 * creating it via the given constructor.
@@ -64,6 +66,7 @@ public interface InstantiationStrategy {
 	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,
 			Constructor<?> ctor, Object... args) throws BeansException;
 
+	// 通过工厂方法
 	/**
 	 * Return an instance of the bean with the given name in this factory,
 	 * creating it via the given factory method.

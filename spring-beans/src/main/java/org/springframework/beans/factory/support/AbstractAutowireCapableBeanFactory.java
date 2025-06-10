@@ -206,6 +206,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 	/**
 	 * Return the instantiation strategy to use for creating bean instances.
+	 * <p>
+	 * 查看默认的实例化策略 {@link CglibSubclassingInstantiationStrategy}
+	 * </p>
 	 */
 	protected InstantiationStrategy getInstantiationStrategy() {
 		return this.instantiationStrategy;
@@ -533,7 +536,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		try {
 			// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
 			// 实例化之前的处理
-			// 如果bean实现了BeanPostProcessor，这里返回的可能是一个 proxy
+			// 如果bean实现了BeanPostProcessor，这里返回的可能是一个 proxy todo 这个如何去验证？
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 			if (bean != null) {
 				return bean;
@@ -588,6 +591,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Instantiate the bean.
 		BeanWrapper instanceWrapper = null;
 		if (mbd.isSingleton()) {
+			// todo 这里为什么要remove掉，不能用缓存里的吗
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
 		if (instanceWrapper == null) {
