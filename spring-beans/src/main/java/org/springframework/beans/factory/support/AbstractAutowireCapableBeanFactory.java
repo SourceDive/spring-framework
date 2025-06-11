@@ -1278,7 +1278,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		// No special handling: simply use no-arg constructor.
-		// 3. 使用无参构造器，使用默认的实例化策略
+		// 3. 使用无参构造器，使用默认的实例化策略(即cglib)
 		return instantiateBean(beanName, mbd);
 	}
 

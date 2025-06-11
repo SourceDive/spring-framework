@@ -115,6 +115,8 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 		 * @return new instance of the dynamically generated subclass
 		 */
 		public Object instantiate(@Nullable Constructor<?> ctor, Object... args) {
+			// 创建bean的子类
+			// 这里观察下子类的名称是什么 todo
 			Class<?> subclass = createEnhancedSubclass(this.beanDefinition);
 			Object instance;
 			if (ctor == null) {
@@ -145,7 +147,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 		 */
 		private Class<?> createEnhancedSubclass(RootBeanDefinition beanDefinition) {
 			Enhancer enhancer = new Enhancer();
-			enhancer.setSuperclass(beanDefinition.getBeanClass()); // 设置基类
+			enhancer.setSuperclass(beanDefinition.getBeanClass()); // 设置 enhancer 的基类是目标类，即 enhancer 继承自目标类
 			enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE); // BySpringCGLIB
 			if (this.owner instanceof ConfigurableBeanFactory) {
 				ClassLoader cl = ((ConfigurableBeanFactory) this.owner).getBeanClassLoader();
