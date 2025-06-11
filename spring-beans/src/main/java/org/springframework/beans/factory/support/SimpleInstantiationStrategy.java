@@ -57,6 +57,11 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 	}
 
 
+	/**
+	 * 这里提供了两种实例化的方法
+	 * 1、BeanUtils 通过构造器来实例化
+	 * 2、通过 cglib
+	 */
 	@Override
 	public Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner) {
 		// Don't override the class with CGLIB if no overrides.

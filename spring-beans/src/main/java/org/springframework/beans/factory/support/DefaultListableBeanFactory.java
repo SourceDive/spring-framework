@@ -940,6 +940,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				// 1、FactoryBean 默认不初始化，除非 isEagerInit 为 true
 				if (isFactoryBean(beanName)) {
+					// 获取 factoryBean 本身，而非 factoryBean 的产物
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
 					if (bean instanceof FactoryBean) {
 						FactoryBean<?> factory = (FactoryBean<?>) bean;
