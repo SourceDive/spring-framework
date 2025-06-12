@@ -45,6 +45,7 @@ import org.springframework.lang.Nullable;
  * bootstrap process, even ahead of any post-processor setup. If you need access to
  * other beans, implement {@link BeanFactoryAware} and obtain them programmatically.
  *
+ * <p>这个容器只对 FactoryBean 管理负责，不对其产物负责</p>
  * <p><b>The container is only responsible for managing the lifecycle of the FactoryBean
  * instance, not the lifecycle of the objects created by the FactoryBean.</b> Therefore,
  * a destroy method on an exposed bean object (such as {@link java.io.Closeable#close()})
