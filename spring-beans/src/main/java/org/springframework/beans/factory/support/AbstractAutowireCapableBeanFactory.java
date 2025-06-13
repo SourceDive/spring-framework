@@ -574,10 +574,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * <p>Differentiates between default bean instantiation, use of a
 	 * factory method, and autowiring a constructor.
 	 *
+	 * <p>
 	 * 此处需要区分三种实例化方式：
 	 * 1. 默认实例化: new
 	 * 2. 工厂方法
 	 * 3. 构造函数自动装配 @Autowired
+	 * </p>
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @param args explicit arguments to use for constructor or factory method invocation
@@ -598,7 +600,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		if (instanceWrapper == null) {
 			// todo 书上说这里可以得到一个对象内部没有任何额外注入的 bean 对象？
-			// 实例化bean对象
+			// bean对象的实例化
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		Object bean = instanceWrapper.getWrappedInstance();
@@ -643,6 +645,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			populateBean(beanName, mbd, instanceWrapper);
 
 			// 一些扩展性的操作
+			// bean 的初始化。
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
 		catch (Throwable ex) {
@@ -1359,6 +1362,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
+	 * <p>注意这个单词Instantiate，instance你应该认识，这个是实例化的意思。不要和初始化搞混了！</p>
 	 * Instantiate the given bean using its default constructor.
 	 * @param beanName the name of the bean
 	 * @param mbd the bean definition for the bean
@@ -1821,6 +1825,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 
 	/**
+	 * <p>
+	 *     应用1、回调 2、init 方法 3、后置处理器
+	 * </p>
 	 * Initialize the given bean instance, applying factory callbacks
 	 * as well as init methods and bean post processors.
 	 * <p>Called from {@link #createBean} for traditionally defined beans,
