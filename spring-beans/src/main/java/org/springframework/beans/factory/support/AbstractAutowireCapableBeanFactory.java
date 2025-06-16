@@ -1514,6 +1514,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 	}
 
+	// 直接通过bean名称去getBean()
 /**
 	 * Fill in any missing property values with references to
 	 * other beans in this factory if autowire is set to "byName".
