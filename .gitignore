@@ -49,3 +49,10 @@ atlassian-ide-plugin.xml
 .vscode/
 
 cached-antora-playbook.yml
+**/*.html
+my-test2/**/*.js
+my-test2/**/*.css
+my-test2/**/*.bin
+my-test2/**/*.idx
+my-test2/**/*.jar
+my-test2/**/*.class
