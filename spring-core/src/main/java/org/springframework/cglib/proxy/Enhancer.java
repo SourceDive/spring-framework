@@ -247,6 +247,7 @@ public class Enhancer extends AbstractClassGenerator {
 		super(SOURCE);
 	}
 
+	// 如果基类是接口，就会用方法 setInterfaces
 	/**
 	 * Set the class which the generated class will extend. As a convenience,
 	 * if the supplied superclass is actually an interface, <code>setInterfaces</code>
