@@ -61,7 +61,8 @@ import org.springframework.cglib.core.WeakCacheKey;
  * Generates dynamic subclasses to enable method interception. This
  * class started as a substitute for the standard Dynamic Proxy support
  * included with JDK 1.3, but one that allowed the proxies to extend a
- * concrete base class, in addition to implementing interfaces. The dynamically
+ * concrete base class(允许代理对象继承一个具体的基类), in addition to implementing
+ * interfaces. * The dynamically
  * generated subclasses override the non-final methods of the superclass and
  * have hooks which callback to user-defined interceptor
  * implementations.

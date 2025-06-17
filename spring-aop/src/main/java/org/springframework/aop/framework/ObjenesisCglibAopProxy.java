@@ -59,6 +59,7 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 
 		if (objenesis.isWorthTrying()) {
 			try {
+				// todo 需要注意下这个
 				proxyInstance = objenesis.newInstance(proxyClass, enhancer.getUseCache());
 			}
 			catch (Throwable ex) {
