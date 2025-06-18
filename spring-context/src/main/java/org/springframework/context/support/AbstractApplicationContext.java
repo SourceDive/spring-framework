@@ -565,6 +565,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			 *
 			 */
 			// Tell the subclass to refresh the internal bean factory.
+			// 这里可以动态更新
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
@@ -1511,6 +1512,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	//---------------------------------------------------------------------
 
 	/**
+	 * <p>为什么要刷新 BeanFactory ?</p>
+	 * <p>为什么重新加载配置。例如在热部署时，动态重新加载配置。</p>
 	 * Subclasses must implement this method to perform the actual configuration load.
 	 * The method is invoked by {@link #refresh()} before any other initialization work.
 	 * <p>A subclass will either create a new bean factory and hold a reference to it,

@@ -132,7 +132,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			closeBeanFactory();
 		}
 
-		// 第二步，初始化一个新的 bean factory,为下个阶段做准备
+		// 第二步，初始化一个新的 bean factory,加载 bean 定义，为下个阶段做准备
 		try {
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
