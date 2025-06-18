@@ -27,6 +27,9 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>
+ *     作用于方法上
+ * </p>
  * Indicates that a method produces a bean to be managed by the Spring container.
  *
  * <h3>Overview</h3>

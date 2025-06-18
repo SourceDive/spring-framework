@@ -41,6 +41,7 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
+// 用来识别配置类的工具类
 /**
  * Utilities for identifying {@link Configuration} classes.
  *

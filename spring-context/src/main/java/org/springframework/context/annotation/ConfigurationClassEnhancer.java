@@ -149,7 +149,7 @@ class ConfigurationClassEnhancer {
 	 * have already been enhanced.
 	 * <p>Also extends {@link BeanFactoryAware}, as all enhanced {@code @Configuration}
 	 * classes require access to the {@link BeanFactory} that created them.
-	 * <p>Note that this interface is intended for framework-internal use only, however
+	 * <p>Note that this interface is intended for framework-internal use only(只是为了框架内部使用), however
 	 * must remain public in order to allow access to subclasses generated from other
 	 * packages (i.e. user code).
 	 */
