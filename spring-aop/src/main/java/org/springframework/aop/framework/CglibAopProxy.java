@@ -218,7 +218,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 	protected Object createProxyClassAndInstance(Enhancer enhancer, Callback[] callbacks) {
 		enhancer.setInterceptDuringConstruction(false);
-		enhancer.setCallbacks(callbacks);
+		enhancer.setCallbacks(callbacks); // 设置回调
 		return (this.constructorArgs != null && this.constructorArgTypes != null ?
 				enhancer.create(this.constructorArgTypes, this.constructorArgs) :
 				enhancer.create());
