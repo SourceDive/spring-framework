@@ -29,6 +29,8 @@ import org.springframework.core.OrderComparator;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
+// 问了下deepseek，这个是 TransactionResourceManager 的替代品
+// TransactionResourceManager 在 spring4.0 被弃用，之后被删除掉了。
 /**
  * Central delegate that manages resources and transaction synchronizations per thread.
  * To be used by resource management code but not by typical application code.

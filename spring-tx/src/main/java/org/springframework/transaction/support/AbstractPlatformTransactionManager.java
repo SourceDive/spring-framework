@@ -36,6 +36,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.TransactionSuspensionNotSupportedException;
 import org.springframework.transaction.UnexpectedRollbackException;
 
+// 事务模板方法父类
 /**
  * Abstract base class that implements Spring's standard transaction workflow,
  * serving as basis for concrete platform transaction managers like

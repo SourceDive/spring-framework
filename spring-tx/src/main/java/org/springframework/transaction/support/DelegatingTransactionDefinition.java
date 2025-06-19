@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
 
 /**
  * {@link TransactionDefinition} implementation that delegates all calls to a given target
- * {@link TransactionDefinition} instance. Abstract because it is meant to be subclassed,
+ * {@link TransactionDefinition} instance. Abstract because it is meant to be subclassed(抽象意味着被子类化),
  * with subclasses overriding specific methods that are not supposed to simply delegate
  * to the target instance.
  *

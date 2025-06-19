@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.springframework.lang.Nullable;
 import org.springframework.transaction.TransactionDefinition;
 
+// 面向声明式使用的 AOP 事务
 /**
  * This interface adds a {@code rollbackOn} specification to {@link TransactionDefinition}.
  * As custom {@code rollbackOn} is only possible with AOP, it resides in the AOP-related
