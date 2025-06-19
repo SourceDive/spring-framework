@@ -18,11 +18,14 @@ package org.springframework.transaction;
 
 import org.springframework.lang.Nullable;
 
+// 定义事务的相关属性。
+// 类中定义的方法就显示了对应的重要特性
 /**
  * Interface that defines Spring-compliant transaction properties.
- * Based on the propagation behavior definitions analogous to EJB CMT attributes.
+ * Based on the propagation behavior(传播行为) definitions analogous to EJB CMT
+ * attributes.
  *
- * <p>Note that isolation level and timeout settings will not get applied unless
+ * <p>Note that isolation level(隔离级别) and timeout settings will not get applied unless
  * an actual new transaction gets started. As only {@link #PROPAGATION_REQUIRED},
  * {@link #PROPAGATION_REQUIRES_NEW} and {@link #PROPAGATION_NESTED} can cause
  * that, it usually doesn't make sense to specify those settings in other cases.
@@ -44,6 +47,7 @@ import org.springframework.lang.Nullable;
 public interface TransactionDefinition {
 
 	/**
+	 * <p>支持当前事务，没有则新建</p>
 	 * Support a current transaction; create a new one if none exists.
 	 * Analogous to the EJB transaction attribute of the same name.
 	 * <p>This is typically the default setting of a transaction definition,
@@ -52,6 +56,7 @@ public interface TransactionDefinition {
 	int PROPAGATION_REQUIRED = 0;
 
 	/**
+	 * <p>支持当前事务，没有则直接执行。</p>
 	 * Support a current transaction; execute non-transactionally if none exists.
 	 * Analogous to the EJB transaction attribute of the same name.
 	 * <p><b>NOTE:</b> For transaction managers with transaction synchronization,
@@ -73,6 +78,7 @@ public interface TransactionDefinition {
 	int PROPAGATION_SUPPORTS = 1;
 
 	/**
+	 * <p>强制使用事务，没有则报错。</p>
 	 * Support a current transaction; throw an exception if no current transaction
 	 * exists. Analogous to the EJB transaction attribute of the same name.
 	 * <p>Note that transaction synchronization within a {@code PROPAGATION_MANDATORY}
@@ -81,6 +87,7 @@ public interface TransactionDefinition {
 	int PROPAGATION_MANDATORY = 2;
 
 	/**
+	 * <p>终止当前事务，创建新的事务</p>
 	 * Create a new transaction, suspending the current transaction if one exists.
 	 * Analogous to the EJB transaction attribute of the same name.
 	 * <p><b>NOTE:</b> Actual transaction suspension will not work out-of-the-box

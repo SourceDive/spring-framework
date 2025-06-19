@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
+// 异常转译
 /**
  * Strategy interface for translating between {@link SQLException SQLExceptions}
  * and Spring's data access strategy-agnostic {@link DataAccessException}

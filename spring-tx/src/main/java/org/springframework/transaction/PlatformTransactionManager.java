@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
 // 事务的核心
 /**
  * This is the central interface in Spring's imperative transaction infrastructure.
- * Applications can use this directly, but it is not primarily meant as an API:
+ * Applications can use this directly(应用/用户可以直接使用), but it is not primarily meant as an API:
  * Typically, applications will work with either TransactionTemplate or
  * declarative transaction demarcation through AOP.
  *
