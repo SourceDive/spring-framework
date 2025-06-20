@@ -2062,7 +2062,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * The bean definition will already have been merged with the parent definition
 	 * in case of a child definition. (若存在子定义，则该 bean 的定义将已与父定义合并。)
 	 * <p>All bean retrieval methods delegate to this method for actual bean creation.
+	 * <p>
 	 * 所有 bean 的获取方法最终都会委托此方法来完成实际的 bean 创建。
+	 * </p>
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @param args explicit arguments to use for constructor or factory method invocation

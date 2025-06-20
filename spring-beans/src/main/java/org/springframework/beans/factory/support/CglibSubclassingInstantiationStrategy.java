@@ -116,7 +116,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 		 */
 		public Object instantiate(@Nullable Constructor<?> ctor, Object... args) {
 			// 创建bean的子类
-			// 这里观察下子类的名称是什么 todo
+			// 这里观察下子类的名称是什么(名称的生成逻辑可以查看cglib的github仓库)
 			Class<?> subclass = createEnhancedSubclass(this.beanDefinition);
 			Object instance;
 			if (ctor == null) {
