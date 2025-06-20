@@ -212,6 +212,7 @@ public interface TransactionDefinition {
 	}
 
 	/**
+	 * <P>当前事务和其他事务的一个关系</P>
 	 * Return the isolation level.
 	 * <p>Must return one of the {@code ISOLATION_XXX} constants defined on
 	 * {@link TransactionDefinition this interface}. Those constants are designed
@@ -249,6 +250,7 @@ public interface TransactionDefinition {
 	}
 
 	/**
+	 * <p>只能读取数据，不能修改数据。</p>
 	 * Return whether to optimize as a read-only transaction.
 	 * <p>The read-only flag applies to any transaction context, whether backed
 	 * by an actual resource transaction ({@link #PROPAGATION_REQUIRED}/

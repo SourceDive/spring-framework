@@ -34,6 +34,8 @@ import java.io.Flushable;
 public interface SmartTransactionObject extends Flushable {
 
 	/**
+	 * <p>仅回滚（只进行回滚，别的啥也不做）</p>
+	 * <p>无论是否成功，必须进行回滚</p>
 	 * Return whether the transaction is internally marked as rollback-only.
 	 * Can, for example, check the JTA UserTransaction.
 	 * @see javax.transaction.UserTransaction#getStatus

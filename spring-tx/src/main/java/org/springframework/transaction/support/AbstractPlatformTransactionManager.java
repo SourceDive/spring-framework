@@ -58,6 +58,7 @@ import org.springframework.transaction.UnexpectedRollbackException;
  * states of a transaction, e.g.: begin, suspend, resume, commit, rollback.
  * The most important of them are abstract and must be provided by a concrete
  * implementation; for the rest, defaults are provided, so overriding is optional.
+ * <p>最终要的是抽象方法，子类必须要实现它们，这个类已经把默认的功能给提供出来了。</p>
  *
  * <p>Transaction synchronization is a generic mechanism for registering callbacks
  * that get invoked at transaction completion time. This is mainly used internally
@@ -1005,6 +1006,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 
 	//---------------------------------------------------------------------
 	// Template methods to be implemented in subclasses
+	// 模板方法，给子类实现
 	//---------------------------------------------------------------------
 
 	/**

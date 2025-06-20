@@ -150,6 +150,8 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 
 	//---------------------------------------------------------------------
 	// Enable functionality through underlying transaction object
+	// 通过底层事务对象启用功能
+	// 通过底层对象 -> 指并非从 spring 抽象层
 	//---------------------------------------------------------------------
 
 	/**
@@ -157,6 +159,7 @@ public class DefaultTransactionStatus extends AbstractTransactionStatus {
 	 * that the latter implements the {@link SmartTransactionObject} interface.
 	 * <p>Will return {@code true} if the global transaction itself has been marked
 	 * rollback-only by the transaction coordinator, for example in case of a timeout.
+	 * <p>超时时标记为仅回滚</p>
 	 * @see SmartTransactionObject#isRollbackOnly()
 	 */
 	@Override

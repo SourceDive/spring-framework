@@ -25,6 +25,7 @@ import org.springframework.lang.Nullable;
  * Typically, applications will work with either TransactionTemplate or
  * declarative transaction demarcation through AOP.
  *
+ * <p>更推荐去实现下面这个抽象类</p>
  * <p>For implementors, it is recommended to derive from the provided
  * {@link org.springframework.transaction.support.AbstractPlatformTransactionManager}
  * class, which pre-implements the defined propagation behavior and takes care
@@ -60,6 +61,7 @@ public interface PlatformTransactionManager extends TransactionManager {
 	 * @param definition the TransactionDefinition instance (can be {@code null} for defaults),
 	 * describing propagation behavior, isolation level, timeout etc.
 	 * @return transaction status object representing the new or current transaction
+	 * <p>返回的可能是一个新事务或者当前事务</p>
 	 * @throws TransactionException in case of lookup, creation, or system errors
 	 * @throws IllegalTransactionStateException if the given transaction definition
 	 * cannot be executed (for example, if a currently active transaction is in
