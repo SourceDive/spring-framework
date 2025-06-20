@@ -56,8 +56,11 @@ import org.springframework.util.ClassUtils;
 public class AnnotationTransactionAttributeSource extends AbstractFallbackTransactionAttributeSource
 		implements Serializable {
 
+	// todo 这个变量为什么是这个名称？
+	// 看了下 git 提交历史，说是什么 jta 1.2
 	private static final boolean jta12Present;
 
+	// todo 这个变量为什么是这个名称？
 	private static final boolean ejb3Present;
 
 	static {

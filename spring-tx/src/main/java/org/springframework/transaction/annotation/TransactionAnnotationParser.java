@@ -23,6 +23,7 @@ import org.springframework.transaction.interceptor.TransactionAttribute;
 
 /**
  * Strategy interface for parsing known transaction annotation types.
+ * <p>用于解析已知事务注解类型的策略接口</p>
  * {@link AnnotationTransactionAttributeSource} delegates to such
  * parsers for supporting specific annotation types such as Spring's own
  * {@link Transactional}, JTA 1.2's {@link javax.transaction.Transactional}
