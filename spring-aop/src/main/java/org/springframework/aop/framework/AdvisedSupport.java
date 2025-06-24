@@ -51,6 +51,7 @@ import org.springframework.util.CollectionUtils;
  * <p>This class frees subclasses of the housekeeping of Advices
  * and Advisors, but doesn't actually implement proxy creation
  * methods, which are provided by subclasses.
+ * <p>该类将子类从管理 Advice 和 Advisor 的繁琐工作中解放出来，但并未实际实现代理创建方法，这些方法由子类提供。</p>
  *
  * <p>This class is serializable; subclasses need not be.
  *

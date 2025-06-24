@@ -350,7 +350,7 @@ public interface BeanFactory {
 	/**
 	 * Determine the type of the bean with the given name. More specifically,
 	 * determine the type of object that {@link #getBean} would return for the given name.
-	 * <p>For a {@link FactoryBean}, return the type of object that the FactoryBean creates,
+	 * <p>For a {@link FactoryBean}, return the type of object that the FactoryBean creates(对于FactoryBean，返回它产物的类型),
 	 * as exposed by {@link FactoryBean#getObjectType()}. This may lead to the initialization
 	 * of a previously uninitialized {@code FactoryBean} (see {@link #getType(String, boolean)}).
 	 * <p>Translates aliases back to the corresponding canonical bean name.
