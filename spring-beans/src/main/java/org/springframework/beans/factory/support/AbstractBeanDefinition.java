@@ -178,6 +178,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	@Nullable
 	private ConstructorArgumentValues constructorArgumentValues;
 
+	// bean 的属性集合，键值对形式。
 	@Nullable
 	private MutablePropertyValues propertyValues;
 

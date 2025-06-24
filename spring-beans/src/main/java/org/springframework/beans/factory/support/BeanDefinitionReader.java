@@ -28,6 +28,7 @@ import org.springframework.lang.Nullable;
  * <p>Concrete bean definition readers can of course add additional
  * load and register methods for bean definitions, specific to
  * their bean definition format.
+ * <p>加载bean定义</p>
  *
  * <p>Note that a bean definition reader does not have to implement
  * this interface. It only serves as a suggestion for bean definition

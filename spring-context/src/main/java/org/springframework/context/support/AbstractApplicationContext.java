@@ -903,8 +903,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @throws BeansException in case of errors
 	 * @see #refresh()
 	 */
+	// For subclasses: do nothing by default.
 	protected void onRefresh() throws BeansException {
-		// For subclasses: do nothing by default.
 	}
 
 	/**
