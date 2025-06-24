@@ -21,11 +21,16 @@ import java.lang.reflect.Method;
 import javax.annotation.Nonnull;
 
 /**
+ * <p>MethodInvocation 翻译为“方法调用”</p>
+ * <p>封装方法调用上下文，提供给拦截器使用。</p>
+ * <p>这个名词代表的动作是：调用目标方法的动作</p>
  * Description of an invocation to a method, given to an interceptor
  * upon method-call.
  *
  * <p>A method invocation is a joinpoint and can be intercepted by a
  * method interceptor.
+ * <p>方法调用是一个连接点</p>
+ * <p>方法调用可以被拦截器拦截。</p>
  *
  * @author Rod Johnson
  * @see MethodInterceptor

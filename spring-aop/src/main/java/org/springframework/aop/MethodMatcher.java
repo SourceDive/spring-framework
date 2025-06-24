@@ -19,6 +19,7 @@ package org.springframework.aop;
 import java.lang.reflect.Method;
 
 /**
+ * <p>方法匹配器</p>
  * Part of a {@link Pointcut}: Checks whether the target method is eligible for advice.
  * <p>切点的组成部分：用于检查目标方法是否符合 Advice 的条件。</p>
  * <p>这句可能更能容易理解：decides whether advice should apply to a given method</p>
