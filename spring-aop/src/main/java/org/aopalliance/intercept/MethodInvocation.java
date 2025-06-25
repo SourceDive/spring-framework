@@ -22,8 +22,8 @@ import javax.annotation.Nonnull;
 
 /**
  * <p>MethodInvocation 翻译为“方法调用”</p>
- * <p>封装方法调用上下文，提供给拦截器使用。</p>
  * <p>这个名词代表的动作是：调用目标方法的动作</p>
+ * <p>封装方法调用上下文，提供给拦截器使用。</p>
  * Description of an invocation to a method, given to an interceptor
  * upon method-call.
  *

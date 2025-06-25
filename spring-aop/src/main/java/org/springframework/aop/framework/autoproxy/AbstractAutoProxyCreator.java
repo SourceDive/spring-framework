@@ -216,6 +216,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	/**
 	 * Return the owning {@link BeanFactory}.
 	 * May be {@code null}, as this post-processor doesn't need to belong to a bean factory.
+	 * <p>todo as这一句是什么意思？</p>
 	 */
 	@Nullable
 	protected BeanFactory getBeanFactory() {
@@ -595,6 +596,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 
 	/**
+	 * <p>返回拦截器列表</p>
 	 * Return whether the given bean is to be proxied, what additional
 	 * advices (e.g. AOP Alliance interceptors) and advisors to apply.
 	 * @param beanClass the class of the bean to advise

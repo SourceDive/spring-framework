@@ -20,6 +20,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
+ * <p>执行横切逻辑的载体</p>
  * Intercepts calls on an interface on its way to the target. These
  * are nested "on top" of the target.
  *

@@ -1887,7 +1887,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
+	 * <p>
 	 * 注意看下面这个链接过去的方法，也是相同的使用。
+	 * </p>
 	 * {@link org.springframework.context.support.ApplicationContextAwareProcessor#invokeAwareInterfaces(Object)}
 	 * @param beanName
 	 * @param bean
@@ -1904,6 +1906,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 			}
 			if (bean instanceof BeanFactoryAware) {
+				// 这里框架就只给我 AbstractAutowireCapableBeanFactory 的使用权嘛
 				((BeanFactoryAware) bean).setBeanFactory(AbstractAutowireCapableBeanFactory.this);
 			}
 		}

@@ -19,6 +19,7 @@ package org.springframework.aop.framework;
 // aop 基础设施类的 bean 不会被自动代理。如果被代理，可能会导致无限递归。
 
 /**
+ * <p>也是一个标记接口</p>
  * Marker interface that indicates a bean that is part of Spring's
  * AOP infrastructure. In particular, this implies that any such bean
  * is not subject to auto-proxying(不会受到自动代理的影响), even if a pointcut would match.

@@ -108,6 +108,7 @@ public abstract class AbstractFactoryBean<T>
 
 	/**
 	 * Return the BeanFactory that this bean runs in.
+	 * <p>todo 实现感知接口就是为了构造这个 get 方法出来吗？</p>
 	 */
 	@Nullable
 	protected BeanFactory getBeanFactory() {
