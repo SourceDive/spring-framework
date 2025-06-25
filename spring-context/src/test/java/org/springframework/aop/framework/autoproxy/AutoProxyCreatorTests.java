@@ -90,22 +90,22 @@ public class AutoProxyCreatorTests {
 
 		TestInterceptor ti = (TestInterceptor) sac.getBean("testInterceptor");
 		// already 2: getSpouse + getNestedIndexedBean calls above
-		assertThat(ti.nrOfInvocations).isEqualTo(2);
+		assertThat(ti.numOfInvocations).isEqualTo(2);
 		singletonToBeProxied.getName();
 		singletonToBeProxied.getSpouse().getName();
-		assertThat(ti.nrOfInvocations).isEqualTo(5);
+		assertThat(ti.numOfInvocations).isEqualTo(5);
 
 		ITestBean tb = (ITestBean) sac.getBean("singletonFactoryToBeProxied");
 		assertThat(AopUtils.isJdkDynamicProxy(tb)).isTrue();
-		assertThat(ti.nrOfInvocations).isEqualTo(5);
+		assertThat(ti.numOfInvocations).isEqualTo(5);
 		tb.getAge();
-		assertThat(ti.nrOfInvocations).isEqualTo(6);
+		assertThat(ti.numOfInvocations).isEqualTo(6);
 
 		ITestBean tb2 = (ITestBean) sac.getBean("singletonFactoryToBeProxied");
 		assertThat(tb2).isSameAs(tb);
-		assertThat(ti.nrOfInvocations).isEqualTo(6);
+		assertThat(ti.numOfInvocations).isEqualTo(6);
 		tb2.getAge();
-		assertThat(ti.nrOfInvocations).isEqualTo(7);
+		assertThat(ti.numOfInvocations).isEqualTo(7);
 	}
 
 	@Test
@@ -129,17 +129,17 @@ public class AutoProxyCreatorTests {
 		assertThat(Proxy.isProxyClass(singletonToBeProxied.getClass())).isTrue();
 
 		TestInterceptor ti = (TestInterceptor) sac.getBean("testInterceptor");
-		int initialNr = ti.nrOfInvocations;
+		int initialNr = ti.numOfInvocations;
 		singletonToBeProxied.getName();
-		assertThat(ti.nrOfInvocations).isEqualTo((initialNr + 1));
+		assertThat(ti.numOfInvocations).isEqualTo((initialNr + 1));
 
 		FactoryBean<?> factory = (FactoryBean<?>) sac.getBean("&singletonFactoryToBeProxied");
 		assertThat(Proxy.isProxyClass(factory.getClass())).isTrue();
 		TestBean tb = (TestBean) sac.getBean("singletonFactoryToBeProxied");
 		assertThat(AopUtils.isAopProxy(tb)).isFalse();
-		assertThat(ti.nrOfInvocations).isEqualTo((initialNr + 3));
+		assertThat(ti.numOfInvocations).isEqualTo((initialNr + 3));
 		tb.getAge();
-		assertThat(ti.nrOfInvocations).isEqualTo((initialNr + 3));
+		assertThat(ti.numOfInvocations).isEqualTo((initialNr + 3));
 	}
 
 	@Test
@@ -168,13 +168,13 @@ public class AutoProxyCreatorTests {
 		assertThat(AopUtils.isCglibProxy(prototypeToBeProxied)).isTrue();
 
 		TestAutoProxyCreator tapc = (TestAutoProxyCreator) sac.getBean("testAutoProxyCreator");
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(0);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(0);
 		singletonNoInterceptor.getName();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(0);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(0);
 		singletonToBeProxied.getAge();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(1);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(1);
 		prototypeToBeProxied.getSpouse();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(2);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(2);
 	}
 
 	@Test
@@ -203,13 +203,13 @@ public class AutoProxyCreatorTests {
 		assertThat(AopUtils.isCglibProxy(prototypeToBeProxied)).isFalse();
 
 		TestAutoProxyCreator tapc = (TestAutoProxyCreator) sac.getBean("testAutoProxyCreator");
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(0);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(0);
 		singletonNoInterceptor.getName();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(0);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(0);
 		singletonToBeProxied.getAge();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(1);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(1);
 		prototypeToBeProxied.getSpouse();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(2);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(2);
 	}
 
 	@Test
@@ -243,13 +243,13 @@ public class AutoProxyCreatorTests {
 		assertThat(AopUtils.isCglibProxy(prototypeToBeProxied)).isFalse();
 
 		TestAutoProxyCreator tapc = (TestAutoProxyCreator) sac.getBean("testAutoProxyCreator");
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(0);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(0);
 		singletonNoInterceptor.getName();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(0);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(0);
 		singletonToBeProxied.getAge();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(2);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(2);
 		prototypeToBeProxied.getSpouse();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(4);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(4);
 	}
 
 	@Test
@@ -260,13 +260,13 @@ public class AutoProxyCreatorTests {
 		sac.refresh();
 
 		TestAutoProxyCreator tapc = (TestAutoProxyCreator) sac.getBean("testAutoProxyCreator");
-		tapc.testInterceptor.nrOfInvocations = 0;
+		tapc.testInterceptor.numOfInvocations = 0;
 
 		PackageVisibleMethod tb = (PackageVisibleMethod) sac.getBean("packageVisibleMethodToBeProxied");
 		assertThat(AopUtils.isCglibProxy(tb)).isTrue();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(0);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(0);
 		tb.doSomething();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(1);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(1);
 	}
 
 	@Test
@@ -277,16 +277,16 @@ public class AutoProxyCreatorTests {
 		sac.refresh();
 
 		TestAutoProxyCreator tapc = (TestAutoProxyCreator) sac.getBean("testAutoProxyCreator");
-		tapc.testInterceptor.nrOfInvocations = 0;
+		tapc.testInterceptor.numOfInvocations = 0;
 
 		FactoryBean<?> factory = (FactoryBean<?>) sac.getBean("&singletonFactoryToBeProxied");
 		assertThat(AopUtils.isCglibProxy(factory)).isTrue();
 
 		TestBean tb = (TestBean) sac.getBean("singletonFactoryToBeProxied");
 		assertThat(AopUtils.isCglibProxy(tb)).isTrue();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(2);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(2);
 		tb.getAge();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(3);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(3);
 	}
 
 	@Test
@@ -301,16 +301,16 @@ public class AutoProxyCreatorTests {
 		sac.refresh();
 
 		TestAutoProxyCreator tapc = (TestAutoProxyCreator) sac.getBean("testAutoProxyCreator");
-		tapc.testInterceptor.nrOfInvocations = 0;
+		tapc.testInterceptor.numOfInvocations = 0;
 
 		FactoryBean<?> prototypeFactory = (FactoryBean<?>) sac.getBean("&prototypeFactoryToBeProxied");
 		assertThat(AopUtils.isCglibProxy(prototypeFactory)).isTrue();
 		TestBean tb = (TestBean) sac.getBean("prototypeFactoryToBeProxied");
 		assertThat(AopUtils.isCglibProxy(tb)).isTrue();
 
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(2);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(2);
 		tb.getAge();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(3);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(3);
 	}
 
 	@Test
@@ -326,22 +326,22 @@ public class AutoProxyCreatorTests {
 		sac.refresh();
 
 		TestAutoProxyCreator tapc = (TestAutoProxyCreator) sac.getBean("testAutoProxyCreator");
-		tapc.testInterceptor.nrOfInvocations = 0;
+		tapc.testInterceptor.numOfInvocations = 0;
 
 		FactoryBean<?> factory = (FactoryBean<?>) sac.getBean("&singletonFactoryToBeProxied");
 		assertThat(AopUtils.isAopProxy(factory)).isFalse();
 
 		TestBean tb = (TestBean) sac.getBean("singletonFactoryToBeProxied");
 		assertThat(AopUtils.isCglibProxy(tb)).isTrue();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(0);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(0);
 		tb.getAge();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(1);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(1);
 
 		TestBean tb2 = (TestBean) sac.getBean("singletonFactoryToBeProxied");
 		assertThat(tb2).isSameAs(tb);
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(1);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(1);
 		tb2.getAge();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(2);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(2);
 	}
 
 	@Test
@@ -359,16 +359,16 @@ public class AutoProxyCreatorTests {
 		sac.refresh();
 
 		TestAutoProxyCreator tapc = (TestAutoProxyCreator) sac.getBean("testAutoProxyCreator");
-		tapc.testInterceptor.nrOfInvocations = 0;
+		tapc.testInterceptor.numOfInvocations = 0;
 
 		FactoryBean<?> prototypeFactory = (FactoryBean<?>) sac.getBean("&prototypeFactoryToBeProxied");
 		assertThat(AopUtils.isCglibProxy(prototypeFactory)).isTrue();
 		TestBean tb = (TestBean) sac.getBean("prototypeFactoryToBeProxied");
 		assertThat(AopUtils.isCglibProxy(tb)).isFalse();
 
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(2);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(2);
 		tb.getAge();
-		assertThat(tapc.testInterceptor.nrOfInvocations).isEqualTo(2);
+		assertThat(tapc.testInterceptor.numOfInvocations).isEqualTo(2);
 	}
 
 
@@ -446,12 +446,12 @@ public class AutoProxyCreatorTests {
 	 */
 	public static class TestInterceptor implements MethodInterceptor {
 
-		public int nrOfInvocations = 0;
+		public int numOfInvocations = 0;
 
 		@Override
 		public Object invoke(MethodInvocation invocation) throws Throwable {
 			if (!invocation.getMethod().getName().equals("finalize")) {
-				this.nrOfInvocations++;
+				this.numOfInvocations++;
 			}
 			return invocation.proceed();
 		}
