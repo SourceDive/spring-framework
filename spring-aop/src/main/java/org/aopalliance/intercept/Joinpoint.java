@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * <p>标识可拦截点</p>
+ * <p>标识可拦截点。</p>
  * This interface represents a generic runtime joinpoint (in the AOP terminology 术语).
  *
  * <p>A runtime joinpoint is an <i>event</i> that occurs on a static
