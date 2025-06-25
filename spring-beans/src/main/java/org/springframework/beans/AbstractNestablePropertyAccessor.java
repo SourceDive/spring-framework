@@ -199,6 +199,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 		this.typeConverterDelegate = new TypeConverterDelegate(this, this.wrappedObject);
 	}
 
+	// 注意这里返回的是final的引用
 	public final Object getWrappedInstance() {
 		Assert.state(this.wrappedObject != null, "No wrapped object");
 		return this.wrappedObject;

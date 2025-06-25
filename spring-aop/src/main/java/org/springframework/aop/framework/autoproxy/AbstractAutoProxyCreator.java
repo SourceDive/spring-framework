@@ -56,7 +56,7 @@ import org.springframework.util.StringUtils;
 /**
  * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation
  * that wraps each eligible bean with an AOP proxy, delegating to specified interceptors
- * before invoking the bean itself.
+ * before invoking the bean itself(在触发bean之前).
  *
  * <p>This class distinguishes between "common" interceptors: shared for all proxies it
  * creates, and "specific" interceptors: unique per bean instance. There need not be any
@@ -216,7 +216,9 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	/**
 	 * Return the owning {@link BeanFactory}.
 	 * May be {@code null}, as this post-processor doesn't need to belong to a bean factory.
-	 * <p>todo as这一句是什么意思？</p>
+	 * <p>
+	 * 可能为null，因为此后处理器（post-processor）无需绑定到某个 Bean 工厂。
+	 * </p>
 	 */
 	@Nullable
 	protected BeanFactory getBeanFactory() {

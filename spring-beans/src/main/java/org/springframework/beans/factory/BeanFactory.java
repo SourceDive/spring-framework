@@ -21,6 +21,7 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 // 简单的容器
+// 可以注意到 bean factory 接口总都是读取的操作
 /**
  * The root interface for accessing a Spring bean container.
  *

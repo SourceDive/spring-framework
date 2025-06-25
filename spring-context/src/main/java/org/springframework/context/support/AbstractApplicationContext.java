@@ -970,6 +970,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		beanFactory.setTempClassLoader(null);
 
 		// Allow for caching all bean definition metadata, not expecting further changes.
+		// 冻结容器配置，后续不再更改
+		// 说这个是机械安全锁
+		// 容器可以在冻结配置后，对 Bean 的定义、依赖关系等元数据进行缓存和优化。因为配置不再变化，容器可以放心地对这些信息进行缓存
 		beanFactory.freezeConfiguration();
 
 		// Instantiate all remaining (non-lazy-init) singletons.

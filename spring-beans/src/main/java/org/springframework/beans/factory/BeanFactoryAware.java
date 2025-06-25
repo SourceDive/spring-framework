@@ -27,6 +27,8 @@ import org.springframework.beans.BeansException;
 
 /**
  * <p>可以感知bean factory就代表着有操纵bean factory的能力吗</p>
+ * <p>设计意图：让bean可以访问容器的基础设施，通过 bean factory 获取其他bean，检查bean的作用域。</p>
+ * <p>并不能任意操作 bean factory，具体要看传入的 bean factory 实例类型</p>
  * Interface to be implemented by beans that wish to be aware of their
  * owning {@link BeanFactory}.
  *
@@ -49,6 +51,7 @@ import org.springframework.beans.BeansException;
 public interface BeanFactoryAware extends Aware {
 
 	/**
+	 * <p>beanFactory 的类型是由框架进行分配的，只能被动接受，无选择权利。</p>
 	 * Callback that supplies the owning factory to a bean instance.
 	 * <p>Invoked after the population of normal bean properties
 	 * but before an initialization callback such as
@@ -57,6 +60,7 @@ public interface BeanFactoryAware extends Aware {
 	 * The bean can immediately call methods on the factory.
 	 * @throws BeansException in case of initialization errors
 	 * @see BeanInitializationException
+	 * @see org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#invokeAwareMethods
 	 */
 	void setBeanFactory(BeanFactory beanFactory) throws BeansException;
 

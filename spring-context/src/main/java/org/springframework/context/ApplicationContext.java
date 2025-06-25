@@ -24,6 +24,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.lang.Nullable;
 
 // 支持更多特性的容器
+// 这个接口里也全部都是只读操作
 /**
  * Central interface to provide configuration for an application.
  * This is read-only while the application is running, but may be
