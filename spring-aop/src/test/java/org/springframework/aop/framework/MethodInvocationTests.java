@@ -41,7 +41,7 @@ class MethodInvocationTests {
 		Object returnValue = new Object();
 		List<Object> interceptors = Collections.singletonList((MethodInterceptor) invocation -> returnValue);
 		ReflectiveMethodInvocation invocation = new ReflectiveMethodInvocation(proxy, null, method, null, null, interceptors);
-		Object rv = invocation.proceed();
+		Object rv = invocation.proceed(); // 这里返回的 rv 和前面的 returnValue 是相同的实例。
 		assertThat(rv).as("correct response").isSameAs(returnValue);
 	}
 

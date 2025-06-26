@@ -53,6 +53,7 @@ public interface Joinpoint {
 	Object proceed() throws Throwable;
 
 	/**
+	 * <p>说这个是动态的？</p>
 	 * Return the object that holds the current joinpoint's static part.
 	 * <p>For instance, the target object for an invocation.
 	 * @return the object (can be null if the accessible object is static)
@@ -61,6 +62,7 @@ public interface Joinpoint {
 	Object getThis();
 
 	/**
+	 * <P>这里的静态部分指的是：编译时可确定，运行时不会改变的结构。在类加载后固定不变。</P>
 	 * Return the static part of this joinpoint.
 	 * <p>The static part is an accessible object on which a chain of
 	 * interceptors is installed.

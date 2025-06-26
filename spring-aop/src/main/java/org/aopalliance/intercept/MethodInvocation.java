@@ -38,6 +38,7 @@ import javax.annotation.Nonnull;
 public interface MethodInvocation extends Invocation {
 
 	/**
+	 * <p>获取当前被调用的方法。</p>
 	 * Get the method being called.
 	 * <p>This method is a friendly implementation of the
 	 * {@link Joinpoint#getStaticPart()} method (same result).

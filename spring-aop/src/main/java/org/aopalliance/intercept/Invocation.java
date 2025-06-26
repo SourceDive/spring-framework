@@ -29,6 +29,7 @@ import javax.annotation.Nonnull;
 public interface Invocation extends Joinpoint {
 
 	/**
+	 * <p>说这个也是动态的？</p>
 	 * Get the arguments as an array object.
 	 * It is possible to change element values within this
 	 * array to change the arguments.
