@@ -67,6 +67,16 @@ class ClassUtilsTests {
 		assertThat(ClassUtils.isPresent("java.lang.MySpecialString", classLoader)).isFalse();
 	}
 
+	/**
+	 * 测试 forName()
+	 * @throws ClassNotFoundException
+	 */
+	@Test
+	void myForName() throws ClassNotFoundException {
+		System.out.println(classLoader);
+		System.out.println(ClassUtils.forName("java.lang.Object", classLoader));
+	}
+
 	@Test
 	void forName() throws ClassNotFoundException {
 		assertThat(ClassUtils.forName("java.lang.String", classLoader)).isEqualTo(String.class);
