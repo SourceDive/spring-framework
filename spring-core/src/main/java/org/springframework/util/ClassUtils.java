@@ -238,6 +238,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * <p>根据类名得到类实例。</p>
 	 * Replacement for {@code Class.forName()} that also returns Class instances
 	 * for primitives (e.g. "int") and array class names (e.g. "String[]").
 	 * Furthermore, it is also capable of resolving nested class names in Java source

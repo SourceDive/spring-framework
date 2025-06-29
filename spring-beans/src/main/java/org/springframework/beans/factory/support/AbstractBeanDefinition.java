@@ -380,7 +380,10 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 
 	/**
+	 * <p>设置bean定义对应的类的全限定名，以字符串形式。</p>
 	 * Specify the bean class name of this bean definition.
+	 *
+	 * <p>之后会解析类名，再转换为class对象</p>
 	 */
 	@Override
 	public void setBeanClassName(@Nullable String beanClassName) {
@@ -403,6 +406,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * <p>设置bean定义的class对象</p>
 	 * Specify the class for this bean.
 	 * @see #setBeanClassName(String)
 	 */
@@ -446,7 +450,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	/**
 	 * Return whether this definition specifies a bean class.
 	 * <p>
-	 * 返回此定义是否指定了 bean 类
+	 * 返回此定义是否指定了 bean 类。
 	 * </p>
 	 * @see #getBeanClass()
 	 * @see #setBeanClass(Class)
