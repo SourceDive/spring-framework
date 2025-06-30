@@ -22,7 +22,8 @@ import javax.jms.JMSContext;
 import javax.jms.JMSException;
 
 /**
- * A stub implementation of the JMS ConnectionFactory for testing.
+ * A stub implementation(桩实现) of the JMS ConnectionFactory for testing.
+ * <p>主要用作临时的测试，例如这个测试类就是直接给你返回固定值，用作快速验证。</p>
  *
  * @author Mark Fisher
  */
