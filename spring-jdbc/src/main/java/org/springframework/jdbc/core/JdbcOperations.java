@@ -38,7 +38,7 @@ import org.springframework.lang.Nullable;
  * consider the powerful integration testing support provided via the
  * <em>Spring TestContext Framework</em>, in the {@code spring-test} artifact.
  *
- * @author Rod Johnson
+ * @author Rod Johnson(这位是作者)
  * @author Juergen Hoeller
  * @see JdbcTemplate
  * @see org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations
