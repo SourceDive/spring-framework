@@ -56,3 +56,4 @@ my-test2/**/*.bin
 my-test2/**/*.idx
 my-test2/**/*.jar
 my-test2/**/*.class
+/my-test2/build/
