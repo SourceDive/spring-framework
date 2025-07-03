@@ -905,6 +905,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	// For subclasses: do nothing by default.
 	protected void onRefresh() throws BeansException {
+		// springboot 嵌入的tomcat webserver 是实现这个方法进行启动的
 	}
 
 	/**

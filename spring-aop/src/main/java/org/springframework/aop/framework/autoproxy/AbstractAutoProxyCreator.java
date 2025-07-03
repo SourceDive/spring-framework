@@ -448,7 +448,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * specific to this bean (may be empty, but not null)
 	 * @param targetSource the TargetSource for the proxy,
 	 * already pre-configured to access the bean
-	 * @return the AOP proxy for the bean
+	 * @return the AOP proxy for the bean (这里返回的就是创建好的代理对象)
 	 * @see #buildAdvisors
 	 */
 	protected Object createProxy(Class<?> beanClass, @Nullable String beanName,
