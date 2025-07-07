@@ -33,6 +33,7 @@ import org.springframework.util.ReflectionUtils;
 /**
  * Default {@link BeanWrapper} implementation that should be sufficient
  * for all typical use cases. Caches introspection results for efficiency.
+ * <p>这里提到了是用作缓存，为了效率</p>
  *
  * <p>Note: Auto-registers default property editors from the
  * {@code org.springframework.beans.propertyeditors} package, which apply
