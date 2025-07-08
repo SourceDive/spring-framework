@@ -541,7 +541,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// 如果bean实现了BeanPostProcessor，这里返回的可能是一个 proxy todo 这个如何去验证？
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 			if (bean != null) {
-				return bean;
+				return bean; // 上面返回了自定义的bean后，这里直接返回了，不会再执行下面的 doCreateBean()
 			}
 		}
 		catch (Throwable ex) {
@@ -1150,6 +1150,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
+	 * <p>bean创建的short-cut</p>
 	 * Apply before-instantiation post-processors, resolving whether there is a
 	 * before-instantiation shortcut for the specified bean.
 	 * @param beanName the name of the bean
