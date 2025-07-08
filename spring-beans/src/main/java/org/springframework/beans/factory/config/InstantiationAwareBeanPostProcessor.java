@@ -23,6 +23,8 @@ import org.springframework.beans.PropertyValues;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>生命周期阶段：bean 实例化</p>
+ * <p>可以感知bean实例化的 BeanPostProcessor</p>
  * Subinterface of {@link BeanPostProcessor} that adds a before-instantiation callback,
  * and a callback after instantiation but before explicit properties are set or
  * autowiring occurs.
@@ -32,6 +34,7 @@ import org.springframework.lang.Nullable;
  * lazily initializing targets, etc), or to implement additional injection strategies
  * such as field injection.
  *
+ * <p>这个类是框架内部使用的。</p>
  * <p><b>NOTE:</b> This interface is a special purpose interface, mainly for
  * internal use within the framework. It is recommended to implement the plain
  * {@link BeanPostProcessor} interface as far as possible.

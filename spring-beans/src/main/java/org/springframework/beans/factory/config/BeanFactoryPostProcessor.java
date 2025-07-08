@@ -19,6 +19,7 @@ package org.springframework.beans.factory.config;
 import org.springframework.beans.BeansException;
 
 /**
+ * <p>生命周期阶段：容器初始化后，所有的定义都已被加载。</p>
  * Factory hook that allows for custom modification of an application context's
  * bean definitions, adapting the bean property values of the context's underlying
  * bean factory.
@@ -77,7 +78,7 @@ public interface BeanFactoryPostProcessor {
 	/**
 	 * @author ongoing
 	 * @date 2025-04-05 12:08:02
-	 * @description 说这里体现了依赖倒置，是如何体现的？
+	 * @description 说这里体现了依赖倒置，是如何体现的？ todo
 	 */
 
 }

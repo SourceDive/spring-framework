@@ -25,6 +25,7 @@ import org.springframework.lang.Nullable;
  * @description 后置处理器
  */
 /**
+ * <p>生命周期阶段：bean 初始化</p>
  * Factory hook that allows for custom modification of new bean instances &mdash;
  * for example, checking for marker interfaces or wrapping beans with proxies.
  *
@@ -68,8 +69,10 @@ public interface BeanPostProcessor {
 	 * or a custom init-method). The bean will already be populated with property values.
 	 * The returned bean instance may be a wrapper around the original.
 	 * <p>The default implementation returns the given {@code bean} as-is(翻译：in its current state).
+	 * <p>
 	 * 上面这句的翻译：默认实现会按原样返回给定的bean。
 	 * 下面的方法如果不被覆盖，就会直接返回传入的对象
+	 * </p>
 	 * @param bean the new bean instance
 	 * @param beanName the name of the bean
 	 * @return the bean instance to use, either the original or a wrapped one;
