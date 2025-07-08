@@ -30,6 +30,9 @@ import org.springframework.util.Assert;
 /**
  * {@link AspectJAwareAdvisorAutoProxyCreator} subclass that processes all AspectJ
  * annotation aspects in the current application context, as well as Spring Advisors.
+ * <p>AspectJAwareAdvisorAutoProxyCreator的子类，负责处理当前应用上下文中所有基于AspectJ
+ * 注解的切面以及Spring Advisors.
+ * </p>
  *
  * <p>Any AspectJ annotated classes will automatically be recognized, and their
  * advice applied if Spring AOP's proxy-based model is capable of applying it.
@@ -48,6 +51,10 @@ import org.springframework.util.Assert;
  */
 @SuppressWarnings("serial")
 public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorAutoProxyCreator {
+	// AnnotationAware: 注解感知
+	// AspectJ: 集成 AspectJ
+	// AutoProxy: 自动代理
+
 	// 是一个后置处理器
 	// 实现了 Ordered 接口，且是最高优先级
 
