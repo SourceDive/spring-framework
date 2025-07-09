@@ -17,6 +17,7 @@
 package org.springframework.beans.factory;
 
 /**
+ * <p>生命周期阶段？</p>
  * Interface to be implemented by beans that need to react once all their properties
  * have been set by a {@link BeanFactory}: e.g. to perform custom initialization,
  * or merely to check that all mandatory properties have been set.

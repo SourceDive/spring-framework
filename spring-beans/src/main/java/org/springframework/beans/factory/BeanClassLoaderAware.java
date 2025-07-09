@@ -17,6 +17,7 @@
 package org.springframework.beans.factory;
 
 /**
+ * <p>框架给自定义的bean提供 classloader。让 bean 感知到 classloader，并且可以使用它。</p>
  * Callback that allows a bean to be aware of the bean
  * {@link ClassLoader class loader}; that is, the class loader used by the
  * present bean factory to load bean classes.

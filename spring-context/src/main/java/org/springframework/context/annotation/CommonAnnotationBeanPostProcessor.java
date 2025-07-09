@@ -78,6 +78,7 @@ import org.springframework.util.StringValueResolver;
 // 看不太懂这段话是在说什么
 // 收集注解信息
 /**
+ * <p>支持 javax 中的那些 common annotation，具体是哪些注解，可以到仓库(common-annotations-ap)中去看。</p>
  * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation
  * that supports common Java annotations out of the box, in particular the JSR-250
  * annotations in the {@code javax.annotation} package. These common Java
