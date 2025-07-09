@@ -79,6 +79,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	@Nullable
 	private Map<String, Object> userAttributes;
 
+	// 存放拦截器的集合。
 	/**
 	 * List of MethodInterceptor and InterceptorAndDynamicMethodMatcher
 	 * that need dynamic checks.
@@ -184,6 +185,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 			}
 		}
 		else {
+			// 触发拦截器
 			// It's an interceptor, so we just invoke it: The pointcut will have
 			// been evaluated statically before this object was constructed.
 			return ((MethodInterceptor) interceptorOrInterceptionAdvice).invoke(this);

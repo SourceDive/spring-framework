@@ -23,6 +23,13 @@ import org.springframework.aop.TargetClassAware;
 import org.springframework.aop.TargetSource;
 
 /**
+ * <p>持有 aop proxy 的配置。</p>
+ * <p>
+ *    1、interceptor
+ *    2、advice
+ *    3、advisor
+ *    4、proxied interface
+ * </p>
  * Interface to be implemented by classes that hold the configuration
  * of a factory of AOP proxies. This configuration includes the
  * Interceptors and other advice, Advisors, and the proxied interfaces.

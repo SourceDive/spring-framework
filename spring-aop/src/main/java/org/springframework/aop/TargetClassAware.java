@@ -19,6 +19,9 @@ package org.springframework.aop;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>这个接口为什么不继承 Aware 接口?</p>
+ * <p>它也不需要框架去set什么进去</p>
+ * <p>做查询使用。</p>
  * Minimal interface for exposing the target class behind a proxy.
  *
  * <p>Implemented by AOP proxy objects and proxy factories
@@ -32,6 +35,7 @@ import org.springframework.lang.Nullable;
 public interface TargetClassAware {
 
 	/**
+	 * <p>返回代理对象所代理的目标类的class对象。通常是代理对象实现它。</p>
 	 * Return the target class behind the implementing object
 	 * (typically a proxy configuration or an actual proxy).
 	 * @return the target Class, or {@code null} if not known
