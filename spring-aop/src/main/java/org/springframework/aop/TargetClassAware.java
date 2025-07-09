@@ -20,8 +20,8 @@ import org.springframework.lang.Nullable;
 
 /**
  * <p>这个接口为什么不继承 Aware 接口?</p>
- * <p>它也不需要框架去set什么进去</p>
- * <p>做查询使用。</p>
+ * <p>它也不需要框架去set什么进去，不依赖于容器。</p>
+ * <p>供查询使用。</p>
  * Minimal interface for exposing the target class behind a proxy.
  *
  * <p>Implemented by AOP proxy objects and proxy factories
