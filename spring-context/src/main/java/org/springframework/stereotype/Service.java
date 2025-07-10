@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>语义：业务服务层。也会被框架自动发现</p>
  * Indicates that an annotated class is a "Service", originally defined by Domain-Driven
  * Design (Evans, 2003) as "an operation offered as an interface that stands alone in the
  * model, with no encapsulated state."
@@ -33,7 +34,7 @@ import org.springframework.core.annotation.AliasFor;
  * patterns sense), or something similar. This annotation is a general-purpose stereotype
  * and individual teams may narrow their semantics and use as appropriate.
  *
- * <p>This annotation serves as a specialization of {@link Component @Component},
+ * <p>This annotation serves as a specialization(特化) of {@link Component @Component},
  * allowing for implementation classes to be autodetected through classpath scanning.
  *
  * @author Juergen Hoeller

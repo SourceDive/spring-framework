@@ -147,6 +147,7 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
+	 * <p>添加用于初始化或预填充数据库的sql脚本。</p>
 	 * Add an SQL script to execute to initialize or populate the database.
 	 * @param script the script to execute
 	 * @return {@code this}, to facilitate method chaining
