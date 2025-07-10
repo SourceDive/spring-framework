@@ -4,6 +4,7 @@ import mine.projects.transaction.h2.jdbctemplate.service.DefaultUserService;
 import mine.projects.transaction.h2.jdbctemplate.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -18,16 +19,23 @@ import javax.sql.DataSource;
 @EnableTransactionManagement // 启用事务管理
 public class TransactionConfig {
 	@Bean
-	public UserService userService() {
-		return new DefaultUserService();
-	}
-
-	@Bean
 	public DataSource dataSource() {
 		// 使用嵌入式数据库（不需要真实数据库）
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.H2)
+				.generateUniqueName(true) // 每次创建唯一数据库名
+				.addScript("classpath:mine/projects/transaction/h2/schema.sql")
 				.build();
+	}
+
+	@Bean
+	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+		return new JdbcTemplate(dataSource);
+	}
+
+	@Bean
+	public UserService userService(JdbcTemplate jdbcTemplate) {
+		return new DefaultUserService(jdbcTemplate);
 	}
 
 	@Bean

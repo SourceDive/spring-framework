@@ -19,7 +19,7 @@ import java.util.List;
  * @description 测试事务机制(使用mybatis，不使用jdbctemplate)
  * @date 2025-07-10
  */
-public class MybatisTransactionDebug {
+public class MybatisTransactionApplication {
 
 	public static void main(String[] args) {
 		// 1. 创建应用上下文（不使用Spring Boot）
