@@ -16,6 +16,8 @@
 
 package org.springframework.transaction.config;
 
+import org.springframework.aop.config.AopConfigUtils;
+
 /**
  * Configuration constants for internal sharing across subpackages.
  *
@@ -26,7 +28,12 @@ package org.springframework.transaction.config;
 public abstract class TransactionManagementConfigUtils {
 
 	/**
+	 *
+	 * <p>
 	 * The bean name of the internally managed transaction advisor (used when mode == PROXY).
+	 * </p>
+	 * 这个 bean 的名称也是自定义的
+	 * @see AopConfigUtils#AUTO_PROXY_CREATOR_BEAN_NAME
 	 */
 	public static final String TRANSACTION_ADVISOR_BEAN_NAME =
 			"org.springframework.transaction.config.internalTransactionAdvisor";

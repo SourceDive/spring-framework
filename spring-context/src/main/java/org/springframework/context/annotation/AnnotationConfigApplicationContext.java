@@ -81,7 +81,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
-	// 根据配置类
+	// 根据配置类创建 ApplicationContext
 	/**
 	 * Create a new AnnotationConfigApplicationContext, deriving bean definitions
 	 * from the given component classes and automatically refreshing the context.
@@ -95,7 +95,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		refresh();
 	}
 
-	// 根据包路径
+	// 根据包路径创建 ApplicationContext
 	// 基于注解配置的应用上下文，用于替换传统 xml 配置
 	/**
 	 * Create a new AnnotationConfigApplicationContext, scanning for components

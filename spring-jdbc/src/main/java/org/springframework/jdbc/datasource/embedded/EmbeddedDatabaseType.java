@@ -17,6 +17,7 @@
 package org.springframework.jdbc.datasource.embedded;
 
 /**
+ * <p>嵌入式数据库类型</p>
  * A supported embedded database type.
  *
  * @author Keith Donald
@@ -28,6 +29,7 @@ public enum EmbeddedDatabaseType {
 	/** The <a href="https://hsqldb.org">Hypersonic</a> Embedded Java SQL Database. */
 	HSQL,
 
+	// h2 是一种内存数据库，使用java编写，下方有它的网站地址，可以点进去查看下
 	/** The <a href="https://h2database.com">H2</a> Embedded Java SQL Database Engine. */
 	H2,
 
