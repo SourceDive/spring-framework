@@ -21,6 +21,7 @@ import java.util.Locale;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>负责国家化i18n的组件。</p>
  * Strategy interface for resolving messages, with support for the parameterization
  * and internationalization of such messages.
  *
