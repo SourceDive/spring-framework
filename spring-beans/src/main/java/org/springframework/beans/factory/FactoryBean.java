@@ -65,7 +65,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.jndi.JndiObjectFactoryBean
  */
-public interface FactoryBean<T> {
+public interface FactoryBean<T> { // 这里的类型T就是产物的类型，可以看本类中的getObject方法
 
 	/**
 	 * The name of an attribute that can be
