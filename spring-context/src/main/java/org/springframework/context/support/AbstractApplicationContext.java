@@ -584,6 +584,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// 02、什么样的工厂处理器？ registered as beans in context 的工厂处理器
 				// 03、完整翻译：调用上下文中注册为Bean的工厂处理器
 				// 触发 bean factory 后置处理器
+				// 这里会注册配置类的@Bean方法
 				invokeBeanFactoryPostProcessors(beanFactory);
 				// Register bean processors that intercept(拦截) bean creation.
 				// 初始化及注册 bean 后置处理器
