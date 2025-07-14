@@ -576,9 +576,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 *
 	 * <p>
 	 * 此处需要区分三种实例化方式：
+	 * <ul>
 	 * 1. 默认实例化: new
+	 * </ul>
+	 * <ul>
 	 * 2. 工厂方法
+	 * </ul>
+	 * <ul>
 	 * 3. 构造函数自动装配 @Autowired
+	 * </ul>
 	 * </p>
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
