@@ -443,3 +443,8 @@ configure(rootProject) {
 	}
 
 }
+// 启用增量编译
+tasks.withType(JavaCompile).configureEach {
+    options.incremental = true  // 强制增量编译
+    options.compilerArgs.add("-parameters")  // Spring 可选优化
+}
