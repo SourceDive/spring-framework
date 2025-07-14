@@ -1,7 +1,7 @@
 package mine.projects.transaction.h2.jdbctemplate;
 
 import mine.projects.transaction.h2.jdbctemplate.config.TransactionConfig;
-import mine.projects.transaction.h2.jdbctemplate.service.UserService;
+import mine.projects.transaction.h2.jdbctemplate.service.UserDao;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -17,14 +17,14 @@ public class PureJdbcTransactionApplication {
 				new AnnotationConfigApplicationContext(TransactionConfig.class);
 
 		// 2. 获取代理后的服务对象
-		UserService userService = context.getBean(UserService.class);
+		UserDao userDao = context.getBean(UserDao.class);
 
 		// 3. 调用事务方法（在此处设置断点）
-		userService.createUser("debugUser01");
+		userDao.createUser("debugUser01");
 
-		userService.createUser("debugUser02");
+		userDao.createUser("debugUser02");
 
-		System.out.println(userService.getAllUserName());
+		System.out.println(userDao.getAllUserName());
 
 		context.close(); // 显示关闭 context
 	}

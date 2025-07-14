@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
 // 服务实现
-public class DefaultUserService implements UserService {
+public class DefaultUserDao implements UserDao {
 
 	private final JdbcTemplate jdbcTemplate;
 
@@ -18,7 +18,7 @@ public class DefaultUserService implements UserService {
 	private static final String SELECT_ALL_SQL = "SELECT username FROM users";
 
 
-	public DefaultUserService(JdbcTemplate jdbcTemplate) {
+	public DefaultUserDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 
 		// 每次都重新创建表
