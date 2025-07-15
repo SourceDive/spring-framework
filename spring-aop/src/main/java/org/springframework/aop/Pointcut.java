@@ -51,6 +51,7 @@ public interface Pointcut {
 
 	// 全局匹配的通配符
 	// 单例实例(可以看下 TruePointcut 的实现)，节省资源
+	// 在 Advised 中添加 Advice 时，封装Advisor 时，这个是默认的Pointcut
 	/**
 	 * Canonical Pointcut instance that always matches.
 	 */

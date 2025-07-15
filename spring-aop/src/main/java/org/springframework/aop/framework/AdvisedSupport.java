@@ -376,8 +376,8 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	@Override
 	public void addAdvice(Advice advice) throws AopConfigException {
-		int pos = this.advisors.size();
-		addAdvice(pos, advice);
+		int pos = this.advisors.size(); // 获得列表尾部索引
+		addAdvice(pos, advice); // 添加advice到列表尾部，添加之前，要把 Advice 封成 Advisor
 	}
 
 	/**

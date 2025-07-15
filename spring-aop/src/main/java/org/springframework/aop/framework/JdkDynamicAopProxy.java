@@ -80,6 +80,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 	/** We use a static Log to avoid serialization issues. */
 	private static final Log logger = LogFactory.getLog(JdkDynamicAopProxy.class);
 
+	// 用于配置此代理的配置项。
 	/** Config used to configure this proxy. */
 	private final AdvisedSupport advised;
 
