@@ -17,10 +17,10 @@
 package org.springframework.core;
 
 /**
+ * <p>总是先于Ordered。</p>
  * Extension of the {@link Ordered} interface, expressing a <em>priority</em>
  * ordering: {@code PriorityOrdered} objects are always applied before
  * <em>plain</em> {@link Ordered} objects regardless of their order values.
- * (总是先于Ordered)
  *
  * <p>When sorting a set of {@code Ordered} objects, {@code PriorityOrdered}
  * objects and <em>plain</em> {@code Ordered} objects are effectively treated as

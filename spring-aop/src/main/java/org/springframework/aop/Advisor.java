@@ -22,6 +22,7 @@ import org.aopalliance.aop.Advice;
 // 通知器?  deepseek 的回答 这个也是官方文档中的一个翻译
 // 管理 Advice 和 Pointcut 的组件
 // one advisor = one pointcut + one advice
+// 就是抽象的组合。
 
 /**
  * Base interface holding AOP <b>advice</b> (action to take at a joinpoint)

@@ -37,7 +37,7 @@ package org.springframework.aop;
 public interface ClassFilter {
 
 	/**
-	 * <p>返回切点是否要应用到给定的接口或目标类</p>
+	 * <p>返回切点是否要应用到给定的接口或目标类。</p>
 	 * Should the pointcut apply to the given interface or target class?
 	 * @param clazz the candidate target class
 	 * @return whether the advice should apply to the given target class

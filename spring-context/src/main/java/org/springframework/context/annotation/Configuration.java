@@ -440,12 +440,8 @@ public @interface Configuration {
 	String value() default "";
 
 	/**
-	 * <p>
-	 *
-	 *     true: 有 CGLIB 代理。为了解决跨方法调用的单例安全性。
-	 *     false: 无 CGLIB 代理
-	 *
-	 * </p>
+	 * <p> true: 有 CGLIB 代理。为了解决跨方法调用的单例安全性。</p>
+	 * <p> false: 无 CGLIB 代理 </p>
 	 * Specify whether {@code @Bean} methods should get proxied in order to enforce
 	 * bean lifecycle behavior, e.g. to return shared singleton bean instances even
 	 * in case of direct {@code @Bean} method calls in user code. This feature

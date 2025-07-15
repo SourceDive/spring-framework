@@ -597,7 +597,6 @@ class ConfigurationClassParser {
 			boolean checkForCircularImports) {
 
 		// 这里第一步没有去解析 @Import 注解，是因为送进来里的 importCandidates 已经是解析好了的
-
 		if (importCandidates.isEmpty()) {
 			return;
 		}

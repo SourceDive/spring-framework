@@ -26,6 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * <p>用于匹配对应的注解的切点。</p>
+ * <p>例如匹配所有@Service类, 匹配所有@Repository类</p>
  * Simple {@link Pointcut} that looks for a specific annotation being present on a
  * {@linkplain #forClassAnnotation class} or {@linkplain #forMethodAnnotation method}.
  *

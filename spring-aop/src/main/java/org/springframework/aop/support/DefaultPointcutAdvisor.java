@@ -59,6 +59,9 @@ public class DefaultPointcutAdvisor extends AbstractGenericPointcutAdvisor imple
 	}
 
 	/**
+	 * <p>可以用于组合不同的pointcut和advice</p>
+	 * <p>例如现在有：@Service pointcut/ @Controller pointcut；有 事务Advice/日志Advice </p>
+	 * <p>利用下面这个构造函数，可以组合 service层事务增强、controller层日志打印增强</p>
 	 * Create a DefaultPointcutAdvisor, specifying Pointcut and Advice.
 	 * @param pointcut the Pointcut targeting the Advice
 	 * @param advice the Advice to run when Pointcut matches

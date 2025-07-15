@@ -598,7 +598,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 
 	/**
-	 * <p>返回拦截器列表</p>
+	 * <p>返回拦截器列表。</p>
 	 * Return whether the given bean is to be proxied, what additional
 	 * advices (e.g. AOP Alliance interceptors) and advisors to apply.
 	 * @param beanClass the class of the bean to advise

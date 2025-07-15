@@ -212,6 +212,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * <p>确定给定的切点是否可以应用到给定的类上。</p>
 	 * Can the given pointcut apply at all on the given class?
 	 * <p>This is an important test as it can be used to optimize
 	 * out a pointcut for a class.
@@ -223,6 +224,7 @@ public abstract class AopUtils {
 	 */
 	public static boolean canApply(Pointcut pc, Class<?> targetClass, boolean hasIntroductions) {
 		Assert.notNull(pc, "Pointcut must not be null");
+		// 类不满足，直接返回，方法都不必去匹配了。
 		if (!pc.getClassFilter().matches(targetClass)) {
 			return false;
 		}
