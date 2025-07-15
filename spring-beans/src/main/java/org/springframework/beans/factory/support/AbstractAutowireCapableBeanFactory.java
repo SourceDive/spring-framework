@@ -1960,7 +1960,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 			}
 			else {
-				// 1、回调 afterPropertiesSet
+				// 1、回调 InitializingBean 的 afterPropertiesSet
 				((InitializingBean) bean).afterPropertiesSet();
 			}
 		}
