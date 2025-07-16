@@ -1,5 +1,7 @@
 package mine.projects.transaction.h2.jdbctemplate.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
 public class DefaultUserDao implements UserDao {
 
 	private final JdbcTemplate jdbcTemplate;
+	private final static Logger logger = LoggerFactory.getLogger(DefaultUserDao.class);
 
 	private static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS users (" +
 			"id INT AUTO_INCREMENT PRIMARY KEY, " +
@@ -27,14 +30,14 @@ public class DefaultUserDao implements UserDao {
 
 	@Override
 	public void createUser(String username) {
-		System.out.println("==>事务开始..." + username);
+		logger.info("===>事务开始... {}", username);
 
 		// 这里可以添加数据库操作
 
 		// 插入操作（事务方法）
 		int count = jdbcTemplate.update(INSERT_SQL, username);
 
-		System.out.println("Inserted rows: " + count);
+		logger.info("===>Inserted rows: {}", count);
 
 		// 在事务中查询（同一个事务）
 		String currentUser = jdbcTemplate.queryForObject(
@@ -43,7 +46,7 @@ public class DefaultUserDao implements UserDao {
 				username
 		);
 
-		System.out.println("==>事务结束。" + currentUser);
+		logger.info("===>事务结束。{}", currentUser);
 	}
 
 	@Override

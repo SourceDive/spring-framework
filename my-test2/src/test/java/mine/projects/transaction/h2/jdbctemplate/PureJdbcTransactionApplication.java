@@ -28,7 +28,7 @@ public class PureJdbcTransactionApplication {
 
 		userDao.createUser("debugUser02");
 
-		System.out.println(userDao.getAllUserName());
+		logger.info("===> {}", userDao.getAllUserName().toString());
 
 		context.close(); // 显示关闭 context
 	}
