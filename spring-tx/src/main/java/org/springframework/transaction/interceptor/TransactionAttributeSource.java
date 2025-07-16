@@ -30,6 +30,7 @@ import org.springframework.lang.Nullable;
  * Strategy interface used by {@link TransactionInterceptor} for metadata retrieval.
  * <p>Implementations know how to source transaction attributes, whether from configuration,
  * metadata attributes at source level (such as annotations), or anywhere else.
+ * <p>实现类具备获取事务属性的能力，无论这些属性来自配置、源码级元数据属性，还是其他任何来源。</p>
  *
  * @author Rod Johnson
  * @author Juergen Hoeller

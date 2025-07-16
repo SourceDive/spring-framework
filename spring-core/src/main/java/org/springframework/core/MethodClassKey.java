@@ -22,6 +22,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * <p>
+ * 提供一个稳定的缓存key，方法的唯一标识符号。
+ * 是在类上还是在接口上，这个信息要作为一个前缀。
+ * </p>
  * A common key class for a method against a specific target class,
  * including {@link #toString()} representation and {@link Comparable}
  * support (as suggested for custom {@code HashMap} keys as of Java 8).

@@ -78,6 +78,7 @@ public abstract class AbstractFallbackTransactionAttributeSource
 	private transient StringValueResolver embeddedValueResolver;
 
 	/**
+	 * <p>事务属性缓存。</p>
 	 * Cache of TransactionAttributes, keyed by method on a specific target class.
 	 * <p>As this base class is not marked Serializable, the cache will be recreated
 	 * after serialization - provided that the concrete subclass is Serializable.
@@ -143,6 +144,9 @@ public abstract class AbstractFallbackTransactionAttributeSource
 	}
 
 	/**
+	 * <p>
+	 * 判定key: 方法或者目标类。
+	 * </p>
 	 * Determine a cache key for the given method and target class.
 	 * <p>Must not produce same key for overloaded methods.
 	 * Must produce same key for different instances of the same method.

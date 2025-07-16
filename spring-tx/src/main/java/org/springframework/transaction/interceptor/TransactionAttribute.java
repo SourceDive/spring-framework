@@ -18,6 +18,7 @@ package org.springframework.transaction.interceptor;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
 import org.springframework.transaction.TransactionDefinition;
 
@@ -37,6 +38,7 @@ import org.springframework.transaction.TransactionDefinition;
 public interface TransactionAttribute extends TransactionDefinition {
 
 	/**
+	 * <p>和 {@link Qualifier} 语义是一样的</p>
 	 * Return a qualifier value associated with this transaction attribute.
 	 * <p>This may be used for choosing a corresponding transaction manager
 	 * to process this specific transaction.

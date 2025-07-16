@@ -27,6 +27,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
+ * <p>看起来就是一个domain类，属性及属性的操作方法。</p>
  * Spring's common transaction attribute implementation.
  * Rolls back on runtime, but not checked, exceptions by default.
  *
