@@ -20,20 +20,31 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 
-    // 使用Logback 1.2.x和SLF4J 1.7.x
-    implementation "ch.qos.logback:logback-classic:1.2.13"
-    implementation "org.slf4j:slf4j-api:1.7.36"
-    // 如果使用JCL桥接，也需要降级
-    implementation "org.slf4j:jcl-over-slf4j:1.7.36"
+    // Logback 实现
+    implementation 'ch.qos.logback:logback-classic:1.2.13'
+
+    // SLF4J API
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+
+    // 桥接 Commons Logging (JCL)
+    implementation 'org.slf4j:jcl-over-slf4j:1.7.36'
+
+    // 桥接 Java Util Logging (JUL)
+    implementation 'org.slf4j:jul-to-slf4j:1.7.36'
+
     // 排除其他日志框架（同上）
     configurations.all {
-        resolutionStrategy {
-            force "ch.qos.logback:logback-classic:1.2.13"
-            force "org.slf4j:slf4j-api:1.7.36"
-        }
+        // 排除所有 Log4j2 相关依赖
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-api'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j2-impl'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-jcl'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-jul'
 
-        exclude group: "commons-logging", module: "commons-logging"
-        exclude group: "log4j", module: "log4j"
+        // 确保没有其他 SLF4J 实现
+        exclude group: 'org.slf4j', module: 'slf4j-simple'
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
 }
 
