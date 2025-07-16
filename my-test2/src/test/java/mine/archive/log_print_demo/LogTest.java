@@ -1,4 +1,4 @@
-package mine.projects.log_print_demo;
+package mine.archive.log_print_demo;
 
 
 import org.slf4j.Logger;
