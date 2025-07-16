@@ -19,6 +19,22 @@ dependencies {
     testImplementation("com.h2database:h2:1.4.200") // 添加 H2 数据库依赖
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    // 使用Logback 1.2.x和SLF4J 1.7.x
+    implementation "ch.qos.logback:logback-classic:1.2.13"
+    implementation "org.slf4j:slf4j-api:1.7.36"
+    // 如果使用JCL桥接，也需要降级
+    implementation "org.slf4j:jcl-over-slf4j:1.7.36"
+    // 排除其他日志框架（同上）
+    configurations.all {
+        resolutionStrategy {
+            force "ch.qos.logback:logback-classic:1.2.13"
+            force "org.slf4j:slf4j-api:1.7.36"
+        }
+
+        exclude group: "commons-logging", module: "commons-logging"
+        exclude group: "log4j", module: "log4j"
+    }
 }
 
 tasks.test {

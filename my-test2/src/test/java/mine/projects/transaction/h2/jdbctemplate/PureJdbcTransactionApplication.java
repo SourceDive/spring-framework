@@ -2,6 +2,8 @@ package mine.projects.transaction.h2.jdbctemplate;
 
 import mine.projects.transaction.h2.jdbctemplate.config.TransactionConfig;
 import mine.projects.transaction.h2.jdbctemplate.service.UserDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -10,6 +12,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @date 2025-07-10
  */
 public class PureJdbcTransactionApplication {
+
+	private static final Logger logger = LoggerFactory.getLogger(PureJdbcTransactionApplication.class);
 
 	public static void main(String[] args) {
 		// 1. 创建应用上下文（不使用Spring Boot）
