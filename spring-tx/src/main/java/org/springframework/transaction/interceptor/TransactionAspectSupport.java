@@ -490,6 +490,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 			return getTransactionManager();
 		}
 
+		// 如果开发者定义了多个 transactionManager 的话，这个限定符就有用了。
+		// 有指定，用指定，没有指定，用默认的空。
 		String qualifier = txAttr.getQualifier();
 		if (StringUtils.hasText(qualifier)) {
 			return determineQualifiedTransactionManager(this.beanFactory, qualifier);
@@ -498,6 +500,10 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 			return determineQualifiedTransactionManager(this.beanFactory, this.transactionManagerBeanName);
 		}
 		else {
+			// 如果没有指定 qualifier，就走这里的默认路径。
+			// 1、先查看有无默认的 TM
+			// 2、去缓存中查
+			// 3、去 beanFactory 中查
 			TransactionManager defaultTransactionManager = getTransactionManager();
 			if (defaultTransactionManager == null) {
 				defaultTransactionManager = this.transactionManagerCache.get(DEFAULT_TRANSACTION_MANAGER_KEY);

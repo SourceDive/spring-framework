@@ -24,6 +24,9 @@ import org.springframework.transaction.TransactionDefinition;
 
 // 面向声明式使用的 AOP 事务
 /**
+ * <p>
+ * 也看看这个 {@link TransactionAttributeSource}。
+ * </p>
  * This interface adds a {@code rollbackOn} specification to {@link TransactionDefinition}.
  * As custom {@code rollbackOn} is only possible with AOP, it resides in the AOP-related
  * transaction subpackage.

@@ -27,6 +27,7 @@ import org.springframework.lang.Nullable;
  * <ul>读取xml配置</ul>
  * <ul>处理编程式属性</ul>
  * </p>
+ * <p>可以把它看作一个属性解析工厂，{@link TransactionAttributeSource#getTransactionAttribute(Method, Class)}是工厂方法。</p>
  * Strategy interface used by {@link TransactionInterceptor} for metadata retrieval.
  * <p>Implementations know how to source transaction attributes, whether from configuration,
  * metadata attributes at source level (such as annotations), or anywhere else.
