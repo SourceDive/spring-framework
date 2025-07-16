@@ -44,6 +44,7 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings("serial")
 public class SpringTransactionAnnotationParser implements TransactionAnnotationParser, Serializable {
 
+	// 检查类是否使用事务注解。
 	@Override
 	public boolean isCandidateClass(Class<?> targetClass) {
 		return AnnotationUtils.isCandidateClass(targetClass, Transactional.class);

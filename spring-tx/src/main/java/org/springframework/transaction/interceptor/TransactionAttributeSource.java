@@ -21,8 +21,13 @@ import java.lang.reflect.Method;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>事务属性源</p>
+ * <p>事务属性元数据解析。这个是顶层的策略接口
+ * <ul>解析 @Transactional</ul>
+ * <ul>读取xml配置</ul>
+ * <ul>处理编程式属性</ul>
+ * </p>
  * Strategy interface used by {@link TransactionInterceptor} for metadata retrieval.
- *
  * <p>Implementations know how to source transaction attributes, whether from configuration,
  * metadata attributes at source level (such as annotations), or anywhere else.
  *
@@ -36,6 +41,10 @@ import org.springframework.lang.Nullable;
 public interface TransactionAttributeSource {
 
 	/**
+	 * <p>判定给定的类的类上或者方法上是否可以解析到事务属性。
+	 *     <ul>true: 可以提取事务属性。</ul>
+	 *     <ul>false: 忽略。</ul>
+	 * </p>
 	 * Determine whether the given class is a candidate for transaction attributes
 	 * in the metadata format of this {@code TransactionAttributeSource}.
 	 * <p>If this method returns {@code false}, the methods on the given class
@@ -54,6 +63,7 @@ public interface TransactionAttributeSource {
 	}
 
 	/**
+	 * <p>返回给定方法上匹配的事务属性。</p>
 	 * Return the transaction attribute for the given method,
 	 * or {@code null} if the method is non-transactional.
 	 * @param method the method to introspect

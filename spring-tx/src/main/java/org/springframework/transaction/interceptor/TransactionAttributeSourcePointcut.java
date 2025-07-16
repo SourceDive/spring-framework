@@ -71,6 +71,7 @@ abstract class TransactionAttributeSourcePointcut extends StaticMethodMatcherPoi
 
 
 	/**
+	 * <p>获取底层的事务属性源。</p>
 	 * Obtain the underlying TransactionAttributeSource (may be {@code null}).
 	 * To be implemented by subclasses.
 	 */

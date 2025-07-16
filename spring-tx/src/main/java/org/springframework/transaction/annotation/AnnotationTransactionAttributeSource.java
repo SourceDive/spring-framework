@@ -31,6 +31,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
+ * <p>注解事务属性源。</p>
  * Implementation of the
  * {@link org.springframework.transaction.interceptor.TransactionAttributeSource}
  * interface for working with transaction metadata in JDK 1.5+ annotation format.

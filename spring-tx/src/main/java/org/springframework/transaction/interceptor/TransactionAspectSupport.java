@@ -322,6 +322,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 
 	/**
+	 * <p>基于 around advice。</p>
 	 * General delegate for around-advice-based subclasses, delegating to several other template
 	 * methods on this class. Able to handle {@link CallbackPreferringPlatformTransactionManager}
 	 * as well as regular {@link PlatformTransactionManager} implementations and
@@ -338,6 +339,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 		// If the transaction attribute is null, the method is non-transactional.
 		TransactionAttributeSource tas = getTransactionAttributeSource();
+		// 获取事务的传播行为、隔离级别
 		final TransactionAttribute txAttr = (tas != null ? tas.getTransactionAttribute(method, targetClass) : null);
 		final TransactionManager tm = determineTransactionManager(txAttr);
 
