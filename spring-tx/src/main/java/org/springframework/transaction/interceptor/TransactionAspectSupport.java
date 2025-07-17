@@ -337,12 +337,12 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	protected Object invokeWithinTransaction(Method method, @Nullable Class<?> targetClass,
 			final InvocationCallback invocation) throws Throwable {
 
-		// ==> 01、获取事务属性
+		// ===> 01、获取事务属性
 		// If the transaction attribute is null, the method is non-transactional.
 		TransactionAttributeSource tas = getTransactionAttributeSource();
 		// 获取事务的传播行为、隔离级别
 		final TransactionAttribute txAttr = (tas != null ? tas.getTransactionAttribute(method, targetClass) : null);
-		// ==> 02、确定事务管理器
+		// ===> 02、确定事务管理器
 		final TransactionManager tm = determineTransactionManager(txAttr);
 
 		// since 5.2 添加的响应式事务
@@ -386,16 +386,19 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 		if (txAttr == null || !(ptm instanceof CallbackPreferringPlatformTransactionManager)) {
 			// Standard transaction demarcation with getTransaction and commit/rollback calls.
+			// ===> 03、创建事务
 			TransactionInfo txInfo = createTransactionIfNecessary(ptm, txAttr, joinpointIdentification);
 
 			Object retVal;
 			try {
 				// This is an around advice: Invoke the next interceptor in the chain.
 				// This will normally result in a target object being invoked.
+				// ===> 04、触发目标方法调用
 				retVal = invocation.proceedWithInvocation();
 			}
 			catch (Throwable ex) {
 				// target invocation exception
+				// ===> 05、遇到异常回滚或者提交事务。
 				completeTransactionAfterThrowing(txInfo, ex);
 				throw ex;
 			}
@@ -411,6 +414,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 				}
 			}
 
+			// ===> 05、提交事务
 			commitTransactionAfterReturning(txInfo);
 			return retVal;
 		}
@@ -726,6 +730,12 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 
 	/**
+	 * <p>不透明的内部类：持有事务信息。
+	 * <ul>1、事务管理器</ul>
+	 * <ul>2、事务属性</ul>
+	 * <ul>3、切点标识(作用的是哪个方法)</ul>
+	 * <ul>4、事务状态</ul>
+	 * </p>
 	 * Opaque object used to hold transaction information. Subclasses
 	 * must pass it back to methods on this class, but not see its internals.
 	 */
@@ -809,6 +819,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 
 	/**
+	 * <p>callback的体现</p>
+	 * <p>从 invocation 调入 interceptor，又从 interceptor 调入 invocation</p>
 	 * Simple callback interface for proceeding with the target invocation.
 	 * Concrete interceptors/aspects adapt this to their invocation mechanism.
 	 */
