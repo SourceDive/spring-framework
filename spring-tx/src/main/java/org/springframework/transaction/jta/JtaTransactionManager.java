@@ -59,7 +59,7 @@ import org.springframework.util.StringUtils;
  * to a Java EE server's transaction coordinator, but may also be configured with a
  * local JTA provider which is embedded within the application.
  *
- * <p>This transaction manager is appropriate for handling distributed transactions,
+ * <p>This transaction manager is appropriate for handling distributed transactions(适合处理分布式事务),
  * i.e. transactions that span multiple resources, and for controlling transactions on
  * application server resources (e.g. JDBC DataSources available in JNDI) in general.
  * For a single JDBC DataSource, DataSourceTransactionManager is perfectly sufficient,

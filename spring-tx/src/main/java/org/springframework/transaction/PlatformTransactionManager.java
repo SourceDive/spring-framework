@@ -18,9 +18,10 @@ package org.springframework.transaction;
 
 import org.springframework.lang.Nullable;
 
-// 事务的核心
 /**
- * This is the central interface in Spring's imperative transaction infrastructure.
+ * <p>事务的核心</p>
+ * <p>命令式事务: 基于同步阻塞模型的事务实现</p>
+ * This is the central interface in Spring's imperative transaction(命令式事务) infrastructure.
  * Applications can use this directly(应用/用户可以直接使用), but it is not primarily meant as an API:
  * Typically, applications will work with either TransactionTemplate or
  * declarative transaction demarcation through AOP.

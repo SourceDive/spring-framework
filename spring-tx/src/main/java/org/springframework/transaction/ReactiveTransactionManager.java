@@ -21,6 +21,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>响应式事务: 异步非阻塞。</p>
  * This is the central interface in Spring's reactive transaction infrastructure.
  * Applications can use this directly, but it is not primarily meant as an API:
  * Typically, applications will work with either transactional operators or

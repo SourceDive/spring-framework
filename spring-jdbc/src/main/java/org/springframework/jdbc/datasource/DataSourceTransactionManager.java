@@ -35,6 +35,7 @@ import org.springframework.transaction.support.TransactionSynchronizationUtils;
 import org.springframework.util.Assert;
 
 /**
+ * <p>适用场景：原生JDBC操作。</p>
  * {@link org.springframework.transaction.PlatformTransactionManager} implementation
  * for a single JDBC {@link javax.sql.DataSource}. This class is capable of working
  * in any environment with any JDBC driver, as long as the setup uses a
