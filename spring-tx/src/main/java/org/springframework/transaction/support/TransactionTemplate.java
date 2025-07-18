@@ -31,6 +31,7 @@ import org.springframework.transaction.TransactionSystemException;
 import org.springframework.util.Assert;
 
 /**
+ * <p>编程式事务。</p>
  * Template class that simplifies programmatic transaction demarcation and
  * transaction exception handling.
  *

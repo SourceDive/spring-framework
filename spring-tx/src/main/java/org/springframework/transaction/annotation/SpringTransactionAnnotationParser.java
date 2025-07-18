@@ -34,7 +34,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>解析Spring标准事务注解 @Transactional </p>
+ * <p>一个用于解析Spring标准事务注解 @Transactional 的策略实现类。</p>
  * Strategy implementation for parsing Spring's {@link Transactional} annotation.
  *
  * @author Juergen Hoeller
@@ -44,7 +44,7 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings("serial")
 public class SpringTransactionAnnotationParser implements TransactionAnnotationParser, Serializable {
 
-	// 检查类是否使用事务注解。
+	// 检查目标类是否使用了事务注解。
 	@Override
 	public boolean isCandidateClass(Class<?> targetClass) {
 		return AnnotationUtils.isCandidateClass(targetClass, Transactional.class);
