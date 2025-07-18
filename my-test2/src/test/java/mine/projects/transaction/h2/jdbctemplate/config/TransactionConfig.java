@@ -1,7 +1,7 @@
 package mine.projects.transaction.h2.jdbctemplate.config;
 
-import mine.projects.transaction.h2.jdbctemplate.service.DefaultUserDao;
-import mine.projects.transaction.h2.jdbctemplate.service.UserDao;
+import mine.projects.transaction.h2.jdbctemplate.dao.UserDaoImpl;
+import mine.projects.transaction.h2.jdbctemplate.dao.UserDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,8 +34,8 @@ public class TransactionConfig {
 	}
 
 	@Bean
-	public UserDao userService(JdbcTemplate jdbcTemplate) {
-		return new DefaultUserDao(jdbcTemplate);
+	public UserDao userDao(JdbcTemplate jdbcTemplate) {
+		return new UserDaoImpl(jdbcTemplate);
 	}
 
 	@Bean

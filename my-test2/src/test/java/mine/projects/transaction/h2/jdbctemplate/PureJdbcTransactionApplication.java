@@ -1,7 +1,7 @@
 package mine.projects.transaction.h2.jdbctemplate;
 
 import mine.projects.transaction.h2.jdbctemplate.config.TransactionConfig;
-import mine.projects.transaction.h2.jdbctemplate.service.UserDao;
+import mine.projects.transaction.h2.jdbctemplate.dao.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -26,7 +26,7 @@ public class PureJdbcTransactionApplication {
 		// 3. 调用事务方法（在此处设置断点）
 		userDao.createUser("debugUser01");
 
-		userDao.createUser("debugUser02");
+//		userDao.createUser("debugUser02");
 
 		logger.info("===> {}", userDao.getAllUserName().toString());
 

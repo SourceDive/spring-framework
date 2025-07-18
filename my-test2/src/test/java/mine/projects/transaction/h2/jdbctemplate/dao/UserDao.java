@@ -1,4 +1,4 @@
-package mine.projects.transaction.h2.jdbctemplate.service;
+package mine.projects.transaction.h2.jdbctemplate.dao;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

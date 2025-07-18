@@ -1,4 +1,4 @@
-package mine.projects.transaction.h2.jdbctemplate.service;
+package mine.projects.transaction.h2.jdbctemplate.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,10 +7,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
 // 服务实现
-public class DefaultUserDao implements UserDao {
+public class UserDaoImpl implements UserDao {
 
 	private final JdbcTemplate jdbcTemplate;
-	private final static Logger logger = LoggerFactory.getLogger(DefaultUserDao.class);
+	private final static Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
 	private static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS users (" +
 			"id INT AUTO_INCREMENT PRIMARY KEY, " +
@@ -21,7 +21,7 @@ public class DefaultUserDao implements UserDao {
 	private static final String SELECT_ALL_SQL = "SELECT username FROM users";
 
 
-	public DefaultUserDao(JdbcTemplate jdbcTemplate) {
+	public UserDaoImpl(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 
 		// 每次都重新创建表
