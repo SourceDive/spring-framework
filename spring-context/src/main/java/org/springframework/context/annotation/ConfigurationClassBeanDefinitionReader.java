@@ -131,6 +131,7 @@ class ConfigurationClassBeanDefinitionReader {
 	}
 
 	/**
+	 * <p>配置类bean定义的注册，类中被@Bean注解修饰的方法的bean定义注册。</p>
 	 * Read a particular {@link ConfigurationClass}, registering bean definitions
 	 * for the class itself and all of its {@link Bean} methods.
 	 */

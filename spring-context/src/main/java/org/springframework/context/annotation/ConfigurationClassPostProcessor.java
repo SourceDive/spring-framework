@@ -70,6 +70,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
+ * <p>用于引导处理 @Configuration 类的 BeanFactoryPostProcessor。</p>
  * {@link BeanFactoryPostProcessor} used for bootstrapping processing of
  * {@link Configuration @Configuration} classes.
  *
@@ -229,6 +230,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
+	 * <p>从配置类中解析bean定义。</p>
 	 * Derive further bean definitions from the configuration classes in the registry.
 	 */
 	@Override
@@ -249,6 +251,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
+	 * <p>将配置类替换为cglib代理生成的子类。</p>
 	 * Prepare the Configuration classes for servicing bean requests at runtime
 	 * by replacing them with CGLIB-enhanced subclasses.
 	 */

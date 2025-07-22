@@ -32,7 +32,7 @@ public abstract class TransactionManagementConfigUtils {
 	 * <p>
 	 * The bean name of the internally managed transaction advisor (used when mode == PROXY).
 	 * </p>
-	 * 这个 bean 的名称也是自定义的
+	 * 这个 bean 的名称也是自定义的。
 	 * @see AopConfigUtils#AUTO_PROXY_CREATOR_BEAN_NAME
 	 */
 	public static final String TRANSACTION_ADVISOR_BEAN_NAME =

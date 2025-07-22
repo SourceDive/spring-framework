@@ -266,6 +266,7 @@ class ConfigurationClassEnhancer {
 
 
 	/**
+	 * <p>拦截 @Bean 方法调用。</p>
 	 * Intercepts the invocation of any {@link Bean}-annotated methods in order to ensure proper
 	 * handling of bean semantics such as scoping and AOP proxying.
 	 * @see Bean

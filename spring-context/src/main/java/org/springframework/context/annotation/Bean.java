@@ -27,9 +27,7 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * <p>
- *     作用于方法上
- * </p>
+ * <p>作用于方法上。</p>
  * Indicates that a method produces a bean to be managed by the Spring container.
  *
  * <h3>Overview</h3>
@@ -46,7 +44,7 @@ import org.springframework.core.annotation.AliasFor;
  *     }
  * </pre>
  *
- * <h3>Bean Names</h3>
+ * <h3>Bean Names(这里说明了bean名称的来源：就是方法名称)</h3>
  *
  * <p>While a {@link #name} attribute is available, the default strategy for
  * determining the name of a bean is to use the name of the {@code @Bean} method.
@@ -109,6 +107,7 @@ import org.springframework.core.annotation.AliasFor;
  *
  * <h3>{@code @Bean} Methods in {@code @Configuration} Classes</h3>
  *
+ * <p>当@Bean方法定义在@Configuration类中时，不同的@Bean方法之间可以相互调用。</p>
  * <p>Typically, {@code @Bean} methods are declared within {@code @Configuration}
  * classes. In this case, bean methods may reference other {@code @Bean} methods in the
  * same class by calling them <i>directly</i>. This ensures that references between beans

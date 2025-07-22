@@ -197,7 +197,7 @@ import org.springframework.stereotype.Component;
  * on working with {@code BeanFactoryPostProcessor} types such as
  * {@code PropertySourcesPlaceholderConfigurer}.
  *
- * <h2>Composing {@code @Configuration} classes</h2>
+ * <h2>Composing {@code @Configuration} classes 组合多个@Configuration类</h2>
  *
  * <h3>With the {@code @Import} annotation</h3>
  *
@@ -440,8 +440,11 @@ public @interface Configuration {
 	String value() default "";
 
 	/**
-	 * <p> true: 有 CGLIB 代理。为了解决跨方法调用的单例安全性。</p>
-	 * <p> false: 无 CGLIB 代理 </p>
+	 * <p>给@Bean方法使用的。</p>
+	 * <p>
+	 *     <ul>true: 有 CGLIB 代理。为了解决跨方法调用的单例安全性。</ul>
+	 *     <ul>false: 无 CGLIB 代理 </ul>
+	 * </p>
 	 * Specify whether {@code @Bean} methods should get proxied in order to enforce
 	 * bean lifecycle behavior, e.g. to return shared singleton bean instances even
 	 * in case of direct {@code @Bean} method calls in user code. This feature

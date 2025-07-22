@@ -49,7 +49,7 @@ public interface InstantiationStrategy {
 	Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner)
 			throws BeansException;
 
-	// 通过构造器
+	// 通过给定的构造器
 	/**
 	 * Return an instance of the bean with the given name in this factory,
 	 * creating it via the given constructor.
