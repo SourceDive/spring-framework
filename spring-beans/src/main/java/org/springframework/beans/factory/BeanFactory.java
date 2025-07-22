@@ -155,6 +155,8 @@ public interface BeanFactory {
 	Object getBean(String name) throws BeansException;
 
 	/**
+	 * <p>根据名称和类型 getBean()。</p>
+	 * <p>提供一定程度的类型安全保障。不是给定类型会报错。</p>
 	 * Return an instance, which may be shared or independent, of the specified bean.
 	 * <p>Behaves the same as {@link #getBean(String)}, but provides a measure of type
 	 * safety by throwing a BeanNotOfRequiredTypeException if the bean is not of the

@@ -217,7 +217,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 * Return the owning {@link BeanFactory}.
 	 * May be {@code null}, as this post-processor doesn't need to belong to a bean factory.
 	 * <p>
-	 * 可能为null，因为此后处理器（post-processor）无需绑定到某个 Bean 工厂。
+	 * 可能为null，因为此 post-processor 无需绑定到某个 Bean 工厂。
 	 * </p>
 	 */
 	@Nullable
@@ -312,6 +312,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 
 	/**
+	 * <p>为给定的bean类(class对象)或者bean名称(字符串标识)构造缓存键。</p>
 	 * Build a cache key for the given bean class and bean name.
 	 * <p>Note: As of 4.2.3, this implementation does not return a concatenated
 	 * class/name String anymore but rather the most efficient cache key possible:
@@ -598,7 +599,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 
 	/**
-	 * <p>返回拦截器列表。</p>
+	 * <p>返回给定的bean是否被代理。以及应用到bean上的advice和advisor。</p>
 	 * Return whether the given bean is to be proxied, what additional
 	 * advices (e.g. AOP Alliance interceptors) and advisors to apply.
 	 * @param beanClass the class of the bean to advise
