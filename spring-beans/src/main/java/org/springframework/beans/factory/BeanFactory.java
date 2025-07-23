@@ -23,6 +23,7 @@ import org.springframework.lang.Nullable;
 // 简单的容器
 // 可以注意到 bean factory 接口总都是读取的操作
 /**
+ * <p>它是一个超级工厂，负责产出Bean的工厂，getBean() 就是典型的工厂方法。</p>
  * The root interface for accessing a Spring bean container.
  *
  * <p>This is the basic client view of a bean container;

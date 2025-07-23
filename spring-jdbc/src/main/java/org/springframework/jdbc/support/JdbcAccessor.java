@@ -52,7 +52,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
-	private DataSource dataSource;
+	private DataSource dataSource; // 需要持有 DataSource
 
 	@Nullable
 	private volatile SQLExceptionTranslator exceptionTranslator;

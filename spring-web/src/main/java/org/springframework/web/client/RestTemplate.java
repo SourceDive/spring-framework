@@ -330,6 +330,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 
 
 	// GET
+	// 工厂方法：getForObject
 
 	@Override
 	@Nullable
@@ -358,6 +359,7 @@ public class RestTemplate extends InterceptingHttpAccessor implements RestOperat
 		return execute(url, HttpMethod.GET, requestCallback, responseExtractor);
 	}
 
+	// 工厂方法：getForEntity
 	@Override
 	public <T> ResponseEntity<T> getForEntity(String url, Class<T> responseType, Object... uriVariables)
 			throws RestClientException {

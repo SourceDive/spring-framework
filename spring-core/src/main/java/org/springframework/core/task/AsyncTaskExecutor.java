@@ -72,6 +72,7 @@ public interface AsyncTaskExecutor extends TaskExecutor {
 	void execute(Runnable task, long startTimeout);
 
 	/**
+	 * <p>说这也是个工厂方法，专门生产 Future 的。</p>
 	 * Submit a Runnable task for execution, receiving a Future representing that task.
 	 * The Future will return a {@code null} result upon completion.
 	 * @param task the {@code Runnable} to execute (never {@code null})

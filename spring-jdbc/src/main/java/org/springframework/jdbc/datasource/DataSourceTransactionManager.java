@@ -123,7 +123,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		implements ResourceTransactionManager, InitializingBean {
 
 	@Nullable
-	private DataSource dataSource;
+	private DataSource dataSource; // 事务管理器TM持有 DataSource
 
 	private boolean enforceReadOnly = false;
 

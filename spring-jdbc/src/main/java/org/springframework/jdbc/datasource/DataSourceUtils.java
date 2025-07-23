@@ -62,6 +62,7 @@ public abstract class DataSourceUtils {
 
 
 	/**
+	 * <p>从给定的 DataSource 中获取连接。</p>
 	 * Obtain a Connection from the given DataSource. Translates SQLExceptions into
 	 * the Spring hierarchy of unchecked generic data access exceptions, simplifying
 	 * calling code and making any exception that is thrown more meaningful.
@@ -103,6 +104,7 @@ public abstract class DataSourceUtils {
 	public static Connection doGetConnection(DataSource dataSource) throws SQLException {
 		Assert.notNull(dataSource, "No DataSource specified");
 
+		// 有 ConnectionHolder 的分支
 		ConnectionHolder conHolder = (ConnectionHolder) TransactionSynchronizationManager.getResource(dataSource);
 		if (conHolder != null && (conHolder.hasConnection() || conHolder.isSynchronizedWithTransaction())) {
 			conHolder.requested();
@@ -112,8 +114,9 @@ public abstract class DataSourceUtils {
 			}
 			return conHolder.getConnection();
 		}
-		// Else we either got no holder or an empty thread-bound holder here.
 
+		// 没有 ConnectionHolder 的分支
+		// Else we either got no holder or an empty thread-bound holder here.
 		logger.debug("Fetching JDBC Connection from DataSource");
 		Connection con = fetchConnection(dataSource);
 
