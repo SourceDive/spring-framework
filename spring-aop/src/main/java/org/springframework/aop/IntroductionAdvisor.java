@@ -17,8 +17,8 @@
 package org.springframework.aop;
 
 /**
- * 引入增强
- * <p>introduction advisor 作用于类级别，而非方法级别</p>
+ * 引入增强。
+ * <p>introduction advisor 作用于类级别，而非方法级别。</p>
  * <p>和 pointcut advisor 要做比较。</p>
  * Superinterface for advisors that perform(执行) one or more AOP <b>introductions</b>.
  *
@@ -35,7 +35,7 @@ package org.springframework.aop;
 public interface IntroductionAdvisor extends Advisor, IntroductionInfo {
 
 	/**
-	 * <p>返回决定此 introduction 应该作用的目标类的过滤器</p>
+	 * <p>返回决定此 introduction 应该作用的目标类的过滤器。</p>
 	 * Return the filter determining which target classes this introduction
 	 * should apply to.
 	 * <p>This represents the class part of a pointcut. Note that method
