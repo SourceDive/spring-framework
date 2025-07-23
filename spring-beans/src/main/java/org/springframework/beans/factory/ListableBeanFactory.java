@@ -25,8 +25,8 @@ import org.springframework.lang.Nullable;
 
 /**
  * <p>这里的enumerate all their bean instances具体是指什么？</p>
- * <p>枚举bean实例: 枚举遍历容器内所有bean</p>
- * <p>和beanfactory相比，多了一些返回数组或者列表的方法。类似批量操作的这种</p>
+ * <p>枚举bean实例: 枚举遍历容器内所有bean。</p>
+ * <p>和 beanFactory 相比，多了一些返回数组或者列表的方法。类似批量操作的这种。</p>
  * Extension of the {@link BeanFactory} interface to be implemented by bean factories
  * that can enumerate all their bean instances, rather than attempting bean lookup
  * by name one by one as requested by clients. BeanFactory implementations that

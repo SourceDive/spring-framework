@@ -541,7 +541,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// 如果bean实现了BeanPostProcessor，这里返回的可能是一个 proxy todo 这个如何去验证？
 			Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 			if (bean != null) {
-				return bean; // 上面返回了自定义的bean后，这里直接返回了，不会再执行下面的 doCreateBean()
+				return bean; // 上面返回了自定义的bean后，这里直接返回了，不会再执行下面的 doCreateBean()(deepseek称之为“短路”)
 			}
 		}
 		catch (Throwable ex) {
@@ -549,6 +549,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					"BeanPostProcessor before instantiation of bean failed", ex);
 		}
 
+		// ================== doCreateBean ======================================================
 		try {
 			// 创建 bean
 			Object beanInstance = doCreateBean(beanName, mbdToUse, args);
@@ -1397,6 +1398,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
+	 * <p>通过工厂方法进行实例化。工厂方法的特征其实很容易识别出来，某个类中产生bean的方法大概率就是。</p>
 	 * Instantiate the bean using a named factory method. The method may be static, if the
 	 * mbd parameter specifies a class, rather than a factoryBean, or an instance variable
 	 * on a factory object itself configured using Dependency Injection.
@@ -1869,7 +1871,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		// 2、应用 BeanPostProcessor 的前置处理
-		// 例如 @PostConstruct 标注的方法
+		// 例如 @PostConstruct 标注的方法 todo 这段逻辑是在哪里？
 		Object wrappedBean = bean;
 		if (mbd == null || !mbd.isSynthetic()) {
 			wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);

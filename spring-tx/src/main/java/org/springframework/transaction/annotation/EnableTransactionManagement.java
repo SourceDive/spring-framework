@@ -164,6 +164,7 @@ import org.springframework.core.Ordered;
 public @interface EnableTransactionManagement {
 
 	/**
+	 * <p>代理方式：cglib 还是 jdk。</p>
 	 * Indicate whether subclass-based (CGLIB) proxies are to be created ({@code true}) as
 	 * opposed to standard Java interface-based proxies ({@code false}). The default is
 	 * {@code false}. <strong>Applicable only if {@link #mode()} is set to
@@ -178,6 +179,7 @@ public @interface EnableTransactionManagement {
 	boolean proxyTargetClass() default false;
 
 	/**
+	 * <p>增强模式。</p>
 	 * Indicate how transactional advice should be applied.
 	 * <p><b>The default is {@link AdviceMode#PROXY}.</b>
 	 * Please note that proxy mode allows for interception of calls through the proxy
@@ -190,6 +192,7 @@ public @interface EnableTransactionManagement {
 	AdviceMode mode() default AdviceMode.PROXY;
 
 	/**
+	 * <p>执行顺序。</p>
 	 * Indicate the ordering of the execution of the transaction advisor
 	 * when multiple advices are applied at a specific joinpoint.
 	 * <p>The default is {@link Ordered#LOWEST_PRECEDENCE}.

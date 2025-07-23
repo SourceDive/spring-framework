@@ -15,9 +15,11 @@ import javax.sql.DataSource;
 
 
 // Spring 配置类
+// 里面包含的bean都是必须要包含的bean。
 @Configuration
 @EnableTransactionManagement // 启用事务管理
 public class TransactionConfig {
+	// 必须的bean
 	@Bean
 	public DataSource dataSource() { // 这个应该是最先初始化出来的，因为它不依赖别人。
 		// 使用嵌入式数据库（不需要真实数据库）
@@ -28,16 +30,19 @@ public class TransactionConfig {
 				.build();
 	}
 
+	// 必须的bean
 	@Bean
 	public PlatformTransactionManager transactionManager(DataSource dataSource) {
 		return new DataSourceTransactionManager(dataSource);
 	}
 
+	// 必须的bean
 	@Bean
 	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
 		return new JdbcTemplate(dataSource);
 	}
 
+	// 必须的bean
 	@Bean
 	public UserDao userDao(JdbcTemplate jdbcTemplate) {
 		return new UserDaoImpl(jdbcTemplate);

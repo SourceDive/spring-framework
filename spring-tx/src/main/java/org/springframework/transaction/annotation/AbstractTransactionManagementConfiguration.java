@@ -44,6 +44,7 @@ import org.springframework.util.CollectionUtils;
 @Configuration
 public abstract class AbstractTransactionManagementConfiguration implements ImportAware {
 
+	// 存储注解@EnableTransactionManagement的属性。
 	@Nullable
 	protected AnnotationAttributes enableTx;
 
@@ -54,6 +55,7 @@ public abstract class AbstractTransactionManagementConfiguration implements Impo
 	protected TransactionManager txManager;
 
 
+	// 检查注解 @EnableTransactionManagement 是否存在
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
 		this.enableTx = AnnotationAttributes.fromMap(
