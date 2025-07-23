@@ -152,7 +152,7 @@ class ConfigurationClassBeanDefinitionReader {
 		if (configClass.isImported()) {
 			registerBeanDefinitionForImportedConfigurationClass(configClass);
 		}
-		// 被@Bean标注的bean
+		// 注册被@Bean标注的bean定义
 		for (BeanMethod beanMethod : configClass.getBeanMethods()) {
 			loadBeanDefinitionsForBeanMethod(beanMethod);
 		}
@@ -212,10 +212,10 @@ class ConfigurationClassBeanDefinitionReader {
 		AnnotationAttributes bean = AnnotationConfigUtils.attributesFor(metadata, Bean.class);
 		Assert.state(bean != null, "No @Bean annotation attributes");
 
-		// 处理名称和别名
+		// 处理名称和别名: 有别名就用别名，没有别名，就用@Bean注解修饰的方法名。
 		// Consider name and any aliases
 		List<String> names = new ArrayList<>(Arrays.asList(bean.getStringArray("name")));
-		String beanName = (!names.isEmpty() ? names.remove(0) : methodName);
+		String beanName = (!names.isEmpty() ? names.remove(0) : methodName); // todo 这里为什么要移除元素?
 
 		// Register aliases even when overridden
 		for (String alias : names) {
