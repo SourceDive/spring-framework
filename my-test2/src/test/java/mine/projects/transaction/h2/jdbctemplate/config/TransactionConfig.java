@@ -19,13 +19,18 @@ import javax.sql.DataSource;
 @EnableTransactionManagement // 启用事务管理
 public class TransactionConfig {
 	@Bean
-	public DataSource dataSource() {
+	public DataSource dataSource() { // 这个应该是最先初始化出来的，因为它不依赖别人。
 		// 使用嵌入式数据库（不需要真实数据库）
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.H2)
 				.generateUniqueName(true) // 每次创建唯一数据库名
 				.addScript("classpath:mine/projects/transaction/h2/schema.sql")
 				.build();
+	}
+
+	@Bean
+	public PlatformTransactionManager transactionManager(DataSource dataSource) {
+		return new DataSourceTransactionManager(dataSource);
 	}
 
 	@Bean
@@ -36,10 +41,5 @@ public class TransactionConfig {
 	@Bean
 	public UserDao userDao(JdbcTemplate jdbcTemplate) {
 		return new UserDaoImpl(jdbcTemplate);
-	}
-
-	@Bean
-	public PlatformTransactionManager transactionManager(DataSource dataSource) {
-		return new DataSourceTransactionManager(dataSource);
 	}
 }
