@@ -106,6 +106,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 	private final AtomicBoolean refreshed = new AtomicBoolean();
 
 
+	// 创建 ApplicationContext 的时候就会赋值 BeanFactory
 	/**
 	 * Create a new GenericApplicationContext.
 	 * @see #registerBeanDefinition

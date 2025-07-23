@@ -17,6 +17,8 @@
 package org.springframework.aop;
 
 /**
+ * <p>接口注射器。动态实现新接口。突破传统AOP仅增强方法，实现接口级扩展。</p>
+ * <p>实现接口的注入，不仅仅是方法的注入。</p>
  * Interface supplying the information necessary to describe an introduction.
  *
  * <p>{@link IntroductionAdvisor IntroductionAdvisors} must implement this
@@ -31,6 +33,7 @@ package org.springframework.aop;
 public interface IntroductionInfo {
 
 	/**
+	 * <p>返回要引入的接口数组。</p>
 	 * Return the additional interfaces introduced by this Advisor or Advice.
 	 * @return the introduced interfaces
 	 */
