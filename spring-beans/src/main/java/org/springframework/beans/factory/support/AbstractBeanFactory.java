@@ -256,6 +256,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		String beanName = transformedBeanName(name);
 		Object beanInstance;
 
+		// 先从缓存中查找
 		// Eagerly check singleton cache for manually registered singletons.
 		Object sharedInstance = getSingleton(beanName);
 		if (sharedInstance != null && args == null) {
@@ -271,7 +272,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			beanInstance = getObjectForBeanInstance(sharedInstance, name, beanName, null);
 		}
 
-		// 当前 bean 对象还没有被创建，这里进行创建
+		// 缓存中没有，当前 bean 对象还没有被创建，这里进行实际地创建。
 		else {
 			// Fail if we're already creating this bean instance:
 			// We're assumably within a circular reference.
@@ -415,6 +416,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		return adaptBeanInstance(name, beanInstance, requiredType);
 	}
 
+	// 根据给定的类型对 bean 进行适配。
+	// 正常过来的指定类型都为null，这里原封不动直接返回。
 	@SuppressWarnings("unchecked")
 	<T> T adaptBeanInstance(String name, Object bean, @Nullable Class<?> requiredType) {
 		// Check if required type matches the type of the actual bean instance.
@@ -1899,7 +1902,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * instance itself or its created object in case of a FactoryBean.
 	 * <p>
 	 * 如果 bean 为 FactoryBean，返回其创建的对象。
-	 * 如果不是，返回 bean 实例本身。
+	 * 如果不是，原样返回 bean 实例本身。
 	 * </p>
 	 * @param beanInstance the shared bean instance
 	 * @param name the name that may include factory dereference prefix

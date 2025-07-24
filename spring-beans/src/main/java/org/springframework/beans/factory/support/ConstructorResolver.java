@@ -67,6 +67,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * <p>用于解析构造函数和工厂方法的委托类。</p>
  * Delegate for resolving constructors and factory methods.
  *
  * <p>Performs constructor resolution through argument matching.
@@ -368,6 +369,7 @@ class ConstructorResolver {
 	}
 
 	/**
+	 * <p>使用具名工厂方法实例化该Bean。</p>
 	 * Instantiate the bean using a named factory method. The method may be static, if the
 	 * bean definition parameter specifies a class, rather than a "factory-bean", or
 	 * an instance variable on a factory object itself configured using Dependency Injection.

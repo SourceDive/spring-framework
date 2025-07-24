@@ -127,6 +127,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/** Strategy for creating bean instances. */
 	private InstantiationStrategy instantiationStrategy;
 
+	// 解析方法参数名称。
 	/** Resolver strategy for method parameter names. */
 	@Nullable
 	private ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
