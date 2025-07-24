@@ -1,4 +1,4 @@
-package mine.archive.at_bean.service;
+package mine.archive.at_bean.at_bean_simple.service;
 
 /**
  * @author zero

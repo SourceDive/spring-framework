@@ -1,4 +1,4 @@
-package mine.archive.at_bean_transactional.service;
+package mine.archive.at_bean.at_bean_transactional.service;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

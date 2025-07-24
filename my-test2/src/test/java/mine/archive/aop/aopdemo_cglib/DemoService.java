@@ -1,4 +1,4 @@
-package mine.archive.aopdemo_cglib;
+package mine.archive.aop.aopdemo_cglib;
 
 import org.springframework.stereotype.Service;
 

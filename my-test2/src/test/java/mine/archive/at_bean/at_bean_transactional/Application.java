@@ -1,7 +1,7 @@
-package mine.archive.at_bean_transactional;
+package mine.archive.at_bean.at_bean_transactional;
 
-import mine.archive.at_bean_transactional.config.MyConfig;
-import mine.archive.at_bean_transactional.service.MyService;
+import mine.archive.at_bean.at_bean_transactional.config.MyConfig;
+import mine.archive.at_bean.at_bean_transactional.service.MyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

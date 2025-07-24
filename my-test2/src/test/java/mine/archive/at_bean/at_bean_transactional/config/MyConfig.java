@@ -1,6 +1,6 @@
-package mine.archive.at_bean_transactional.config;
+package mine.archive.at_bean.at_bean_transactional.config;
 
-import mine.archive.at_bean_transactional.service.MyService;
+import mine.archive.at_bean.at_bean_transactional.service.MyService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;

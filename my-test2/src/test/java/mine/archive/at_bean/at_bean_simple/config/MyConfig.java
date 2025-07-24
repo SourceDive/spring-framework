@@ -1,6 +1,6 @@
-package mine.archive.at_bean.config;
+package mine.archive.at_bean.at_bean_simple.config;
 
-import mine.archive.at_bean.service.MyService;
+import mine.archive.at_bean.at_bean_simple.service.MyService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

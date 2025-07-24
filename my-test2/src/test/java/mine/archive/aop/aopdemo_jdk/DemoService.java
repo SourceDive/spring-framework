@@ -1,4 +1,4 @@
-package mine.archive.aopdemo_jdk;
+package mine.archive.aop.aopdemo_jdk;
 
 import org.springframework.stereotype.Service;
 
