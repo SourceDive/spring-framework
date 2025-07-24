@@ -56,6 +56,7 @@ public abstract class AbstractTransactionManagementConfiguration implements Impo
 
 
 	// 检查注解 @EnableTransactionManagement 是否存在
+	// 如果存在就要解析出注解的属性，并且赋值给当前类的变量 enableTx
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
 		this.enableTx = AnnotationAttributes.fromMap(

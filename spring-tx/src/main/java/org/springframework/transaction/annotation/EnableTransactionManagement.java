@@ -28,6 +28,7 @@ import org.springframework.core.Ordered;
 
 /**
  * <p>用在配置类上。</p>
+ * <p>todo 什么是 reactive transaction management?</p>
  * Enables Spring's annotation-driven transaction management capability, similar to
  * the support found in Spring's {@code <tx:*>} XML namespace. To be used on
  * {@link org.springframework.context.annotation.Configuration @Configuration}
