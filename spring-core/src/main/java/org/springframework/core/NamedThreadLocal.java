@@ -19,6 +19,7 @@ package org.springframework.core;
 import org.springframework.util.Assert;
 
 /**
+ * <p>又是一个对象包装类。</p>
  * {@link ThreadLocal} subclass that exposes a specified name
  * as {@link #toString()} result (allowing for introspection).
  *

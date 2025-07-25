@@ -23,6 +23,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>传递BootstrapContext给实现类。</p>
  * {@link org.springframework.beans.factory.config.BeanPostProcessor}
  * implementation that passes the BootstrapContext to beans that implement
  * the {@link BootstrapContextAware} interface.

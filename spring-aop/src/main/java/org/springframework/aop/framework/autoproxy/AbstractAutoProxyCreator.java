@@ -357,6 +357,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 		}
 
 		// Create proxy if we have advice.
+		// deepseek 说右侧这个方法返回的类型都是 MethodInterceptor，也不是啊我看。
 		Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(bean.getClass(), beanName, null);
 		if (specificInterceptors != DO_NOT_PROXY) {
 			this.advisedBeans.put(cacheKey, Boolean.TRUE); // bean 需要被代理，标记已处理
@@ -601,6 +602,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 	/**
 	 * <p>返回给定的bean是否被代理。以及应用到bean上的advice和advisor。</p>
+	 * <p>返回的都是 MethodInterceptor。</p>
 	 * Return whether the given bean is to be proxied, what additional
 	 * advices (e.g. AOP Alliance interceptors) and advisors to apply.
 	 * @param beanClass the class of the bean to advise

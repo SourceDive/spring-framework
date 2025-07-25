@@ -80,6 +80,7 @@ abstract class TransactionAttributeSourcePointcut extends StaticMethodMatcherPoi
 
 
 	/**
+	 * <p>匹配目标类是否有事务属性。这里是判断是否给目标类增强的一个依据。@Transactional 就是看这里。</p>
 	 * {@link ClassFilter} that delegates to {@link TransactionAttributeSource#isCandidateClass}
 	 * for filtering classes whose methods are not worth searching to begin with.
 	 */

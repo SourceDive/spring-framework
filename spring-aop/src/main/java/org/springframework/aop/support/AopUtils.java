@@ -224,7 +224,7 @@ public abstract class AopUtils {
 	 */
 	public static boolean canApply(Pointcut pc, Class<?> targetClass, boolean hasIntroductions) {
 		Assert.notNull(pc, "Pointcut must not be null");
-		// 类不满足，直接返回，方法都不必去匹配了。
+		// 先匹配类，类不满足，直接返回，方法都不必去匹配了。
 		if (!pc.getClassFilter().matches(targetClass)) {
 			return false;
 		}

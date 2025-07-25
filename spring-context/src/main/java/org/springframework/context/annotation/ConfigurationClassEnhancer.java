@@ -299,6 +299,7 @@ class ConfigurationClassEnhancer {
 			// To handle the case of an inter-bean method reference, we must explicitly check the
 			// container for already cached instances.
 
+			// 01、检查bean是否为 factoryBean
 			// First, check to see if the requested bean is a FactoryBean. If so, create a subclass
 			// proxy that intercepts calls to getObject() and returns any cached bean instance.
 			// This ensures that the semantics of calling a FactoryBean from within @Bean methods
@@ -335,6 +336,7 @@ class ConfigurationClassEnhancer {
 			return resolveBeanReference(beanMethod, beanMethodArgs, beanFactory, beanName);
 		}
 
+		// 处理 BeanMethod 之间的调用。
 		private Object resolveBeanReference(Method beanMethod, Object[] beanMethodArgs,
 				ConfigurableBeanFactory beanFactory, String beanName) {
 
@@ -419,6 +421,7 @@ class ConfigurationClassEnhancer {
 		}
 
 		/**
+		 * <p>根据给定的 beanName，检查 beanFactory 是否存在。</p>
 		 * Check the BeanFactory to see whether the bean named <var>beanName</var> already
 		 * exists. Accounts for the fact that the requested bean may be "in creation", i.e.:
 		 * we're in the middle of servicing the initial request for this bean. From an enhanced
