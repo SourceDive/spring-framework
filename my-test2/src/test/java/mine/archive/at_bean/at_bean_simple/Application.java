@@ -23,6 +23,6 @@ public class Application {
 		MyService myService = context.getBean(MyService.class);
 		myService.execute();
 
-		context.close(); // 显示关闭 context
+		context.close(); // 显式关闭 context
 	}
 }

@@ -30,6 +30,6 @@ public class PureJdbcTransactionApplication {
 
 		logger.info("===> {}", userDao.getAllUserName().toString());
 
-		context.close(); // 显示关闭 context
+		context.close(); // 显式关闭 context
 	}
 }
