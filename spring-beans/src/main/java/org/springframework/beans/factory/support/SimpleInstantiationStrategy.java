@@ -43,6 +43,7 @@ import org.springframework.util.StringUtils;
  */
 public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
+	// 存储当前线程正在执行的 @Bean 方法
 	private static final ThreadLocal<Method> currentlyInvokedFactoryMethod = new ThreadLocal<>();
 
 

@@ -316,6 +316,9 @@ class ConfigurationClassEnhancer {
 				}
 			}
 
+			// 检查当前 beanMethod 是否是当前线程要处理的方法
+			// 1、是(直接调用，容器初始化触发)。直接触发对应的 @Bean 方法
+			// 2、否(间接调用，其他 @Bean 方法内部调用)。从容器中直接获取。
 			if (isCurrentlyInvokedFactoryMethod(beanMethod)) {
 				// The factory is calling the bean method in order to instantiate and register the bean
 				// (i.e. via a getBean() call) -> invoke the super implementation of the method to actually
@@ -421,7 +424,7 @@ class ConfigurationClassEnhancer {
 		}
 
 		/**
-		 * <p>根据给定的 beanName，检查 beanFactory 是否存在。</p>
+		 * <p>根据给定的 beanName，检查在 beanFactory 中是否存在。</p>
 		 * Check the BeanFactory to see whether the bean named <var>beanName</var> already
 		 * exists. Accounts for the fact that the requested bean may be "in creation", i.e.:
 		 * we're in the middle of servicing the initial request for this bean. From an enhanced
@@ -439,6 +442,7 @@ class ConfigurationClassEnhancer {
 		}
 
 		/**
+		 * <p>检查拦截的方法是否是当前线程中处理的方法。</p>
 		 * Check whether the given method corresponds to the container's currently invoked
 		 * factory method. Compares method name and parameter types only in order to work
 		 * around a potential problem with covariant return types (currently only known
