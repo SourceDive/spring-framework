@@ -29,6 +29,7 @@ import org.springframework.test.annotation.DirtiesContext.HierarchyMode;
 /**
  * {@code TestContext} encapsulates the context in which a test is executed,
  * agnostic of the actual testing framework in use.
+ * <p>agnostic of: do not rely on. 不依赖于。</p>
  *
  * <p>As of Spring Framework 5.0, concrete implementations are highly encouraged
  * to implement a <em>copy constructor</em> in order to allow the immutable state
