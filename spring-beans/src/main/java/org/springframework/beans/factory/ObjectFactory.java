@@ -19,6 +19,7 @@ package org.springframework.beans.factory;
 import org.springframework.beans.BeansException;
 
 /**
+ * <p>对象工厂。</p>
  * Defines a factory which can return an Object instance
  * (possibly shared or independent) when invoked.
  *
@@ -31,7 +32,7 @@ import org.springframework.beans.BeansException;
  * <p>This interface is similar to {@link FactoryBean}, but implementations
  * of the latter are normally meant to be defined as SPI instances in a
  * {@link BeanFactory}, while implementations of this class are normally meant
- * to be fed as an API to other beans (through injection). As such, the
+ * to be fed as an API to other beans (through injection)(尽管此类的实现通常设计为通过注入方式，作为 API 提供给其他 Bean 使用). As such, the
  * {@code getObject()} method has different exception handling behavior.
  * <p>最后一句还说了 ObjectFactory 和 FactoryBean 的异常处理行为也是不同的: </p>
  * <p>第一个 ObjectFactory getObject(): unchecked exception</p>

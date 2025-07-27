@@ -96,6 +96,9 @@ import org.springframework.util.Assert;
  */
 public class GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry {
 
+	// final 不可变设计。
+	// * jvm 对 final 字段有优化，更快。
+	// * 保证线程看到的依赖引用都是相同的。
 	private final DefaultListableBeanFactory beanFactory;
 
 	@Nullable

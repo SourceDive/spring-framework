@@ -562,7 +562,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			 * @author ongoing
 			 * @date 2025-04-05 14:27:39
 			 * @description 这里就是 {@link GenericApplicationContext#refreshBeanFactory()} 只能刷新一次，有CAS检查
-			 *
 			 */
 			// Tell the subclass to refresh the internal bean factory.
 			// 这里可以动态更新
