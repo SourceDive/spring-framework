@@ -32,10 +32,13 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * <p>对象实例化策略：基于反射。</p>
  * Simple object instantiation strategy for use in a BeanFactory.
  *
  * <p>Does not support Method Injection, although it provides hooks for subclasses
  * to override to add Method Injection support, for example by overriding methods.
+ * <p>这里的 Method Injection 是指 Method Override。方法注入的核心是 动态改变方法行为，而 Java 中改变方法行为的标准方式就是 方法覆盖（Override）</p>
+ * <img src="doc-files/method_inject_and_method_override.png">
  *
  * @author Rod Johnson
  * @author Juergen Hoeller

@@ -370,6 +370,7 @@ class ConstructorResolver {
 
 	/**
 	 * <p>使用具名工厂方法实例化该Bean。</p>
+	 * <p>实例化的语句在该方法的最后一句。</p>
 	 * Instantiate the bean using a named factory method. The method may be static, if the
 	 * bean definition parameter specifies a class, rather than a "factory-bean", or
 	 * an instance variable on a factory object itself configured using Dependency Injection.
@@ -394,6 +395,7 @@ class ConstructorResolver {
 		Class<?> factoryClass;
 		boolean isStatic;
 
+		// 处理 factoryMethod 所在 factoryBean
 		String factoryBeanName = mbd.getFactoryBeanName();
 		if (factoryBeanName != null) {
 			if (factoryBeanName.equals(beanName)) {
