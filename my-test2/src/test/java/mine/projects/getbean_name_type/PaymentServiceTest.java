@@ -12,8 +12,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+/**
+ * getBean(name, type) 方法测试
+ */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = TestConfig.class) // 设置容器只需要加载配置文件中的 bean
 public class PaymentServiceTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(PaymentServiceTest.class);

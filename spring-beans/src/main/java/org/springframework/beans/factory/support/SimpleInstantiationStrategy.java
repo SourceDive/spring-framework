@@ -32,7 +32,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>对象实例化策略：基于反射。</p>
+ * <p>对象实例化策略：基于反射。无缓存机制。</p>
  * Simple object instantiation strategy for use in a BeanFactory.
  *
  * <p>Does not support Method Injection, although it provides hooks for subclasses
@@ -159,9 +159,12 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 				ReflectionUtils.makeAccessible(factoryMethod);
 			}
 
+			// (保存现场)保存当前线程调用状态 ==> 类似上下文切换。
 			Method priorInvokedFactoryMethod = currentlyInvokedFactoryMethod.get();
 			try {
+				// 设置当前调用的工厂方法
 				currentlyInvokedFactoryMethod.set(factoryMethod);
+				// 执行调用
 				Object result = factoryMethod.invoke(factoryBean, args);
 				if (result == null) {
 					result = new NullBean();
@@ -170,6 +173,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 			}
 			finally {
 				if (priorInvokedFactoryMethod != null) {
+					// (还原现场)恢复线程原始状态
 					currentlyInvokedFactoryMethod.set(priorInvokedFactoryMethod);
 				}
 				else {

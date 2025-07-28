@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * @author zero
- * @description todo
+ * @description getBean(name, type) 方法测试
  * @date 2025-07-27
  */
 @ExtendWith(SpringExtension.class) // 集成spring基础设施
@@ -28,7 +28,7 @@ public class PerformanceTest {
 	@Autowired
 	private ApplicationContext context;
 
-	// 避免在循环中重复创建
+	// 这里可以缓存引用，避免在循环中重复创建
 	@BeforeEach
 	public void setUp() {
 		// ✅ 一次性获取并缓存

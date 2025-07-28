@@ -28,6 +28,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>精准控制测试范围。</p>
  * {@code @ContextConfiguration} defines class-level metadata that is used to determine
  * how to load and configure an {@link org.springframework.context.ApplicationContext
  * ApplicationContext} for integration tests.
