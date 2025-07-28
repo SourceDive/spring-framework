@@ -9,6 +9,7 @@ import org.springframework.util.Assert;
 /**
  * @author zero
  * @description SpringContextHolder 的实现和用法，这个可以放在工具包下。
+ * 使用场景：普通类中去获取容器管理的bean。
  * @date 2025-07-25
  */
 @Component

@@ -299,7 +299,7 @@ class ConfigurationClassEnhancer {
 			// To handle the case of an inter-bean method reference, we must explicitly check the
 			// container for already cached instances.
 
-			// 01、检查bean是否为 factoryBean
+			// 01、检查当前 beanFactory 中是否存在该 bean
 			// First, check to see if the requested bean is a FactoryBean. If so, create a subclass
 			// proxy that intercepts calls to getObject() and returns any cached bean instance.
 			// This ensures that the semantics of calling a FactoryBean from within @Bean methods
@@ -316,9 +316,8 @@ class ConfigurationClassEnhancer {
 				}
 			}
 
-			// 检查当前 beanMethod 是否是当前线程要处理的方法
-			// 1、是(直接调用，容器初始化触发)。直接触发对应的 @Bean 方法
-			// 2、否(间接调用，其他 @Bean 方法内部调用)。从容器中直接获取。
+			// 02、检查当前 beanMethod 是否是当前线程要处理的方法
+			//   (1)、是(直接调用，容器初始化触发)。直接触发对应的 @Bean 方法
 			if (isCurrentlyInvokedFactoryMethod(beanMethod)) {
 				// The factory is calling the bean method in order to instantiate and register the bean
 				// (i.e. via a getBean() call) -> invoke the super implementation of the method to actually
@@ -333,12 +332,14 @@ class ConfigurationClassEnhancer {
 									"these container lifecycle issues; see @Bean javadoc for complete details.",
 							beanMethod.getDeclaringClass().getSimpleName(), beanMethod.getName()));
 				}
+				// 调用目标方法
 				return cglibMethodProxy.invokeSuper(enhancedConfigInstance, beanMethodArgs);
 			}
 
 			return resolveBeanReference(beanMethod, beanMethodArgs, beanFactory, beanName);
 		}
 
+		//   (2)、否(间接调用，其他 @Bean 方法内部调用)。从容器中直接获取。
 		// 处理 BeanMethod 之间的调用。
 		private Object resolveBeanReference(Method beanMethod, Object[] beanMethodArgs,
 				ConfigurableBeanFactory beanFactory, String beanName) {

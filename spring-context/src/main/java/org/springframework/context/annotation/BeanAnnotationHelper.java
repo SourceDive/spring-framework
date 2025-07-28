@@ -32,6 +32,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
  */
 abstract class BeanAnnotationHelper {
 
+	// 缓存：BeanMethod -> beanName(BeanMethod名称)
 	private static final Map<Method, String> beanNameCache = new ConcurrentReferenceHashMap<>();
 
 	private static final Map<Method, Boolean> scopedProxyCache = new ConcurrentReferenceHashMap<>();
@@ -45,8 +46,10 @@ abstract class BeanAnnotationHelper {
 		String beanName = beanNameCache.get(beanMethod);
 		if (beanName == null) {
 			// By default, the bean name is the name of the @Bean-annotated method
+			// 默认 bean 名称是 @Bean 方法名称。
 			beanName = beanMethod.getName();
 			// Check to see if the user has explicitly set a custom bean name...
+			// 检查开发者是否有自定义名称。
 			AnnotationAttributes bean =
 					AnnotatedElementUtils.findMergedAnnotationAttributes(beanMethod, Bean.class, false, false);
 			if (bean != null) {
