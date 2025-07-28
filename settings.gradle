@@ -9,7 +9,7 @@ pluginManagement {
 }
 
 plugins {
-	id "com.gradle.develocity" version "3.17.2"
+//	id "com.gradle.develocity" version "3.17.2" // Spring 源码可以完全脱离 Develocity 编译。它只是 Gradle 的增强插件，不影响 Java 源代码
 //	id "io.spring.ge.conventions" version "0.0.17" // 每次构建时控制台都会存在类似“Loading entry from 'https://ge.spring.io”的日志，注释掉这一句，就没有了
 }
 
@@ -43,31 +43,5 @@ rootProject.children.each {project ->
 	project.buildFileName = "${project.name}.gradle"
 }
 
-settings.gradle.projectsLoaded {
-	develocity {
-		buildScan {
-			File buildDir = settings.gradle.rootProject.getBuildDir()
-			buildDir.mkdirs()
-			new File(buildDir, "build-scan-uri.txt").text = "(build scan not generated)"
-			buildScanPublished { scan ->
-				if (buildDir.exists()) {
-					new File(buildDir, "build-scan-uri.txt").text = "${scan.buildScanUri}\n"
-				}
-			}
-		}
-	}
-}
 
 include 'my-test2'
-
-
-// 下面这个配置的作用：
-// 每次执行完测试案例后，都会在console中询问一句如下的提示
-// Publishing a build scan to scans.gradle.com requires accepting the Gradle Terms of Use defined at https://gradle.com/help/legal-terms-of-use. Do you accept these terms? ，每次执行都会有这个
-// 下面这个配置可以关掉这个提示。
-develocity {
-	buildScan {
-        termsOfUseUrl = 'https://gradle.com/help/legal-terms-of-use'
-        termsOfUseAgree = 'no'
-	}
-}
