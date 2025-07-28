@@ -1,8 +1,8 @@
-package mine.projects.getbean_name_type;
+package mine.archive.getbean_name_type;
 
-import mine.projects.getbean_name_type.config.TestConfig;
-import mine.projects.getbean_name_type.service.PaymentResult;
-import mine.projects.getbean_name_type.service.PaymentService;
+import mine.archive.getbean_name_type.config.TestConfig;
+import mine.archive.getbean_name_type.service.PaymentResult;
+import mine.archive.getbean_name_type.service.PaymentService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package mine.projects.getbean_name_type.service;
+package mine.archive.getbean_name_type.service;
 
 
 /**

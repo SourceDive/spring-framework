@@ -1,7 +1,7 @@
-package mine.projects.getbean_name_type.config;
+package mine.archive.getbean_name_type.config;
 
-import mine.projects.getbean_name_type.service.PaymentServiceImpl;
-import mine.projects.getbean_name_type.service.PaymentService;
+import mine.archive.getbean_name_type.service.PaymentServiceImpl;
+import mine.archive.getbean_name_type.service.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
