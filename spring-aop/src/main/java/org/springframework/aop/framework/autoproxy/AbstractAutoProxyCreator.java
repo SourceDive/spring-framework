@@ -302,6 +302,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	@Override
 	public Object postProcessAfterInitialization(@Nullable Object bean, String beanName) {
 		if (bean != null) {
+			// 注意这里不是去获取缓存，而是组装一个缓存键，总是会返回来的。
 			Object cacheKey = getCacheKey(bean.getClass(), beanName);
 			if (this.earlyProxyReferences.remove(cacheKey) != bean) {
 				// 构造代理
@@ -530,6 +531,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	}
 
 	/**
+	 * <p>interceptor的适配转换，需要转换为 Advisor。</p>
 	 * Determine the advisors for the given bean, including the specific interceptors
 	 * as well as the common interceptor, all adapted to the Advisor interface.
 	 * @param beanName the name of the bean

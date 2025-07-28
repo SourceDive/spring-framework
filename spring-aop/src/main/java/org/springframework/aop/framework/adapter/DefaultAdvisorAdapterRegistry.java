@@ -53,6 +53,10 @@ public class DefaultAdvisorAdapterRegistry implements AdvisorAdapterRegistry, Se
 	}
 
 
+	/**
+	 * 为 Advisor，直接返回
+	 * 为 Advice, 封装为 Advisor 后返回。
+	 */
 	@Override
 	public Advisor wrap(Object adviceObject) throws UnknownAdviceTypeException {
 		if (adviceObject instanceof Advisor) {
