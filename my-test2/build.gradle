@@ -1,4 +1,5 @@
 plugins {
+    id 'java'
     id("java-library")
 }
 
@@ -50,4 +51,6 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    include '**/*Test.class'   // 匹配 *Test 测试类
+    include '**/*Tests.class'  // 匹配 *Tests 测试类
 }
