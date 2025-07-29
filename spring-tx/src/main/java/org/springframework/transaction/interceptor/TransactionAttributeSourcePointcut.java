@@ -88,6 +88,7 @@ abstract class TransactionAttributeSourcePointcut extends StaticMethodMatcherPoi
 
 		@Override
 		public boolean matches(Class<?> clazz) {
+			// todo 这里为什么要忽略 TransactionalProxy? 防止二次处理吗？
 			if (TransactionalProxy.class.isAssignableFrom(clazz) ||
 					TransactionManager.class.isAssignableFrom(clazz) ||
 					PersistenceExceptionTranslator.class.isAssignableFrom(clazz)) {
