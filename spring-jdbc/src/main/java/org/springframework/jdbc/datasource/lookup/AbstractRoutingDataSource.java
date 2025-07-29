@@ -215,6 +215,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 
 
 	/**
+	 * <p>判定目标数据源。</p>
 	 * Retrieve the current target DataSource. Determines the
 	 * {@link #determineCurrentLookupKey() current lookup key}, performs
 	 * a lookup in the {@link #setTargetDataSources targetDataSources} map,

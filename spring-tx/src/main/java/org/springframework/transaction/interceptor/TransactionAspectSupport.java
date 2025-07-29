@@ -342,7 +342,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		TransactionAttributeSource tas = getTransactionAttributeSource();
 		// 获取事务的传播行为、隔离级别
 		final TransactionAttribute txAttr = (tas != null ? tas.getTransactionAttribute(method, targetClass) : null);
-		// ===> 02、确定事务管理器
+		// ===> 02、判定事务管理器
 		final TransactionManager tm = determineTransactionManager(txAttr);
 
 		// since 5.2 添加的响应式事务
@@ -490,6 +490,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	}
 
 	/**
+	 * <p>判定事务管理器。</p>
 	 * Determine the specific transaction manager to use for the given transaction.
 	 */
 	@Nullable

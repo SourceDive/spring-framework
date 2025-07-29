@@ -643,6 +643,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @description 初始化前的预处理
 	 */
 	/**
+	 * <p>一些状态标志和集合的处理。不涉及什么复杂逻辑。</p>
 	 * Prepare this context for refreshing, setting its startup date and
 	 * active flag as well as performing any initialization of property sources.
 	 */
