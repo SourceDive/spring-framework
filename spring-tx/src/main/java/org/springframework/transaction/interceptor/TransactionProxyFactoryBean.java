@@ -30,6 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.PlatformTransactionManager;
 
 /**
+ * <p>传统方式。现代项目应该使用 auto-proxying。</p>
  * Proxy factory bean for simplified declarative transaction handling.
  * This is a convenient alternative to a standard AOP
  * {@link org.springframework.aop.framework.ProxyFactoryBean}

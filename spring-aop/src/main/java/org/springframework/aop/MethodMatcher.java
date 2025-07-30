@@ -55,7 +55,7 @@ import java.lang.reflect.Method;
  */
 public interface MethodMatcher {
 
-	// 静态匹配器
+	// 静态匹配器。在代理创建时执行一次。
 	/**
 	 * Perform static checking whether the given method matches.
 	 * <p>If this returns {@code false} or if the {@link #isRuntime()}
@@ -80,7 +80,7 @@ public interface MethodMatcher {
 	 */
 	boolean isRuntime();
 
-	// 动态匹配器
+	// 动态匹配器。每次方法调用时都会执行。
 	/**
 	 * Check whether there a runtime (dynamic) match for this method,
 	 * which must have matched statically.
