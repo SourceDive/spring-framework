@@ -549,6 +549,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	}
 
 	/**
+	 * <p>方便测试使用，这个试用下。todo</p>
 	 * For debugging/diagnostic use.
 	 */
 	@Override

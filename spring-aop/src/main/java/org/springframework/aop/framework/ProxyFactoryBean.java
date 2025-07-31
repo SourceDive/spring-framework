@@ -49,7 +49,11 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * <img src="doc-files/manual_proxying.png">
  * <p>这里有对于AOP使用的封装。</p>
+ * <p>这个需要手动配置。区别于 auto-proxying</p>
+ * <p>关键转折点：Rod Johnson 在 Spring 2.0 设计文档中首次提出：
+ * "We need to move from explicit proxy creation to auto-proxying mechanisms."</p>
  *
  * {@link org.springframework.beans.factory.FactoryBean} implementation that builds an
  * AOP proxy based on beans in a Spring {@link org.springframework.beans.factory.BeanFactory}.
