@@ -61,6 +61,8 @@ public abstract class DaoSupport implements InitializingBean {
 	protected abstract void checkDaoConfig() throws IllegalArgumentException;
 
 	/**
+	 * <p>提供给子类实现使用。自定义的初始化动作。</p>
+	 * <p>生命周期：bean 属性填充之后。</p>
 	 * Concrete subclasses can override this for custom initialization behavior.
 	 * Gets called after population of this instance's bean properties.
 	 * @throws Exception if DAO initialization fails
