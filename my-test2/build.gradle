@@ -11,12 +11,14 @@ repositories {
 }
 
 dependencies {
-    api(project(":spring-context"))
+    api(project(":spring-context")) // 引入项目中的其他模块
     api(project(":spring-aop"))
     api(project(":spring-aspects"))
     api(project(":spring-test"))
-    api(project(":spring-tx")) // 为了测试事务机制，添加此依赖
+    api(project(":spring-tx"))   // 为了测试事务机制，添加此依赖
     api(project(":spring-jdbc")) // 为了测试事务机制，添加此依赖
+
+    // 测试依赖
     testImplementation("com.h2database:h2:1.4.200") // 添加 H2 数据库依赖
     testImplementation("org.junit.jupiter:junit-jupiter")
     // 可选：JUnit 5 支持
