@@ -164,7 +164,7 @@ public class AnnotationTransactionAttributeSource extends AbstractFallbackTransa
 	}
 
 	/**
-	 * <p>判定事务属性。</p>
+	 * <p>确定事务属性。</p>
 	 * Determine the transaction attribute for the given method or class.
 	 * <p>This implementation delegates to configured
 	 * {@link TransactionAnnotationParser TransactionAnnotationParsers}

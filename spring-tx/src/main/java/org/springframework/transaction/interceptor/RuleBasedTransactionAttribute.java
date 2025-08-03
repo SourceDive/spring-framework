@@ -23,6 +23,8 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>基于规则的事务属性。</p>
+ * <p>定义了回滚规则。</p>
  * TransactionAttribute implementation that works out whether a given exception
  * should cause transaction rollback by applying a number of rollback rules,
  * both positive and negative. If no custom rollback rules apply, this attribute

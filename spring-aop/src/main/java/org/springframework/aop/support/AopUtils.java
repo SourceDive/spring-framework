@@ -177,6 +177,8 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * <p>获取最终实现方法。</p>
+	 * <p>在类继承链中找到最底层具体实现的方法。</p>
 	 * Given a method, which may come from an interface, and a target class used
 	 * in the current AOP invocation, find the corresponding target method if there
 	 * is one. E.g. the method may be {@code IFoo.bar()} and the target class
@@ -193,6 +195,7 @@ public abstract class AopUtils {
 	 * @see org.springframework.util.ClassUtils#getMostSpecificMethod
 	 */
 	public static Method getMostSpecificMethod(Method method, @Nullable Class<?> targetClass) {
+		// 获取最终实现类。
 		Class<?> specificTargetClass = (targetClass != null ? ClassUtils.getUserClass(targetClass) : null);
 		Method resolvedMethod = ClassUtils.getMostSpecificMethod(method, specificTargetClass);
 		// If we are dealing with method with generic parameters, find the original method.

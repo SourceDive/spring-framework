@@ -915,6 +915,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * <p>返回开发者定义的类。如果输入为cglib生成的子类，则返回子类对应的父类。</p>
 	 * Return the user-defined class for the given class: usually simply the given
 	 * class, but the original class in case of a CGLIB-generated subclass.
 	 * @param clazz the class to check
@@ -1266,6 +1267,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * <p>获取最终实现方法。</p>
 	 * Given a method, which may come from an interface, and a target class used
 	 * in the current reflective invocation, find the corresponding target method
 	 * if there is one &mdash; for example, the method may be {@code IFoo.bar()},

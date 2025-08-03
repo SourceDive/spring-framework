@@ -43,7 +43,7 @@ import org.springframework.lang.Nullable;
 public interface TransactionAttributeSource {
 
 	/**
-	 * <p>判定给定的类的类上或者方法上是否可以解析到事务属性。
+	 * <p>判断给定的类的类上或者方法上是否可以解析到事务属性。
 	 *     <ul>true: 可以提取事务属性。</ul>
 	 *     <ul>false: 忽略。</ul>
 	 * </p>
