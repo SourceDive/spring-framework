@@ -32,6 +32,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
+ * <p>
+ *     <ul>1、有缓存</ul>
+ *     <ul>2、回退策略</ul>
+ * </p>
  * Abstract implementation of {@link TransactionAttributeSource} that caches
  * attributes for methods and implements a fallback policy: 1. specific target
  * method; 2. target class; 3. declaring method; 4. declaring class/interface.
