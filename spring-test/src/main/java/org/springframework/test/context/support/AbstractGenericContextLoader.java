@@ -212,6 +212,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
+	 * <p>模板方法。阶段：读取bean定义之前。</p>
 	 * Prepare the {@link GenericApplicationContext} created by this {@code ContextLoader}.
 	 * Called <i>before</i> bean definitions are read.
 	 * <p>The default implementation is empty. Can be overridden in subclasses to

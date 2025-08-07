@@ -19,9 +19,12 @@ package org.springframework.test.context;
 import org.springframework.context.ApplicationContext;
 
 /**
+ * <p>上下文加载器。</p>
+ * <p>用于加载 ApplicationContext 的策略接口。</p>
  * Strategy interface for loading an {@link ApplicationContext application context}
  * for an integration test managed by the Spring TestContext Framework.
  *
+ * <p>注意，从spring 3.1后，建议去实现SmartContextLoader，而不是这个接口，SmartContextLoader特性更加丰富。</p>
  * <p><b>Note</b>: as of Spring 3.1, implement {@link SmartContextLoader} instead
  * of this interface in order to provide support for annotated classes, active
  * bean definition profiles, and application context initializers.
