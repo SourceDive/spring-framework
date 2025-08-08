@@ -452,17 +452,32 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		return result;
 	}
 
+	/**
+	 * 这里面的 beanpostprocessor返回的如果有结果，会覆盖掉前面的赋值，这样的话，不就是以最后会返回结果的为准。
+	 * 最终生效的是最后一个不返回null的处理器结果。
+	 *
+	 * 责任链模式。
+	 *
+	 *
+	 * 正如 Spring 框架首席架构师 Juergen Hoeller 所强调：
+	 * "The postProcessAfterInitialization chain is designed as a transformative pipeline,
+	 * where each processor may replace the bean instance with a new one."
+	 * （postProcessAfterInitialization 链被设计为转换管道，每个处理器都可能用新实例替换 Bean）
+	 *
+	 * <p></p>
+	 * <img src="doc-files/multiprocessor_collaboration.png">
+	 */
 	@Override
 	public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName)
 			throws BeansException {
 
 		Object result = existingBean;
 		for (BeanPostProcessor processor : getBeanPostProcessors()) {
-			Object current = processor.postProcessAfterInitialization(result, beanName);
+			Object current = processor.postProcessAfterInitialization(result, beanName); // 后一个处理器以前一个的非null返回作为输入。
 			if (current == null) {
-				return result;
+				return result; // 遇到 null 立即终止链。
 			}
-			result = current;
+			result = current; // 覆盖前一个处理器的返回结果。
 		}
 		return result;
 	}
