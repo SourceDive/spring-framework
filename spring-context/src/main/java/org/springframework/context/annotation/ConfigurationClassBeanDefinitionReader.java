@@ -238,6 +238,7 @@ class ConfigurationClassBeanDefinitionReader {
 		beanDef.setSource(this.sourceExtractor.extractSource(metadata, configClass.getResource()));
 
 		// todo 书中说这里很重要！ page 183 《spring boot 源码解读与原理分析》 。说无法使用反射创建，这里不是很懂
+		// todo 是静态代表了什么？
 		if (metadata.isStatic()) {
 			// 静态 bean 方法
 			// static @Bean method
