@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
  * @description 后置处理器
  */
 /**
- * <p>生命周期阶段：bean 初始化</p>
+ * <p>Spring容器在**初始化其他普通Bean之前**，会先实例化并注册所有的`BeanPostProcessor`。</p>
  * Factory hook that allows for custom modification of new bean instances &mdash;
  * for example, checking for marker interfaces or wrapping beans with proxies.
  *
@@ -64,6 +64,7 @@ import org.springframework.lang.Nullable;
 public interface BeanPostProcessor {
 
 	/**
+	 * <p>生命周期阶段：bean 初始化</p>
 	 * Apply this {@code BeanPostProcessor} to the given new bean instance <i>before</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.
@@ -91,6 +92,7 @@ public interface BeanPostProcessor {
 	}
 
 	/**
+	 * <p>生命周期阶段：bean 初始化</p>
 	 * Apply this {@code BeanPostProcessor} to the given new bean instance <i>after</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.
