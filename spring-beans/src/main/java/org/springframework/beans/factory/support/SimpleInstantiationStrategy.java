@@ -62,6 +62,9 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
 
 	/**
+	 * <p>
+	 * 通过类名获取 Class 对象，再根据 Class对象获取构造器进行反射实例化
+	 * </p>
 	 * 这里提供了两种实例化的方法
 	 * <ul>1、BeanUtils 通过构造函数来实例化</ul>
 	 * <ul>2、通过 cglib</ul>
