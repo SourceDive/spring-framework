@@ -33,6 +33,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
+ * <p>看了下，入口是 test 模块那边的，只为 test 模块使用。</p>
  * Public delegate for resolving autowirable parameters on externally managed
  * constructors and methods.
  *
