@@ -19,6 +19,7 @@ package org.springframework.beans.factory;
 import org.springframework.beans.BeansException;
 
 /**
+ * <p>一个函数式接口。</p>
  * <p>对象工厂。</p>
  * Defines a factory which can return an Object instance
  * (possibly shared or independent) when invoked.
