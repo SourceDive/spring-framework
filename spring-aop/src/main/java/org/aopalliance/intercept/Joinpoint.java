@@ -43,6 +43,7 @@ import javax.annotation.Nullable;
 public interface Joinpoint {
 
 	/**
+	 * <p>负责链中结点的推进。</p>
 	 * Proceed to the next interceptor in the chain.
 	 * <p>The implementation and the semantics of this method depends
 	 * on the actual joinpoint type (see the children interfaces).
