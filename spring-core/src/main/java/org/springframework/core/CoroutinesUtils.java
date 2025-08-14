@@ -40,6 +40,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
+ * <p>Kotlin 协议工具类。</p>
  * Utilities for working with Kotlin Coroutines.
  *
  * @author Sebastien Deleuze

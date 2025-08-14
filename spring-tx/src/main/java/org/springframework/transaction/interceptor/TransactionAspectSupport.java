@@ -820,6 +820,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 
 	/**
+	 * <p>一个函数式接口。</p>
 	 * <p>callback的体现</p>
 	 * <p>从 invocation 调入 interceptor，又从 interceptor 调入 invocation</p>
 	 * Simple callback interface for proceeding with the target invocation.
@@ -834,6 +835,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 
 	/**
+	 * <p>回调接口的协程支持扩展。</p>
 	 * Coroutines-supporting extension of the callback interface.
 	 */
 	protected interface CoroutinesInvocationCallback extends InvocationCallback {
