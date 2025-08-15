@@ -62,7 +62,7 @@ public abstract class AssertionErrors {
 	/**
 	 * Assert the given condition is {@code true} and raise an
 	 * {@link AssertionError} otherwise.
-	 * @param message a message that describes the reason for the failure
+	 * @param message a message that describes the reason for the failure。异常时的日志
 	 * @param condition the condition to test for
 	 */
 	public static void assertTrue(String message, boolean condition) {
