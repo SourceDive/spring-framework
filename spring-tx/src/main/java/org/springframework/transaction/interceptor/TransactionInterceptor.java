@@ -31,8 +31,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionManager;
 
-// 声明式事务
 /**
+ * <p>
+ * 声明式事务 @Transactional
+ * </p>
+ * <p>这个类是没有私有属性的，但是父类是有的。</p>
  * AOP Alliance MethodInterceptor for declarative transaction
  * management using the common Spring transaction infrastructure
  * ({@link org.springframework.transaction.PlatformTransactionManager}/
