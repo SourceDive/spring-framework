@@ -265,6 +265,7 @@ public @interface Bean {
 	boolean autowireCandidate() default true;
 
 	/**
+	 * <p>生命周期：bean 初始化阶段。</p>
 	 * The optional name of a method to call on the bean instance during initialization.
 	 * Not commonly used, given that the method may be called programmatically directly
 	 * within the body of a Bean-annotated method.

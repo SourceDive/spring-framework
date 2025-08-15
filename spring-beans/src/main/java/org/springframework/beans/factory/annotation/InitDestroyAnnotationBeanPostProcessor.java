@@ -49,6 +49,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * <p>可以作为 InitializingBean 和 DisposableBean 的替代物。</p>
  * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation
  * that invokes annotated init and destroy methods. Allows for an annotation
  * alternative to Spring's {@link org.springframework.beans.factory.InitializingBean}
@@ -112,7 +113,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 	private final transient Map<Class<?>, LifecycleMetadata> lifecycleMetadataCache = new ConcurrentHashMap<>(256);
 
 
-	/**
+/**
 	 * Specify the init annotation to check for, indicating initialization
 	 * methods to call after configuration of a bean.
 	 * <p>Any custom annotation can be used, since there are no required
@@ -154,8 +155,8 @@ public class InitDestroyAnnotationBeanPostProcessor
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		LifecycleMetadata metadata = findLifecycleMetadata(bean.getClass());
 		try {
-			// 这里的 initMethods 里装的都是 @PostConstruct 注解标注的方法
 			/**
+			 * 这里的 initMethods 里装的都是 @PostConstruct 注解标注的方法
 			 * @see InitDestroyAnnotationBeanPostProcessor#buildLifecycleMetadata(Class)
 			 */
 			metadata.invokeInitMethods(bean, beanName);
