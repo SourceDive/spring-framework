@@ -27,6 +27,7 @@ package org.springframework.transaction;
 public interface TransactionExecution {
 
 	/**
+	 * <p>是否是新事务。</p>
 	 * Return whether the present transaction is new; otherwise participating
 	 * in an existing transaction, or potentially not running in an actual
 	 * transaction in the first place.
@@ -41,12 +42,14 @@ public interface TransactionExecution {
 	void setRollbackOnly();
 
 	/**
+	 * <p>是否标记回滚。</p>
 	 * Return whether the transaction has been marked as rollback-only
 	 * (either by the application or by the transaction infrastructure).
 	 */
 	boolean isRollbackOnly();
 
 	/**
+	 * <p>是否已完成。</p>
 	 * Return whether this transaction is completed, that is,
 	 * whether it has already been committed or rolled back.
 	 */

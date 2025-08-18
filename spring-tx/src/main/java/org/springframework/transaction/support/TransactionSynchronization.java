@@ -21,6 +21,7 @@ import java.io.Flushable;
 import org.springframework.core.Ordered;
 
 /**
+ * <p>事务同步的回调接口。</p>
  * Interface for transaction synchronization callbacks.
  * Supported by AbstractPlatformTransactionManager.
  *

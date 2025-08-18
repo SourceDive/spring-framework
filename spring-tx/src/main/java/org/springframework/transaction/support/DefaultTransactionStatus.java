@@ -22,6 +22,7 @@ import org.springframework.transaction.SavepointManager;
 import org.springframework.util.Assert;
 
 /**
+ * <p>持有所有框架内部使用的状态。</p>
  * Default implementation of the {@link org.springframework.transaction.TransactionStatus}
  * interface, used by {@link AbstractPlatformTransactionManager}. Based on the concept
  * of an underlying "transaction object".

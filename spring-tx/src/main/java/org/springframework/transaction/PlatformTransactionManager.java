@@ -76,7 +76,7 @@ public interface PlatformTransactionManager extends TransactionManager {
 	TransactionStatus getTransaction(@Nullable TransactionDefinition definition) throws TransactionException;
 
 	/**
-	 * Commit the given transaction, with regard to its status. If the transaction
+	 * Commit the given transaction, with regard to(concerning) its status. If the transaction
 	 * has been marked rollback-only programmatically, perform a rollback.
 	 * <p>If the transaction wasn't a new one, omit the commit for proper
 	 * participation in the surrounding transaction. If a previous transaction

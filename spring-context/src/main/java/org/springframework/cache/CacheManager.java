@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>实现声明式缓存的接口。</p>
  * Spring's central cache manager SPI.
  *
  * <p>Allows for retrieving named {@link Cache} regions.

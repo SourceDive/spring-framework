@@ -30,6 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
+ * <p>一般用不到这个。</p>
  * Proxy for a target JDBC {@link javax.sql.DataSource}, adding awareness of
  * Spring-managed transactions. Similar to a transactional JNDI DataSource
  * as provided by a Java EE server.

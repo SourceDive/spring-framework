@@ -85,6 +85,7 @@ import org.springframework.transaction.UnexpectedRollbackException;
 public abstract class AbstractPlatformTransactionManager implements PlatformTransactionManager, Serializable {
 
 	/**
+	 * <P>始终同步。</P>
 	 * Always activate transaction synchronization, even for "empty" transactions
 	 * that result from PROPAGATION_SUPPORTS with no existing backend transaction.
 	 * @see org.springframework.transaction.TransactionDefinition#PROPAGATION_SUPPORTS
@@ -104,6 +105,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	public static final int SYNCHRONIZATION_ON_ACTUAL_TRANSACTION = 1;
 
 	/**
+	 * <p>从不同步。</p>
 	 * Never active transaction synchronization, not even for actual transactions.
 	 */
 	public static final int SYNCHRONIZATION_NEVER = 2;
@@ -115,6 +117,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 
 	protected transient Log logger = LogFactory.getLog(getClass());
 
+	// 事务同步控制器。默认始终同步。
 	private int transactionSynchronization = SYNCHRONIZATION_ALWAYS;
 
 	private int defaultTimeout = TransactionDefinition.TIMEOUT_DEFAULT;
@@ -1020,6 +1023,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	//---------------------------------------------------------------------
 
 	/**
+	 * <p>返回当前事务状态对应的事务对象。</p>
 	 * Return a transaction object for the current transaction state.
 	 * <p>The returned object will usually be specific to the concrete transaction
 	 * manager implementation, carrying corresponding transaction state in a
