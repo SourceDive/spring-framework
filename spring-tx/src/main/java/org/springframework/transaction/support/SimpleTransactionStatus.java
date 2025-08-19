@@ -17,6 +17,7 @@
 package org.springframework.transaction.support;
 
 /**
+ * <p>用作测试mock使用，不用关注。</p>
  * A simple {@link org.springframework.transaction.TransactionStatus}
  * implementation. Derives from {@link AbstractTransactionStatus} and
  * adds an explicit {@link #isNewTransaction() "newTransaction"} flag.

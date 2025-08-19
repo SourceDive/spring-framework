@@ -46,6 +46,7 @@ import org.springframework.transaction.TransactionUsageException;
  */
 public abstract class AbstractTransactionStatus implements TransactionStatus {
 
+	// 全局回滚标志。
 	private boolean rollbackOnly = false;
 
 	private boolean completed = false;
@@ -76,6 +77,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	}
 
 	/**
+	 * <p>是否本地回滚。</p>
 	 * Determine the rollback-only flag via checking this TransactionStatus.
 	 * <p>Will only return "true" if the application called {@code setRollbackOnly}
 	 * on this TransactionStatus object.
@@ -85,6 +87,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	}
 
 	/**
+	 * <p>是否全局回滚。</p>
 	 * Template method for determining the global rollback-only flag of the
 	 * underlying transaction, if any.
 	 * <p>This implementation always returns {@code false}.

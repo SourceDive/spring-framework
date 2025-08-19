@@ -407,7 +407,9 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 		boolean newSynchronization = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);
 		DefaultTransactionStatus status = newTransactionStatus(
 				definition, transaction, true, newSynchronization, debugEnabled, suspendedResources);
+		// 开启新事务
 		doBegin(transaction, definition);
+		// 初始化事务同步机制
 		prepareSynchronization(status, definition);
 		return status;
 	}
@@ -533,6 +535,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 			TransactionDefinition definition, @Nullable Object transaction, boolean newTransaction,
 			boolean newSynchronization, boolean debug, @Nullable Object suspendedResources) {
 
+		// 需要事务同步机制未激活
 		boolean actualNewSynchronization = newSynchronization &&
 				!TransactionSynchronizationManager.isSynchronizationActive();
 		return new DefaultTransactionStatus(
@@ -545,6 +548,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	 * Initialize transaction synchronization as appropriate.
 	 */
 	protected void prepareSynchronization(DefaultTransactionStatus status, TransactionDefinition definition) {
+		// 这里事务状态的标志newSynchronization 就是上一步赋值的actual标志，false直接跳过，不进行初始化了。
 		if (status.isNewSynchronization()) {
 			TransactionSynchronizationManager.setActualTransactionActive(status.hasTransaction());
 			TransactionSynchronizationManager.setCurrentTransactionIsolationLevel(
@@ -1149,6 +1153,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	}
 
 	/**
+	 * <p>标记全局回滚后是否要提交。</p>
 	 * Return whether to call {@code doCommit} on a transaction that has been
 	 * marked as rollback-only in a global fashion.
 	 * <p>Does not apply if an application locally sets the transaction to rollback-only

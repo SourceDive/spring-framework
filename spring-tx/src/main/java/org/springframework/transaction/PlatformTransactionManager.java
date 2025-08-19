@@ -63,7 +63,7 @@ public interface PlatformTransactionManager extends TransactionManager {
 	 * @param definition the TransactionDefinition instance (can be {@code null} for defaults),
 	 * describing propagation behavior, isolation level, timeout etc.
 	 * @return transaction status object representing the new or current transaction
-	 * <p>返回的可能是一个新事务或者当前事务</p>
+	 * <p>返回的可能是一个代表新事务或者当前事务的事务状态对象。</p>
 	 * @throws TransactionException in case of lookup, creation, or system errors
 	 * @throws IllegalTransactionStateException if the given transaction definition
 	 * cannot be executed (for example, if a currently active transaction is in

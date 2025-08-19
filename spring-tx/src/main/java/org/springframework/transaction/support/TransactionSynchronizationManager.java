@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
 // TransactionResourceManager 在 spring4.0 被弃用，之后被删除掉了。
 /**
  * Central delegate that manages resources and transaction synchronizations per thread.
- * To be used by resource management code but not by typical application code.
+ * To be used by resource management code but not by typical application code(不是为开发者准备的).
  *
  * <p>Supports one resource per key without overwriting, that is, a resource needs
  * to be removed before a new one can be set for the same key.
