@@ -240,6 +240,7 @@ public abstract class TransactionSynchronizationManager {
 	//-------------------------------------------------------------------------
 
 	/**
+	 * <p>检查当前线程是否激活了事务同步机制。</p>
 	 * Return if transaction synchronization is active for the current thread.
 	 * Can be called before register to avoid unnecessary instance creation.
 	 * @see #registerSynchronization
@@ -249,6 +250,7 @@ public abstract class TransactionSynchronizationManager {
 	}
 
 	/**
+	 * <p>为当前线程激活事务同步机制。</p>
 	 * Activate transaction synchronization for the current thread.
 	 * Called by a transaction manager on transaction begin.
 	 * @throws IllegalStateException if synchronization is already active

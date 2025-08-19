@@ -19,6 +19,7 @@ package org.springframework.transaction.reactive;
 import reactor.core.publisher.Mono;
 
 /**
+ * <p>将资源（如数据库连接）绑定到当前线程，并在事务的生命周期中执行回调（如beforeCommit、afterCommit等）。</p>
  * Interface for reactive transaction synchronization callbacks.
  * Supported by {@link AbstractReactiveTransactionManager}.
  *

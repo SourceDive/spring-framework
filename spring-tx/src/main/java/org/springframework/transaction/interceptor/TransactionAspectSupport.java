@@ -63,6 +63,7 @@ import org.springframework.util.StringUtils;
  * to implement an aspect for any aspect system.
  *
  * <p>Subclasses are responsible for calling methods in this class in the correct order.
+ * <p>子类负责调用此类中的方法。</p>
  *
  * <p>If no transaction name has been specified in the {@link TransactionAttribute},
  * the exposed name will be the {@code fully-qualified class name + "." + method name}
