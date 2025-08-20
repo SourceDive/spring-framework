@@ -22,6 +22,7 @@ import org.springframework.core.Ordered;
 
 /**
  * <p>事务回调钩子。</p>
+ * <p>可以把它简单理解成 transaction hook. </p>
  * Interface for transaction synchronization callbacks.
  * Supported by AbstractPlatformTransactionManager.
  *
