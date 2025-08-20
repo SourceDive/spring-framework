@@ -52,7 +52,7 @@ import org.springframework.util.Assert;
 public class DefaultTransactionStatus extends AbstractTransactionStatus {
 
 	@Nullable
-	private final Object transaction;
+	private final Object transaction; // 事务只有一个，同步可以有多个
 
 	private final boolean newTransaction;
 

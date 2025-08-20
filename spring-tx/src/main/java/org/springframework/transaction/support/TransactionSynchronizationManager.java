@@ -417,6 +417,8 @@ public abstract class TransactionSynchronizationManager {
 	}
 
 	/**
+	 * <p>设置实际事务活动状态。</p>
+	 * <p>设置当前是否存在实际活动事务的状态。</p>
 	 * Expose whether there currently is an actual transaction active.
 	 * Called by the transaction manager on transaction begin and on cleanup.
 	 * @param active {@code true} to mark the current thread as being associated
