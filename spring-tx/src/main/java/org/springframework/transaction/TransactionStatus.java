@@ -19,6 +19,7 @@ package org.springframework.transaction;
 import java.io.Flushable;
 
 /**
+ * <p>封装事务执行状态信息。</p>
  * Representation of an ongoing {@link PlatformTransactionManager} transaction.
  * Extends the common {@link TransactionExecution} interface.
  *

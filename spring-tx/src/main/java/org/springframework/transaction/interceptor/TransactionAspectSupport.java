@@ -343,7 +343,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		TransactionAttributeSource tas = getTransactionAttributeSource();
 		// 获取事务的传播行为、隔离级别
 		final TransactionAttribute txAttr = (tas != null ? tas.getTransactionAttribute(method, targetClass) : null);
-		// ===> 02、确定事务管理器
+		// ===> 02、确定事务管理器(这里根据策略选择对应的实现类)
 		final TransactionManager tm = determineTransactionManager(txAttr);
 
 		// since 5.2 添加的响应式事务
@@ -503,7 +503,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		}
 
 		// 如果开发者定义了多个 transactionManager 的话，这个限定符就有用了。
-		// 有指定，用指定，没有指定，用默认的空。
+		// 限定符：有指定，用指定，没有指定，用默认的空。
 		String qualifier = txAttr.getQualifier();
 		if (StringUtils.hasText(qualifier)) {
 			return determineQualifiedTransactionManager(this.beanFactory, qualifier);
@@ -643,6 +643,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 				logger.trace("Getting transaction for [" + txInfo.getJoinpointIdentification() + "]");
 			}
 			// The transaction manager will flag an error if an incompatible tx already exists.
+			// 为 transactionInfo 设置 transactionStatus
 			txInfo.newTransactionStatus(status);
 		}
 		else {

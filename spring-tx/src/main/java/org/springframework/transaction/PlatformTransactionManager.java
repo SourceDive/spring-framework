@@ -50,6 +50,7 @@ import org.springframework.lang.Nullable;
 public interface PlatformTransactionManager extends TransactionManager {
 
 	/**
+	 * <p>跟getBean()一样，get or create a new one.</p>
 	 * Return a currently active transaction or create a new one, according to
 	 * the specified propagation behavior.
 	 * <p>Note that parameters like isolation level or timeout will only be applied
