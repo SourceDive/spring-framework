@@ -805,8 +805,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		private void bindToThread() {
 			// Expose current TransactionStatus, preserving any existing TransactionStatus
 			// for restoration after this transaction is complete.
-			this.oldTransactionInfo = transactionInfoHolder.get(); // 保存存在的事务状态，为了后面的现场恢复
-			transactionInfoHolder.set(this); // 设置新的事务状态。
+			this.oldTransactionInfo = transactionInfoHolder.get(); // 保存当前存在的 transactionInfo，为了后面的现场恢复
+			transactionInfoHolder.set(this); // 设置新的 transactionInfo
 		}
 
 		private void restoreThreadLocalStatus() {
