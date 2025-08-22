@@ -177,6 +177,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	//---------------------------------------------------------------------
 
 	/**
+	 * <p>委托给 savepoint manager</p>
 	 * This implementation delegates to a SavepointManager for the
 	 * underlying transaction, if possible.
 	 * @see #getSavepointManager()
@@ -188,6 +189,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	}
 
 	/**
+	 * <p>委托给 savepoint manager</p>
 	 * This implementation delegates to a SavepointManager for the
 	 * underlying transaction, if possible.
 	 * @see #getSavepointManager()
@@ -199,6 +201,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	}
 
 	/**
+	 * <p>委托给 savepoint manager</p>
 	 * This implementation delegates to a SavepointManager for the
 	 * underlying transaction, if possible.
 	 * @see #getSavepointManager()

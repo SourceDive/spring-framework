@@ -19,6 +19,7 @@ package org.springframework.transaction.support;
 import java.io.Flushable;
 
 /**
+ * <p>transaction object 的接口。</p>
  * Interface to be implemented by transaction objects that are able to
  * return an internal rollback-only marker, typically from another
  * transaction that has participated and marked it as rollback-only.

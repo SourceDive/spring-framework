@@ -17,11 +17,13 @@
 package org.springframework.transaction;
 
 /**
+ * <p>这个接口的风格好像org.springframework.transaction.PlatformTransactionManager。</p>
+ * <p>都是先get到返回，将返回作为剩下操作的参数。</p>
  * Interface that specifies an API to programmatically manage transaction
  * savepoints in a generic fashion. Extended by TransactionStatus to
  * expose savepoint management functionality for a specific transaction.
  *
- * <p>Note that savepoints can only work within an active transaction.
+ * <p>Note that savepoints can only work within an active transaction(保存点只能用于活动的事务).
  * Just use this programmatic savepoint handling for advanced needs;
  * else, a subtransaction with PROPAGATION_NESTED is preferable.
  *
@@ -41,7 +43,8 @@ public interface SavepointManager {
 	 * via {@code rollbackToSavepoint}, and explicitly release a savepoint
 	 * that you don't need anymore via {@code releaseSavepoint}.
 	 * <p>Note that most transaction managers will automatically release
-	 * savepoints at transaction completion.
+	 * savepoints at transaction completion.()
+	 * <p>大多数的 TM 会在事务完成之后自动释放掉所有的保存点。</p>
 	 * @return a savepoint object, to be passed into
 	 * {@link #rollbackToSavepoint} or {@link #releaseSavepoint}
 	 * @throws NestedTransactionNotSupportedException if the underlying
