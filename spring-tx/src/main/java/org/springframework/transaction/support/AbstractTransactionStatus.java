@@ -213,6 +213,7 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
 	}
 
 	/**
+	 * <p>给子类实现的模板方法。</p>
 	 * Return a SavepointManager for the underlying transaction, if possible.
 	 * <p>Default implementation always throws a NestedTransactionNotSupportedException.
 	 * @throws org.springframework.transaction.NestedTransactionNotSupportedException

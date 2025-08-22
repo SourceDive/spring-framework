@@ -612,7 +612,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 		TransactionStatus status = null;
 		if (txAttr != null) {
 			if (tm != null) {
-				status = tm.getTransaction(txAttr);
+				status = tm.getTransaction(txAttr); // txAttr 就是继承于 definition 的
 			}
 			else {
 				if (logger.isDebugEnabled()) {
@@ -785,6 +785,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 			return this.joinpointIdentification;
 		}
 
+		// 设置新事务状态。把这个方法名和restoreThreadLocalStatus结合成一对来看。
+		// 这个方法名以new开头实在让人不懂，也没有返回值。也问了deepseek，它说可能是历史原因导致的。跳过吧，知道这是个简单的set就好。
 		public void newTransactionStatus(@Nullable TransactionStatus status) {
 			this.transactionStatus = status;
 		}
@@ -809,6 +811,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 			transactionInfoHolder.set(this); // 设置新的 transactionInfo
 		}
 
+		// 恢复到旧状态。
 		private void restoreThreadLocalStatus() {
 			// Use stack to restore old transaction TransactionInfo.
 			// Will be null if none was set.

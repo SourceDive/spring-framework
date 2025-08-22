@@ -122,6 +122,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 
 	private int defaultTimeout = TransactionDefinition.TIMEOUT_DEFAULT;
 
+	// 是否允许嵌套事务。
 	private boolean nestedTransactionAllowed = false;
 
 	private boolean validateExistingTransaction = false;

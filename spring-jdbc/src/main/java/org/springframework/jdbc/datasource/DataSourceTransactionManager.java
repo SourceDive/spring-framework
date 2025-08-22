@@ -243,6 +243,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		return obtainDataSource();
 	}
 
+	// 就是单纯的new一个 transaction object
 	@Override
 	protected Object doGetTransaction() {
 		DataSourceTransactionObject txObject = new DataSourceTransactionObject();
@@ -442,6 +443,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 
 
 	/**
+	 * <p>代表了一个 connection holder.</p>
 	 * DataSource transaction object, representing a ConnectionHolder.
 	 * Used as transaction object by DataSourceTransactionManager.
 	 */
