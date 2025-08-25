@@ -196,6 +196,7 @@ public class EmbeddedDatabaseFactory {
 		}
 
 		// Now populate the database
+		// 填充数据库
 		if (this.databasePopulator != null) {
 			try {
 				DatabasePopulatorUtils.execute(this.databasePopulator, this.dataSource);
