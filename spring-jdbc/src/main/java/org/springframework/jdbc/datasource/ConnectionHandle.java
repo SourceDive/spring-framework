@@ -16,6 +16,7 @@
 
 package org.springframework.jdbc.datasource;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 
 /**
@@ -36,10 +37,12 @@ public interface ConnectionHandle {
 	Connection getConnection();
 
 	/**
+	 * <p>这里不是真正释放 connection 的地方。see also 里是真正释放 connection 的地方。</p>
 	 * Release the JDBC Connection that this handle refers to.
 	 * <p>The default implementation is empty, assuming that the lifecycle
 	 * of the connection is managed externally.
 	 * @param con the JDBC Connection to release
+	 * @see DataSourceUtils#releaseConnection(Connection, DataSource)
 	 */
 	default void releaseConnection(Connection con) {
 	}

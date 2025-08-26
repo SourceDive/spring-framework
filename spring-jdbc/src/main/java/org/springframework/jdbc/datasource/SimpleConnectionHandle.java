@@ -21,6 +21,7 @@ import java.sql.Connection;
 import org.springframework.util.Assert;
 
 /**
+ * <p>看着是个简单的包装类。</p>
  * Simple implementation of the {@link ConnectionHandle} interface,
  * containing a given JDBC Connection.
  *

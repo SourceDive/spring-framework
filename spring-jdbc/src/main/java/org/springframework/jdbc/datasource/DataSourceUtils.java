@@ -224,6 +224,7 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
+	 * <p>在事务结束后，根据只读标志和隔离级别重置给定的连接。</p>
 	 * Reset the given Connection after a transaction,
 	 * regarding read-only flag and isolation level.
 	 * @param con the Connection to reset
@@ -372,6 +373,7 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
+	 * <p>释放连接，会判断连接是否在事务之中。</p>
 	 * Actually close the given Connection, obtained from the given DataSource.
 	 * Same as {@link #releaseConnection}, but throwing the original SQLException.
 	 * <p>Directly accessed by {@link TransactionAwareDataSourceProxy}.
@@ -386,6 +388,8 @@ public abstract class DataSourceUtils {
 		if (con == null) {
 			return;
 		}
+		// 判断是否是 transactional connection
+		// 如果连接被绑定到当前线程的事务上下文中，不能关闭，事务管理器会负责关闭
 		if (dataSource != null) {
 			ConnectionHolder conHolder = (ConnectionHolder) TransactionSynchronizationManager.getResource(dataSource);
 			if (conHolder != null && connectionEquals(conHolder, con)) {
@@ -394,6 +398,8 @@ public abstract class DataSourceUtils {
 				return;
 			}
 		}
+
+		// 不是 transactional connection，可以关闭。
 		doCloseConnection(con, dataSource);
 	}
 
