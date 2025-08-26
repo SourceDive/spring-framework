@@ -55,6 +55,7 @@ public abstract class TransactionSynchronizationUtils {
 	}
 
 	/**
+	 * <p>获取包装类中的真实资源。</p>
 	 * Unwrap the given resource handle if necessary; otherwise return
 	 * the given handle as-is.
 	 * @since 5.3.4

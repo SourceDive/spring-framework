@@ -270,6 +270,13 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		return (txObject.hasConnectionHolder() && txObject.getConnectionHolder().isTransactionActive());
 	}
 
+	/**
+	 * 1、设置 connection holder
+	 * 2、设置隔离级别、只读属性
+	 * 3、处理自动提交/手动提交
+	 * 4、设置超时时间
+	 * 5、绑定到当前线程
+	 */
 	@Override
 	protected void doBegin(Object transaction, TransactionDefinition definition) {
 		DataSourceTransactionObject txObject = (DataSourceTransactionObject) transaction;
@@ -315,7 +322,8 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 				txObject.getConnectionHolder().setTimeoutInSeconds(timeout);
 			}
 
-			// 绑定到当前线程
+			// 将 connection holder 绑定到当前线程。
+			// 数据结构：dataSource -> connectionHolder
 			// Bind the connection holder to the thread.
 			if (txObject.isNewConnectionHolder()) {
 				TransactionSynchronizationManager.bindResource(obtainDataSource(), txObject.getConnectionHolder());
