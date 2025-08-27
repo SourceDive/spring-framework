@@ -33,6 +33,7 @@ import java.sql.SQLException;
 public interface DatabasePopulator {
 
 	/**
+	 * <p>填充数据库。可以用你的schema.sql来填充。</p>
 	 * Populate, initialize, or clean up the database using the provided JDBC
 	 * connection.
 	 * <p><strong>Warning</strong>: Concrete implementations should not close
