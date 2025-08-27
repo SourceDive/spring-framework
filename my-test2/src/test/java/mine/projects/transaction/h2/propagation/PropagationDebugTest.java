@@ -1,7 +1,7 @@
-package mine.projects.transaction.h2.others;
+package mine.projects.transaction.h2.propagation;
 
-import mine.projects.transaction.h2.others.config.TransactionConfig;
-import mine.projects.transaction.h2.others.service.UserService;
+import mine.projects.transaction.h2.propagation.config.TransactionConfig;
+import mine.projects.transaction.h2.propagation.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.util.AssertionErrors;
@@ -21,6 +21,7 @@ public class PropagationDebugTest {
 
 		UserService userService = context.getBean(UserService.class);
 
+		// 外层都是 required
 		// 测试点1: REQUIRED传播
 		try {
 			userService.createUserWithRequired();
