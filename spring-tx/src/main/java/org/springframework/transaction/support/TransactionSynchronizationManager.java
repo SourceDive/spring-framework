@@ -192,9 +192,10 @@ public abstract class TransactionSynchronizationManager {
 	}
 
 	/**
+	 * <p>解绑资源。</p>
 	 * Unbind a resource for the given key from the current thread.
 	 * @param key the key to unbind (usually the resource factory)
-	 * @return the previously bound value (usually the active resource object)
+	 * @return the previously bound value (usually the active resource object)(之前绑定的资源)
 	 * @throws IllegalStateException if there is no value bound to the thread
 	 * @see ResourceTransactionManager#getResourceFactory()
 	 */

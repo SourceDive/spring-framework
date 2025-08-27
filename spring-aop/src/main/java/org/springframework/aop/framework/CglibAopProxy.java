@@ -665,6 +665,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 	/**
 	 * <p>通用型AOP回调机制</p>
+	 * <p>这里是一个适配器。method interceptor(spring) ->  method invocation(aop union) -> method interceptor(aop union)</p>
 	 * General purpose AOP callback. Used when the target is dynamic or when the
 	 * proxy is not frozen.
 	 */
@@ -676,6 +677,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 			this.advised = advised;
 		}
 
+		// 这是调用的入口
 		@Override
 		@Nullable
 		public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
@@ -707,6 +709,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 				}
 				else {
 					// We need to create a method invocation...
+					// 封装 aop 联盟的 MethodInvocation 对象。
 					retVal = new CglibMethodInvocation(proxy, target, method, args, targetClass, chain, methodProxy)
 							.proceed();
 				}
@@ -763,6 +766,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 		@Nullable
 		public Object proceed() throws Throwable {
 			try {
+				// 直接委托给父类
 				return super.proceed();
 			}
 			catch (RuntimeException ex) {

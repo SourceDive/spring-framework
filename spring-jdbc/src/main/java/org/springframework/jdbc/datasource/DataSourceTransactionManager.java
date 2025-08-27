@@ -404,6 +404,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 			logger.debug("Setting JDBC transaction [" + txObject.getConnectionHolder().getConnection() +
 					"] rollback-only");
 		}
+		// 设置 connection holder rollback-only 标志。
 		txObject.setRollbackOnly();
 	}
 
