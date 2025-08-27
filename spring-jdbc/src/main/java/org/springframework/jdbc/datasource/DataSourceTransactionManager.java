@@ -142,7 +142,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 	 * Create a new {@code DataSourceTransactionManager} instance.
 	 * @param dataSource the JDBC DataSource to manage transactions for
 	 *
-	 * @see mine.projects.transaction.h2.others.config.TransactionConfig#dataSource()
+	 * @see mine.projects.transaction.h2.propagation.config.TransactionConfig#dataSource()
 	 */
 	public DataSourceTransactionManager(DataSource dataSource) {
 		// 设置是否允许事务嵌套

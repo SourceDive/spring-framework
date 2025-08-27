@@ -1,4 +1,4 @@
-package mine.projects.transaction.h2.others.service;
+package mine.projects.transaction.h2.propagation.service;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

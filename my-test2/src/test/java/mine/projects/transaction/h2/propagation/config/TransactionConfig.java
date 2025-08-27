@@ -1,7 +1,7 @@
-package mine.projects.transaction.h2.others.config;
+package mine.projects.transaction.h2.propagation.config;
 
-import mine.projects.transaction.h2.others.service.AuditService;
-import mine.projects.transaction.h2.others.service.UserService;
+import mine.projects.transaction.h2.propagation.service.AuditService;
+import mine.projects.transaction.h2.propagation.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,7 +22,7 @@ public class TransactionConfig {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
 				.generateUniqueName(true) // 每次创建唯一数据库名
-                .addScript("classpath:mine/projects/transaction/h2/others/schema.sql")
+                .addScript("classpath:mine/projects/transaction/h2/propagation/schema.sql")
                 .build();
     }
 
