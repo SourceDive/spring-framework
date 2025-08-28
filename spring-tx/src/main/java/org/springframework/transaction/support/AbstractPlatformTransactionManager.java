@@ -411,7 +411,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 		boolean newSynchronization = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);
 		DefaultTransactionStatus status = newTransactionStatus(
 				definition, transaction, true, newSynchronization, debugEnabled, suspendedResources);
-		// 开启新事务
+		// 开启新事务（这里会产生 tx obj）
 		doBegin(transaction, definition);
 		// 初始化事务同步机制
 		prepareSynchronization(status, definition);
@@ -693,6 +693,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	}
 
 	/**
+	 * <p>重新为当前线程激活同步机制。</p>
 	 * Reactivate transaction synchronization for the current thread
 	 * and resume all given synchronizations.
 	 * @param suspendedSynchronizations a List of TransactionSynchronization objects
@@ -755,8 +756,8 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 			try {
 				boolean unexpectedRollback = false;
 				prepareForCommit(status);
-				triggerBeforeCommit(status);
-				triggerBeforeCompletion(status);
+				triggerBeforeCommit(status); // template
+				triggerBeforeCompletion(status); // template
 				beforeCompletionInvoked = true;
 
 				if (status.hasSavepoint()) {
@@ -977,6 +978,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	private void triggerAfterCompletion(DefaultTransactionStatus status, int completionStatus) {
 		if (status.isNewSynchronization()) {
 			List<TransactionSynchronization> synchronizations = TransactionSynchronizationManager.getSynchronizations();
+			// 停用同步机制。
 			TransactionSynchronizationManager.clearSynchronization();
 			if (!status.hasTransaction() || status.isNewTransaction()) {
 				// No transaction or new transaction for the current scope ->
