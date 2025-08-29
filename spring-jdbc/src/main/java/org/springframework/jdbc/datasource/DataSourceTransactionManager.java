@@ -249,7 +249,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		return obtainDataSource();
 	}
 
-	// 就是单纯的new一个 transaction object
+	// 就是单纯的 new 一个 tx obj，并且为其设置数据库连接。
 	@Override
 	protected Object doGetTransaction() {
 		DataSourceTransactionObject txObject = new DataSourceTransactionObject();
@@ -261,8 +261,9 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 	}
 
 	/**
-	 * 1、事务对象存在 connection holder
-	 * 2、connection holder 是事务激活的
+	 * 是否存在当前事务需要检查：
+	 * <ul>1、事务存在数据库连接</ul>
+	 * <ul>2、数据库连接是事务激活的</ul>
 	 */
 	@Override
 	protected boolean isExistingTransaction(Object transaction) {
@@ -271,11 +272,11 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 	}
 
 	/**
-	 * 1、设置 connection holder
-	 * 2、设置隔离级别、只读属性
-	 * 3、处理自动提交/手动提交
-	 * 4、设置超时时间
-	 * 5、绑定到当前线程
+	 * <ul>1、设置 conn holder</ul>
+	 * <ul>2、设置隔离级别、只读属性</ul>
+	 * <ul>3、处理自动提交/手动提交</ul>
+	 * <ul>4、设置超时时间</ul>
+	 * <ul>5、绑定 conn holder 到当前线程</ul>
 	 */
 	@Override
 	protected void doBegin(Object transaction, TransactionDefinition definition) {
@@ -283,9 +284,10 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		Connection con = null;
 
 		try {
-			// 设置 connection holder
+			// 事务没有数据库连接，则从数据源获取一个新连接。
 			if (!txObject.hasConnectionHolder() ||
 					txObject.getConnectionHolder().isSynchronizedWithTransaction()) {
+				// 获取底层数据库连接
 				Connection newCon = obtainDataSource().getConnection();
 				if (logger.isDebugEnabled()) {
 					logger.debug("Acquired Connection [" + newCon + "] for JDBC transaction");
@@ -301,7 +303,9 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 			txObject.setPreviousIsolationLevel(previousIsolationLevel);
 			txObject.setReadOnly(definition.isReadOnly());
 
-			// 处理自动提交/手动提交
+			// ===> autoCommit 标志置为 false，是事务开启的标志，这里是事务的边界。
+			// 如果这个标志为true，那么每执行一次sql语句，都会提交一次。
+			// 为 false,会暂存所有语句，直到手动提交。
 			// Switch to manual commit if necessary. This is very expensive in some JDBC drivers,
 			// so we don't want to do it unnecessarily (for example if we've explicitly
 			// configured the connection pool to set it already).
@@ -310,7 +314,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 				if (logger.isDebugEnabled()) {
 					logger.debug("Switching JDBC Connection [" + con + "] to manual commit");
 				}
-				con.setAutoCommit(false);
+				con.setAutoCommit(false); // 关闭自动提交
 			}
 
 			prepareTransactionalConnection(con, definition);
@@ -429,7 +433,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		Connection con = txObject.getConnectionHolder().getConnection();
 		try {
 			if (txObject.isMustRestoreAutoCommit()) {
-				con.setAutoCommit(true);
+				con.setAutoCommit(true); // 恢复自动提交
 			}
 			DataSourceUtils.resetConnectionAfterTransaction(
 					con, txObject.getPreviousIsolationLevel(), txObject.isReadOnly());
@@ -501,6 +505,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 
 		private boolean newConnectionHolder;
 
+		// 标识 autoCommit 标志是否被修改，事后需要进行恢复。
 		private boolean mustRestoreAutoCommit;
 
 		public void setConnectionHolder(@Nullable ConnectionHolder connectionHolder, boolean newConnectionHolder) {

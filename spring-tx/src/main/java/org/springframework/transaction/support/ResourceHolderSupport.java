@@ -39,6 +39,7 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 
 	private boolean rollbackOnly = false;
 
+	// 数据库超时的截止时间
 	@Nullable
 	private Date deadline;
 

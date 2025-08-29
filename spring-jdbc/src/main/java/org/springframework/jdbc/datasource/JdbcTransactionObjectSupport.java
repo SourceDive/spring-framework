@@ -79,6 +79,7 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 	}
 
 	/**
+	 * <p>检查事务是否有数据库连接。</p>
 	 * Check whether this transaction object has a ConnectionHolder.
 	 */
 	public boolean hasConnectionHolder() {

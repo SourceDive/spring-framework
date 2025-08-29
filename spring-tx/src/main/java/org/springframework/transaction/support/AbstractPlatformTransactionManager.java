@@ -411,7 +411,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 		boolean newSynchronization = (getTransactionSynchronization() != SYNCHRONIZATION_NEVER);
 		DefaultTransactionStatus status = newTransactionStatus(
 				definition, transaction, true, newSynchronization, debugEnabled, suspendedResources);
-		// 开启新事务（这里会产生 tx obj）
+		// 开启新事务
 		doBegin(transaction, definition);
 		// 初始化事务同步机制
 		prepareSynchronization(status, definition);
@@ -1041,7 +1041,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	//---------------------------------------------------------------------
 
 	/**
-	 * <p>返回当前事务状态对应的事务对象。</p>
+	 * <p>返回当前事务状态对应的 tx obj。</p>
 	 * Return a transaction object for the current transaction state.
 	 * <p>The returned object will usually be specific to the concrete transaction
 	 * manager implementation, carrying corresponding transaction state in a
@@ -1105,9 +1105,11 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	}
 
 	/**
-	 * <p>开启具有相应语义的新事务。</p>
+	 * <p>在底层资源（如数据库连接）上，物理性地启动一个事务。</p>
+	 * <p>不需要关心传播行为，因为已经被抽象类处理了。</p>
 	 * Begin a new transaction with semantics according to the given transaction
-	 * definition. Does not have to care about applying the propagation behavior,
+	 * definition.(开启具有相应语义的新事务) Does not have to care about applying the propagation
+	 * behavior,
 	 * as this has already been handled by this abstract manager.
 	 * <p>This method gets called when the transaction manager has decided to actually
 	 * start a new transaction. Either there wasn't any transaction before, or the
@@ -1271,6 +1273,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	}
 
 	/**
+	 * <p>事务完毕后的资源清理。</p>
 	 * Cleanup resources after transaction completion.
 	 * <p>Called after {@code doCommit} and {@code doRollback} execution,
 	 * on any outcome. The default implementation does nothing.
@@ -1295,6 +1298,9 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 
 
 	/**
+	 * <p>
+	 * 挂起资源的 holder.
+	 * </p>
 	 * Holder for suspended resources.
 	 * Used internally by {@code suspend} and {@code resume}.
 	 */
