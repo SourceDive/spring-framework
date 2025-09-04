@@ -1,13 +1,13 @@
-package mine.projects.aopdemo_cglib_parent;
+package mine.archive.aop;
 
+import mine.archive.aop.service.UserService;
 import org.junit.jupiter.api.Test;
-import org.springframework.aop.support.AopUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * @author zero
- * @description use spring framework to test aop cglib logic
- * @date 2025-05-27
+ * @description use spring framework to test aop logic
+ * @date 2025-05-22
  */
 public class AopTest {
 
@@ -16,10 +16,10 @@ public class AopTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
 
 		// 获取代理对象
-		DemoChildService demoChildService = context.getBean(DemoChildService.class);
+		UserService userService = context.getBean(UserService.class);
 
 		// 触发切面方法
-		demoChildService.save();
+		userService.addUser("Mike");
 
 		context.close();
 	}

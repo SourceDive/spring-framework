@@ -1,4 +1,4 @@
-package mine.projects.aopdemo_cglib_parent;
+package mine.archive.aopdemo_cglib_parent;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ServiceAspect {
-	@Before("execution(public * mine.projects.aopdemo_cglib_parent.DemoChildService.*(..))")
+	@Before("execution(public * mine.archive.aopdemo_cglib_parent.DemoChildService.*(..))")
 	public void beforePrint() {
 		System.out.println("before run...");
 	}

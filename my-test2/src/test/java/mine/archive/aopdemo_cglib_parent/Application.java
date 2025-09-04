@@ -1,4 +1,4 @@
-package mine.projects.aopdemo_cglib_parent;
+package mine.archive.aopdemo_cglib_parent;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
