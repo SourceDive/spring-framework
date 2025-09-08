@@ -21,6 +21,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * <p>一个函数式接口。</p>
+ * <p>根据给定的连接创建预编译语句。</p>
  * One of the two central callback interfaces used by the JdbcTemplate class.
  * This interface creates a PreparedStatement given a connection, provided
  * by the JdbcTemplate class. Implementations are responsible for providing

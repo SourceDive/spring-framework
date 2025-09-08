@@ -196,7 +196,7 @@ public class EmbeddedDatabaseFactory {
 		}
 
 		// Now populate the database
-		// 填充数据库
+		// 填充数据库。例如这里可以自行开发者的一些批处理语句文件。
 		if (this.databasePopulator != null) {
 			try {
 				DatabasePopulatorUtils.execute(this.databasePopulator, this.dataSource);

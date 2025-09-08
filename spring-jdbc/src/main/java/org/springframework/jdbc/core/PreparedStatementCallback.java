@@ -23,6 +23,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>一个函数式接口。</p>
  * Generic callback interface for code that operates on a PreparedStatement.
  * Allows to execute any number of operations on a single PreparedStatement,
  * for example a single {@code executeUpdate} call or repeated

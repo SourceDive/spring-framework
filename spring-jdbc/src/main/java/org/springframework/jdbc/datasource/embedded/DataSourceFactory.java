@@ -19,6 +19,7 @@ package org.springframework.jdbc.datasource.embedded;
 import javax.sql.DataSource;
 
 /**
+ * <p>只有 SimpleDriverDataSourceFactory 这一个实现。</p>
  * {@code DataSourceFactory} encapsulates the creation of a particular
  * {@link DataSource} implementation such as a non-pooling
  * {@link org.springframework.jdbc.datasource.SimpleDriverDataSource}

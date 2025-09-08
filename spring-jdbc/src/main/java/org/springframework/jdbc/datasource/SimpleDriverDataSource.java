@@ -26,6 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * <p>不支持连接池。</p>
  * Simple implementation of the standard JDBC {@link javax.sql.DataSource} interface,
  * configuring a plain old JDBC {@link java.sql.Driver} via bean properties, and
  * returning a new {@link java.sql.Connection} from every {@code getConnection} call.
@@ -141,6 +142,7 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Creating new JDBC Driver Connection to [" + url + "]");
 		}
+		// 直接建立新的物理连接。
 		return driver.connect(url, props);
 	}
 
