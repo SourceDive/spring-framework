@@ -63,6 +63,7 @@ public abstract class DataSourceUtils {
 
 	/**
 	 * <p>从给定的 DataSource 中获取连接。</p>
+	 * <p>get() -> doGet()</p>
 	 * Obtain a Connection from the given DataSource. Translates SQLExceptions into
 	 * the Spring hierarchy of unchecked generic data access exceptions, simplifying
 	 * calling code and making any exception that is thrown more meaningful.

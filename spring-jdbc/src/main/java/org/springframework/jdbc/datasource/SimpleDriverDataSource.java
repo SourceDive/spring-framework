@@ -27,6 +27,7 @@ import org.springframework.util.Assert;
 
 /**
  * <p>不支持连接池。</p>
+ * <p>类比：像是一辆一次性自行车，每次骑都组装一辆新的，骑完就扔掉。能用，但效率极低。</p>
  * Simple implementation of the standard JDBC {@link javax.sql.DataSource} interface,
  * configuring a plain old JDBC {@link java.sql.Driver} via bean properties, and
  * returning a new {@link java.sql.Connection} from every {@code getConnection} call.
