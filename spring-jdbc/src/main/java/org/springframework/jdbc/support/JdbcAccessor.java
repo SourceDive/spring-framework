@@ -68,7 +68,10 @@ public abstract class JdbcAccessor implements InitializingBean {
 	}
 
 	/**
+	 * <p>简单的属性访问。</p>
 	 * Return the DataSource used by this template.
+	 * <p>对比来看下面这个方法来看。 </p>
+	 * @see JdbcAccessor#obtainDataSource()
 	 */
 	@Nullable
 	public DataSource getDataSource() {
@@ -76,6 +79,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 	}
 
 	/**
+	 * <p>资源的获取，不能为null。</p>
 	 * Obtain the DataSource for actual use.
 	 * @return the DataSource (never {@code null})
 	 * @throws IllegalStateException in case of no DataSource set
@@ -122,6 +126,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 	 */
 	public SQLExceptionTranslator getExceptionTranslator() {
 		SQLExceptionTranslator exceptionTranslator = this.exceptionTranslator;
+		// 幂等的
 		if (exceptionTranslator != null) {
 			return exceptionTranslator;
 		}
@@ -165,6 +170,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 	}
 
 	/**
+	 * <p>若需要，立即初始化异常转换器。</p>
 	 * Eagerly initialize the exception translator, if demanded,
 	 * creating a default one for the specified DataSource if none set.
 	 */
@@ -174,7 +180,7 @@ public abstract class JdbcAccessor implements InitializingBean {
 			throw new IllegalArgumentException("Property 'dataSource' is required");
 		}
 		if (!isLazyInit()) {
-			getExceptionTranslator();
+			getExceptionTranslator(); // 这个是幂等的，可以重复调用
 		}
 	}
 

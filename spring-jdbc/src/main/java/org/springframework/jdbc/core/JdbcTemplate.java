@@ -169,7 +169,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	 */
 	public JdbcTemplate(DataSource dataSource) {
 		setDataSource(dataSource);
-		afterPropertiesSet();
+		afterPropertiesSet(); // 这里手动调用 InitializingBean.afterPropertiesSet 是为了：无论是容器管理还是开发者手动创建，得到的效果是一致的。
 	}
 
 	/**
