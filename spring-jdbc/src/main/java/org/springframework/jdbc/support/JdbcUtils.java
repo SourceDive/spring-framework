@@ -95,6 +95,7 @@ public abstract class JdbcUtils {
 	}
 
 	/**
+	 * <p>关闭给定的 JDBC Statement 对象，并忽略任何抛出的异常。</p>
 	 * Close the given JDBC Statement and ignore any thrown exception.
 	 * This is useful for typical finally blocks in manual JDBC code.
 	 * @param stmt the JDBC Statement to close (may be {@code null})
