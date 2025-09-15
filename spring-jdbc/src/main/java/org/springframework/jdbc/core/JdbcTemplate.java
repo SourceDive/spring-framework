@@ -60,6 +60,7 @@ import org.springframework.util.LinkedCaseInsensitiveMap;
 import org.springframework.util.StringUtils;
 
 /**
+ * <p>无内置缓存。</p>
  * <b>This is the central delegate in the JDBC core package.</b>
  * It simplifies the use of JDBC and helps to avoid common errors.
  * It executes core JDBC workflow, leaving application code to provide SQL
