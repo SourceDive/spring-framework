@@ -42,6 +42,12 @@ public class TransactionFailureDebugApplication {
         System.out.println("\n4. 内部调用事务方法 - 在callTransactionalMethodInternally方法设置断点");
         userService.callTransactionalMethodInternally("debug_user4");
         
+        System.out.println("\n4.1. 验证this引用 - 在verifyThisReference方法设置断点");
+        userService.verifyThisReference("debug_user4_1");
+        
+        System.out.println("\n4.2. 对比代理对象调用和目标对象调用 - 在compareProxyVsTargetCall方法设置断点");
+        userService.compareProxyVsTargetCall("debug_user4_2");
+        
         System.out.println("\n4. 捕获异常事务方法 - 在createUserWithCaughtException方法设置断点");
         userService.createUserWithCaughtException("debug_user4");
         

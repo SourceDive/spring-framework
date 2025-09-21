@@ -110,7 +110,76 @@ public class TransactionFailureTest {
 
 		List<String> users = userService.getAllUserNames();
 		System.out.println("当前用户列表: " + users);
+		// 内部调用事务方法失效，异常被捕获，数据仍然会插入
 		assertTrue(users.contains("user4_internal"));
+	}
+	
+	/**
+	 * 测试4.1: 验证this指向目标对象而非代理对象
+	 */
+	@Test
+	void testVerifyThisReference() {
+		System.out.println("\n=== 测试4.1: 验证this指向目标对象而非代理对象 ===");
+		userService.verifyThisReference("user4_1");
+
+		List<String> users = userService.getAllUserNames();
+		System.out.println("当前用户列表: " + users);
+		// 验证this引用，观察日志输出
+		assertTrue(users.contains("user4_1_this_ref"));
+	}
+	
+	/**
+	 * 测试4.2: 对比代理对象调用和目标对象调用
+	 */
+	@Test
+	void testCompareProxyVsTargetCall() {
+		System.out.println("\n=== 测试4.2: 对比代理对象调用和目标对象调用 ===");
+		
+		// 1. 代理对象调用（外部调用）- 事务生效，异常会回滚
+		System.out.println("1. 代理对象调用（外部调用）");
+		try {
+			userService.createUserWithException("user4_2_proxy");
+		} catch (RuntimeException e) {
+			System.out.println("代理对象调用异常: " + e.getMessage());
+		}
+		
+		// 2. 目标对象调用（内部调用）- 事务失效，异常不会回滚
+		System.out.println("2. 目标对象调用（内部调用）");
+		userService.compareProxyVsTargetCall("user4_2_target");
+		
+		List<String> users = userService.getAllUserNames();
+		System.out.println("当前用户列表: " + users);
+		
+		// 代理对象调用：异常回滚，数据不会插入
+		assertFalse(users.contains("user4_2_proxy"));
+		// 目标对象调用：异常不回滚，数据会插入
+		assertTrue(users.contains("user4_2_target_target_call"));
+	}
+	
+	/**
+	 * 测试4.3: 验证代理对象内部的目标对象存储
+	 */
+	@Test
+	void testVerifyTargetObjectStorage() {
+		System.out.println("\n=== 测试4.3: 验证代理对象内部的目标对象存储 ===");
+		userService.verifyTargetObjectStorage("user4_3");
+		
+		// 这个测试主要是观察日志输出，了解代理对象的内部结构
+		System.out.println("请查看日志输出，了解代理对象的内部结构");
+	}
+	
+	/**
+	 * 测试4.4: 演示如何从代理对象获取目标对象
+	 */
+	@Test
+	void testDemonstrateTargetObjectRetrieval() {
+		System.out.println("\n=== 测试4.4: 演示如何从代理对象获取目标对象 ===");
+		userService.demonstrateTargetObjectRetrieval("user4_4");
+		
+		List<String> users = userService.getAllUserNames();
+		System.out.println("当前用户列表: " + users);
+		// 目标对象直接调用：事务失效，数据会插入
+		assertTrue(users.contains("user4_4_target_direct"));
 	}
 
 	/**

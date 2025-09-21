@@ -41,6 +41,26 @@ public interface UserService {
     void callTransactionalMethodInternally(String username);
     
     /**
+     * 验证this指向目标对象而非代理对象
+     */
+    void verifyThisReference(String username);
+    
+    /**
+     * 对比代理对象调用和目标对象调用
+     */
+    void compareProxyVsTargetCall(String username);
+    
+    /**
+     * 验证代理对象内部的目标对象存储
+     */
+    void verifyTargetObjectStorage(String username);
+    
+    /**
+     * 演示如何从代理对象获取目标对象
+     */
+    void demonstrateTargetObjectRetrieval(String username);
+    
+    /**
      * 事务方法中捕获异常 - 事务失效
      */
     @Transactional
