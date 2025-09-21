@@ -48,11 +48,62 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
+    public void callPrivateMethod(String username) {
+        logger.info("===> 调用私有方法开始: {}", username);
+        // 调用真正的私有方法
+        createUserPrivateMethodReal(username);
+        logger.info("===> 调用私有方法结束: {}", username);
+    }
+    
+    /**
+     * 真正的私有方法，@Transactional注解会失效
+     */
     @Transactional
-    public void createUserPrivateMethod(String username) {
+    private void createUserPrivateMethodReal(String username) {
         logger.info("===> 私有方法事务开始: {}", username);
         jdbcTemplate.update(INSERT_SQL, username);
         logger.info("===> 私有方法事务结束: {}", username);
+    }
+    
+    @Override
+    public void callPackageMethod(String username) {
+        logger.info("===> 调用包级别方法开始: {}", username);
+        // 调用包级别方法
+        createUserPackageMethod(username);
+        logger.info("===> 调用包级别方法结束: {}", username);
+    }
+    
+    /**
+     * 包级别访问的方法，@Transactional注解会失效
+     */
+    @Transactional
+    void createUserPackageMethod(String username) {
+        logger.info("===> 包级别方法事务开始: {}", username);
+        jdbcTemplate.update(INSERT_SQL, username);
+        logger.info("===> 包级别方法事务结束: {}", username);
+    }
+    
+    @Override
+    public void callPrivateMethodWithException(String username) {
+        logger.info("===> 调用私有方法（带异常）开始: {}", username);
+        try {
+            // 调用私有方法，里面会抛出异常
+            createUserPrivateMethodWithExceptionReal(username);
+        } catch (RuntimeException e) {
+            logger.info("===> 捕获私有方法异常: {}", e.getMessage());
+        }
+        logger.info("===> 调用私有方法（带异常）结束: {}", username);
+    }
+    
+    /**
+     * 私有方法，带异常，@Transactional注解会失效
+     */
+    @Transactional
+    private void createUserPrivateMethodWithExceptionReal(String username) {
+        logger.info("===> 私有方法事务开始: {}", username);
+        jdbcTemplate.update(INSERT_SQL, username);
+        logger.info("===> 插入用户后，准备抛出异常");
+        throw new RuntimeException("私有方法中的异常，由于事务失效，不会回滚");
     }
     
     @Override
@@ -86,7 +137,7 @@ public class UserServiceImpl implements UserService {
         throw new Exception("检查异常，默认不会回滚");
     }
     
-    @Override
+//    @Override
     @Transactional
     public static void createUserStaticMethod(String username) {
         logger.info("===> 静态方法事务开始: {}", username);

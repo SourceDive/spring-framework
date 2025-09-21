@@ -21,10 +21,19 @@ public interface UserService {
     void createUserWithException(String username);
     
     /**
-     * 非public方法上的@Transactional - 事务失效
+     * 调用私有方法 - 用于测试私有方法上的@Transactional失效
      */
-    @Transactional
-    void createUserPrivateMethod(String username);
+    void callPrivateMethod(String username);
+    
+    /**
+     * 调用包级别方法 - 用于测试包级别方法上的@Transactional失效
+     */
+    void callPackageMethod(String username);
+    
+    /**
+     * 调用私有方法并抛出异常 - 用于测试私有方法事务失效时不会回滚
+     */
+    void callPrivateMethodWithException(String username);
     
     /**
      * 同一个类内部调用事务方法 - 事务失效

@@ -30,8 +30,17 @@ public class TransactionFailureDebugApplication {
             System.out.println("捕获异常: " + e.getMessage());
         }
         
-        System.out.println("\n3. 内部调用事务方法 - 在callTransactionalMethodInternally方法设置断点");
-        userService.callTransactionalMethodInternally("debug_user3");
+        System.out.println("\n3. 私有方法事务失效 - 在callPrivateMethod方法设置断点");
+        userService.callPrivateMethod("debug_user3");
+        
+        System.out.println("\n3.1. 包级别方法事务失效 - 在callPackageMethod方法设置断点");
+        userService.callPackageMethod("debug_user3_1");
+        
+        System.out.println("\n3.2. 私有方法异常不回滚 - 在callPrivateMethodWithException方法设置断点");
+        userService.callPrivateMethodWithException("debug_user3_2");
+        
+        System.out.println("\n4. 内部调用事务方法 - 在callTransactionalMethodInternally方法设置断点");
+        userService.callTransactionalMethodInternally("debug_user4");
         
         System.out.println("\n4. 捕获异常事务方法 - 在createUserWithCaughtException方法设置断点");
         userService.createUserWithCaughtException("debug_user4");

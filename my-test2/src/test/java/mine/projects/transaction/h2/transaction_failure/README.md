@@ -13,7 +13,9 @@
 ## 事务失效场景列表
 
 ### 1. 方法访问级别问题
-- **非public方法**: `createUserPrivateMethod()` - 实际上这里还是public，只是演示概念
+- **私有方法**: `callPrivateMethod()` - 调用真正的私有方法，@Transactional失效
+- **包级别方法**: `callPackageMethod()` - 调用包级别访问方法，@Transactional失效
+- **私有方法异常**: `callPrivateMethodWithException()` - 私有方法中抛出异常不会回滚
 - **静态方法**: `createUserStaticMethod()` - 静态方法无法被代理
 - **final方法**: `createUserFinalMethod()` - final方法无法被代理
 
