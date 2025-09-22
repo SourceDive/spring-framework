@@ -120,6 +120,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	void setParent(@Nullable ApplicationContext parent);
 
 	/**
+	 * <p>环境是上下文的一个属性。</p>
 	 * Set the {@code Environment} for this application context.
 	 * @param environment the new environment
 	 * @since 3.1

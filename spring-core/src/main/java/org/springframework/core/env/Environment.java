@@ -42,6 +42,7 @@ package org.springframework.core.env;
  * org.springframework.context.EnvironmentAware EnvironmentAware} or {@code @Inject} the
  * {@code Environment} in order to query profile state or resolve properties directly.
  *
+ * <p>大多数情况，开发者不需要直接接触 Environment. </p>
  * <p>In most cases, however, application-level beans should not need to interact with the
  * {@code Environment} directly but instead may have to have {@code ${...}} property
  * values replaced by a property placeholder configurer such as
