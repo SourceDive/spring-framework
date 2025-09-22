@@ -768,6 +768,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
+	 * <p>可以在 springboot 中看到对这个模板方法的补充。</p>
+	 * <p>ref: org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext#postProcessBeanFactory</p>
 	 * Modify the application context's internal bean factory after its standard
 	 * initialization. The initial definition resources will have been loaded but no
 	 * post-processors will have run and no derived bean definitions will have been
