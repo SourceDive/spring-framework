@@ -988,6 +988,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
+	 * <p>完成上下文的刷新。</p>
+	 * <ul>1、触发 LifecycleProcessor</ul>
+	 * <ul>2、发布对应事件</ul>
 	 * Finish the refresh of this context, invoking the LifecycleProcessor's
 	 * onRefresh() method and publishing the
 	 * {@link org.springframework.context.event.ContextRefreshedEvent}.

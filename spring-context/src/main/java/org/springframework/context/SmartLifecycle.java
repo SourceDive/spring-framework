@@ -80,6 +80,7 @@ public interface SmartLifecycle extends Lifecycle, Phased {
 
 
 	/**
+	 * <p>是否自动启动。</p>
 	 * Returns {@code true} if this {@code Lifecycle} component should get
 	 * started automatically by the container at the time that the containing
 	 * {@link ApplicationContext} gets refreshed.

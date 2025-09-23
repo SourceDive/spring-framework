@@ -23,8 +23,8 @@ import org.springframework.beans.PropertyValues;
 import org.springframework.lang.Nullable;
 
 /**
- * <p>生命周期阶段：bean 实例化</p>
- * <p>可以感知bean实例化的 BeanPostProcessor</p>
+ * <p>生命周期阶段：bean 实例化。</p>
+ * <p>可以感知bean实例化的 BeanPostProcessor。</p>
  * Subinterface of {@link BeanPostProcessor} that adds a before-instantiation callback,
  * and a callback after instantiation but before explicit properties are set or
  * autowiring occurs.
@@ -48,7 +48,7 @@ import org.springframework.lang.Nullable;
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 
 	/**
-	 * <p>在目标bean初始化之前，会应用这个bean postprocessor</p>
+	 * <p>生命周期阶段：目标bean实例化之前。</p>
 	 * <p>返回的bean可能是一个代理对象，而不是目标bean</p>
 	 * Apply this BeanPostProcessor <i>before the target bean gets instantiated</i>.
 	 * The returned bean object may be a proxy to use instead of the target bean,
@@ -79,6 +79,7 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	}
 
 	/**
+	 * <p>生命周期阶段：bean 实例化之后。</p>
 	 * Perform operations after the bean has been instantiated, via a constructor or factory method,
 	 * but before Spring property population (from explicit properties or autowiring) occurs.
 	 * <p>This is the ideal callback for performing custom field injection on the given bean

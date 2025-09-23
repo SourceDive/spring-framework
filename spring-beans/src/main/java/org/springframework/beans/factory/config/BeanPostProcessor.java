@@ -64,7 +64,7 @@ import org.springframework.lang.Nullable;
 public interface BeanPostProcessor {
 
 	/**
-	 * <p>生命周期阶段：bean 初始化</p>
+	 * <p>生命周期阶段：bean 初始化之前。</p>
 	 * Apply this {@code BeanPostProcessor} to the given new bean instance <i>before</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.
@@ -92,7 +92,7 @@ public interface BeanPostProcessor {
 	}
 
 	/**
-	 * <p>生命周期阶段：bean 初始化</p>
+	 * <p>生命周期阶段：bean 初始化之后。</p>
 	 * Apply this {@code BeanPostProcessor} to the given new bean instance <i>after</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.
