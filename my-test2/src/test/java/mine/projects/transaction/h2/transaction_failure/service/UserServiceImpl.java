@@ -261,29 +261,30 @@ public class UserServiceImpl implements UserService {
      * 从代理对象中获取目标对象
      */
     private Object getTargetObject(Object proxy) {
-        try {
-            // 对于CGLIB代理
-            Field targetField = proxy.getClass().getDeclaredField("target");
-            targetField.setAccessible(true);
-            return targetField.get(proxy);
-        } catch (NoSuchFieldException e) {
-            try {
-                // 对于JDK动态代理
-                Field hField = proxy.getClass().getSuperclass().getDeclaredField("h");
-                hField.setAccessible(true);
-                Object handler = hField.get(proxy);
-                
-                Field targetField = handler.getClass().getDeclaredField("target");
-                targetField.setAccessible(true);
-                return targetField.get(handler);
-            } catch (Exception ex) {
-                logger.info("===> 无法获取目标对象: {}", ex.getMessage());
-                return null;
-            }
-        } catch (Exception e) {
-            logger.info("===> 获取目标对象失败: {}", e.getMessage());
-            return null;
-        }
+		return null;
+//        try {
+//            // 对于CGLIB代理
+//            Field targetField = proxy.getClass().getDeclaredField("target");
+//            targetField.setAccessible(true);
+//            return targetField.get(proxy);
+//        } catch (NoSuchFieldException e) {
+//            try {
+//                // 对于JDK动态代理
+//                Field hField = proxy.getClass().getSuperclass().getDeclaredField("h");
+//                hField.setAccessible(true);
+//                Object handler = hField.get(proxy);
+//
+//                Field targetField = handler.getClass().getDeclaredField("target");
+//                targetField.setAccessible(true);
+//                return targetField.get(handler);
+//            } catch (Exception ex) {
+//                logger.info("===> 无法获取目标对象: {}", ex.getMessage());
+//                return null;
+//            }
+//        } catch (Exception e) {
+//            logger.info("===> 获取目标对象失败: {}", e.getMessage());
+//            return null;
+//        }
     }
     
     @Override

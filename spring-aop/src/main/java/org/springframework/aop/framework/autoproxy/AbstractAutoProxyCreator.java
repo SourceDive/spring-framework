@@ -137,14 +137,14 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 	private final Set<String> targetSourcedBeans = Collections.newSetFromMap(new ConcurrentHashMap<>(16));
 
-	// map: cacheKey -> bean
+	// map: class -> bean
 	private final Map<Object, Object> earlyProxyReferences = new ConcurrentHashMap<>(16);
 
 	private final Map<Object, Class<?>> proxyTypes = new ConcurrentHashMap<>(16);
 
 	// 标记代理状态：记录已被 AOP 代理增强的 bean
 	// beanName -> Boolean ，如果为true，表示 bean 已被代理。
-	private final Map<Object, Boolean> advisedBeans = new ConcurrentHashMap<>(256);
+	private final Map<Object/*name*/, Boolean> advisedBeans = new ConcurrentHashMap<>(256);
 
 
 	/**

@@ -73,6 +73,8 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 
 	/**
 	 * <p>解决循环依赖。</p>
+	 * <p>1、如果是普通bean的互相依赖，直接按原样返回即可</p>
+	 * <p>2、如果需要返回代理对象，这里也会返回代理对象。</p>
 	 * Obtain a reference for early access to the specified bean,
 	 * typically for the purpose of resolving a circular reference.
 	 * <p>This callback gives post-processors a chance to expose a wrapper

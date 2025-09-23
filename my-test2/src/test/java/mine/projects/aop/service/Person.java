@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Person {
 	@Autowired
-	@Lazy
+//	@Lazy
     Cat cat;
 
 	public void invoke() {

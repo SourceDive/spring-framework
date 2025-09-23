@@ -1,5 +1,6 @@
 package mine.projects.aop;
 
+import mine.projects.aop.service.Cat;
 import mine.projects.aop.service.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -12,12 +13,13 @@ import java.util.Arrays;
  */
 public class AopCircularDependency {
 	public static void main(String[] args) {
-		AnnotationConfigApplicationContext applicationContext =
+		AnnotationConfigApplicationContext context =
 				new AnnotationConfigApplicationContext(TxConfig.class);
-		System.out.println("Bean定义名称: " + Arrays.toString(applicationContext.getBeanDefinitionNames()));
+		System.out.println("Bean定义名称: " + Arrays.toString(context.getBeanDefinitionNames()));
 		
 		// 获取Person bean并调用，触发循环依赖和事务
-		Person person = applicationContext.getBean(Person.class);
+		Person person = context.getBean(Person.class);
+		Cat cat = context.getBean(Cat.class);
 		System.out.println("Person bean类型: " + person.getClass().getName());
 		System.out.println("开始调用Person.invoke()...");
 		person.invoke();

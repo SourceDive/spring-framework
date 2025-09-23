@@ -19,8 +19,8 @@ package org.springframework.beans.factory;
 import org.springframework.beans.BeansException;
 
 /**
- * <p>一个函数式接口。</p>
  * <p>对象工厂。</p>
+ * <p>一个函数式接口。</p>
  * Defines a factory which can return an Object instance
  * (possibly shared or independent) when invoked.
  *
@@ -48,6 +48,7 @@ import org.springframework.beans.BeansException;
 public interface ObjectFactory<T> {
 
 	/**
+	 * <p>这个也可能返回代理对象。在循环依赖场景下的话，例如某个类有事务注解，这里就会返回代理对象。</p>
 	 * Return an instance (possibly shared or independent)
 	 * of the object managed by this factory.
 	 * @return the resulting instance
