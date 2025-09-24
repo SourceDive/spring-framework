@@ -592,6 +592,7 @@ class ConfigurationClassParser {
 		}
 	}
 
+	// 处理导入的配置类。
 	private void processImports(ConfigurationClass configClass, SourceClass currentSourceClass,
 			Collection<SourceClass> importCandidates, Predicate<String> exclusionFilter,
 			boolean checkForCircularImports) {
