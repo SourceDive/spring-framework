@@ -45,12 +45,14 @@ import org.springframework.core.annotation.AliasFor;
 public @interface CacheEvict {
 
 	/**
+	 * <p>缓存名称。</p>
 	 * Alias for {@link #cacheNames}.
 	 */
 	@AliasFor("cacheNames")
 	String[] value() default {};
 
 	/**
+	 * <p>缓存名称。</p>
 	 * Names of the caches to use for the cache eviction operation.
 	 * <p>Names may be used to determine the target cache (or caches), matching
 	 * the qualifier value or bean name of a specific bean definition.
@@ -62,6 +64,7 @@ public @interface CacheEvict {
 	String[] cacheNames() default {};
 
 	/**
+	 * <p>缓存键。</p>
 	 * Spring Expression Language (SpEL) expression for computing the key dynamically.
 	 * <p>Default is {@code ""}, meaning all method parameters are considered as a key,
 	 * unless a custom {@link #keyGenerator} has been set.
@@ -130,6 +133,7 @@ public @interface CacheEvict {
 	String condition() default "";
 
 	/**
+	 * <p>是否清除所有缓存。</p>
 	 * Whether all the entries inside the cache(s) are removed.
 	 * <p>By default, only the value under the associated key is removed.
 	 * <p>Note that setting this parameter to {@code true} and specifying a

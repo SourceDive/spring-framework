@@ -51,6 +51,7 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 
 	private static final Set<Class<? extends Annotation>> CACHE_OPERATION_ANNOTATIONS = new LinkedHashSet<>(8);
 
+	// cache 定位器：下面这四种注解。
 	static {
 		CACHE_OPERATION_ANNOTATIONS.add(Cacheable.class);
 		CACHE_OPERATION_ANNOTATIONS.add(CacheEvict.class);

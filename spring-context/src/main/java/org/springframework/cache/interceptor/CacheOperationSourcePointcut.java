@@ -27,6 +27,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * cache 方法匹配。
  * A Pointcut that matches if the underlying {@link CacheOperationSource}
  * has an attribute for a given method.
  *

@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.springframework.cache.Cache;
 
 /**
+ * <p>确定如何使用缓存。</p>
  * Determine the {@link Cache} instance(s) to use for an intercepted method invocation.
  *
  * <p>Implementations must be thread-safe.

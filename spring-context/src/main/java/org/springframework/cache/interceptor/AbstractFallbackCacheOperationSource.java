@@ -111,6 +111,11 @@ public abstract class AbstractFallbackCacheOperationSource implements CacheOpera
 	}
 
 	/**
+	 * <p>
+	 * 为给定方法及类确定缓存键。
+	 * </p>
+	 * <ul>1、重载方法 key 不一致。</ul>
+	 * <ul>2、不同实例的统一方法 key 一致。</ul>
 	 * Determine a cache key for the given method and target class.
 	 * <p>Must not produce same key for overloaded methods.
 	 * Must produce same key for different instances of the same method.
@@ -163,6 +168,9 @@ public abstract class AbstractFallbackCacheOperationSource implements CacheOpera
 
 
 	/**
+	 * <p>
+	 * 寻找给定类中的缓存属性。
+	 * </p>
 	 * Subclasses need to implement this to return the caching attribute for the
 	 * given class, if any.
 	 * @param clazz the class to retrieve the attribute for
@@ -172,6 +180,9 @@ public abstract class AbstractFallbackCacheOperationSource implements CacheOpera
 	protected abstract Collection<CacheOperation> findCacheOperations(Class<?> clazz);
 
 	/**
+	 * <p>
+	 * 寻找给定方法中的缓存属性。
+	 * </p>
 	 * Subclasses need to implement this to return the caching attribute for the
 	 * given method, if any.
 	 * @param method the method to retrieve the attribute for
@@ -181,6 +192,7 @@ public abstract class AbstractFallbackCacheOperationSource implements CacheOpera
 	protected abstract Collection<CacheOperation> findCacheOperations(Method method);
 
 	/**
+	 * <p>是否只允许public方法有缓存语义。默认false.</p>
 	 * Should only public methods be allowed to have caching semantics?
 	 * <p>The default implementation returns {@code false}.
 	 */
