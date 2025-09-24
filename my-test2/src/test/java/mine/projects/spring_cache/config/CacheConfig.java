@@ -22,7 +22,9 @@ import java.util.List;
 public class CacheConfig {
 
     /**
+	 * <p>
      * 配置缓存管理器
+	 * </p>
      * 使用ConcurrentMapCacheManager作为最简单的缓存实现
      * 适合学习和调试，生产环境建议使用Redis等
      */

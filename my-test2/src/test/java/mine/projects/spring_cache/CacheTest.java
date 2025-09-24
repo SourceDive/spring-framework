@@ -1,6 +1,7 @@
 package mine.projects.spring_cache;
 
 import mine.projects.spring_cache.config.CacheConfig;
+import mine.projects.spring_cache.domain.User;
 import mine.projects.spring_cache.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -82,7 +83,7 @@ public class CacheTest {
         userService.getUserById(2L);
         
         // 更新用户信息
-        UserService.User user = new UserService.User(2L, "新用户名");
+        User user = new User(2L, "新用户名");
         String updatedResult = userService.updateUser(user);
         System.out.println("更新结果: " + updatedResult);
         

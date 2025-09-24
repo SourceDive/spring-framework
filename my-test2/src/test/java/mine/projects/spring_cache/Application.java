@@ -1,6 +1,7 @@
 package mine.projects.spring_cache;
 
 import mine.projects.spring_cache.config.CacheConfig;
+import mine.projects.spring_cache.domain.User;
 import mine.projects.spring_cache.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.cache.CacheManager;
@@ -57,7 +58,7 @@ public class Application {
         
         // 2. 演示 @CachePut
         System.out.println("\n2. 演示 @CachePut 注解:");
-        UserService.User user = new UserService.User(2L, "张三");
+        User user = new User(2L, "张三");
         String updatedResult = userService.updateUser(user);
         System.out.println("更新结果: " + updatedResult);
         
