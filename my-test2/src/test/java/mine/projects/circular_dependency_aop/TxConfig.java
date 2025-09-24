@@ -1,6 +1,5 @@
-package mine.projects.aop;
+package mine.projects.circular_dependency_aop;
 
-import mine.projects.aop.service.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
