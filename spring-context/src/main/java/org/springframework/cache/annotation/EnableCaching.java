@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.Ordered;
 
 /**
+ * <p>放在配置类上。</p>
  * Enables Spring's annotation-driven cache management capability, similar to the
  * support found in Spring's {@code <cache:*>} XML namespace. To be used together
  * with @{@link org.springframework.context.annotation.Configuration Configuration}

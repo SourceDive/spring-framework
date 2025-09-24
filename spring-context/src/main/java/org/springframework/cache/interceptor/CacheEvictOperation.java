@@ -17,6 +17,7 @@
 package org.springframework.cache.interceptor;
 
 /**
+ * <p>缓存清除操作。</p>
  * Class describing a cache 'evict' operation.
  *
  * @author Costin Leau

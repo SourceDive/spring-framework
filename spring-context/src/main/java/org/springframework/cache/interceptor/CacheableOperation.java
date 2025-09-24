@@ -19,6 +19,8 @@ package org.springframework.cache.interceptor;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>1、缓存中存在，直接返回。</p>
+ * <p>2、缓存中不存在，放入缓存。</p>
  * Class describing a cache 'cacheable' operation.
  *
  * @author Costin Leau

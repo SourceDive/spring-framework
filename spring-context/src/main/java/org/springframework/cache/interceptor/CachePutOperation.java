@@ -19,6 +19,7 @@ package org.springframework.cache.interceptor;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>缓存写入操作。</p>
  * Class describing a cache 'put' operation.
  *
  * @author Costin Leau
