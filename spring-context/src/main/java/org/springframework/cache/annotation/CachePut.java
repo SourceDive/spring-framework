@@ -26,6 +26,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>缓存写入操作。</p>
  * Annotation indicating that a method (or all methods on a class) triggers a
  * {@link org.springframework.cache.Cache#put(Object, Object) cache put} operation.
  *

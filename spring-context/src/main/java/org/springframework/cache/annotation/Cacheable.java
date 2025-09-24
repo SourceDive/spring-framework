@@ -171,6 +171,7 @@ public @interface Cacheable {
 	String unless() default "";
 
 	/**
+	 * <p>当多个线程同时操作同一个key时，是否进行同步。</p>
 	 * Synchronize the invocation of the underlying method if several threads are
 	 * attempting to load a value for the same key. The synchronization leads to
 	 * a couple of limitations:

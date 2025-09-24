@@ -51,6 +51,7 @@ public interface Cache {
 	Object getNativeCache();
 
 	/**
+	 * <p>获取 key 对应的缓存。</p>
 	 * Return the value to which this cache maps the specified key.
 	 * <p>Returns {@code null} if the cache contains no mapping for this key;
 	 * otherwise, the cached value (which may be {@code null} itself) will
@@ -107,6 +108,7 @@ public interface Cache {
 	<T> T get(Object key, Callable<T> valueLoader);
 
 	/**
+	 * <p>写入 key 对应的缓存。</p>
 	 * Associate the specified value with the specified key in this cache.
 	 * <p>If the cache previously contained a mapping for this key, the old
 	 * value is replaced by the specified value.
@@ -121,6 +123,7 @@ public interface Cache {
 	void put(Object key, @Nullable Object value);
 
 	/**
+	 * <p>无则写入。</p>
 	 * Atomically associate the specified value with the specified key in this cache
 	 * if it is not set already.
 	 * <p>This is equivalent to:
@@ -157,6 +160,7 @@ public interface Cache {
 	}
 
 	/**
+	 * <p>清除 key 对应的缓存。</p>
 	 * Evict the mapping for this key from this cache if it is present.
 	 * <p>Actual eviction may be performed in an asynchronous or deferred
 	 * fashion, with subsequent lookups possibly still seeing the entry.
@@ -168,6 +172,7 @@ public interface Cache {
 	void evict(Object key);
 
 	/**
+	 * <p>有则清除。</p>
 	 * Evict the mapping for this key from this cache if it is present,
 	 * expecting the key to be immediately invisible for subsequent lookups.
 	 * <p>The default implementation delegates to {@link #evict(Object)},
@@ -189,6 +194,7 @@ public interface Cache {
 	}
 
 	/**
+	 * <p>清除所有的缓存。</p>
 	 * Clear the cache through removing all mappings.
 	 * <p>Actual clearing may be performed in an asynchronous or deferred
 	 * fashion, with subsequent lookups possibly still seeing the entries.

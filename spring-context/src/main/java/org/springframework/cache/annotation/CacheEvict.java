@@ -26,6 +26,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>缓存清除操作。</p>
  * Annotation indicating that a method (or all methods on a class) triggers a
  * {@link org.springframework.cache.Cache#evict(Object) cache evict} operation.
  *
@@ -142,6 +143,7 @@ public @interface CacheEvict {
 	boolean allEntries() default false;
 
 	/**
+	 * <p>清除是否在方法触发之前发生。</p>
 	 * Whether the eviction should occur before the method is invoked.
 	 * <p>Setting this attribute to {@code true}, causes the eviction to
 	 * occur irrespective of the method outcome (i.e., whether it threw an

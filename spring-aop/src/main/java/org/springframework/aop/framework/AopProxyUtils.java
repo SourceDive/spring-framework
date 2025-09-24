@@ -55,6 +55,7 @@ public abstract class AopProxyUtils {
 
 
 	/**
+	 * <p>获取代理背后的目标类。</p>
 	 * Obtain the singleton target object behind the given proxy, if any.
 	 * @param candidate the (potential) proxy to check
 	 * @return the singleton target object managed in a {@link SingletonTargetSource},
@@ -75,6 +76,8 @@ public abstract class AopProxyUtils {
 	}
 
 	/**
+	 * <p>获取最终目标类。</p>
+	 * <p>解开层层包裹。</p>
 	 * Determine the ultimate target class of the given bean instance, traversing
 	 * not only a top-level proxy but any number of nested proxies as well &mdash;
 	 * as long as possible without side effects, that is, just for singleton targets.

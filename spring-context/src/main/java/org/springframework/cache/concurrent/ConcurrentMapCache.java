@@ -48,6 +48,7 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 
 	private final String name;
 
+	// 存放缓存数据。
 	private final ConcurrentMap<Object, Object> store;
 
 	@Nullable

@@ -33,6 +33,7 @@ import org.springframework.lang.Nullable;
 public interface CacheOperationInvoker {
 
 	/**
+	 * <p>触发目标方法。</p>
 	 * Invoke the cache operation defined by this instance. Wraps any exception
 	 * that is thrown during the invocation in a {@link ThrowableWrapper}.
 	 * @return the result of the operation

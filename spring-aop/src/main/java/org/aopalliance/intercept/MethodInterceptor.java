@@ -48,6 +48,8 @@ import javax.annotation.Nullable;
 public interface MethodInterceptor extends Interceptor {
 
 	/**
+	 * <p>实现这个方法，以便在 invocation 前后进行额外的处理。</p>
+	 * <p>实现的逻辑中会有顺序，一个是目标方法的执行，一个是拦截器自己的执行。</p>
 	 * Implement this method to perform extra treatments before and
 	 * after the invocation. Polite implementations would certainly
 	 * like to invoke {@link Joinpoint#proceed()}.

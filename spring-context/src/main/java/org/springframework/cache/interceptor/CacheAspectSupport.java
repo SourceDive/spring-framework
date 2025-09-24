@@ -57,6 +57,7 @@ import org.springframework.util.function.SingletonSupplier;
 import org.springframework.util.function.SupplierUtils;
 
 /**
+ * <p>生命周期：所有bean创建好完成后。</p>
  * Base class for caching aspects, such as the {@link CacheInterceptor} or an
  * AspectJ aspect.
  *
@@ -340,6 +341,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 			Class<?> targetClass = getTargetClass(target);
 			CacheOperationSource cacheOperationSource = getCacheOperationSource();
 			if (cacheOperationSource != null) {
+				// 获取给定方法上的缓存操作。
 				Collection<CacheOperation> operations = cacheOperationSource.getCacheOperations(method, targetClass);
 				if (!CollectionUtils.isEmpty(operations)) {
 					return execute(invoker, method,
@@ -352,6 +354,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
+	 * <p>执行目标方法。</p>
 	 * Execute the underlying operation (typically in case of cache miss) and return
 	 * the result of the invocation. If an exception occurs it will be wrapped in a
 	 * {@link CacheOperationInvoker.ThrowableWrapper}: the exception can be handled
@@ -373,6 +376,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	@Nullable
 	private Object execute(final CacheOperationInvoker invoker, Method method, CacheOperationContexts contexts) {
 		// Special handling of synchronized invocation
+		// 同步缓存。
 		if (contexts.isSynchronized()) {
 			CacheOperationContext context = contexts.get(CacheableOperation.class).iterator().next();
 			if (isConditionPassing(context, CacheOperationExpressionEvaluator.NO_RESULT)) {
@@ -394,15 +398,18 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 		}
 
 		// Process any early evictions
+		// 处理清除操作（目标方法触发前）
 		processCacheEvicts(contexts.get(CacheEvictOperation.class), true,
 				CacheOperationExpressionEvaluator.NO_RESULT);
 
 		// Check if we have a cached value matching the conditions
+		// 查找缓存
 		Cache.ValueWrapper cacheHit = findCachedItem(contexts.get(CacheableOperation.class));
 
 		// Collect puts from any @Cacheable miss, if no cached value is found
 		List<CachePutRequest> cachePutRequests = new ArrayList<>(1);
 		if (cacheHit == null) {
+			// 没有命中，收集 @Cacheable 操作请求
 			collectPutRequests(contexts.get(CacheableOperation.class),
 					CacheOperationExpressionEvaluator.NO_RESULT, cachePutRequests);
 		}
@@ -410,25 +417,30 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 		Object cacheValue;
 		Object returnValue;
 
+		// 命中缓存且无put操作，返回缓存数据。
 		if (cacheHit != null && !hasCachePut(contexts)) {
 			// If there are no put requests, just use the cache hit
 			cacheValue = cacheHit.get();
 			returnValue = wrapCacheValue(method, cacheValue);
 		}
 		else {
+			// 没有命中缓存，触发目标方法
 			// Invoke the method if we don't have a cache hit
 			returnValue = invokeOperation(invoker);
 			cacheValue = unwrapReturnValue(returnValue);
 		}
 
+		// 收集 @CachePut 操作请求
 		// Collect any explicit @CachePuts
 		collectPutRequests(contexts.get(CachePutOperation.class), cacheValue, cachePutRequests);
 
+		// 处理所有的 put 请求，放入缓存。
 		// Process any collected put requests, either from @CachePut or a @Cacheable miss
 		for (CachePutRequest cachePutRequest : cachePutRequests) {
 			cachePutRequest.apply(cacheValue);
 		}
 
+		// 处理清除操作（目标方法触发后）
 		// Process any late evictions
 		processCacheEvicts(contexts.get(CacheEvictOperation.class), false, cacheValue);
 
@@ -578,6 +590,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 		return null;
 	}
 
+	// 判断是否应该执行缓存操作。
 	private boolean isConditionPassing(CacheOperationContext context, @Nullable Object result) {
 		boolean passing = context.isConditionPassing(result);
 		if (!passing && logger.isTraceEnabled()) {
@@ -606,6 +619,9 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 		private final boolean sync;
 
+		/**
+		 * 上下文封装：缓存操作、目标方法、目标实例、目标类
+		 */
 		public CacheOperationContexts(Collection<? extends CacheOperation> operations, Method method,
 				Object[] args, Object target, Class<?> targetClass) {
 

@@ -31,16 +31,19 @@ import java.lang.reflect.Method;
 public interface CacheOperationInvocationContext<O extends BasicOperation> {
 
 	/**
+	 * <p>返回缓存操作。</p>
 	 * Return the cache operation.
 	 */
 	O getOperation();
 
 	/**
+	 * <p>返回目标实例。</p>
 	 * Return the target instance on which the method was invoked.
 	 */
 	Object getTarget();
 
 	/**
+	 * <p>返回目标方法。</p>
 	 * Return the method which was invoked.
 	 */
 	Method getMethod();
