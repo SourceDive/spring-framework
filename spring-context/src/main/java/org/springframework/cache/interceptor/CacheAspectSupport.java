@@ -341,7 +341,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 			Class<?> targetClass = getTargetClass(target);
 			CacheOperationSource cacheOperationSource = getCacheOperationSource();
 			if (cacheOperationSource != null) {
-				// 获取给定方法上的缓存操作。
+				// 获取给定方法上的缓存操作集合。
 				Collection<CacheOperation> operations = cacheOperationSource.getCacheOperations(method, targetClass);
 				if (!CollectionUtils.isEmpty(operations)) {
 					return execute(invoker, method,
@@ -424,8 +424,8 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 			returnValue = wrapCacheValue(method, cacheValue);
 		}
 		else {
-			// 没有命中缓存，触发目标方法
-			// Invoke the method if we don't have a cache hit
+			// 1、只要缓存没有命中，就会调用目标方法
+			// 2、即使命中了缓存，但是有 cacheput 操作的话，也会调用目标方法
 			returnValue = invokeOperation(invoker);
 			cacheValue = unwrapReturnValue(returnValue);
 		}
