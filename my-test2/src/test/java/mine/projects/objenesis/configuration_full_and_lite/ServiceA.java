@@ -1,6 +1,4 @@
-package mine.projects.configuration_full_and_lite;
-
-import org.springframework.stereotype.Component;
+package mine.projects.objenesis.configuration_full_and_lite;
 
 public class ServiceA {
     private final ServiceB serviceB;

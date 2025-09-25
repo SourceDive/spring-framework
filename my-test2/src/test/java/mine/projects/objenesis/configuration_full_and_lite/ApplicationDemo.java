@@ -1,4 +1,4 @@
-package mine.projects.configuration_full_and_lite;
+package mine.projects.objenesis.configuration_full_and_lite;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
