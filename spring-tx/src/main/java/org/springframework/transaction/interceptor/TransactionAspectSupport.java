@@ -305,6 +305,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	}
 
 	/**
+	 * <p>检查必要的属性是否都已设置。</p>
 	 * Check that required properties were set.
 	 */
 	@Override
@@ -330,7 +331,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 	 * {@link ReactiveTransactionManager} implementations for reactive return types.
 	 * @param method the Method being invoked
 	 * @param targetClass the target class that we're invoking the method on
-	 * @param invocation the callback to use for proceeding with the target invocation
+	 * @param invocation the callback to use for proceeding with the target
+	 *                      invocation 也是对于目标方法的封装。
 	 * @return the return value of the method, if any
 	 * @throws Throwable propagated from the target invocation
 	 */
