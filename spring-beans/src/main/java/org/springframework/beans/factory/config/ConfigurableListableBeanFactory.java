@@ -152,7 +152,7 @@ public interface ConfigurableListableBeanFactory
 
 	/**
 	 * <p>保证所有非懒加载单例及FactoryBean的初始化。</p>
-	 * <p>需要延迟的则直接跳过，显示getBean()时再去创建。</p>
+	 * <p>注意：需要延迟的会直接跳过，显式getBean()时再去创建。</p>
 	 * Ensure that all non-lazy-init singletons are instantiated, also considering
 	 * {@link org.springframework.beans.factory.FactoryBean FactoryBeans}.
 	 * Typically invoked at the end of factory setup, if desired.
