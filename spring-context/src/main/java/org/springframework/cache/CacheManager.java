@@ -33,6 +33,7 @@ import org.springframework.lang.Nullable;
 public interface CacheManager {
 
 	/**
+	 * <p>根据缓存名称获取缓存。</p>
 	 * Get the cache associated with the given name.
 	 * <p>Note that the cache may be lazily created at runtime if the
 	 * native provider supports it.
@@ -44,6 +45,7 @@ public interface CacheManager {
 	Cache getCache(String name);
 
 	/**
+	 * <p>获取所有缓存的名称。</p>
 	 * Get a collection of the cache names known by this manager.
 	 * @return the names of all caches known by the cache manager
 	 */

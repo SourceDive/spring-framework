@@ -29,6 +29,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>
+ *     <ul>GET</ul>
+ *     <ul>POST</ul>
+ *     <ul>DELETE</ul>
+ * </p>
  * Interface specifying a basic set of RESTful operations.
  *
  * <p>Implemented by {@link RestTemplate}. Not often used directly, but a useful

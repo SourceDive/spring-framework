@@ -41,11 +41,13 @@ import org.springframework.lang.Nullable;
 public interface Cache {
 
 	/**
+	 * <p>获取缓存名称。</p>
 	 * Return the cache name.
 	 */
 	String getName();
 
 	/**
+	 * <p>获取底层原生缓存提供程序(具体实现)。</p>
 	 * Return the underlying native cache provider.
 	 */
 	Object getNativeCache();
@@ -226,6 +228,7 @@ public interface Cache {
 	interface ValueWrapper {
 
 		/**
+		 * <p>获取真实的缓存值。</p>
 		 * Return the actual value in the cache.
 		 */
 		@Nullable

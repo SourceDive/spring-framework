@@ -67,6 +67,7 @@ public @interface Cacheable {
 	String[] value() default {};
 
 	/**
+	 * <p>缓存名称。</p>
 	 * Names of the caches in which method invocation results are stored.
 	 * <p>Names may be used to determine the target cache(s), to be resolved via the
 	 * configured {@link #cacheResolver()} which typically delegates to
