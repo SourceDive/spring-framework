@@ -20,6 +20,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
+ * <p>用于初始化数据库。</p>
  * Strategy used to populate, initialize, or clean up a database.
  *
  * @author Keith Donald

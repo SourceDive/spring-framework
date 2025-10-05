@@ -25,6 +25,7 @@ import java.util.concurrent.ScheduledFuture;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>任务调度器。</p>
  * Task scheduler interface that abstracts the scheduling of
  * {@link Runnable Runnables} based on different kinds of triggers.
  *

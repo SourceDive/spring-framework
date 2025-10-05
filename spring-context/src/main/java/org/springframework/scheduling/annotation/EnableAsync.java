@@ -156,7 +156,7 @@ import org.springframework.core.Ordered;
  * @see AsyncConfigurer
  * @see AsyncConfigurationSelector
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.TYPE) // 作用于类型。
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import(AsyncConfigurationSelector.class)

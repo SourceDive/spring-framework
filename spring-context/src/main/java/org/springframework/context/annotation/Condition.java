@@ -23,6 +23,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  * A single {@code condition} that must be {@linkplain #matches matched} in order
  * for a component to be registered.
  *
+ * <p>条件检查发生在Bean注册前的最后一刻，只要当时能获取到的信息不符合要求，就可以直接否决掉这个Bean的注册。</p>
  * <p>Conditions are checked immediately before the bean-definition is due to be
  * registered and are free to veto registration based on any criteria that can
  * be determined at that point.

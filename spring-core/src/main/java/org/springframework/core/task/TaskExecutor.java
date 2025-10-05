@@ -19,6 +19,7 @@ package org.springframework.core.task;
 import java.util.concurrent.Executor;
 
 /**
+ * <p>任务执行器。</p>
  * Simple task executor interface that abstracts the execution
  * of a {@link Runnable}.
  *
