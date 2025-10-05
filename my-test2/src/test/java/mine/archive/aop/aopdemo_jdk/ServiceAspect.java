@@ -2,6 +2,7 @@ package mine.archive.aop.aopdemo_jdk;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +13,10 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ServiceAspect {
-	@Before("execution(public * mine.archive.aop.aopdemo_jdk.DemoService.*(..))")
+	@Pointcut("execution(* mine.archive.aop.aopdemo_jdk.DemoService.*(..))")
+	public void pointCut() {}
+
+	@Before("pointCut()")
 	public void beforePrint() {
 		System.out.println("before run...");
 	}

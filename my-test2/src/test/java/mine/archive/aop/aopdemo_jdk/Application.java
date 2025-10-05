@@ -10,7 +10,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @date 2025-05-27
  */
 @Configuration
-@ComponentScan("mine.projects.aopdemo_jdk")
+@ComponentScan("mine.archive.aop.aopdemo_jdk")
 @EnableAspectJAutoProxy(proxyTargetClass = false)
 public class Application {
 }
