@@ -1,10 +1,14 @@
 package mine.projects.http;
 
+import mine.projects.http.config.WebMvcConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.mock.web.MockServletContext;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
@@ -37,13 +41,18 @@ public class HttpApplication implements WebMvcConfigurer {
 		System.out.println("- HandlerMethod: 处理器方法");
 		System.out.println("=====================================");
 
-		// 创建Spring应用上下文
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		context.register(HttpApplication.class);
-		context.refresh();
+		// 使用 WebApplicationContext 并注入 Mock 的 ServletContext
+		AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
+		webContext.setServletContext(new MockServletContext());
+		webContext.register(WebMvcConfig.class, HttpApplication.class);
+		webContext.refresh();
 
-		System.out.println("Spring应用上下文已启动");
-		System.out.println("可以运行HttpTest类进行测试");
+		// 可选：创建一个 DispatcherServlet（不真正启动容器，仅用于初始化验证）
+		DispatcherServlet dispatcherServlet = new DispatcherServlet(webContext);
+		dispatcherServlet.init(new org.springframework.mock.web.MockServletConfig(new MockServletContext(), "dispatcher"));
+
+		System.out.println("Spring Web 应用上下文已启动 (MockServletContext)");
+		System.out.println("可以运行各测试类进行调试");
 	}
 
 	/**
