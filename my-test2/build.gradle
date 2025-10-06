@@ -29,10 +29,8 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
     
-    // Jackson JSON处理库 - 用于HTTP测试
-    testImplementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
-    testImplementation("com.fasterxml.jackson.core:jackson-core:2.15.2")
-    testImplementation("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
+    // Servlet API - 用于HTTP测试
+    testImplementation("javax.servlet:javax.servlet-api:4.0.1")
 
     // Logback 实现
     implementation 'ch.qos.logback:logback-classic:1.2.13'
