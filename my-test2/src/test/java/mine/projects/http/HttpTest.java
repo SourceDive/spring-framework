@@ -4,6 +4,7 @@ import mine.projects.http.config.WebMvcConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * 使用纯Spring Framework进行HTTP测试，不使用Spring Boot
  */
 @SpringJUnitConfig(classes = {WebMvcConfig.class})
+@WebAppConfiguration
 public class HttpTest {
 
 	@Autowired

@@ -1,8 +1,10 @@
 package mine.projects.http;
 
+import mine.projects.http.config.WebMvcConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -17,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * 纯文本HTTP测试类
  * 不依赖Jackson，只测试纯文本响应
  */
-@SpringJUnitConfig(classes = {SimpleTextController.class})
+@SpringJUnitConfig(classes = {WebMvcConfig.class, SimpleTextController.class})
+@WebAppConfiguration
 public class SimpleTextTest {
 
 	@Autowired
