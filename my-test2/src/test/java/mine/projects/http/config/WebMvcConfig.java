@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -54,10 +56,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	}
 
 	/**
-	 * 配置消息转换器列表
+	 * 扩展消息转换器（保留默认转换器）
 	 */
 	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+		// 确保纯文本响应可用
+		converters.add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+		// 确保JSON转换可用
 		converters.add(mappingJackson2HttpMessageConverter());
 	}
 
