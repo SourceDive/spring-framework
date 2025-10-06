@@ -1,17 +1,20 @@
 package mine.projects.http;
 
+import mine.projects.http.config.WebMvcConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.http.MediaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Spring Framework HTTP测试类
@@ -24,6 +27,7 @@ public class HttpTest {
 	private WebApplicationContext webApplicationContext;
 
 	private MockMvc mockMvc;
+	private ObjectMapper objectMapper = new ObjectMapper();
 
 	/**
 	 * 测试GET请求 - 获取用户信息
@@ -34,12 +38,19 @@ public class HttpTest {
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-		mockMvc.perform(get("/api/user/123"))
+		String result = mockMvc.perform(get("/api/user/123"))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.id").value(123))
-				.andExpect(jsonPath("$.name").value("用户123"))
-				.andExpect(jsonPath("$.email").value("user123@example.com"));
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+
+		System.out.println("响应内容: " + result);
+		
+		// 简单的字符串断言，不依赖Hamcrest
+		assertTrue(result.contains("\"id\":123"));
+		assertTrue(result.contains("\"name\":\"用户123\""));
+		assertTrue(result.contains("\"email\":\"user123@example.com\""));
 
 		System.out.println("GET请求测试完成");
 	}
@@ -55,14 +66,21 @@ public class HttpTest {
 
 		String userJson = "{\"name\":\"张三\",\"email\":\"zhangsan@example.com\"}";
 
-		mockMvc.perform(post("/api/user")
-						.contentType("application/json")
+		String result = mockMvc.perform(post("/api/user")
+						.contentType(MediaType.APPLICATION_JSON)
 						.content(userJson))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.name").value("张三"))
-				.andExpect(jsonPath("$.email").value("zhangsan@example.com"))
-				.andExpect(jsonPath("$.created").value(true));
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+
+		System.out.println("响应内容: " + result);
+		
+		// 简单的字符串断言，不依赖Hamcrest
+		assertTrue(result.contains("\"name\":\"张三\""));
+		assertTrue(result.contains("\"email\":\"zhangsan@example.com\""));
+		assertTrue(result.contains("\"created\":true"));
 
 		System.out.println("POST请求测试完成");
 	}
@@ -76,11 +94,18 @@ public class HttpTest {
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-		mockMvc.perform(get("/api/health"))
+		String result = mockMvc.perform(get("/api/health"))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.status").value("UP"))
-				.andExpect(jsonPath("$.message").value("服务正常运行"));
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+
+		System.out.println("响应内容: " + result);
+		
+		// 简单的字符串断言，不依赖Hamcrest
+		assertTrue(result.contains("\"status\":\"UP\""));
+		assertTrue(result.contains("\"message\":\"服务正常运行\""));
 
 		System.out.println("健康检查测试完成");
 	}

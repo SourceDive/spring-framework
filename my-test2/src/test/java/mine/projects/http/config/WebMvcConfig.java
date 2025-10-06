@@ -1,5 +1,6 @@
-package mine.projects.http;
+package mine.projects.http.config;
 
+import mine.projects.http.HttpApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "mine.projects.http")
+@ComponentScan(basePackageClasses = HttpApplication.class)
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	/**
