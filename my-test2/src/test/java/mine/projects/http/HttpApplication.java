@@ -49,7 +49,12 @@ public class HttpApplication implements WebMvcConfigurer {
 
 		// 可选：创建一个 DispatcherServlet（不真正启动容器，仅用于初始化验证）
 		DispatcherServlet dispatcherServlet = new DispatcherServlet(webContext);
-		dispatcherServlet.init(new org.springframework.mock.web.MockServletConfig(new MockServletContext(), "dispatcher"));
+		try {
+			dispatcherServlet.init(new org.springframework.mock.web.MockServletConfig(new MockServletContext(), "dispatcher"));
+		} catch (javax.servlet.ServletException e) {
+			System.err.println("初始化 DispatcherServlet 失败: " + e.getMessage());
+			e.printStackTrace();
+		}
 
 		System.out.println("Spring Web 应用上下文已启动 (MockServletContext)");
 		System.out.println("可以运行各测试类进行调试");
