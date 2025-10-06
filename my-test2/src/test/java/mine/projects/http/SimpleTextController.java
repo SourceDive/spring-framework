@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
  * 用于调试Spring源码中的HTTP处理流程
  */
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/text-api")
 public class SimpleTextController {
 
 	/**
