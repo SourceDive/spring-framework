@@ -688,6 +688,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 			try {
 				if (this.advised.exposeProxy) {
 					// Make invocation available if necessary.
+					// 暂存旧代理对象。
 					oldProxy = AopContext.setCurrentProxy(proxy);
 					setProxyContext = true;
 				}
@@ -722,6 +723,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 				}
 				if (setProxyContext) {
 					// Restore old proxy.
+					// 恢复旧代理对象。
 					AopContext.setCurrentProxy(oldProxy);
 				}
 			}

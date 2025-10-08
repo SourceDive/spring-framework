@@ -48,6 +48,7 @@ public abstract class AopNamespaceUtils {
 	public static final String PROXY_TARGET_CLASS_ATTRIBUTE = "proxy-target-class";
 
 	/**
+	 * <p>是否暴露代理对象到上下文中。</p>
 	 * The {@code expose-proxy} attribute as found on AOP-related XML tags.
 	 */
 	private static final String EXPOSE_PROXY_ATTRIBUTE = "expose-proxy";

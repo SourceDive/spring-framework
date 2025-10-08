@@ -42,6 +42,18 @@ import org.springframework.lang.Nullable;
 public final class AopContext {
 
 	/**
+	 * <p>当前线程的代理对象。</p>
+	 * <p>通过保存-恢复机制不断更新这个变量，顺序调用。所以这个线程变量不是集合。</p>
+	 * <p>一个例子</p>
+	 * <p>
+	 *     // 实际执行时的线程变量变化：
+	 * <ul>1. 进入 Proxy A: currentProxy = Proxy A</ul>
+	 * <ul>2. 进入 Proxy B: currentProxy = Proxy B (保存旧的Proxy A)</ul>
+	 * <ul>3. 进入 Proxy C: currentProxy = Proxy C (保存旧的Proxy B)</ul>
+	 * <ul>4. 退出 Proxy C: currentProxy = Proxy B (恢复)</ul>
+	 * <ul>5. 退出 Proxy B: currentProxy = Proxy A (恢复)  </ul>
+	 * <ul>6. 退出 Proxy A: currentProxy = null (清理)</ul>
+	 * </p>
 	 * ThreadLocal holder for AOP proxy associated with this thread.
 	 * Will contain {@code null} unless the "exposeProxy" property on
 	 * the controlling proxy configuration has been set to "true".
