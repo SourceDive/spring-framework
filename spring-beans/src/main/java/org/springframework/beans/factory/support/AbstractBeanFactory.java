@@ -286,6 +286,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			// Check if bean definition exists in this factory.
 			BeanFactory parentBeanFactory = getParentBeanFactory();
 			// 为什么这里的parentBeanFactory为null，就不执行后面的本 beanFactory 的定义检查了呢？
+			//    ===> 因为这里的逻辑就是为了去父容器里去 getBean() 的。
 			// 这里跳过的bean定义检查，后面会再检查一次。
 			if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
 				// Not found -> check parent.
@@ -349,7 +350,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// 这里进行实例的创建！！！
 				// Create bean instance.
 				if (mbd.isSingleton()) {
-					// 这个 getSingleton 方法的参数是怎么回事？
+					// 这个 getSingleton 方法的参数是怎么回事？ ===> 一个 lambda 表达式，函数式接口。
+					// 这里会有缓存。
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
 							return createBean(beanName, mbd, args);
@@ -365,11 +367,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					beanInstance = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
 				}
 
+				// 原型实例的创建。
 				else if (mbd.isPrototype()) {
 					// It's a prototype -> create a new instance.
 					Object prototypeInstance = null;
 					try {
 						beforePrototypeCreation(beanName);
+						// 每次触发即创建。
 						prototypeInstance = createBean(beanName, mbd, args);
 					}
 					finally {

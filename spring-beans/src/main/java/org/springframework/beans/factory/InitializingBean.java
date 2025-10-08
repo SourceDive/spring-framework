@@ -35,6 +35,7 @@ package org.springframework.beans.factory;
 public interface InitializingBean {
 
 	/**
+	 * <p>触发时机：在 bean 属性全部设置了之后的操作。</p>
 	 * Invoked by the containing {@code BeanFactory} after it has set all bean properties
 	 * and satisfied {@link BeanFactoryAware}, {@code ApplicationContextAware} etc.
 	 * <p>This method allows the bean instance to perform validation of its overall

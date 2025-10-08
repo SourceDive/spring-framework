@@ -62,6 +62,7 @@ public interface KeyHolder {
 	Number getKey() throws InvalidDataAccessApiUsageException;
 
 	/**
+	 * <p>获取特性类型的key。</p>
 	 * Retrieve the first item from the first map, assuming that there is just
 	 * one item and just one map, and that the item is an instance of specified type.
 	 * This is a common case: a single generated key of the specified type.

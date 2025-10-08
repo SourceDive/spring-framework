@@ -78,7 +78,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	// 被叫作 一级缓存
 	// 其中的bean，已走完 实例化、属性注入、初始化三个步骤
 	/** Cache of singleton objects: bean name to bean instance. */
-	private final Map<String/*bean name*/, Object/*完好的bean*/> singletonObjects = new ConcurrentHashMap<>(256);
+	private final Map<String/*bean name*/, Object/*完备的bean*/> singletonObjects = new ConcurrentHashMap<>(256);
 
 	// 被叫作 三级缓存
 	/** Cache of singleton factories: bean name to ObjectFactory. */
@@ -88,7 +88,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	// 其中的bean，只走完了实例化这个步骤。
 	// 缓存从三级对象工厂中创建的bean。
 	/** Cache of early singleton objects: bean name to bean instance. */
-	private final Map<String/*bean name*/, Object /*刚创建的bean*/> earlySingletonObjects =	new ConcurrentHashMap<>(16);
+	private final Map<String/*bean name*/, Object /*刚实例化的bean*/> earlySingletonObjects =	new ConcurrentHashMap<>(16);
 
 	/** Set of registered singletons, containing the bean names in registration order. */
 	private final Set<String/*bean name*/> registeredSingletons = new LinkedHashSet<>(256);

@@ -23,6 +23,7 @@ import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
+ * <p>给 DAO 初始化使用的模板方法。</p>
  * Generic base class for DAOs, defining template methods for DAO initialization.
  *
  * <p>Extended by Spring's specific DAO support classes, such as:

@@ -63,6 +63,9 @@ public interface ConfigurableListableBeanFactory
 	void ignoreDependencyInterface(Class<?> ifc);
 
 	/**
+	 * <p>注册可解析的依赖。</p>
+	 * <p>为 factory 或者 context 准备的。</p>
+	 * <p>这些对象不被容器管理。</p>
 	 * Register a special dependency type with corresponding autowired value.
 	 * <p>This is intended for factory/context references that are supposed
 	 * to be autowirable but are not defined as beans in the factory:

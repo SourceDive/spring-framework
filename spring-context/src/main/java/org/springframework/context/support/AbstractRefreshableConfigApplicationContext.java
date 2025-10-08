@@ -61,6 +61,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 
 
 	/**
+	 * <p>为应用设置配置文件路径。</p>
 	 * Set the config locations for this application context in init-param style,
 	 * i.e. with distinct locations separated by commas, semicolons or whitespace.
 	 * <p>If not set, the implementation may use a default as appropriate.
@@ -70,6 +71,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	}
 
 	/**
+	 * <p>为应用设置多个配置文件路径。</p>
 	 * Set the config locations for this application context.
 	 * <p>If not set, the implementation may use a default as appropriate.
 	 */
