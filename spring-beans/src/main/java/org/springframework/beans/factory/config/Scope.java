@@ -60,7 +60,7 @@ import org.springframework.lang.Nullable;
 public interface Scope {
 
 	/**
-	 * <p>在 scope 范围内找到则返回，没有找到则创建。</p>
+	 * <p>返回bean, 在 scope 范围内找到则返回，没有找到则创建。</p>
 	 * Return the object with the given name from the underlying scope,
 	 * {@link org.springframework.beans.factory.ObjectFactory#getObject() creating it}
 	 * if not found in the underlying storage mechanism.
