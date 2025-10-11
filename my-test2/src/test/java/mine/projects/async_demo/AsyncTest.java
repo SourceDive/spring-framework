@@ -1,7 +1,7 @@
 package mine.projects.async_demo;
 
-import mine.projects.async_demo.config.AsyncConfig;
-import mine.projects.async_demo.service.AsyncService;
+import mine.projects.async_demo.config.MyConfig;
+import mine.projects.async_demo.service.MyService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,14 +19,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AsyncTest {
 
     private AnnotationConfigApplicationContext context;
-    private AsyncService asyncService;
+    private MyService myService;
 
     @BeforeEach
     public void setUp() {
         context = new AnnotationConfigApplicationContext();
-        context.register(AsyncConfig.class, AsyncService.class);
+        context.register(MyConfig.class, MyService.class);
         context.refresh();
-        asyncService = context.getBean(AsyncService.class);
+        myService = context.getBean(MyService.class);
     }
 
     @AfterEach
@@ -45,7 +45,7 @@ public class AsyncTest {
         System.out.println("主线程: " + Thread.currentThread().getName());
         
         // 调用异步方法
-        CompletableFuture<String> future = asyncService.asyncMethod("测试消息");
+        CompletableFuture<String> future = myService.asyncMethod("测试消息");
         
         // 验证异步方法立即返回
         assertNotNull(future);
@@ -72,7 +72,7 @@ public class AsyncTest {
         System.out.println("主线程: " + Thread.currentThread().getName());
         
         // 调用异步void方法
-        asyncService.asyncVoidMethod("测试任务");
+        myService.asyncVoidMethod("测试任务");
         
         System.out.println("异步void方法调用后立即返回，主线程继续执行");
         
@@ -91,7 +91,7 @@ public class AsyncTest {
         System.out.println("主线程: " + Thread.currentThread().getName());
         
         // 调用异步计算方法
-        CompletableFuture<Integer> future = asyncService.asyncCalculate(5);
+        CompletableFuture<Integer> future = myService.asyncCalculate(5);
         
         // 验证异步方法立即返回
         assertNotNull(future);
@@ -117,10 +117,10 @@ public class AsyncTest {
         System.out.println("主线程: " + Thread.currentThread().getName());
         
         // 启动多个异步任务
-        CompletableFuture<String> future1 = asyncService.asyncMethod("任务1");
-        CompletableFuture<String> future2 = asyncService.asyncMethod("任务2");
-        CompletableFuture<Integer> future3 = asyncService.asyncCalculate(3);
-        CompletableFuture<Integer> future4 = asyncService.asyncCalculate(4);
+        CompletableFuture<String> future1 = myService.asyncMethod("任务1");
+        CompletableFuture<String> future2 = myService.asyncMethod("任务2");
+        CompletableFuture<Integer> future3 = myService.asyncCalculate(3);
+        CompletableFuture<Integer> future4 = myService.asyncCalculate(4);
         
         System.out.println("所有异步方法调用完成，主线程继续执行");
         

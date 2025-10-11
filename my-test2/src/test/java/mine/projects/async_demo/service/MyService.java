@@ -10,14 +10,14 @@ import java.util.concurrent.CompletableFuture;
  * 包含各种异步方法用于调试
  */
 @Service
-public class AsyncService {
+public class MyService {
 
     /**
      * 简单的异步方法
      * @param message 消息
      * @return 异步结果
      */
-    @Async
+    @Async("myAsyncExecutor")
     public CompletableFuture<String> asyncMethod(String message) {
         System.out.println("异步方法开始执行，线程: " + Thread.currentThread().getName());
         
@@ -38,7 +38,7 @@ public class AsyncService {
      * 异步方法，无返回值
      * @param taskName 任务名称
      */
-    @Async
+    @Async("myAsyncExecutor")
     public void asyncVoidMethod(String taskName) {
         System.out.println("异步void方法开始执行: " + taskName + " (线程: " + Thread.currentThread().getName() + ")");
         
@@ -58,7 +58,7 @@ public class AsyncService {
      * @param number 数字
      * @return 异步结果
      */
-    @Async
+    @Async("myAsyncExecutor")
     public CompletableFuture<Integer> asyncCalculate(int number) {
         System.out.println("异步计算开始: " + number + " (线程: " + Thread.currentThread().getName() + ")");
         

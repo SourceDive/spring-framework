@@ -16,18 +16,18 @@ import java.util.concurrent.Executor;
 @Configuration
 @ComponentScan(basePackageClasses = AsyncDemoApplication.class)
 @EnableAsync
-public class AsyncConfig {
+public class MyConfig {
 
     /**
      * 配置异步任务执行器
      */
-    @Bean(name = "asyncExecutor")
-    public Executor asyncExecutor() {
+    @Bean(name = "myAsyncExecutor")
+    public Executor myAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(2);
         executor.setMaxPoolSize(5);
         executor.setQueueCapacity(100);
-        executor.setThreadNamePrefix("Async-");
+        executor.setThreadNamePrefix("My-Async-");
         executor.initialize();
         return executor;
     }

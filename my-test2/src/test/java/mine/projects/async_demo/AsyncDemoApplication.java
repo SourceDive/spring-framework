@@ -1,7 +1,7 @@
 package mine.projects.async_demo;
 
-import mine.projects.async_demo.config.AsyncConfig;
-import mine.projects.async_demo.service.AsyncService;
+import mine.projects.async_demo.config.MyConfig;
+import mine.projects.async_demo.service.MyService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -20,18 +20,18 @@ public class AsyncDemoApplication {
         
         // 创建Spring应用上下文
         AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(AsyncConfig.class);
+				new AnnotationConfigApplicationContext(MyConfig.class);
 
         try {
             // 获取异步服务
-            AsyncService asyncService = context.getBean(AsyncService.class);
+            MyService myService = context.getBean(MyService.class);
             
             System.out.println("主线程: " + Thread.currentThread().getName());
             System.out.println();
             
             // 演示1: 基本异步方法调用
             System.out.println("=== 演示1: 基本异步方法调用 ===");
-            CompletableFuture<String> future1 = asyncService.asyncMethod("Hello Async");
+            CompletableFuture<String> future1 = myService.asyncMethod("Hello Async");
             System.out.println("异步方法调用后立即返回，主线程继续执行");
             
             // 等待异步方法完成
@@ -41,14 +41,14 @@ public class AsyncDemoApplication {
             
             // 演示2: 异步void方法
             System.out.println("=== 演示2: 异步void方法 ===");
-            asyncService.asyncVoidMethod("Void Task");
+            myService.asyncVoidMethod("Void Task");
             System.out.println("异步void方法调用后立即返回，主线程继续执行");
             Thread.sleep(2000); // 等待异步方法执行
             System.out.println();
             
             // 演示3: 异步计算方法
             System.out.println("=== 演示3: 异步计算方法 ===");
-            CompletableFuture<Integer> future3 = asyncService.asyncCalculate(6);
+            CompletableFuture<Integer> future3 = myService.asyncCalculate(6);
             System.out.println("异步计算方法调用后立即返回，主线程继续执行");
             
             Integer result3 = future3.get(3, TimeUnit.SECONDS);
@@ -57,10 +57,10 @@ public class AsyncDemoApplication {
             
             // 演示4: 多个异步方法并发执行
             System.out.println("=== 演示4: 多个异步方法并发执行 ===");
-            CompletableFuture<String> future4a = asyncService.asyncMethod("并发任务A");
-            CompletableFuture<String> future4b = asyncService.asyncMethod("并发任务B");
-            CompletableFuture<Integer> future4c = asyncService.asyncCalculate(7);
-            CompletableFuture<Integer> future4d = asyncService.asyncCalculate(8);
+            CompletableFuture<String> future4a = myService.asyncMethod("并发任务A");
+            CompletableFuture<String> future4b = myService.asyncMethod("并发任务B");
+            CompletableFuture<Integer> future4c = myService.asyncCalculate(7);
+            CompletableFuture<Integer> future4d = myService.asyncCalculate(8);
             
             System.out.println("所有异步方法调用完成，主线程继续执行");
             
