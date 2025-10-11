@@ -155,6 +155,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 
 
 	/**
+	 * <p>确定给定方法的异步执行器。</p>
 	 * Determine the specific executor to use when executing the given method.
 	 * Should preferably return an {@link AsyncListenableTaskExecutor} implementation.
 	 * @return the executor to use (or {@code null}, but just if no default executor is available)
@@ -164,6 +165,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 		AsyncTaskExecutor executor = this.executors.get(method);
 		if (executor == null) {
 			Executor targetExecutor;
+			// 获取异步方法的执行器名称.
 			String qualifier = getExecutorQualifier(method);
 			if (StringUtils.hasLength(qualifier)) {
 				targetExecutor = findQualifiedExecutor(this.beanFactory, qualifier);
@@ -182,6 +184,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	}
 
 	/**
+	 * <p>获取异步方法的执行器名称。</p>
 	 * Return the qualifier or bean name of the executor to be used when executing the
 	 * given async method, typically specified in the form of an annotation attribute.
 	 * Returning an empty string or {@code null} indicates that no specific executor has

@@ -23,6 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * <p>此注解用于将方法或类中所有方法标记为异步执行的候选。</p>
  * Annotation that marks a method as a candidate for <i>asynchronous</i> execution.
  *
  * <p>Can also be used at the type level, in which case all the type's methods are
@@ -51,12 +52,13 @@ import java.lang.annotation.Target;
  * @see AnnotationAsyncExecutionInterceptor
  * @see AsyncAnnotationAdvisor
  */
-@Target({ElementType.TYPE, ElementType.METHOD})
+@Target({ElementType.TYPE, ElementType.METHOD}) // 作用在类或方法上。
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Async {
 
 	/**
+	 * <p>指定目标执行器。</p>
 	 * A qualifier value for the specified asynchronous operation(s).
 	 * <p>May be used to determine the target executor to be used when executing
 	 * the asynchronous operation(s), matching the qualifier value (or the bean

@@ -58,6 +58,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
+ * <p>这个类最下面有定义的一堆内部的配置类。</p>
  * Tests use of @EnableAsync on @Configuration classes.
  *
  * @author Chris Beams
@@ -350,6 +351,7 @@ public class EnableAsyncTests {
 
 		@Async
 		public void work() {
+			System.out.println("====> starting...");
 			this.threadOfExecution = Thread.currentThread();
 		}
 

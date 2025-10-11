@@ -58,6 +58,7 @@ public abstract class AbstractAsyncConfiguration implements ImportAware {
 
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
+		// 读取注解 @EnableAsync 的配置项
 		this.enableAsync = AnnotationAttributes.fromMap(
 				importMetadata.getAnnotationAttributes(EnableAsync.class.getName()));
 		if (this.enableAsync == null) {

@@ -56,6 +56,7 @@ public interface AsyncTaskExecutor extends TaskExecutor {
 
 
 	/**
+	 * <p>已被弃用。不支持启动超时设置。</p>
 	 * Execute the given {@code task}.
 	 * @param task the {@code Runnable} to execute (never {@code null})
 	 * @param startTimeout the time duration (milliseconds) within which the task is

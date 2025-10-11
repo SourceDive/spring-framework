@@ -334,6 +334,7 @@ class ConfigurationClassParser {
 		}
 
 		// 处理注解 @Import
+		// 这里如果配置类上的注解定义上也有@Import，也会去处理。
 		// Process any @Import annotations
 		processImports(configClass, sourceClass, getImports(sourceClass), filter, true);
 

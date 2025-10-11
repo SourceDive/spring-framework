@@ -83,6 +83,7 @@ public abstract class AdviceModeImportSelector<A extends Annotation> implements 
 	}
 
 	/**
+	 * <p>根据给定的 AdviceMode 确定要引入哪些类。</p>
 	 * Determine which classes should be imported based on the given {@code AdviceMode}.
 	 * <p>Returning {@code null} from this method indicates that the {@code AdviceMode}
 	 * could not be handled or was unknown and that an {@code IllegalArgumentException}

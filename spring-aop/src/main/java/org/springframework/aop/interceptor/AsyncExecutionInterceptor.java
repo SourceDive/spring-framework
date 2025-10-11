@@ -91,6 +91,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 
 
 	/**
+	 * <p>拦截方法调用，提交给执行器。</p>
 	 * Intercept the given method invocation, submit the actual calling of the method to
 	 * the correct task executor and return immediately to the caller.
 	 * @param invocation the method to intercept and make asynchronous
@@ -100,16 +101,20 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 	@Override
 	@Nullable
 	public Object invoke(final MethodInvocation invocation) throws Throwable {
+		// 目标类。
 		Class<?> targetClass = (invocation.getThis() != null ? AopUtils.getTargetClass(invocation.getThis()) : null);
+		// 目标方法。
 		Method specificMethod = ClassUtils.getMostSpecificMethod(invocation.getMethod(), targetClass);
 		final Method userDeclaredMethod = BridgeMethodResolver.findBridgedMethod(specificMethod);
 
+		// 确定给定方法的异步执行器。
 		AsyncTaskExecutor executor = determineAsyncExecutor(userDeclaredMethod);
 		if (executor == null) {
 			throw new IllegalStateException(
 					"No executor specified and no default executor set on AsyncExecutionInterceptor either");
 		}
 
+		// 定义任务。在执行器中触发我们的方法。
 		Callable<Object> task = () -> {
 			try {
 				Object result = invocation.proceed();

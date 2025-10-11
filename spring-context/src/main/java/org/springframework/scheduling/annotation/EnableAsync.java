@@ -29,6 +29,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.Ordered;
 
 /**
+ * <p>启动异步执行功能。</p>
  * Enables Spring's asynchronous method execution capability, similar to functionality
  * found in Spring's {@code <task:*>} XML namespace.
  *
@@ -174,6 +175,7 @@ public @interface EnableAsync {
 	Class<? extends Annotation> annotation() default Annotation.class;
 
 	/**
+	 * <p>控制是否创建基于 CGLIB 的子类代理。</p>
 	 * Indicate whether subclass-based (CGLIB) proxies are to be created as opposed
 	 * to standard Java interface-based proxies.
 	 * <p><strong>Applicable only if the {@link #mode} is set to {@link AdviceMode#PROXY}</strong>.
@@ -191,7 +193,7 @@ public @interface EnableAsync {
 	 * Indicate how async advice should be applied.
 	 * <p><b>The default is {@link AdviceMode#PROXY}.</b>
 	 * Please note that proxy mode allows for interception of calls through the proxy
-	 * only. Local calls within the same class cannot get intercepted that way; an
+	 * only. Local calls within the same class cannot get intercepted that way(同类内部调用无法拦截); an
 	 * {@link Async} annotation on such a method within a local call will be ignored
 	 * since Spring's interceptor does not even kick in for such a runtime scenario.
 	 * For a more advanced mode of interception, consider switching this to
