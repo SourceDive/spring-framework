@@ -275,6 +275,8 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	 */
 	@Nullable
 	protected Object doSubmit(Callable<Object> task, AsyncTaskExecutor executor, Class<?> returnType) {
+		// 按照方法的返回值类型去走对应的分支。
+		// 返回值类型为 CompletableFuture
 		if (CompletableFuture.class.isAssignableFrom(returnType)) {
 			return CompletableFuture.supplyAsync(() -> {
 				try {
@@ -288,10 +290,12 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 		else if (ListenableFuture.class.isAssignableFrom(returnType)) {
 			return ((AsyncListenableTaskExecutor) executor).submitListenable(task);
 		}
+		// 返回值类型为 Future
 		else if (Future.class.isAssignableFrom(returnType)) {
 			return executor.submit(task);
 		}
 		else {
+			// 返回值类型为 void
 			executor.submit(task);
 			return null;
 		}
