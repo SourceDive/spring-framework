@@ -110,6 +110,7 @@ public @interface Scheduled {
 	String zone() default "";
 
 	/**
+	 * <p>距离上次触发结束。</p>
 	 * Execute the annotated method with a fixed period between the end of the
 	 * last invocation and the start of the next.
 	 * <p>The time unit is milliseconds by default but can be overridden via
@@ -133,6 +134,7 @@ public @interface Scheduled {
 	String fixedDelayString() default "";
 
 	/**
+	 * <p>距离上次触发起始。</p>
 	 * Execute the annotated method with a fixed period between invocations.
 	 * <p>The time unit is milliseconds by default but can be overridden via
 	 * {@link #timeUnit}.

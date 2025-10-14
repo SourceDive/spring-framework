@@ -20,6 +20,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
 /**
+ * <p>提供 Callable 接口的支持。</p>
  * Extended interface for asynchronous {@link TaskExecutor} implementations,
  * offering support for {@link java.util.concurrent.Callable}.
  *

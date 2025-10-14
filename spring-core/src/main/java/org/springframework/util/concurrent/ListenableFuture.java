@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 /**
+ * <p>扩展 Future.</p>
  * Extend {@link Future} with the capability to accept completion callbacks.
  * If the future has completed when the callback is added, the callback is
  * triggered immediately.

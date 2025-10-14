@@ -30,12 +30,14 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
+ * <p>为每个任务都启动一个新线程。</p>
  * {@link TaskExecutor} implementation that fires up a new Thread for each task,
  * executing it asynchronously.
  *
  * <p>Supports limiting concurrent threads through {@link #setConcurrencyLimit}.
  * By default, the number of concurrent task executions is unlimited.
  *
+ * <p>这个实现类不复用线程。</p>
  * <p><b>NOTE: This implementation does not reuse threads!</b> Consider a
  * thread-pooling TaskExecutor implementation instead, in particular for
  * executing a large number of short-lived tasks.

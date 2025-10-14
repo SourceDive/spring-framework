@@ -20,6 +20,7 @@ import java.util.concurrent.Executor;
 
 /**
  * <p>任务执行器。</p>
+ * <p>对任务执行提供统一抽象。</p>
  * Simple task executor interface that abstracts the execution
  * of a {@link Runnable}.
  *

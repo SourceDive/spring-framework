@@ -21,6 +21,9 @@ import java.io.Serializable;
 import org.springframework.util.Assert;
 
 /**
+ * <p>同步执行器。</p>
+ * <p>在调用者的线程中执行任务。</p>
+ * <p>主要用于测试。</p>
  * {@link TaskExecutor} implementation that executes each task <i>synchronously</i>
  * in the calling thread.
  *

@@ -41,6 +41,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
+ * <p>最常用的实现。</p>
  * JavaBean that allows for configuring a {@link java.util.concurrent.ThreadPoolExecutor}
  * in bean style (through its "corePoolSize", "maxPoolSize", "keepAliveSeconds", "queueCapacity"
  * properties) and exposing it as a Spring {@link org.springframework.core.task.TaskExecutor}.

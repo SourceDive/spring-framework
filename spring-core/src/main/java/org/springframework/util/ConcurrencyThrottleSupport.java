@@ -24,6 +24,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * <p>限制并发数量。</p>
  * Support class for throttling concurrent access to a specific resource.
  *
  * <p>Designed for use as a base class, with the subclass invoking
@@ -121,6 +122,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 								" has reached limit " + this.concurrencyLimit + " - blocking");
 					}
 					try {
+						// 阻塞当前线程，释放锁。
 						this.monitor.wait();
 					}
 					catch (InterruptedException ex) {
@@ -149,6 +151,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 				if (debug) {
 					logger.debug("Returning from throttle at concurrency count " + this.concurrencyCount);
 				}
+				// 唤醒线程。
 				this.monitor.notify();
 			}
 		}
