@@ -67,6 +67,7 @@ public class MBeanExportConfiguration implements ImportAware, EnvironmentAware, 
 
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
+		// 获取 @EnableMBeanExport 注解属性。
 		Map<String, Object> map = importMetadata.getAnnotationAttributes(EnableMBeanExport.class.getName());
 		this.enableMBeanExport = AnnotationAttributes.fromMap(map);
 		if (this.enableMBeanExport == null) {

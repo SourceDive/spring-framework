@@ -17,6 +17,8 @@
 package org.springframework.context.annotation;
 
 /**
+ * <p>通知模式。</p>
+ * <p>see also 中是使用到的地方。</p>
  * Enumeration used to determine whether JDK proxy-based or
  * AspectJ weaving-based advice should be applied.
  *

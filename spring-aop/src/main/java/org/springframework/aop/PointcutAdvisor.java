@@ -17,12 +17,12 @@
 package org.springframework.aop;
 
 /**
- * <p>作用于方法级别</p>
+ * <p>作用于方法级别。</p>
  * Superinterface for all Advisors that are driven by a pointcut.
  * This covers nearly all advisors except introduction advisors,
  * for which method-level matching doesn't apply.
- * <p>作为由切点驱动的父接口</p>
- * <p>此接口覆盖了除引入通知器之外的所有通知器，因为方法级匹配不适用于引入通知器</p>
+ * <p>作为由切点驱动的父接口。</p>
+ * <p>此接口覆盖了除引入通知器之外的所有通知器，因为方法级匹配不适用于引入通知器。</p>
  *
  * @author Rod Johnson
  */

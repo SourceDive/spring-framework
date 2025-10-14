@@ -203,6 +203,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * <p>确定给定的切点是否可以应用到给定的类上。</p>
 	 * Can the given pointcut apply at all on the given class?
 	 * <p>This is an important test as it can be used to optimize
 	 * out a pointcut for a class.
@@ -264,6 +265,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * <p>确定给定的Advisor是否可以应用到给定的类上。</p>
 	 * Can the given advisor apply at all on the given class?
 	 * This is an important test as it can be used to optimize
 	 * out an advisor for a class.
@@ -276,6 +278,7 @@ public abstract class AopUtils {
 	}
 
 	/**
+	 * <p>确定给定的Advisor是否可以应用到给定的类上。</p>
 	 * Can the given advisor apply at all on the given class?
 	 * <p>This is an important test as it can be used to optimize out an advisor for a class.
 	 * This version also takes into account introductions (for IntroductionAwareMethodMatchers).

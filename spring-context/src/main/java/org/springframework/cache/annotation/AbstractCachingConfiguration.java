@@ -66,6 +66,7 @@ public abstract class AbstractCachingConfiguration implements ImportAware {
 
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
+		// 获取 @EnableCaching 注解属性。
 		this.enableCaching = AnnotationAttributes.fromMap(
 				importMetadata.getAnnotationAttributes(EnableCaching.class.getName()));
 		if (this.enableCaching == null) {

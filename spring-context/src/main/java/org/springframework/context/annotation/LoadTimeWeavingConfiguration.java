@@ -57,6 +57,7 @@ public class LoadTimeWeavingConfiguration implements ImportAware, BeanClassLoade
 
 	@Override
 	public void setImportMetadata(AnnotationMetadata importMetadata) {
+		// 获取 @EnableLoadTimeWeaving 注解属性。
 		this.enableLTW = AnnotationConfigUtils.attributesFor(importMetadata, EnableLoadTimeWeaving.class);
 		if (this.enableLTW == null) {
 			throw new IllegalArgumentException(
