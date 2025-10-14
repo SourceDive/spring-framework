@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
  * 异步演示主应用程序
  * 作为调试@Async功能的入口点
  */
-@EnableAsync
 public class AsyncDemoApplication {
 
     public static void main(String[] args) {
