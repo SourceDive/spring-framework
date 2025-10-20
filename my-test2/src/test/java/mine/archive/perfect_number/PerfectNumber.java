@@ -1,4 +1,4 @@
-package mine.projects.perfect_number;
+package mine.archive.perfect_number;
 
 /**
  * @author zero
