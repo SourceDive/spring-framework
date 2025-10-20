@@ -36,7 +36,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.PatternMatchUtils;
 
 /**
- * <p>基于类路径的 bean 定义扫描器。</p>
+ * <p>基于 classpath 的 bean 定义扫描器。</p>
  * A bean definition scanner that detects bean candidates on the classpath,
  * registering corresponding bean definitions with a given registry ({@code BeanFactory}
  * or {@code ApplicationContext}).
