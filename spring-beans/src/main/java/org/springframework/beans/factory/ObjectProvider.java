@@ -26,6 +26,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * <p>ObjectFactory 的变体。</p>
+ * <p>延后bean获取时机，也延后异常出现的时机。</p>
  * A variant of {@link ObjectFactory} designed specifically for injection points,
  * allowing for programmatic optionality and lenient not-unique handling.
  *
