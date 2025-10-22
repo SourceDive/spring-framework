@@ -41,7 +41,7 @@ runs:
       id: build
       if: ${{ inputs.publish == 'false' }}
       shell: bash
-      run: ./gradlew build -x checkstyleMain -x checkstyleTest -x checkstyleNohttp -x checkstyleTestFixtures -x checkstyleJmh
+      run: ./gradlew assemble -x checkstyleMain -x checkstyleTest -x checkstyleNohttp -x checkstyleTestFixtures -x checkstyleJmh
     - name: Publish
       id: publish
       if: ${{ inputs.publish == 'true' }}
