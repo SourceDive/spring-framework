@@ -1,5 +1,5 @@
-name: 'Prepare Gradle Build'
-description: 'Prepares a Gradle build. Sets up Java and Gradle and configures Gradle properties'
+name: 'Prepare Gradle Build Enhanced'
+description: '增强版 Gradle 构建准备，包含更多缓存优化'
 inputs:
   java-version:
     required: false
@@ -26,12 +26,44 @@ runs:
         java-version: |
           ${{ inputs.java-early-access == 'true' && format('{0}-ea', inputs.java-version) || inputs.java-version }}
           ${{ inputs.java-toolchain == 'true' && '8' || '' }}
-    - name: Set Up Gradle
+        
+    - name: 缓存 Maven 本地仓库
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml', '**/build.gradle', '**/gradle.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+          
+    - name: 缓存测试结果
+      uses: actions/cache@v4
+      with:
+        path: |
+          **/build/test-results/
+          **/build/reports/
+        key: ${{ runner.os }}-test-results-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-test-results-
+          
+    - name: 缓存编译输出
+      uses: actions/cache@v4
+      with:
+        path: |
+          **/build/classes/
+          **/build/generated/
+          **/build/libs/
+          !**/build/reports/
+          !**/build/test-results/
+        key: ${{ runner.os }}-build-output-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-build-output-
+    
+    - name: Set Up Gradle (使用最新版本)
       uses: gradle/actions/setup-gradle@v5.0.0
       with:
         cache-read-only: false
         develocity-access-key: ${{ inputs.develocity-access-key }}
-        # 启用依赖图生成，有助于依赖分析
+        # 启用依赖图生成，有助于依赖分析和安全扫描
         dependency-graph: generate
         # 添加额外的缓存参数以提高缓存命中率
         gradle-home-cache-includes: |
@@ -40,7 +72,12 @@ runs:
           jdks
           wrapper
           buildSrc/build
+          .gradle/configuration-cache
+        # 启用缓存清理以避免缓存过大
         gradle-home-cache-cleanup: true
+        # 设置缓存加密密钥（如果需要）
+        cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
+        
     - name: Configure Gradle Properties
       shell: bash
       run: |
@@ -49,6 +86,12 @@ runs:
         echo 'systemProp.org.gradle.internal.launcher.welcomeMessageEnabled=false' >> $HOME/.gradle/gradle.properties
         echo 'org.gradle.daemon=false' >> $HOME/.gradle/gradle.properties
         echo 'org.gradle.daemon=4' >> $HOME/.gradle/gradle.properties
+        # 添加更多性能优化配置
+        echo 'org.gradle.caching=true' >> $HOME/.gradle/gradle.properties
+        echo 'org.gradle.parallel=true' >> $HOME/.gradle/gradle.properties
+        echo 'org.gradle.configureondemand=true' >> $HOME/.gradle/gradle.properties
+        echo 'org.gradle.jvmargs=-Xmx4g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8' >> $HOME/.gradle/gradle.properties
+        
     - name: Configure Toolchain Properties
       if: ${{ inputs.java-toolchain == 'true' }}
       shell: bash
@@ -57,3 +100,9 @@ runs:
         echo systemProp.org.gradle.java.installations.auto-detect=false >> $HOME/.gradle/gradle.properties
         echo systemProp.org.gradle.java.installations.auto-download=false >> $HOME/.gradle/gradle.properties
         echo systemProp.org.gradle.java.installations.paths=${{ format('$JAVA_HOME_{0}_X64', inputs.java-version) }} >> $HOME/.gradle/gradle.properties
+        
+    - name: 预热 Gradle Daemon
+      shell: bash
+      run: |
+        # 预热 Gradle Daemon 以加快后续构建
+        ./gradlew --version || true
