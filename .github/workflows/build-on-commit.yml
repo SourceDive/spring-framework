@@ -1,0 +1,54 @@
+name: 自动编译源码
+on:
+  push:
+    branches:
+      - '**'  # 所有分支
+  pull_request:
+    branches:
+      - '**'  # 所有分支的 PR
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true  # 取消正在进行的旧构建
+
+jobs:
+  build:
+    name: '编译构建 | Java ${{ matrix.java.version }}'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false  # 一个版本失败不影响其他版本
+      matrix:
+        java:
+          - version: 17
+            toolchain: true
+          - version: 21
+            toolchain: true
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        
+      - name: 编译项目
+        id: build
+        uses: ./.github/actions/build
+        with:
+          java-version: ${{ matrix.java.version }}
+          java-toolchain: ${{ matrix.java.toolchain }}
+          develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_SECRET_ACCESS_KEY }}
+          
+      - name: 上传构建报告（如果失败）
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: build-reports-java-${{ matrix.java.version }}
+          path: '**/build/reports/'
+          retention-days: 7
+          
+      - name: 构建结果通知
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ 编译成功！分支: ${{ github.ref_name }}, Java: ${{ matrix.java.version }}"
+          else
+            echo "❌ 编译失败！分支: ${{ github.ref_name }}, Java: ${{ matrix.java.version }}"
+          fi
