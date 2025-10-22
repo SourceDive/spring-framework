@@ -1,0 +1,120 @@
+name: 'Build Optimized'
+description: '优化版构建配置，提供更快的构建速度'
+inputs:
+  java-version:
+    required: false
+    default: '8'
+    description: 'The Java version to compile and test with'
+  java-early-access:
+    required: false
+    default: 'false'
+    description: 'Whether the Java version is in early access'
+  java-toolchain:
+    required: false
+    default: 'false'
+    description: 'Whether a Java toolchain should be used'
+  publish:
+    required: false
+    default: 'false'
+    description: 'Whether to publish artifacts ready for deployment to Artifactory'
+  develocity-access-key:
+    required: false
+    description: 'The access key for authentication with ge.spring.io'
+  skip-tests:
+    required: false
+    default: 'false'
+    description: 'Skip running tests to speed up builds'
+outputs:
+  build-scan-url:
+    description: 'The URL, if any, of the build scan produced by the build'
+    value: ${{ (inputs.publish == 'true' && steps.publish.outputs.build-scan-url) || steps.build.outputs.build-scan-url }}
+  version:
+    description: 'The version that was built'
+    value: ${{ steps.read-version.outputs.version }}
+runs:
+  using: composite
+  steps:
+    - name: Prepare Gradle Build
+      uses: ./.github/actions/prepare-gradle-build
+      with:
+        develocity-access-key: ${{ inputs.develocity-access-key }}
+        java-version: ${{ inputs.java-version }}
+        java-early-access: ${{ inputs.java-early-access }}
+        java-toolchain: ${{ inputs.java-toolchain }}
+    
+    - name: 缓存构建输出
+      uses: actions/cache@v4
+      with:
+        path: |
+          **/build/classes/
+          **/build/generated/
+          **/build/resources/
+          **/build/tmp/
+          !**/build/reports/
+          !**/build/test-results/
+        key: ${{ runner.os }}-build-${{ hashFiles('**/*.gradle', '**/gradle.properties', '**/src/**') }}
+        restore-keys: |
+          ${{ runner.os }}-build-
+    
+    - name: Build (优化版)
+      id: build
+      if: ${{ inputs.publish == 'false' }}
+      shell: bash
+      run: |
+        # 使用并行构建和增量编译
+        GRADLE_OPTS="-Xmx4g -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=4"
+        
+        # 构建命令优化
+        if [ "${{ inputs.skip-tests }}" == "true" ]; then
+          echo "跳过测试的快速构建..."
+          ./gradlew assemble \
+            -x test \
+            -x checkstyleMain \
+            -x checkstyleTest \
+            -x checkstyleNohttp \
+            -x checkstyleTestFixtures \
+            -x checkstyleJmh \
+            --parallel \
+            --build-cache \
+            --configuration-cache
+        else
+          echo "包含测试的完整构建..."
+          ./gradlew build \
+            -x checkstyleMain \
+            -x checkstyleTest \
+            -x checkstyleNohttp \
+            -x checkstyleTestFixtures \
+            -x checkstyleJmh \
+            --parallel \
+            --build-cache \
+            --configuration-cache
+        fi
+        
+    - name: Publish
+      id: publish
+      if: ${{ inputs.publish == 'true' }}
+      shell: bash
+      run: |
+        GRADLE_OPTS="-Xmx4g -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true"
+        ./gradlew -PdeploymentRepository=$(pwd)/deployment-repository build publishAllPublicationsToDeploymentRepository \
+          --parallel \
+          --build-cache
+          
+    - name: Read Version From gradle.properties
+      id: read-version
+      shell: bash
+      run: |
+        version=$(sed -n 's/version=\(.*\)/\1/p' gradle.properties)
+        echo "Version is $version"
+        echo "version=$version" >> $GITHUB_OUTPUT
+        
+    - name: 缓存测试结果
+      if: ${{ inputs.skip-tests == 'false' }}
+      uses: actions/cache@v4
+      with:
+        path: |
+          **/build/test-results/
+          **/build/reports/tests/
+        key: ${{ runner.os }}-test-results-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-test-results-

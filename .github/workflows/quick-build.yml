@@ -1,0 +1,55 @@
+name: 快速构建检查
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '**.java'
+      - '**.gradle'
+      - 'gradle/**'
+      - '.github/workflows/quick-build.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quick-build:
+    name: '快速编译 | Java 17'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        
+      - name: 快速编译（跳过测试）
+        id: build
+        uses: ./.github/actions/build-optimized
+        with:
+          java-version: 17
+          java-toolchain: true
+          develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_SECRET_ACCESS_KEY }}
+          skip-tests: true
+          
+      - name: 基础测试（仅核心模块）
+        shell: bash
+        run: |
+          # 只运行核心模块的测试
+          ./gradlew :spring-core:test :spring-beans:test \
+            --parallel \
+            --build-cache \
+            --max-workers=4
+            
+      - name: 构建状态报告
+        if: always()
+        run: |
+          echo "### 🚀 快速构建报告" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ **构建成功**" >> $GITHUB_STEP_SUMMARY
+            echo "- 编译: 通过" >> $GITHUB_STEP_SUMMARY
+            echo "- 核心测试: 通过" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **构建失败**" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "💡 这是一个快速检查，完整的测试将在合并前运行。" >> $GITHUB_STEP_SUMMARY

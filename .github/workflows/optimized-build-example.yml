@@ -1,0 +1,88 @@
+name: 优化构建示例
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'feature/build-optimization-*'
+
+jobs:
+  optimized-build:
+    name: '极速构建示例'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 记录开始时间
+        id: start-time
+        run: echo "start_time=$(date +%s)" >> $GITHUB_OUTPUT
+        
+      - name: 检出代码
+        uses: actions/checkout@v4
+        
+      - name: 设置构建环境（优化版）
+        uses: ./.github/actions/prepare-gradle-build
+        with:
+          java-version: 17
+          java-toolchain: true
+          
+      - name: 预热构建缓存
+        run: |
+          # 下载依赖但不执行构建
+          ./gradlew dependencies --build-cache --parallel || true
+          
+      - name: 并行构建核心模块
+        run: |
+          # 使用最大并行度构建核心模块
+          ./gradlew \
+            :spring-core:assemble \
+            :spring-beans:assemble \
+            :spring-context:assemble \
+            :spring-web:assemble \
+            --parallel \
+            --build-cache \
+            --max-workers=8 \
+            -Dorg.gradle.jvmargs="-Xmx6g -XX:+UseG1GC"
+            
+      - name: 智能测试执行
+        run: |
+          # 只运行最近修改的模块的测试
+          CHANGED_MODULES=$(git diff --name-only HEAD~1 | grep -E "^spring-" | cut -d/ -f1 | sort -u | paste -sd, -)
+          if [ -n "$CHANGED_MODULES" ]; then
+            echo "运行变更模块的测试: $CHANGED_MODULES"
+            ./gradlew $(echo $CHANGED_MODULES | sed 's/,/:test /g'):test \
+              --parallel \
+              --build-cache
+          else
+            echo "没有检测到模块变更，跳过测试"
+          fi
+          
+      - name: 计算构建时间
+        id: build-time
+        run: |
+          END_TIME=$(date +%s)
+          BUILD_TIME=$((END_TIME - ${{ steps.start-time.outputs.start_time }}))
+          echo "build_time=$BUILD_TIME" >> $GITHUB_OUTPUT
+          
+      - name: 生成性能报告
+        uses: ./.github/actions/build-performance-report
+        with:
+          build-time: ${{ steps.build-time.outputs.build_time }}
+          cache-hit: 'true'
+          
+      - name: 缓存分析
+        run: |
+          echo "### 📊 缓存使用分析" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Gradle 缓存统计
+          echo "#### Gradle 缓存" >> $GITHUB_STEP_SUMMARY
+          find ~/.gradle/caches -type f -name "*.jar" | wc -l | xargs -I {} echo "- JAR 文件数量: {}" >> $GITHUB_STEP_SUMMARY
+          du -sh ~/.gradle/caches/* 2>/dev/null | head -5 | while read size dir; do
+            echo "- $(basename $dir): $size" >> $GITHUB_STEP_SUMMARY
+          done
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # 构建缓存统计
+          echo "#### 构建缓存" >> $GITHUB_STEP_SUMMARY
+          if [ -d "build" ]; then
+            find . -name "build" -type d | wc -l | xargs -I {} echo "- 构建目录数量: {}" >> $GITHUB_STEP_SUMMARY
+          fi

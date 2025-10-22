@@ -40,7 +40,8 @@ runs:
           jdks
           wrapper
           buildSrc/build
-        gradle-home-cache-cleanup: true
+        # 暂时禁用缓存清理，避免失败
+        # gradle-home-cache-cleanup: true
     - name: Configure Gradle Properties
       shell: bash
       run: |
@@ -48,7 +49,7 @@ runs:
         echo 'systemProp.user.name=spring-builds+github' >> $HOME/.gradle/gradle.properties
         echo 'systemProp.org.gradle.internal.launcher.welcomeMessageEnabled=false' >> $HOME/.gradle/gradle.properties
         echo 'org.gradle.daemon=false' >> $HOME/.gradle/gradle.properties
-        echo 'org.gradle.daemon=4' >> $HOME/.gradle/gradle.properties
+        echo 'org.gradle.parallel.threads=4' >> $HOME/.gradle/gradle.properties
     - name: Configure Toolchain Properties
       if: ${{ inputs.java-toolchain == 'true' }}
       shell: bash
