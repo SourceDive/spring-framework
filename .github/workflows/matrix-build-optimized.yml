@@ -1,0 +1,62 @@
+name: 优化的矩阵构建
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'  # 每天凌晨 2 点运行
+
+jobs:
+  build-matrix:
+    name: '构建 ${{ matrix.module }} | Java ${{ matrix.java }}'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        # 将模块分组以优化构建时间
+        module:
+          - core-modules
+          - web-modules
+          - data-modules
+          - integration-modules
+        java: [17, 21]
+        include:
+          - module: core-modules
+            modules: ':spring-core,:spring-beans,:spring-context,:spring-aop'
+          - module: web-modules
+            modules: ':spring-web,:spring-webmvc,:spring-webflux,:spring-websocket'
+          - module: data-modules
+            modules: ':spring-jdbc,:spring-orm,:spring-r2dbc,:spring-tx'
+          - module: integration-modules
+            modules: ':spring-jms,:spring-messaging,:spring-integration-tests'
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        
+      - name: 设置 JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'liberica'
+          java-version: ${{ matrix.java }}
+          
+      - name: 设置 Gradle
+        uses: gradle/actions/setup-gradle@v5.0.0
+        with:
+          cache-read-only: false
+          
+      - name: 构建模块组 ${{ matrix.module }}
+        run: |
+          echo "构建模块: ${{ matrix.modules }}"
+          ./gradlew ${{ matrix.modules }}:build \
+            -x checkstyle \
+            --parallel \
+            --build-cache \
+            --max-workers=4
+            
+      - name: 上传测试报告
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-${{ matrix.module }}-java${{ matrix.java }}
+          path: '**/build/reports/tests/'
+          retention-days: 7
