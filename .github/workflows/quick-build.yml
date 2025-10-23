@@ -37,7 +37,8 @@ jobs:
           ./gradlew :spring-core:test :spring-beans:test \
             --parallel \
             --build-cache \
-            --max-workers=4
+            --max-workers=4 \
+            --continue
             
       - name: 构建状态报告
         if: always()

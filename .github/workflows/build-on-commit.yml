@@ -30,12 +30,11 @@ jobs:
         
       - name: 编译项目
         id: build
-        uses: ./.github/actions/build-optimized
+        uses: ./.github/actions/build
         with:
           java-version: ${{ matrix.java.version }}
           java-toolchain: ${{ matrix.java.toolchain }}
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_SECRET_ACCESS_KEY }}
-          skip-tests: false
           
       - name: 上传构建报告（如果失败）
         uses: actions/upload-artifact@v4

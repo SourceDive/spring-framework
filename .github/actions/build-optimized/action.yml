@@ -75,8 +75,7 @@ runs:
             -x checkstyleTestFixtures \
             -x checkstyleJmh \
             --parallel \
-            --build-cache \
-            --configuration-cache
+            --build-cache
         else
           echo "包含测试的完整构建..."
           ./gradlew build \
@@ -86,8 +85,7 @@ runs:
             -x checkstyleTestFixtures \
             -x checkstyleJmh \
             --parallel \
-            --build-cache \
-            --configuration-cache
+            --build-cache
         fi
         
     - name: Publish
