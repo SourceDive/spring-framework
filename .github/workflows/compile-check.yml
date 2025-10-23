@@ -1,0 +1,71 @@
+name: 编译检查
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '**.java'
+      - '**.gradle'
+      - 'gradle/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: '编译检查 | Java ${{ matrix.java }}'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        java: [17, 21]
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        
+      - name: 设置 JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'liberica'
+          java-version: ${{ matrix.java }}
+          
+      - name: 设置 Gradle
+        uses: gradle/actions/setup-gradle@v5.0.0
+        with:
+          cache-read-only: false
+          
+      - name: 只编译不测试
+        run: |
+          ./gradlew assemble \
+            -x test \
+            -x checkstyle \
+            -x checkstyleMain \
+            -x checkstyleTest \
+            -x checkstyleTestFixtures \
+            -x checkstyleJmh \
+            -x checkstyleNohttp \
+            --parallel \
+            --build-cache \
+            --max-workers=4
+            
+      - name: 生成编译报告
+        if: always()
+        run: |
+          echo "### 🔨 编译检查报告" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Java 版本**: ${{ matrix.java }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ **编译成功**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "代码可以在 Java ${{ matrix.java }} 上成功编译！" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **编译失败**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "请检查编译错误并修复。" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "📝 **注意**: 这只是编译检查，不包含测试运行。" >> $GITHUB_STEP_SUMMARY
