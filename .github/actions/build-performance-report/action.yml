@@ -1,0 +1,85 @@
+name: 'Build Performance Report'
+description: '生成构建性能报告并监控缓存效率'
+inputs:
+  build-time:
+    required: true
+    description: '构建耗时（秒）'
+  cache-hit:
+    required: false
+    default: 'unknown'
+    description: '缓存命中状态'
+runs:
+  using: composite
+  steps:
+    - name: 生成性能报告
+      shell: bash
+      run: |
+        # 创建性能报告
+        echo "## 🚀 构建性能报告" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # 构建时间分析
+        BUILD_TIME=${{ inputs.build-time }}
+        MINUTES=$((BUILD_TIME / 60))
+        SECONDS=$((BUILD_TIME % 60))
+        
+        echo "### ⏱️ 构建时间" >> $GITHUB_STEP_SUMMARY
+        echo "- 总耗时: ${MINUTES}分${SECONDS}秒" >> $GITHUB_STEP_SUMMARY
+        
+        # 性能评级
+        if [ $BUILD_TIME -lt 60 ]; then
+          echo "- 评级: 🟢 **极快**" >> $GITHUB_STEP_SUMMARY
+        elif [ $BUILD_TIME -lt 120 ]; then
+          echo "- 评级: 🟢 **快速**" >> $GITHUB_STEP_SUMMARY
+        elif [ $BUILD_TIME -lt 180 ]; then
+          echo "- 评级: 🟡 **正常**" >> $GITHUB_STEP_SUMMARY
+        elif [ $BUILD_TIME -lt 300 ]; then
+          echo "- 评级: 🟠 **较慢**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- 评级: 🔴 **缓慢**" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # 缓存状态
+        echo "### 💾 缓存状态" >> $GITHUB_STEP_SUMMARY
+        echo "- Gradle 缓存: ${{ inputs.cache-hit }}" >> $GITHUB_STEP_SUMMARY
+        
+        # 获取缓存大小（如果可能）
+        if command -v du &> /dev/null; then
+          GRADLE_CACHE_SIZE=$(du -sh ~/.gradle/caches 2>/dev/null | cut -f1 || echo "N/A")
+          echo "- 缓存大小: $GRADLE_CACHE_SIZE" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # 优化建议
+        echo "### 💡 优化建议" >> $GITHUB_STEP_SUMMARY
+        if [ $BUILD_TIME -gt 180 ]; then
+          echo "- 考虑启用更多的并行构建" >> $GITHUB_STEP_SUMMARY
+          echo "- 检查是否有不必要的任务在执行" >> $GITHUB_STEP_SUMMARY
+          echo "- 确保缓存配置正确" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- 构建性能良好 ✅" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+    - name: 收集构建统计
+      shell: bash
+      run: |
+        # 创建统计文件用于后续分析
+        mkdir -p .build-stats
+        echo "{
+          \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
+          \"build_time_seconds\": ${{ inputs.build-time }},
+          \"cache_hit\": \"${{ inputs.cache-hit }}\",
+          \"workflow\": \"${{ github.workflow }}\",
+          \"branch\": \"${{ github.ref_name }}\",
+          \"commit\": \"${{ github.sha }}\"
+        }" > .build-stats/build-${GITHUB_RUN_ID}.json
+        
+    - name: 上传构建统计
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-stats-${{ github.run_id }}
+        path: .build-stats/
+        retention-days: 30
