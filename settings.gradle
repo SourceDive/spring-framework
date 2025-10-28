@@ -45,3 +45,4 @@ rootProject.children.each {project ->
 
 
 include 'my-test2'
+include 'my-jdk-debug'

@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group = "org.springframework"
+version = "5.3.39-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 只依赖JDK标准库，不依赖Spring模块
+    // 这样可以快速编译和运行
+    
+    // 测试依赖
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(platform("org.junit:junit-bom:5.13.4"))
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
+}
+
+tasks.test {
+    useJUnitPlatform()
+    include '**/*Test.class'   // 匹配 *Test 测试类
+    include '**/*Tests.class'  // 匹配 *Tests 测试类
+}
+
+// 添加快速运行任务
+task quickRun(type: JavaExec) {
+    dependsOn compileTestJava
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = project.hasProperty('mainClass') ? project.mainClass : 'mine.jdk.debug.ConcurrentHashMapDemo'
+    description = '快速运行JDK相关测试'
+}
+
+// 添加快速编译任务
+task quickCompile {
+    dependsOn compileTestJava
+    description = '快速编译JDK测试代码'
+}
