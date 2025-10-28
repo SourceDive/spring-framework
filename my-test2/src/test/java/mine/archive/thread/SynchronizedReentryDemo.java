@@ -5,7 +5,7 @@ package mine.archive.thread;
  * @description 测试 synchronized 的重入
  * @date 2025-10-27
  */
-public class ReentryDemo {
+public class SynchronizedReentryDemo {
 	public synchronized void firstEnter() {
 		System.out.println(Thread.currentThread().getName());
 		System.out.println("第一次进入");
@@ -17,7 +17,7 @@ public class ReentryDemo {
 	}
 
 	public static void main(String[] args) {
-		ReentryDemo reentryDemo = new ReentryDemo();
+		SynchronizedReentryDemo reentryDemo = new SynchronizedReentryDemo();
 		Runnable task = () -> {
 			try {
 				Thread.sleep(1000);
