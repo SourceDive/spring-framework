@@ -58,3 +58,4 @@ my-test2/**/*.jar
 my-test2/**/*.class
 /my-test2/build/
 **/*.sdt
+/my-jdk-debug/build/
