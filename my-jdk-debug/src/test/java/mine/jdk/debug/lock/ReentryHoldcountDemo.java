@@ -1,4 +1,4 @@
-package mine.jdk.debug;
+package mine.jdk.debug.lock;
 
 import java.util.concurrent.locks.ReentrantLock;
 
