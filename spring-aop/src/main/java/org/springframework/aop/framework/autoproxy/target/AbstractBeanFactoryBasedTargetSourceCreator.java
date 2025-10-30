@@ -62,8 +62,7 @@ public abstract class AbstractBeanFactoryBasedTargetSourceCreator
 	private ConfigurableBeanFactory beanFactory;
 
 	/** Internally used DefaultListableBeanFactory instances, keyed by bean name. */
-	private final Map<String, DefaultListableBeanFactory> internalBeanFactories =
-			new HashMap<>();
+	private final Map<String/*bean name*/, DefaultListableBeanFactory> internalBeanFactories = new HashMap<>();
 
 
 	@Override
@@ -125,6 +124,7 @@ public abstract class AbstractBeanFactoryBasedTargetSourceCreator
 	}
 
 	/**
+	 * <p>获取bean name对应的beanFactory, 无则创建。</p>
 	 * Return the internal BeanFactory to be used for the specified bean.
 	 * @param beanName the name of the target bean
 	 * @return the internal BeanFactory to be used

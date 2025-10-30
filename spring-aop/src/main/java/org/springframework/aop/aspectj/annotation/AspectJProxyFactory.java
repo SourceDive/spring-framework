@@ -160,6 +160,7 @@ public class AspectJProxyFactory extends ProxyCreatorSupport {
 	}
 
 	/**
+	 * <p>获得类型对应的实例，无则创建。</p>
 	 * Get the singleton aspect instance for the supplied aspect type.
 	 * An instance is created if one cannot be found in the instance cache.
 	 */
