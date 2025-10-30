@@ -1,4 +1,4 @@
-package mine.jdk.debug;
+package mine.jdk.debug.collection.map;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -171,3 +171,4 @@ public class ConcurrentHashMapDemo {
         return map.size() == THREAD_COUNT * OPERATION_COUNT;
     }
 }
+

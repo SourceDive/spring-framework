@@ -1,4 +1,4 @@
-package mine.jdk.debug;
+package mine.jdk.debug.collection.map;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -204,3 +204,4 @@ public class ConcurrentHashMapSummary {
         System.out.println("   - 避免不必要的锁竞争");
     }
 }
+

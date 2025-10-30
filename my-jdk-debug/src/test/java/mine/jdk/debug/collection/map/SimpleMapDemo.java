@@ -1,4 +1,4 @@
-package mine.jdk.debug.collection;
+package mine.jdk.debug.collection.map;
 
 import java.util.concurrent.ConcurrentHashMap;
 
