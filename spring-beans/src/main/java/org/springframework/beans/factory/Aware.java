@@ -17,6 +17,7 @@
 package org.springframework.beans.factory;
 
 /**
+ * <p>感知接口。</p>
  * <p>deepseek说这个接口是spring框架的逃生舱。</p>
  * A marker superinterface indicating that a bean is eligible to be notified by the
  * Spring container of a particular framework object through a callback-style method(通过回调方法).
