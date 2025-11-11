@@ -239,6 +239,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	String resolveEmbeddedValue(String value);
 
 	/**
+	 * <p>添加 BeanPostProcessor.</p>
 	 * Add a new BeanPostProcessor that will get applied to beans created
 	 * by this factory. To be invoked during factory configuration.
 	 * <p>Note: Post-processors submitted here will be applied in the order of
@@ -251,6 +252,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
 	/**
+	 * <p>获取注册过的 BeanPostProcessor 数量。</p>
 	 * Return the current number of registered BeanPostProcessors, if any.
 	 */
 	int getBeanPostProcessorCount();
@@ -362,6 +364,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	boolean isFactoryBean(String name) throws NoSuchBeanDefinitionException;
 
 	/**
+	 * <p>显式控制bean的创建状态。</p>
 	 * Explicitly control the current in-creation status of the specified bean.
 	 * For container-internal use only.
 	 * @param beanName the name of the bean
@@ -371,6 +374,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	void setCurrentlyInCreation(String beanName, boolean inCreation);
 
 	/**
+	 * <p>bean当前是否处于创建中。</p>
 	 * Determine whether the specified bean is currently in creation.
 	 * @param beanName the name of the bean
 	 * @return whether the bean is currently in creation
@@ -424,6 +428,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	void destroyScopedBean(String beanName);
 
 	/**
+	 * <p>销毁所有的单例。</p>
 	 * Destroy all singleton beans in this factory, including inner beans that have
 	 * been registered as disposable. To be called on shutdown of a factory.
 	 * <p>Any exception that arises during destruction should be caught
