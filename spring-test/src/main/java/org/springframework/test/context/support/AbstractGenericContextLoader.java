@@ -247,6 +247,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
+	 * <p>加载配置类中的bean定义到给定的 context 中。</p>
 	 * Load bean definitions into the supplied {@link GenericApplicationContext context}
 	 * from the locations or classes in the supplied {@code MergedContextConfiguration}.
 	 * <p>The default implementation delegates to the {@link BeanDefinitionReader}

@@ -41,6 +41,7 @@ import org.springframework.lang.Nullable;
 public interface BeanDefinitionReader {
 
 	/**
+	 * <p>返回BeanFactory.</p>
 	 * Return the bean factory to register the bean definitions with.
 	 * <p>The factory is exposed through the {@link BeanDefinitionRegistry} interface,
 	 * encapsulating the methods that are relevant for bean definition handling.
@@ -84,6 +85,7 @@ public interface BeanDefinitionReader {
 
 
 	/**
+	 * <p>加载单个资源的bean定义。</p>
 	 * Load bean definitions from the specified resource.
 	 * @param resource the resource descriptor
 	 * @return the number of bean definitions found
@@ -92,6 +94,7 @@ public interface BeanDefinitionReader {
 	int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException;
 
 	/**
+	 * <p>加载多个资源的bean定义。</p>
 	 * Load bean definitions from the specified resources.
 	 * @param resources the resource descriptors
 	 * @return the number of bean definitions found
@@ -100,6 +103,7 @@ public interface BeanDefinitionReader {
 	int loadBeanDefinitions(Resource... resources) throws BeanDefinitionStoreException;
 
 	/**
+	 * <p>从给定的单个资源位置加载bean定义。</p>
 	 * Load bean definitions from the specified resource location.
 	 * <p>The location can also be a location pattern, provided that the
 	 * {@link ResourceLoader} of this bean definition reader is a
@@ -115,6 +119,7 @@ public interface BeanDefinitionReader {
 	int loadBeanDefinitions(String location) throws BeanDefinitionStoreException;
 
 	/**
+	 * <p>从给定的多个资源位置加载bean定义。</p>
 	 * Load bean definitions from the specified resource locations.
 	 * @param locations the resource locations, to be loaded with the {@code ResourceLoader}
 	 * (or {@code ResourcePatternResolver}) of this bean definition reader
