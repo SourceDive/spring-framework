@@ -10,15 +10,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Application {
 
 	public static void main(String[] args) {
-		// 1. 创建容器并注册 NullFactoryBean
+		// 1、创建容器
 		AnnotationConfigApplicationContext context =
 				new AnnotationConfigApplicationContext();
 
+		// 2、注册scope
 		context.getBeanFactory().registerScope("one", new OneScope());
 		context.register(MyConfig.class);
 		context.refresh();
 
-		// 2. 尝试获取 Bean（预期不抛出异常）
+		// 3、多次获取 Bean
 		Student myBean = context.getBean(Student.class);
 		System.out.println("==>");
 		System.out.println(myBean.getName());
