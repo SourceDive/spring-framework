@@ -103,13 +103,14 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	private TaskDecorator taskDecorator;
 
 	@Nullable
-	private ThreadPoolExecutor threadPoolExecutor;
+	private ThreadPoolExecutor threadPoolExecutor; // 实际把请求交给它来解决。
 
 	// Runnable decorator to user-level FutureTask, if different
 	private final Map<Runnable, Object> decoratedTaskMap =
 			new ConcurrentReferenceHashMap<>(16, ConcurrentReferenceHashMap.ReferenceType.WEAK);
 
 
+	/// 下面几个get/set都是线程池参数的管理、查询指令。
 	/**
 	 * Set the ThreadPoolExecutor's core pool size.
 	 * Default is 1.
@@ -187,7 +188,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	 * @see java.util.concurrent.LinkedBlockingQueue
 	 * @see java.util.concurrent.SynchronousQueue
 	 */
-	public void setQueueCapacity(int queueCapacity) {
+	public void setQueueCapacity(int queueCapacity) { // 为什么这里不需要加锁呢？
 		this.queueCapacity = queueCapacity;
 	}
 

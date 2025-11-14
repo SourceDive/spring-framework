@@ -78,7 +78,7 @@ public interface AsyncTaskExecutor extends TaskExecutor {
 	 * Submit a Runnable task for execution, receiving a Future representing that task.
 	 * The Future will return a {@code null} result upon completion.
 	 * @param task the {@code Runnable} to execute (never {@code null})
-	 * @return a Future representing pending completion of the task
+	 * @return a Future representing pending completion of the task 任务结果
 	 * @throws TaskRejectedException if the given task was not accepted
 	 * @since 3.0
 	 */
@@ -88,7 +88,7 @@ public interface AsyncTaskExecutor extends TaskExecutor {
 	 * Submit a Callable task for execution, receiving a Future representing that task.
 	 * The Future will return the Callable's result upon completion.
 	 * @param task the {@code Callable} to execute (never {@code null})
-	 * @return a Future representing pending completion of the task
+	 * @return a Future representing pending completion of the task 任务结果
 	 * @throws TaskRejectedException if the given task was not accepted
 	 * @since 3.0
 	 */
