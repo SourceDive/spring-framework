@@ -50,6 +50,7 @@ import org.springframework.lang.Nullable;
 public interface PlatformTransactionManager extends TransactionManager {
 
 	/**
+	 * <p>获取事务。</p>
 	 * <p>跟getBean()一样，get or create a new one.</p>
 	 * Return a currently active transaction or create a new one, according to
 	 * the specified propagation behavior.
