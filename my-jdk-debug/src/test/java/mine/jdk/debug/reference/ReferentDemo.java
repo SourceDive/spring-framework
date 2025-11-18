@@ -1,4 +1,4 @@
-package reference;
+package mine.jdk.debug.reference;
 
 import java.lang.ref.WeakReference;
 
