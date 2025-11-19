@@ -166,15 +166,15 @@ public class InjectionMetadata {
 	 */
 	public abstract static class InjectedElement {
 
-		protected final Member member;
+		protected final Member member; // 类中的成员(field/method/constructor)
 
-		protected final boolean isField;
-
-		@Nullable
-		protected final PropertyDescriptor pd;
+		protected final boolean isField; // 是否是字段
 
 		@Nullable
-		protected volatile Boolean skip;
+		protected final PropertyDescriptor pd; // 属性描述符
+
+		@Nullable
+		protected volatile Boolean skip; // 是否跳过注入
 
 		protected InjectedElement(Member member, @Nullable PropertyDescriptor pd) {
 			this.member = member;

@@ -666,6 +666,7 @@ public abstract class ReflectionUtils {
 	public static void doWithLocalFields(Class<?> clazz, FieldCallback fc) {
 		for (Field field : getDeclaredFields(clazz)) {
 			try {
+				// 对每个 field 都应用回调接口中的逻辑。
 				fc.doWith(field);
 			}
 			catch (IllegalAccessException ex) {
@@ -715,6 +716,7 @@ public abstract class ReflectionUtils {
 	}
 
 	/**
+	 * <p>获取class对象中声明的所有field.</p>
 	 * This variant retrieves {@link Class#getDeclaredFields()} from a local cache
 	 * in order to avoid the JVM's SecurityManager check and defensive array copying.
 	 * @param clazz the class to introspect
@@ -798,6 +800,7 @@ public abstract class ReflectionUtils {
 
 
 	/**
+	 * <p>应用在method上的回调逻辑。</p>
 	 * Action to take on each method.
 	 */
 	@FunctionalInterface
@@ -839,12 +842,14 @@ public abstract class ReflectionUtils {
 
 
 	/**
+	 * <p>field的回调接口。</p>
 	 * Callback interface invoked on each field in the hierarchy.
 	 */
 	@FunctionalInterface
 	public interface FieldCallback {
 
 		/**
+		 * <p>在给定的 field 上应用对应的operation.</p>
 		 * Perform an operation using the given field.
 		 * @param field the field to operate on
 		 */

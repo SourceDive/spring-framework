@@ -73,6 +73,7 @@ public interface AutowireCandidateResolver {
 	}
 
 	/**
+	 * <p>获取应用在给定依赖上的默认值。</p>
 	 * Determine whether a default value is suggested for the given dependency.
 	 * <p>The default implementation simply returns {@code null}.
 	 * @param descriptor the descriptor for the target method parameter or field

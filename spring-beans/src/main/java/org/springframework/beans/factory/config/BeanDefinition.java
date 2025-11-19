@@ -244,6 +244,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	MutablePropertyValues getPropertyValues();
 
 	/**
+	 * <p>bean中是否存在属性。</p>
 	 * Return if there are property values defined for this bean.
 	 * @since 5.0.2
 	 */

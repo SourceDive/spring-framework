@@ -73,6 +73,7 @@ public interface MergedAnnotation<A extends Annotation> {
 	Class<A> getType();
 
 	/**
+	 * <p>注解是否存在。</p>
 	 * Determine if the annotation is present on the source. Considers
 	 * {@linkplain #isDirectlyPresent() directly present} and
 	 * {@linkplain #isMetaPresent() meta-present} annotations within the context

@@ -342,6 +342,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
+	 * <p>确定给定的依赖是否声明了@Value注解。</p>
 	 * Determine whether the given dependency declares a value annotation.
 	 * @see Value
 	 */
@@ -364,6 +365,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	@Nullable
 	protected Object findValue(Annotation[] annotationsToSearch) {
 		if (annotationsToSearch.length > 0) {   // qualifier annotations have to be local
+			// 获取 @Value 对应的属性值。
 			AnnotationAttributes attr = AnnotatedElementUtils.getMergedAnnotationAttributes(
 					AnnotatedElementUtils.forAnnotations(annotationsToSearch), this.valueAnnotationType);
 			if (attr != null) {
@@ -374,6 +376,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
+	 * <p>获取注解中的 value 属性值。</p>
 	 * Extract the value attribute from the given annotation.
 	 * @since 4.3
 	 */

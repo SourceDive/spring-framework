@@ -47,6 +47,7 @@ public interface MergedBeanDefinitionPostProcessor extends BeanPostProcessor {
 	void postProcessMergedBeanDefinition(RootBeanDefinition beanDefinition, Class<?> beanType, String beanName);
 
 	/**
+	 * <p>重置bean定义。</p>
 	 * A notification that the bean definition for the specified name has been reset,
 	 * and that this post-processor should clear any metadata for the affected bean.
 	 * <p>The default implementation is empty.
