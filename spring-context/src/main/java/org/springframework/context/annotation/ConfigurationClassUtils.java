@@ -76,6 +76,7 @@ abstract class ConfigurationClassUtils {
 
 
 	/**
+	 * <p>检查给定的bean定义是否是配置类的候选者。</p>
 	 * Check whether the given bean definition is a candidate for a configuration class
 	 * (or a nested component class declared within a configuration/component class,
 	 * to be auto-registered as well), and mark it accordingly.
@@ -144,6 +145,7 @@ abstract class ConfigurationClassUtils {
 	}
 
 	/**
+	 * <p>检查给定的元数据是否为配置类的候选者。</p>
 	 * Check the given metadata for a configuration class candidate
 	 * (or nested component class declared within a configuration/component class).
 	 * @param metadata the metadata of the annotated class

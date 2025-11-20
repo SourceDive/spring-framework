@@ -28,6 +28,7 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;
 
 /**
+ * <p>表明一个类会声明一个或多个 @Bean 方法。</p>
  * Indicates that a class declares one or more {@link Bean @Bean} methods and
  * may be processed by the Spring container to generate bean definitions and
  * service requests for those beans at runtime, for example:
@@ -445,6 +446,8 @@ public @interface Configuration {
 	 *     <ul>true: 有 CGLIB 代理。为了解决跨方法调用的单例安全性。</ul>
 	 *     <ul>false: 无 CGLIB 代理 </ul>
 	 * </p>
+	 * <p>是否支持bean间引用。</p>
+	 * <p>full模式支持，lite模式不支持。</p>
 	 * Specify whether {@code @Bean} methods should get proxied in order to enforce
 	 * bean lifecycle behavior, e.g. to return shared singleton bean instances even
 	 * in case of direct {@code @Bean} method calls in user code. This feature

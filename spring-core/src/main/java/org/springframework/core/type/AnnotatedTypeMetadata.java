@@ -54,6 +54,7 @@ public interface AnnotatedTypeMetadata {
 	MergedAnnotations getAnnotations();
 
 	/**
+	 * <p>确认元素是否被给定的注解标注。</p>
 	 * Determine whether the underlying element has an annotation or meta-annotation
 	 * of the given type defined.
 	 * <p>If this method returns {@code true}, then

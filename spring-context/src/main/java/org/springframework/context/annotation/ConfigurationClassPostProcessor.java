@@ -231,6 +231,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 	/**
 	 * <p>从配置类中解析bean定义。</p>
+	 * <p>注意这里的配置类不单单是被@Configuration注解修饰的类，也可以是@Component修饰的。</p>
 	 * Derive further bean definitions from the configuration classes in the registry.
 	 */
 	@Override
@@ -289,6 +290,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 					logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
 				}
 			}
+			// 检查其他可能为配置类的候选者。
 			else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)) {
 				configCandidates.add(new BeanDefinitionHolder(beanDef, beanName));
 			}

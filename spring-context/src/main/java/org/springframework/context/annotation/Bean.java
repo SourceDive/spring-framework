@@ -44,7 +44,7 @@ import org.springframework.core.annotation.AliasFor;
  *     }
  * </pre>
  *
- * <h3>Bean Names(这里说明了bean名称的来源：就是方法名称)</h3>
+ * <h3>Bean Names(这里说明了bean名称的构成默认是方法名称)</h3>
  *
  * <p>While a {@link #name} attribute is available, the default strategy for
  * determining the name of a bean is to use the name of the {@code @Bean} method.
@@ -136,6 +136,7 @@ import org.springframework.core.annotation.AliasFor;
  * }</pre>
  *
  * <h3>{@code @Bean} <em>Lite</em> Mode</h3>
+ * <p>但@Bean方法没有声明在配置类中时，就是 lite 模式。</p>
  *
  * <p>{@code @Bean} methods may also be declared within classes that are <em>not</em>
  * annotated with {@code @Configuration}. For example, bean methods may be declared
