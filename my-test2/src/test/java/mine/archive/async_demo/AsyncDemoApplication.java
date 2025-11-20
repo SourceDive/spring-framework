@@ -1,9 +1,8 @@
-package mine.projects.async_demo;
+package mine.archive.async_demo;
 
-import mine.projects.async_demo.config.MyConfig;
-import mine.projects.async_demo.service.MyService;
+import mine.archive.async_demo.config.MyConfig;
+import mine.archive.async_demo.service.MyService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;

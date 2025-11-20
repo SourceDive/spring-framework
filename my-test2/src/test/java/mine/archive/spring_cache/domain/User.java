@@ -1,4 +1,4 @@
-package mine.projects.spring_cache.domain;
+package mine.archive.spring_cache.domain;
 
 public class User {
 	private Long id;

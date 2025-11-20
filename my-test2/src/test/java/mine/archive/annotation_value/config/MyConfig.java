@@ -1,6 +1,6 @@
-package mine.projects.annotation_value.config;
+package mine.archive.annotation_value.config;
 
-import mine.projects.annotation_value.ValueDemo;
+import mine.archive.annotation_value.ValueDemo;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 

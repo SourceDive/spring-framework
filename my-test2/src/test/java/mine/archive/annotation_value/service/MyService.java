@@ -1,4 +1,4 @@
-package mine.projects.annotation_value.service;
+package mine.archive.annotation_value.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

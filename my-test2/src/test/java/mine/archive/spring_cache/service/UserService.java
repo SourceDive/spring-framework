@@ -1,6 +1,6 @@
-package mine.projects.spring_cache.service;
+package mine.archive.spring_cache.service;
 
-import mine.projects.spring_cache.domain.User;
+import mine.archive.spring_cache.domain.User;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

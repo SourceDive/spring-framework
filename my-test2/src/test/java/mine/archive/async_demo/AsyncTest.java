@@ -1,7 +1,7 @@
-package mine.projects.async_demo;
+package mine.archive.async_demo;
 
-import mine.projects.async_demo.config.MyConfig;
-import mine.projects.async_demo.service.MyService;
+import mine.archive.async_demo.config.MyConfig;
+import mine.archive.async_demo.service.MyService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

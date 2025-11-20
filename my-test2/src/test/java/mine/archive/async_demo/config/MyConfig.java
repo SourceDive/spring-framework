@@ -1,6 +1,6 @@
-package mine.projects.async_demo.config;
+package mine.archive.async_demo.config;
 
-import mine.projects.async_demo.AsyncDemoApplication;
+import mine.archive.async_demo.AsyncDemoApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
-package mine.projects.annotation_value;
+package mine.archive.annotation_value;
 
-import mine.projects.annotation_value.config.MyConfig;
-import mine.projects.annotation_value.service.MyService;
+import mine.archive.annotation_value.config.MyConfig;
+import mine.archive.annotation_value.service.MyService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

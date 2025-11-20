@@ -1,7 +1,7 @@
-package mine.projects.spring_cache.config;
+package mine.archive.spring_cache.config;
 
-import mine.projects.spring_cache.Application;
-import mine.projects.spring_cache.service.UserService;
+import mine.archive.spring_cache.Application;
+import mine.archive.spring_cache.service.UserService;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;

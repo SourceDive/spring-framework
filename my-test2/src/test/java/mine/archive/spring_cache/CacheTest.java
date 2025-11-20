@@ -1,8 +1,8 @@
-package mine.projects.spring_cache;
+package mine.archive.spring_cache;
 
-import mine.projects.spring_cache.config.CacheConfig;
-import mine.projects.spring_cache.domain.User;
-import mine.projects.spring_cache.service.UserService;
+import mine.archive.spring_cache.config.CacheConfig;
+import mine.archive.spring_cache.domain.User;
+import mine.archive.spring_cache.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
