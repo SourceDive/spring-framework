@@ -380,6 +380,7 @@ final class PostProcessorRegistrationDelegate {
 	}
 
 	/**
+	 * <p>注册给定的 BeanPostProcessor.</p>
 	 * Register the given BeanPostProcessor beans.
 	 */
 	private static void registerBeanPostProcessors(

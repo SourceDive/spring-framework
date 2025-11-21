@@ -1047,6 +1047,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 	}
 
+	/**
+	 * 重置 BeanPostProcessor 缓存。
+	 */
 	private void resetBeanPostProcessorCache() {
 		synchronized (this.beanPostProcessors) {
 			this.beanPostProcessorCache = null;
