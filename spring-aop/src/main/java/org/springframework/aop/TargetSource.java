@@ -67,6 +67,7 @@ public interface TargetSource extends TargetClassAware {
 	boolean isStatic();
 
 	/**
+	 * <p>获取target实例。</p>
 	 * Return a target instance. Invoked immediately before the
 	 * AOP framework calls the "target" of an AOP method invocation.
 	 * @return the target object which contains the joinpoint,
@@ -77,6 +78,7 @@ public interface TargetSource extends TargetClassAware {
 	Object getTarget() throws Exception;
 
 	/**
+	 * <p>释放target实例。</p>
 	 * Release the given target object obtained from the
 	 * {@link #getTarget()} method, if any.
 	 * @param target object obtained from a call to {@link #getTarget()}
