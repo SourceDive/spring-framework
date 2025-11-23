@@ -48,11 +48,13 @@ import org.apache.commons.logging.LogFactory;
 public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	/**
+	 * <p>不限制并发数量。</p>
 	 * Permit any number of concurrent invocations: that is, don't throttle concurrency.
 	 */
 	public static final int UNBOUNDED_CONCURRENCY = -1;
 
 	/**
+	 * <p>不允许并发。</p>
 	 * Switch concurrency 'off': that is, don't allow any concurrent invocations.
 	 */
 	public static final int NO_CONCURRENCY = 0;
@@ -112,6 +114,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 			boolean debug = logger.isDebugEnabled();
 			synchronized (this.monitor) {
 				boolean interrupted = false;
+				// 当前并发数量超限。
 				while (this.concurrencyCount >= this.concurrencyLimit) {
 					if (interrupted) {
 						throw new IllegalStateException("Thread was interrupted while waiting for invocation access, " +
@@ -151,7 +154,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 				if (debug) {
 					logger.debug("Returning from throttle at concurrency count " + this.concurrencyCount);
 				}
-				// 唤醒线程。
+				// 唤醒等待中的某个线程。
 				this.monitor.notify();
 			}
 		}
