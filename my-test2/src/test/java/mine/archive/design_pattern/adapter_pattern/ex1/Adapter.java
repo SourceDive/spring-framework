@@ -1,4 +1,4 @@
-package mine.archive.adapter_pattern.ex1;
+package mine.archive.design_pattern.adapter_pattern.ex1;
 
 /**
  * @author zero

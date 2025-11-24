@@ -1,4 +1,4 @@
-package mine.archive.adapter_pattern.ex2;
+package mine.archive.design_pattern.adapter_pattern.ex2;
 
 // 目标接口：标准6分水管
 interface SixInchPipe {
