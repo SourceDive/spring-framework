@@ -412,14 +412,17 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 	@Override
 	public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) {
 		/**
+		 * 寻找注入的元素。
 		 * {@link AutowiredAnnotationBeanPostProcessor#buildAutowiringMetadata(Class)}
+		 *
+		 * 下面这三个注解修饰的元素
 		 * @Autowired
 		 * @Value
 		 * @Inject
 		 */
 		InjectionMetadata metadata = findAutowiringMetadata(beanName, bean.getClass(), pvs);
 		try {
-			// 组件的依赖注入动作
+			// 将依赖注入给定的bean中。
 			metadata.inject(bean, beanName, pvs);
 		}
 		catch (BeanCreationException ex) {
@@ -462,6 +465,9 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 		}
 	}
 
+	/**
+	 * 寻找注入的元素。
+	 */
 	private InjectionMetadata findAutowiringMetadata(String beanName, Class<?> clazz, @Nullable PropertyValues pvs) {
 		// Fall back to class name as cache key, for backwards compatibility with custom callers.
 		String cacheKey = (StringUtils.hasLength(beanName) ? beanName : clazz.getName());
@@ -474,6 +480,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 					if (metadata != null) {
 						metadata.clear(pvs);
 					}
+					// 入口
 					metadata = buildAutowiringMetadata(clazz);
 					this.injectionMetadataCache.put(cacheKey, metadata);
 				}
@@ -707,6 +714,9 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 			this.required = required;
 		}
 
+		/**
+		 * 这里的流程适用于 @Value, 也适用于 @Autowired。
+		 */
 		@Override
 		protected void inject(Object bean, @Nullable String beanName, @Nullable PropertyValues pvs) throws Throwable {
 			Field field = (Field) this.member;
@@ -724,11 +734,12 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 			}
 			else {
 				// 解析对应field的值。
+				// 可以为基本类型，也可以为Object。例如可以为注入的字符串，也可以是别的bean实例。
 				value = resolveFieldValue(field, bean, beanName);
 			}
 			if (value != null) {
 				ReflectionUtils.makeAccessible(field);
-				// 提取值后设置到bean对应的属性中。
+				// 将解析后的值设置到bean对应的属性中。
 				field.set(bean, value);
 			}
 		}
