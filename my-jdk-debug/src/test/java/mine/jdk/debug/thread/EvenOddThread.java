@@ -1,7 +1,5 @@
 package mine.jdk.debug.thread;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * @author zero
  * @description 两个线程交替打印奇偶数。
@@ -17,21 +15,24 @@ public class EvenOddThread {
 		Runnable task = () -> {
 			synchronized (lock) {
 				while (true) {
-					if (count % 2 == 0) {
-						System.out.println("====>" + Thread.currentThread().getName() + ":" + count);
-						count++;
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							throw new RuntimeException(e);
-						}
-						lock.notify();
-					} else {
+					// 使用 while 循环检查条件，避免虚假唤醒
+					while (count % 2 != 0) {
 						try {
 							lock.wait();
 						} catch (InterruptedException e) {
-							throw new RuntimeException(e);
+							Thread.currentThread().interrupt();
+							return;
 						}
+					}
+					System.out.println("====>" + Thread.currentThread().getName() + ":" + count);
+					count++;
+					lock.notify();
+					// sleep 在 synchronized 内，确保交替打印的时序
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+						return;
 					}
 				}
 			}
@@ -40,25 +41,28 @@ public class EvenOddThread {
 		new Thread(task, "even thread").start();
 	}
 
-	public void ood() {
+	public void odd() {
 		Runnable task = () -> {
 			synchronized (lock) {
 				while (true) {
-					if (count % 2 == 1) {
-						System.out.println(Thread.currentThread().getName() + ":" + count);
-						count++;
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							throw new RuntimeException(e);
-						}
-						lock.notify();
-					} else {
+					// 使用 while 循环检查条件，避免虚假唤醒
+					while (count % 2 != 1) {
 						try {
 							lock.wait();
 						} catch (InterruptedException e) {
-							throw new RuntimeException(e);
+							Thread.currentThread().interrupt();
+							return;
 						}
+					}
+					System.out.println(Thread.currentThread().getName() + ":" + count);
+					count++;
+					lock.notify();
+					// sleep 在 synchronized 内，确保交替打印的时序
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+						return;
 					}
 				}
 			}
@@ -71,6 +75,6 @@ public class EvenOddThread {
 		EvenOddThread evenOddThread = new EvenOddThread();
 
 		evenOddThread.even();
-		evenOddThread.ood();
+		evenOddThread.odd();
 	}
 }
