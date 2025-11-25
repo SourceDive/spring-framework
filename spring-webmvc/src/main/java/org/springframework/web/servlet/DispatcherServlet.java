@@ -166,6 +166,7 @@ import org.springframework.web.util.WebUtils;
 @SuppressWarnings("serial")
 public class DispatcherServlet extends FrameworkServlet {
 
+	// 定义的一堆bean名称。
 	/** Well-known name for the MultipartResolver object in the bean factory for this namespace. */
 	public static final String MULTIPART_RESOLVER_BEAN_NAME = "multipartResolver";
 
@@ -492,6 +493,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	}
 
 	/**
+	 * <p>初始化。context.getBean(xxx).</p>
 	 * Initialize the strategy objects that this servlet uses.
 	 * <p>May be overridden in subclasses in order to initialize further strategy objects.
 	 */

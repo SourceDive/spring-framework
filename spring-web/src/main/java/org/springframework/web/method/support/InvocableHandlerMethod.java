@@ -121,6 +121,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
+	 * <p>触发处理请求的方法。</p>
 	 * Invoke the method after resolving its argument values in the context of the given request.
 	 * <p>Argument values are commonly resolved through
 	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
@@ -202,6 +203,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 			if (KotlinDetector.isSuspendingFunction(method)) {
 				return CoroutinesUtils.invokeSuspendingFunction(method, getBean(), args);
 			}
+			// 触发目标方法(带参数)。
 			return method.invoke(getBean(), args);
 		}
 		catch (IllegalArgumentException ex) {

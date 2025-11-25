@@ -213,7 +213,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	/** Whether to log potentially sensitive info (request params at DEBUG + headers at TRACE). */
 	private boolean enableLoggingRequestDetails = false;
 
-	/** WebApplicationContext for this servlet. */
+	/** WebApplicationContext for this servlet. 主要是为了getBean() 操作。*/
 	@Nullable
 	private WebApplicationContext webApplicationContext;
 

@@ -22,6 +22,7 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>http请求方法枚举类。</p>
  * Enumeration of HTTP request methods. Intended for use
  * with {@link org.springframework.http.client.ClientHttpRequest}
  * and {@link org.springframework.web.client.RestTemplate}.
@@ -35,7 +36,7 @@ public enum HttpMethod {
 	GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
 
 
-	private static final Map<String, HttpMethod> mappings = new HashMap<>(16);
+	private static final Map<String/*name*/, HttpMethod> mappings = new HashMap<>(16);
 
 	static {
 		for (HttpMethod httpMethod : values()) {
