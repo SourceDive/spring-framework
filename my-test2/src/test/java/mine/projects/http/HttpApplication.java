@@ -1,22 +1,18 @@
 package mine.projects.http;
 
+import mine.projects.http.config.TomcatServerConfig;
 import mine.projects.http.config.WebMvcConfig;
-import org.apache.catalina.Context;
-import org.apache.catalina.LifecycleException;
-import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -44,52 +40,24 @@ public class HttpApplication implements WebMvcConfigurer {
 		System.out.println("- HandlerMethod: 处理器方法");
 		System.out.println("=====================================");
 
-		// 创建内嵌 Tomcat 服务器
-		Tomcat tomcat = new Tomcat();
-		
-		// 创建临时目录用于 Tomcat
-		String baseDir = System.getProperty("java.io.tmpdir");
-		File tempDir = new File(baseDir, "tomcat-" + System.currentTimeMillis());
-		tempDir.mkdirs();
-
-		// 设置 Tomcat 基础目录
-		tomcat.setBaseDir(tempDir.getAbsolutePath());
-		tomcat.setHostname("localhost");
-		
-		// 创建并设置 Connector（必须在 start() 之前）
-		Connector connector = new Connector("HTTP/1.1");
-		connector.setPort(8080);
-		connector.setProperty("address", "localhost");
-		tomcat.getService().addConnector(connector);
-		tomcat.setConnector(connector);
-
-		// 先创建 Tomcat Context（这样才能获取 ServletContext）
-		Context context = tomcat.addContext("", tempDir.getAbsolutePath());
-
-		// 创建 Web 应用上下文并设置 ServletContext
-		AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
-		webContext.setServletContext(context.getServletContext());
-		webContext.register(WebMvcConfig.class, HttpApplication.class);
-		webContext.refresh();
-
-		// 创建并配置 DispatcherServlet
-		DispatcherServlet dispatcherServlet = new DispatcherServlet(webContext);
-		Tomcat.addServlet(context, "dispatcher", dispatcherServlet);
-		context.addServletMappingDecoded("/", "dispatcher");
-
+		Tomcat tomcat = null;
 		try {
-			// 启动 Tomcat 服务器
-			tomcat.start();
+			// ========== Spring MVC 核心流程 ==========
+			// 1. 创建 Web 应用上下文
+			AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
+			webContext.register(WebMvcConfig.class, HttpApplication.class);
 			
-			// 等待一下确保服务器完全启动
-			Thread.sleep(500);
+			// 2. 启动 Tomcat 服务器（内部会设置 ServletContext 并 refresh 上下文）
+			//    注意：startTomcat 内部会完成以下步骤：
+			//    - 创建 Tomcat Context 获取 ServletContext
+			//    - 设置 ServletContext 到 WebApplicationContext
+			//    - refresh WebApplicationContext
+			//    - 创建并注册 DispatcherServlet
+			//    - 启动 Tomcat 服务器
+			tomcat = TomcatServerConfig.startTomcat(webContext, 8080);
 			
-			// 获取实际监听的端口
-			int actualPort = connector.getLocalPort();
-			if (actualPort <= 0) {
-				throw new IllegalStateException("服务器未能成功绑定端口，实际端口: " + actualPort);
-			}
-			
+			// ========== 服务器信息输出 ==========
+			int actualPort = tomcat.getConnector().getLocalPort();
 			System.out.println();
 			System.out.println("=====================================");
 			System.out.println("服务器已启动！");
@@ -103,62 +71,13 @@ public class HttpApplication implements WebMvcConfigurer {
 			System.out.println("按 Ctrl+C 停止服务器");
 			System.out.println("=====================================");
 
-			// 保持服务器运行 - 使用 await 方法保持主线程运行
-			try {
-				tomcat.getServer().await();
-			} catch (Exception e) {
-				// 如果 await() 方法不可用，使用 Thread.sleep() 保持运行
-				System.out.println("注意: await() 方法不可用，使用 Thread.sleep() 保持服务器运行");
-				try {
-					while (true) {
-						Thread.sleep(1000);
-					}
-				} catch (InterruptedException ie) {
-					Thread.currentThread().interrupt();
-					System.out.println("服务器被中断");
-				}
-			}
-		} catch (LifecycleException e) {
-			System.err.println("启动 Tomcat 服务器失败: " + e.getMessage());
-			e.printStackTrace();
+			// ========== 保持服务器运行 ==========
+			TomcatServerConfig.await(tomcat);
 		} catch (Exception e) {
 			System.err.println("服务器运行出错: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			try {
-				// 停止服务器
-				if (tomcat.getServer() != null && tomcat.getServer().getState().isAvailable()) {
-					tomcat.stop();
-					tomcat.destroy();
-				}
-			} catch (Exception e) {
-				System.err.println("停止服务器时出错: " + e.getMessage());
-			}
-			// 清理临时目录
-			try {
-				deleteDirectory(tempDir);
-			} catch (Exception e) {
-				// 忽略清理错误
-			}
-		}
-	}
-
-	/**
-	 * 递归删除目录
-	 */
-	private static void deleteDirectory(File directory) {
-		if (directory.exists()) {
-			File[] files = directory.listFiles();
-			if (files != null) {
-				for (File file : files) {
-					if (file.isDirectory()) {
-						deleteDirectory(file);
-					} else {
-						file.delete();
-					}
-				}
-			}
-			directory.delete();
+			TomcatServerConfig.stop(tomcat);
 		}
 	}
 

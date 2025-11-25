@@ -67,12 +67,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	}
 
 	/**
-	 * 配置DispatcherServlet
-	 * 这是Spring MVC的核心servlet
+	 * 注意：DispatcherServlet 不需要作为 Bean 配置
+	 * 
+	 * 原因：
+	 * 1. DispatcherServlet 的构造函数需要 WebApplicationContext 作为参数
+	 * 2. 在手动配置 Tomcat 的场景下，我们需要在创建 WebApplicationContext 之后
+	 *    再创建 DispatcherServlet，并设置 WebApplicationContext
+	 * 3. 在 @Bean 方法中无法直接获取到完整的 WebApplicationContext
+	 * 
+	 * 因此，DispatcherServlet 应该在 main 方法中直接创建并配置，
+	 * 而不是作为 Spring Bean。
 	 */
-	@Bean
-	public DispatcherServlet dispatcherServlet() {
-		DispatcherServlet servlet = new DispatcherServlet();
-		return servlet;
-	}
 }
