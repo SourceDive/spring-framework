@@ -1,4 +1,4 @@
-package mine.projects.http;
+package mine.projects.http.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package mine.projects.http;
+package mine.projects.http.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

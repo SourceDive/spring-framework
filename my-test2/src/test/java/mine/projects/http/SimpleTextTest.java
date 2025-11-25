@@ -1,6 +1,7 @@
 package mine.projects.http;
 
 import mine.projects.http.config.WebMvcConfig;
+import mine.projects.http.controller.SimpleTextController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
