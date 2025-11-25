@@ -32,6 +32,10 @@ dependencies {
     // Servlet API - 用于HTTP测试
     testImplementation("javax.servlet:javax.servlet-api:4.0.1")
     
+    // 内嵌 Tomcat 服务器 - 用于启动HTTP服务器
+    testImplementation("org.apache.tomcat.embed:tomcat-embed-core:9.0.65")
+    testImplementation("org.apache.tomcat.embed:tomcat-embed-jasper:9.0.65")
+    
     // Jackson JSON处理库 - 用于JSON API测试
     testImplementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
     testImplementation("com.fasterxml.jackson.core:jackson-core:2.15.2")
