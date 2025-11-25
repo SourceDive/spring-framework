@@ -1,4 +1,4 @@
-package mine.projects.circular_dependency_aop.service;
+package mine.archive.circular_dependency_aop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package mine.projects.circular_dependency_aop;
+package mine.archive.circular_dependency_aop;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

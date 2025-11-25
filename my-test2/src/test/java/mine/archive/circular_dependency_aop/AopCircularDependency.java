@@ -1,7 +1,7 @@
-package mine.projects.circular_dependency_aop;
+package mine.archive.circular_dependency_aop;
 
-import mine.projects.circular_dependency_aop.service.Cat;
-import mine.projects.circular_dependency_aop.service.Person;
+import mine.archive.circular_dependency_aop.service.Cat;
+import mine.archive.circular_dependency_aop.service.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Arrays;
