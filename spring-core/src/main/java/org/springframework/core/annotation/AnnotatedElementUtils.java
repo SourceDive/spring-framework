@@ -518,6 +518,7 @@ public abstract class AnnotatedElementUtils {
 	}
 
 	/**
+	 * <p>确定给定的元素是否被给定的注解标注。</p>
 	 * Determine if an annotation of the specified {@code annotationType}
 	 * is <em>available</em> on the supplied {@link AnnotatedElement} or
 	 * within the annotation hierarchy <em>above</em> the specified element.

@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>异常解析器。</p>
  * Interface to be implemented by objects that can resolve exceptions thrown during
  * handler mapping or execution, in the typical case to error views. Implementors are
  * typically registered as beans in the application context.
@@ -36,6 +37,7 @@ import org.springframework.lang.Nullable;
 public interface HandlerExceptionResolver {
 
 	/**
+	 * <p>解析给定的异常。</p>
 	 * Try to resolve the given exception that got thrown during handler execution,
 	 * returning a {@link ModelAndView} that represents a specific error page if appropriate.
 	 * <p>The returned {@code ModelAndView} may be {@linkplain ModelAndView#isEmpty() empty}

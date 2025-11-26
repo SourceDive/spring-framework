@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>等于 @RequestMapping + Delete.</p>
  * Annotation for mapping HTTP {@code DELETE} requests onto specific handler
  * methods.
  *

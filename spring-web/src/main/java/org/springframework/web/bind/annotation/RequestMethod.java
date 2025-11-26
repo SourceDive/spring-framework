@@ -17,6 +17,7 @@
 package org.springframework.web.bind.annotation;
 
 /**
+ * <p>http请求方法枚举类。</p>
  * Enumeration of HTTP request methods. Intended for use with the
  * {@link RequestMapping#method()} attribute of the {@link RequestMapping} annotation.
  *

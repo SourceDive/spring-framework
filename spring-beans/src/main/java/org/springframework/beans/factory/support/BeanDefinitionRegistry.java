@@ -22,7 +22,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.core.AliasRegistry;
 
 /**
- * <p>bean定义的注册表。</p>
+ * <p>bean定义注册表。</p>
  * Interface for registries that hold bean definitions(持有bean定义), for example RootBeanDefinition
  * and ChildBeanDefinition instances. Typically implemented by BeanFactories that
  * internally work with the AbstractBeanDefinition hierarchy.

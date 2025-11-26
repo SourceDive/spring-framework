@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>等于 @RequestMapping + Patch.</p>
  * Annotation for mapping HTTP {@code PATCH} requests onto specific handler
  * methods.
  *

@@ -39,7 +39,9 @@ public interface HandlerMethodArgumentResolver {
 	boolean supportsParameter(MethodParameter parameter);
 
 	/**
-	 * Resolves a method parameter into an argument value from a given message.
+	 * <p>从给定消息中将方法参数解析为参数值。</p>
+	 * Resolves a method parameter(形参) into an argument(实参) value from a given
+	 * message.
 	 * @param parameter the method parameter to resolve.
 	 * This parameter must have previously been passed to
 	 * {@link #supportsParameter(org.springframework.core.MethodParameter)}

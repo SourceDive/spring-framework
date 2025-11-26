@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>等于 @RequestMapping + Get</p>
  * Annotation for mapping HTTP {@code GET} requests onto specific handler
  * methods.
  *

@@ -135,6 +135,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 	}
 
 	/**
+	 * <p>匹配被给定注解标注的handler.</p>
 	 * Match handlers annotated with a specific annotation.
 	 * @param annotations one or more annotations to check for
 	 */

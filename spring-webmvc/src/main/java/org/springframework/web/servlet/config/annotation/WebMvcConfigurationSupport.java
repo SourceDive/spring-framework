@@ -113,6 +113,7 @@ import org.springframework.web.util.UrlPathHelper;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
+ * <p>MVC配置的主要配置类。</p>
  * This is the main class providing the configuration behind the MVC Java config.
  * It is typically imported by adding {@link EnableWebMvc @EnableWebMvc} to an
  * application {@link Configuration @Configuration} class. An alternative more

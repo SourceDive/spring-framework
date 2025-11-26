@@ -28,6 +28,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
+ * <p>异常解析器集合。</p>
  * A {@link HandlerExceptionResolver} that delegates to a list of other
  * {@link HandlerExceptionResolver HandlerExceptionResolvers}.
  *

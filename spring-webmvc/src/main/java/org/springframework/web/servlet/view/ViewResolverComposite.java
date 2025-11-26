@@ -35,6 +35,7 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
 /**
+ * <p>视图解析器集合。</p>
  * A {@link org.springframework.web.servlet.ViewResolver} that delegates to others.
  *
  * @author Sebastien Deleuze

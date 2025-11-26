@@ -52,6 +52,7 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
+ * <p>扫描 handler bean 和 handler method 都在这个类中。</p>
  * Abstract base class for {@link HandlerMapping} implementations that define
  * a mapping between a request and a {@link HandlerMethod}.
  *
@@ -169,6 +170,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	}
 
 	/**
+	 * <p>获取 mapping 注册表。</p>
 	 * Return the internal mapping registry. Provided for testing purposes.
 	 */
 	MappingRegistry getMappingRegistry() {
@@ -176,6 +178,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	}
 
 	/**
+	 * <p>注册给定的 mapping.</p>
 	 * Register the given mapping.
 	 * <p>This method may be invoked at runtime after initialization has completed.
 	 * @param mapping the mapping for the handler method
@@ -190,6 +193,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	}
 
 	/**
+	 * <p>注销给定的 mapping.</p>
 	 * Un-register the given mapping.
 	 * <p>This method may be invoked at runtime after initialization has completed.
 	 * @param mapping the mapping to unregister
@@ -214,12 +218,14 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	}
 
 	/**
+	 * <p>扫描所有符合条件的 handler method.</p>
 	 * Scan beans in the ApplicationContext, detect and register handler methods.
 	 * @see #getCandidateBeanNames()
 	 * @see #processCandidateBean
 	 * @see #handlerMethodsInitialized
 	 */
 	protected void initHandlerMethods() {
+		// 遍历容器中所有的bean.
 		for (String beanName : getCandidateBeanNames()) {
 			if (!beanName.startsWith(SCOPED_TARGET_NAME_PREFIX)) {
 				processCandidateBean(beanName);
@@ -262,22 +268,29 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				logger.trace("Could not resolve type for bean '" + beanName + "'", ex);
 			}
 		}
+
+		/// 这里重要！！！
+		// 如果给定的bean类型为handler，再去查找类中的 handler method.
 		if (beanType != null && isHandler(beanType)) {
+			// 查找类中的 handler method.
 			detectHandlerMethods(beanName);
 		}
 	}
 
 	/**
+	 * <p>在给定的bean中查找 handler method.</p>
 	 * Look for handler methods in the specified handler bean.
 	 * @param handler either a bean name or an actual handler instance
 	 * @see #getMappingForMethod
 	 */
-	protected void detectHandlerMethods(Object handler) {
+	protected void detectHandlerMethods(Object handler/*bean name*/) {
+		// 获取给定handler类型。
 		Class<?> handlerType = (handler instanceof String ?
 				obtainApplicationContext().getType((String) handler) : handler.getClass());
 
 		if (handlerType != null) {
 			Class<?> userType = ClassUtils.getUserClass(handlerType);
+			// 查找所有符合条件的 method -> mapping 结果。
 			Map<Method, T> methods = MethodIntrospector.selectMethods(userType,
 					(MethodIntrospector.MetadataLookup<T>) method -> {
 						try {
@@ -294,6 +307,8 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 			else if (mappingsLogger.isDebugEnabled()) {
 				mappingsLogger.debug(formatMappings(userType, methods));
 			}
+
+			// 注册到注册表中。
 			methods.forEach((method, mapping) -> {
 				Method invocableMethod = AopUtils.selectInvocableMethod(method, userType);
 				registerHandlerMethod(handler, invocableMethod, mapping);
@@ -320,6 +335,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	}
 
 	/**
+	 * <p>注册 handler method.</p>
 	 * Register a handler method and its unique mapping. Invoked at startup for
 	 * each detected handler method.
 	 * @param handler the bean name of the handler or the handler instance
@@ -503,6 +519,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	// Abstract template methods
 
 	/**
+	 * <p>给定的bean类型是否是handler.</p>
 	 * Whether the given type is a handler with handler methods.
 	 * @param beanType the type of the bean being checked
 	 * @return "true" if this a handler type, "false" otherwise.
@@ -565,6 +582,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 
 	/**
+	 * <p>mapping注册表。</p>
 	 * A registry that maintains all mappings to handler methods, exposing methods
 	 * to perform lookups and providing concurrent access.
 	 *
@@ -583,6 +601,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 		private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
 		/**
+		 * <p>获取所有的注册项。</p>
 		 * Return all registrations.
 		 * @since 5.3
 		 */
@@ -741,7 +760,9 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 		}
 	}
 
-
+	/**
+	 * mapping 注册项。
+	 */
 	static class MappingRegistration<T> {
 
 		private final T mapping;

@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>等于 @RequestMapping + Put.</p>
  * Annotation for mapping HTTP {@code PUT} requests onto specific handler
  * methods.
  *

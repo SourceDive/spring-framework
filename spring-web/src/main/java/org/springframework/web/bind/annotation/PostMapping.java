@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>等于 @RequestMapping + Post.</p>
  * Annotation for mapping HTTP {@code POST} requests onto specific handler
  * methods.
  *

@@ -57,7 +57,7 @@ public final class MethodIntrospector {
 	 * or an empty map in case of no match
 	 */
 	public static <T> Map<Method, T> selectMethods(Class<?> targetType, final MetadataLookup<T> metadataLookup) {
-		final Map<Method, T> methodMap = new LinkedHashMap<>();
+		final Map<Method, T/*RequestMappingInfo*/> methodMap = new LinkedHashMap<>();
 		Set<Class<?>> handlerTypes = new LinkedHashSet<>();
 		Class<?> specificHandlerType = null;
 
@@ -72,6 +72,8 @@ public final class MethodIntrospector {
 
 			ReflectionUtils.doWithMethods(currentHandlerType, method -> {
 				Method specificMethod = ClassUtils.getMostSpecificMethod(method, targetClass);
+
+				// 在给定方法上获取 RequestMappingInfo
 				T result = metadataLookup.inspect(specificMethod);
 				if (result != null) {
 					Method bridgedMethod = BridgeMethodResolver.findBridgedMethod(specificMethod);
@@ -143,6 +145,8 @@ public final class MethodIntrospector {
 
 
 	/**
+	 * <p>元数据查找回调接口。</p>
+	 * <p>应用于方法。</p>
 	 * A callback interface for metadata lookup on a given method.
 	 * @param <T> the type of metadata returned
 	 */

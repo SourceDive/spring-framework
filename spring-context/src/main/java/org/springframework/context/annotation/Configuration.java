@@ -446,8 +446,9 @@ public @interface Configuration {
 	 *     <ul>true: 有 CGLIB 代理。为了解决跨方法调用的单例安全性。</ul>
 	 *     <ul>false: 无 CGLIB 代理 </ul>
 	 * </p>
-	 * <p>是否支持bean间引用。</p>
-	 * <p>full模式支持，lite模式不支持。</p>
+	 * <p>是否支持bean间引用: </p>
+	 * <p>1、full模式(在配置类中定义@Bean)支持</p>
+	 * <p>2、lite模式(不在配置类中定义@Bean)不支持。</p>
 	 * Specify whether {@code @Bean} methods should get proxied in order to enforce
 	 * bean lifecycle behavior, e.g. to return shared singleton bean instances even
 	 * in case of direct {@code @Bean} method calls in user code. This feature

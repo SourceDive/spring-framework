@@ -317,7 +317,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	 * @see #getCustomMethodCondition(Method)
 	 */
 	@Nullable
-	private RequestMappingInfo createRequestMappingInfo(AnnotatedElement element) {
+	private RequestMappingInfo createRequestMappingInfo(AnnotatedElement element) { // Method就是一个AnnotatedElement，去jdk中查看下 Method的继承图。
+		// 找出方法上的 @RequestMapping 注解信息。
 		RequestMapping requestMapping = AnnotatedElementUtils.findMergedAnnotation(element, RequestMapping.class);
 		RequestCondition<?> condition = (element instanceof Class ?
 				getCustomTypeCondition((Class<?>) element) : getCustomMethodCondition((Method) element));
@@ -357,6 +358,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
+	 * <p>创建 @RequestMapping 注解相关信息。</p>
 	 * Create a {@link RequestMappingInfo} from the supplied
 	 * {@link RequestMapping @RequestMapping} annotation, which is either
 	 * a directly declared annotation, a meta-annotation, or the synthesized

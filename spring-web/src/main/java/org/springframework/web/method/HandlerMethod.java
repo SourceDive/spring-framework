@@ -103,7 +103,7 @@ public class HandlerMethod {
 	/**
 	 * Create an instance from a bean instance and a method.
 	 */
-	public HandlerMethod(Object bean, Method method) {
+	public HandlerMethod(Object bean/*handler*/, Method method) {
 		this(bean, method, null);
 	}
 
