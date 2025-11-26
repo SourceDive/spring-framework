@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
  * 不依赖Jackson，只返回纯文本响应
  * 用于调试Spring源码中的HTTP处理流程
  */
-@Controller
+@RestController
 @RequestMapping("/text-api")
 public class SimpleTextController {
 
@@ -18,8 +18,7 @@ public class SimpleTextController {
 	 * GET请求示例 - 获取用户信息
 	 * 访问: GET /api/user/{id}
 	 */
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	@ResponseBody
+	@GetMapping(value = "/user/{id}")
 	public ResponseEntity<String> getUser(@PathVariable("id") Long id) {
 		System.out.println("=== GET请求处理开始 ===");
 		System.out.println("接收到的用户ID: " + id);
