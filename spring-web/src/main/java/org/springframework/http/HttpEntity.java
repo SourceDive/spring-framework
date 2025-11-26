@@ -21,6 +21,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * <p>http实体。代表http请求或者响应。</p>
  * Represents an HTTP request or response entity, consisting of headers and body.
  *
  * <p>Often used in combination with the {@link org.springframework.web.client.RestTemplate},

@@ -63,6 +63,7 @@ public interface HandlerAdapter {
 	boolean supports(Object handler);
 
 	/**
+	 * <p>使用给定的处理器处理请求。</p>
 	 * Use the given handler to handle this request.
 	 * The workflow that is required may vary widely.
 	 * @param request current HTTP request

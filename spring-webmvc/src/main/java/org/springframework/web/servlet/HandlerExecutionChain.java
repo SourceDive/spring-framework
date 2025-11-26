@@ -88,6 +88,7 @@ public class HandlerExecutionChain {
 
 
 	/**
+	 * <p>返回要执行的处理器对象。</p>
 	 * Return the handler object to execute.
 	 */
 	public Object getHandler() {

@@ -105,6 +105,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 
 
 	/**
+	 * <p>触发方法，处理返回值。</p>
 	 * Invoke the method and handle the return value through one of the
 	 * configured {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
 	 * @param webRequest the current request
@@ -131,6 +132,8 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 		}
 
 		mavContainer.setRequestHandled(false);
+
+		// 处理返回值。
 		Assert.state(this.returnValueHandlers != null, "No return value handlers");
 		try {
 			this.returnValueHandlers.handleReturnValue(
