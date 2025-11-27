@@ -79,7 +79,7 @@ import javax.servlet.http.HttpServletResponse;
 public interface HttpRequestHandler {
 
 	/**
-	 * <p>处理给定的请求，并生成响应。</p>
+	 * <p>处理请求，并生成响应。</p>
 	 * Process the given request, generating a response.
 	 * @param request current HTTP request
 	 * @param response current HTTP response

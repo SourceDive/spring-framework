@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>处理器适配器。</p>
  * MVC framework SPI, allowing parameterization of the core MVC workflow.
  *
  * <p>Interface that must be implemented for each handler type to handle a request.
@@ -50,6 +51,7 @@ import org.springframework.lang.Nullable;
 public interface HandlerAdapter {
 
 	/**
+	 * <p>适配器是否支持给定的处理器。</p>
 	 * Given a handler instance, return whether this {@code HandlerAdapter}
 	 * can support it. Typical HandlerAdapters will base the decision on the handler
 	 * type. HandlerAdapters will usually only support one handler type each.

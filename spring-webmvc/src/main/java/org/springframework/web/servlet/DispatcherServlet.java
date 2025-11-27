@@ -1070,6 +1070,7 @@ public class DispatcherServlet extends FrameworkServlet {
 					}
 				}
 
+				// 处理器触发前回调。
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
 					return;
 				}
@@ -1083,6 +1084,8 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				applyDefaultViewName(processedRequest, mv);
+
+				// 处理器触发后回调
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
 			}
 			catch (Exception ex) {

@@ -859,7 +859,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		AsyncWebRequest asyncWebRequest = WebAsyncUtils.createAsyncWebRequest(request, response);
 		asyncWebRequest.setTimeout(this.asyncRequestTimeout);
 
-		asyncManager.setTaskExecutor(this.taskExecutor);
+		asyncManager.setTaskExecutor(this.taskExecutor); // 设置线程池。
 		asyncManager.setAsyncWebRequest(asyncWebRequest);
 		asyncManager.registerCallableInterceptors(this.callableInterceptors);
 		asyncManager.registerDeferredResultInterceptors(this.deferredResultInterceptors);
