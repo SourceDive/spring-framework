@@ -31,6 +31,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
+ * <p>处理器执行链。</p>
+ * <p>这其实也是一个集合：handler + 多个 interceptor.</p>
  * Handler execution chain, consisting of handler object and any handler interceptors.
  * Returned by HandlerMapping's {@link HandlerMapping#getHandler} method.
  *
@@ -96,6 +98,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
+	 * <p>添加拦截器到链的末尾。</p>
 	 * Add the given interceptor to the end of this chain.
 	 */
 	public void addInterceptor(HandlerInterceptor interceptor) {
@@ -103,6 +106,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
+	 * <p>添加拦截器到指定位置。</p>
 	 * Add the given interceptor at the specified index of this chain.
 	 * @since 5.2
 	 */
@@ -111,6 +115,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
+	 * <p>添加多个拦截器到链的末尾。</p>
 	 * Add the given interceptors to the end of this chain.
 	 */
 	public void addInterceptors(HandlerInterceptor... interceptors) {
@@ -118,6 +123,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
+	 * <p>获取所有拦截器(数组形式)。</p>
 	 * Return the array of interceptors to apply (in the given order).
 	 * @return the array of HandlerInterceptors instances (may be {@code null})
 	 */
@@ -127,6 +133,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
+	 * <p>获取所有拦截器(列表形式)。</p>
 	 * Return the list of interceptors to apply (in the given order).
 	 * @return the list of HandlerInterceptors instances (potentially empty)
 	 * @since 5.3
