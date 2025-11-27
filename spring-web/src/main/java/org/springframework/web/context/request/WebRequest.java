@@ -24,6 +24,7 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
+ * <p>通用web请求接口。</p>
  * Generic interface for a web request. Mainly intended for generic web
  * request interceptors, giving them access to general request metadata,
  * not for actual handling of the request.
@@ -70,6 +71,7 @@ public interface WebRequest extends RequestAttributes {
 	String getParameter(String paramName);
 
 	/**
+	 * <p>获取请求中给定参数名对应的值。</p>
 	 * Return the request parameter values for the given parameter name,
 	 * or {@code null} if none.
 	 * <p>A single-value parameter will be exposed as an array with a single element.

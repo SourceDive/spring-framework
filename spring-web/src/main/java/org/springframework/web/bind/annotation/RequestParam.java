@@ -26,6 +26,7 @@ import java.util.Map;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * <p>注意，这个不支持json格式的。</p>
  * Annotation which indicates that a method parameter should be bound to a web
  * request parameter.
  *

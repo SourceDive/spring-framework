@@ -493,7 +493,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	}
 
 	/**
-	 * <p>初始化。context.getBean(xxx).</p>
+	 * <p>初始化各种bean。context.getBean(xxx).</p>
 	 * Initialize the strategy objects that this servlet uses.
 	 * <p>May be overridden in subclasses in order to initialize further strategy objects.
 	 */
@@ -964,6 +964,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 
 		try {
+			/// 入口
 			doDispatch(request, response);
 		}
 		finally {

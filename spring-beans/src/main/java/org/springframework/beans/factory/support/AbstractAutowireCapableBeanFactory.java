@@ -1887,8 +1887,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}, getAccessControlContext());
 		}
 		else {
-			// 1、执行工厂回调，如aware 回调
-			// aware 回调是什么？
+			// 1、触发 Aware 接口
 			invokeAwareMethods(beanName, bean);
 		}
 

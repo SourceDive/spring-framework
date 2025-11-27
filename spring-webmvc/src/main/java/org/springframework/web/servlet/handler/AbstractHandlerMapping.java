@@ -540,6 +540,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
+	 * <p>寻找请求对应的 handler.</p>
 	 * Look up a handler for the given request, returning {@code null} if no
 	 * specific one is found. This method is called by {@link #getHandler};
 	 * a {@code null} return value will lead to the default handler, if one is set.
@@ -559,6 +560,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	protected abstract Object getHandlerInternal(HttpServletRequest request) throws Exception;
 
 	/**
+	 * <p>初始化请求路径。</p>
 	 * Initialize the path to use for request mapping.
 	 * <p>When parsed patterns are {@link #usesPathPatterns() enabled} a parsed
 	 * {@code RequestPath} is expected to have been

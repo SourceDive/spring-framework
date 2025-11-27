@@ -23,6 +23,7 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
+ * <p>参数解析器。</p>
  * Strategy interface for resolving method parameters into argument values in
  * the context of a given request.
  *
@@ -42,6 +43,7 @@ public interface HandlerMethodArgumentResolver {
 	boolean supportsParameter(MethodParameter parameter);
 
 	/**
+	 * <p>解析给定请求中的参数。</p>
 	 * Resolves a method parameter into an argument value from a given request.
 	 * A {@link ModelAndViewContainer} provides access to the model for the
 	 * request. A {@link WebDataBinderFactory} provides a way to create
