@@ -190,6 +190,7 @@ abstract class ConfigurationClassUtils {
 	 */
 	@Nullable
 	public static Integer getOrder(AnnotationMetadata metadata) {
+		// 获取 @Order 注解属性。
 		Map<String, Object> orderAttributes = metadata.getAnnotationAttributes(Order.class.getName());
 		return (orderAttributes != null ? ((Integer) orderAttributes.get(AnnotationUtils.VALUE)) : null);
 	}

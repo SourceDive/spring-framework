@@ -68,6 +68,7 @@ public interface AnnotatedTypeMetadata {
 	}
 
 	/**
+	 * <p>获取给定注解类型的属性。</p>
 	 * Retrieve the attributes of the annotation of the given type, if any (i.e. if
 	 * defined on the underlying element, as direct annotation or meta-annotation),
 	 * also taking attribute overrides on composed annotations into account.
