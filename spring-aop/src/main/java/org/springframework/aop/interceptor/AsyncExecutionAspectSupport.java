@@ -184,7 +184,7 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	}
 
 	/**
-	 * <p>获取异步方法的执行器名称。</p>
+	 * <p>获取异步方法的线程池名称。</p>
 	 * Return the qualifier or bean name of the executor to be used when executing the
 	 * given async method, typically specified in the form of an annotation attribute.
 	 * Returning an empty string or {@code null} indicates that no specific executor has

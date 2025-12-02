@@ -19,6 +19,7 @@ package org.springframework.aop.interceptor;
 import java.lang.reflect.Method;
 
 /**
+ * <p>异步未捕获异常处理器。</p>
  * A strategy for handling uncaught exceptions thrown from asynchronous methods.
  *
  * <p>An asynchronous method usually returns a {@link java.util.concurrent.Future}

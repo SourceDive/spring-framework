@@ -115,9 +115,10 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 					"No executor specified and no default executor set on AsyncExecutionInterceptor either");
 		}
 
-		// 定义任务。在执行器中触发我们的方法。
+		// 1、定义任务。
 		Callable<Object> task = () -> {
 			try {
+				// 任务内容：触发业务方法。
 				Object result = invocation.proceed();
 				if (result instanceof Future) {
 					return ((Future<?>) result).get();
@@ -132,10 +133,12 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 			return null;
 		};
 
+		// 2、提交任务
 		return doSubmit(task, executor, invocation.getMethod().getReturnType());
 	}
 
 	/**
+	 * <p>获取线程池名称。</p>
 	 * This implementation is a no-op for compatibility in Spring 3.1.2.
 	 * Subclasses may override to provide support for extracting qualifier information,
 	 * e.g. via an annotation on the given method.

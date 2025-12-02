@@ -615,6 +615,7 @@ public abstract class AnnotatedElementUtils {
 	}
 
 	/**
+	 * <p>获取给定元素上特定注解类型的注解。</p>
 	 * Find the first annotation of the specified {@code annotationType} within
 	 * the annotation hierarchy <em>above</em> the supplied {@code element},
 	 * merge that annotation's attributes with <em>matching</em> attributes from

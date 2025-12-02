@@ -57,6 +57,7 @@ final class PostProcessorRegistrationDelegate {
 
 
 	/**
+	 * <p>触发 BeanFactory 级别的 PostProcessor.</p>
 	 * @author ongoing
 	 * @date 2025-04-16 14:02:54
 	 * @description todo 为什么这个方法只处理 BeanDefinitionRegistryPostProcessor 类型的 BeanFactoryPostProcessor?

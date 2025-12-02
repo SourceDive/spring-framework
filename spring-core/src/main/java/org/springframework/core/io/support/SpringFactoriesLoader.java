@@ -118,6 +118,7 @@ public final class SpringFactoriesLoader {
 	}
 
 	/**
+	 * <p>加载给定类型的实现。</p>
 	 * Load the fully qualified class names of factory implementations of the
 	 * given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given
 	 * class loader.

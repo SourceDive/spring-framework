@@ -96,6 +96,7 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 	}
 
 	/**
+	 * <p>设置拒绝策略。</p>
 	 * Set the RejectedExecutionHandler to use for the ExecutorService.
 	 * Default is the ExecutorService's default abort policy.
 	 * @see java.util.concurrent.ThreadPoolExecutor.AbortPolicy
@@ -177,6 +178,7 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 	}
 
 	/**
+	 * <p>初始化线程池。</p>
 	 * Set up the ExecutorService.
 	 */
 	public void initialize() {
@@ -237,6 +239,7 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 	}
 
 	/**
+	 * <p>取消剩余的任务。</p>
 	 * Cancel the given remaining task which never commended execution,
 	 * as returned from {@link ExecutorService#shutdownNow()}.
 	 * @param task the task to cancel (typically a {@link RunnableFuture})
