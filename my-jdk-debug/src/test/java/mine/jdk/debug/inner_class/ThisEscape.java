@@ -34,7 +34,7 @@ public class ThisEscape {
         try {
             Thread.sleep(100); // 模拟初始化延迟
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            Thread.currentThread().interrupt(); // 重新设置中断信号。
         }
         
         // 这些字段在构造函数最后才初始化
@@ -94,7 +94,7 @@ public class ThisEscape {
                         // 触发事件，此时可能对象还没有完全初始化
                         fireEvent();
                     } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
+                        Thread.currentThread().interrupt(); // 重新设置中断信号。
                     }
                 });
                 eventThread.start();

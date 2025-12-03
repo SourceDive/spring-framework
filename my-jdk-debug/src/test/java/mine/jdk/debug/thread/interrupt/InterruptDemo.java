@@ -1,4 +1,4 @@
-package mine.jdk.debug.thread;
+package mine.jdk.debug.thread.interrupt;
 
 /**
  * @author zero

@@ -743,7 +743,7 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 						TimeUnit.SECONDS.sleep(startupDelay);
 					}
 					catch (InterruptedException ex) {
-						Thread.currentThread().interrupt();
+						Thread.currentThread().interrupt(); // 重新设置中断信号。
 						// simply proceed
 					}
 					if (logger.isInfoEnabled()) {

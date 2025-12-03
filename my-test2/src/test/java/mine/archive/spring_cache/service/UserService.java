@@ -30,7 +30,7 @@ public class UserService {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            Thread.currentThread().interrupt(); // 重新设置中断信号。
         }
         return "用户" + id + "的信息";
     }
@@ -47,7 +47,7 @@ public class UserService {
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            Thread.currentThread().interrupt(); // 重新设置中断信号。
         }
         return "更新后的用户" + user.getId() + "信息";
     }

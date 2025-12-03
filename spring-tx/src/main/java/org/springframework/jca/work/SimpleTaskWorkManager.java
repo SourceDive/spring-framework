@@ -194,7 +194,7 @@ public class SimpleTaskWorkManager implements WorkManager {
 					}
 				}
 				catch (InterruptedException ex) {
-					Thread.currentThread().interrupt();
+					Thread.currentThread().interrupt(); // 重新设置中断信号。
 				}
 			}
 			return (System.currentTimeMillis() - acceptanceTime);
