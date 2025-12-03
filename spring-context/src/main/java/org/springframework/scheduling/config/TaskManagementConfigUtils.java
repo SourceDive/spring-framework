@@ -31,6 +31,7 @@ public abstract class TaskManagementConfigUtils {
 			"org.springframework.context.annotation.internalScheduledAnnotationProcessor";
 
 	/**
+	 * <p>@Async注解的 processor.</p>
 	 * The bean name of the internally managed Async annotation processor.
 	 */
 	public static final String ASYNC_ANNOTATION_PROCESSOR_BEAN_NAME =

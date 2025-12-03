@@ -106,6 +106,7 @@ public class AsyncAnnotationBeanPostProcessor extends AbstractBeanFactoryAwareAd
 	}
 
 	/**
+	 * <p>设置线程池。</p>
 	 * Set the {@link Executor} to use when invoking methods asynchronously.
 	 * <p>If not specified, default executor resolution will apply: searching for a
 	 * unique {@link TaskExecutor} bean in the context, or for an {@link Executor}
@@ -119,6 +120,7 @@ public class AsyncAnnotationBeanPostProcessor extends AbstractBeanFactoryAwareAd
 	}
 
 	/**
+	 * <p>设置异常处理器。</p>
 	 * Set the {@link AsyncUncaughtExceptionHandler} to use to handle uncaught
 	 * exceptions thrown by asynchronous method executions.
 	 * @since 4.1
