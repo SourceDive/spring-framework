@@ -1,4 +1,4 @@
-package mine.jdk.debug.lock;
+package mine.jdk.debug.lock.wait_notify;
 
 /**
  * @author zero

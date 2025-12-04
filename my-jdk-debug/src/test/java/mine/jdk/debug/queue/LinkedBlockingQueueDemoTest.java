@@ -1,4 +1,4 @@
-package mine.jdk.debug.lock;
+package mine.jdk.debug.queue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
