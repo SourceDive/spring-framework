@@ -22,6 +22,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 
 /**
+ * <p>专为测试使用。</p>
  * Used for testing only (for example, when we must replace the
  * behavior of a PlatformTransactionManager bean we don't have access to).
  *
@@ -36,7 +37,7 @@ public class PlatformTransactionManagerFacade implements PlatformTransactionMana
 	/**
 	 * This member can be changed to change behavior class-wide.
 	 */
-	public static PlatformTransactionManager delegate;
+	public static PlatformTransactionManager delegate; // 被委托的对象
 
 	@Override
 	public TransactionStatus getTransaction(@Nullable TransactionDefinition definition) {

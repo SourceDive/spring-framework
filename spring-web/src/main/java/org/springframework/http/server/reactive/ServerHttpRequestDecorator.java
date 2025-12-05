@@ -39,7 +39,7 @@ import org.springframework.util.MultiValueMap;
  */
 public class ServerHttpRequestDecorator implements ServerHttpRequest {
 
-	private final ServerHttpRequest delegate;
+	private final ServerHttpRequest delegate; // 目标对象
 
 
 	public ServerHttpRequestDecorator(ServerHttpRequest delegate) {

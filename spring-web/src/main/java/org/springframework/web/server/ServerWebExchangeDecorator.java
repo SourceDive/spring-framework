@@ -48,7 +48,7 @@ import org.springframework.util.MultiValueMap;
  */
 public class ServerWebExchangeDecorator implements ServerWebExchange {
 
-	private final ServerWebExchange delegate;
+	private final ServerWebExchange delegate; // 目标对象
 
 
 	protected ServerWebExchangeDecorator(ServerWebExchange delegate) {
