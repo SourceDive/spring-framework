@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package mine.jdk.debug.protobuf;
+
+option java_package = "mine.jdk.debug.protobuf.proto";
+option java_outer_classname = "UserProto";
+// 启用 java_multiple_files 选项后，会为 proto 文件中的每个消息类型、枚举和服务分别生成对应的 Java 类，而不是全部放在一个外部类中。
+option java_multiple_files = true;
+
+// 用户消息定义
+// message 用于在 Protocol Buffers (protobuf) 中定义一种数据结构，相当于 Java 中的类（class），用于描述要序列化和传输的数据类型。
+// 下面定义了一个名为 User 的消息类型，包含 id、name、email 和 age 等字段。
+message User {
+    int32 id = 1;           // 用户ID
+    string name = 2;        // 用户名
+    string email = 3;       // 邮箱
+    int32 age = 4;          // 年龄
+}
+

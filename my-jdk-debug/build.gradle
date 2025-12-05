@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.google.protobuf' version '0.9.4'
 }
 
 group = "org.springframework"
@@ -13,12 +14,41 @@ dependencies {
     // 只依赖JDK标准库，不依赖Spring模块
     // 这样可以快速编译和运行
     
+    // Protobuf 依赖
+    implementation 'com.google.protobuf:protobuf-java:3.25.1'
+    
     // 测试依赖
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation(platform("org.junit:junit-bom:5.13.4"))
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
+}
+
+// Protobuf 配置
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.25.1"
+    }
+    generateProtoTasks {
+        ofSourceSet('test').each { task ->
+            task.builtins {
+                java {
+                    // 生成的 Java 文件输出到源码目录
+                    outputSubDir = 'java'
+                }
+            }
+        }
+    }
+}
+
+// 配置 proto 文件源目录（proto 文件现在在 Java 源码目录下）
+sourceSets {
+    test {
+        proto {
+            srcDir 'src/test/java'
+        }
+    }
 }
 
 tasks.test {
