@@ -1,4 +1,4 @@
-package mine.jdk.debug.protobuf;
+package mine.jdk.debug.protobuf.simple;
 
 import mine.jdk.debug.protobuf.proto.User;
 
