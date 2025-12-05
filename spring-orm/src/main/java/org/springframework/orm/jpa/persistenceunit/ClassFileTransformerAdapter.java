@@ -42,7 +42,7 @@ class ClassFileTransformerAdapter implements ClassFileTransformer {
 	private static final Log logger = LogFactory.getLog(ClassFileTransformerAdapter.class);
 
 
-	private final ClassTransformer classTransformer;
+	private final ClassTransformer classTransformer; // 被适配的对象
 
 	private boolean currentlyTransforming = false;
 

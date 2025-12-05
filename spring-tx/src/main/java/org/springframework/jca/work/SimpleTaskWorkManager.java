@@ -211,7 +211,7 @@ public class SimpleTaskWorkManager implements WorkManager {
 	 */
 	private static class DelegatingWorkAdapter implements Work {
 
-		private final Work work;
+		private final Work work; // 被适配的对象。
 
 		private final WorkListener workListener;
 

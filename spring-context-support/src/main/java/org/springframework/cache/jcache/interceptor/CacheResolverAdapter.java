@@ -37,7 +37,7 @@ import org.springframework.util.Assert;
  */
 class CacheResolverAdapter implements CacheResolver {
 
-	private final javax.cache.annotation.CacheResolver target;
+	private final javax.cache.annotation.CacheResolver target; // 被适配的对象
 
 
 	/**

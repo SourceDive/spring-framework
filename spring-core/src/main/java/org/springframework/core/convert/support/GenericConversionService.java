@@ -343,7 +343,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 	@SuppressWarnings("unchecked")
 	private final class ConverterAdapter implements ConditionalGenericConverter {
 
-		private final Converter<Object, Object> converter;
+		private final Converter<Object, Object> converter; // 被适配的对象。
 
 		private final ConvertiblePair typeInfo;
 

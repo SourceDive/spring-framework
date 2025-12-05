@@ -46,6 +46,7 @@ import javax.jms.Session;
 public interface SessionAwareMessageListener<M extends Message> {
 
 	/**
+	 * <p>生命周期：接受到消息时。</p>
 	 * Callback for processing a received JMS message.
 	 * <p>Implementors are supposed to process the given Message,
 	 * typically sending reply messages through the given Session.

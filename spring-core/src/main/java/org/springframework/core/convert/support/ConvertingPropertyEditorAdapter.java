@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
  */
 public class ConvertingPropertyEditorAdapter extends PropertyEditorSupport {
 
-	private final ConversionService conversionService;
+	private final ConversionService conversionService; // 被适配的对象
 
 	private final TypeDescriptor targetDescriptor;
 

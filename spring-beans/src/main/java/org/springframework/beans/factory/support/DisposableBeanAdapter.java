@@ -71,7 +71,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 	private static final Log logger = LogFactory.getLog(DisposableBeanAdapter.class);
 
-	private final Object bean;
+	private final Object bean; // 被适配的对象。
 
 	private final String beanName;
 

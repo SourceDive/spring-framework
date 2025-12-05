@@ -41,7 +41,7 @@ public class GenericApplicationListenerAdapter implements GenericApplicationList
 	private static final Map<Class<?>, ResolvableType> eventTypeCache = new ConcurrentReferenceHashMap<>();
 
 
-	private final ApplicationListener<ApplicationEvent> delegate;
+	private final ApplicationListener<ApplicationEvent> delegate; // 被适配的对象
 
 	@Nullable
 	private final ResolvableType declaredEventType;

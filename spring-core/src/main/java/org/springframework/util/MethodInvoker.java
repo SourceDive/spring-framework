@@ -45,10 +45,10 @@ public class MethodInvoker {
 	protected Class<?> targetClass;
 
 	@Nullable
-	private Object targetObject;
+	private Object targetObject; // 目标对象
 
 	@Nullable
-	private String targetMethod;
+	private String targetMethod; // 目标方法
 
 	@Nullable
 	private String staticMethod;

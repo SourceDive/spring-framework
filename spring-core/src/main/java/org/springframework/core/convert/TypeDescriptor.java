@@ -736,7 +736,7 @@ public class TypeDescriptor implements Serializable {
 
 		private static final AnnotatedElementAdapter EMPTY = new AnnotatedElementAdapter(new Annotation[0]);
 
-		private final Annotation[] annotations;
+		private final Annotation[] annotations; // 被适配的对象
 
 		private AnnotatedElementAdapter(Annotation[] annotations) {
 			this.annotations = annotations;

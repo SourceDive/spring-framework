@@ -81,7 +81,7 @@ class ExtendedBeanInfo implements BeanInfo {
 
 	private static final Log logger = LogFactory.getLog(ExtendedBeanInfo.class);
 
-	private final BeanInfo delegate;
+	private final BeanInfo delegate; // 被适配的对象
 
 	private final Set<PropertyDescriptor> propertyDescriptors = new TreeSet<>(new PropertyDescriptorComparator());
 

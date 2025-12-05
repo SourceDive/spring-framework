@@ -128,7 +128,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	public static final String ORIGINAL_DEFAULT_LISTENER_METHOD = "handleMessage";
 
 
-	private Object delegate;
+	private Object delegate; // 被适配的对象，目标对象。
 
 	private String defaultListenerMethod = ORIGINAL_DEFAULT_LISTENER_METHOD;
 
@@ -189,6 +189,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 
 	/**
 	 * Spring {@link SessionAwareMessageListener} entry point.
+	 * <p>将消息委派给目标监听方法。</p>
 	 * <p>Delegates the message to the target listener method, with appropriate
 	 * conversion of the message argument. If the target method returns a
 	 * non-null object, wrap in a JMS message and send it back.
@@ -201,6 +202,8 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	public void onMessage(Message message, @Nullable Session session) throws JMSException {
 		// Check whether the delegate is a MessageListener impl itself.
 		// In that case, the adapter will simply act as a pass-through.
+
+		// 获取目标对象
 		Object delegate = getDelegate();
 		if (delegate != this) {
 			if (delegate instanceof SessionAwareMessageListener) {

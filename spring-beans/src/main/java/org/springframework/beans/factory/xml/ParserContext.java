@@ -42,7 +42,7 @@ public final class ParserContext {
 
 	private final XmlReaderContext readerContext;
 
-	private final BeanDefinitionParserDelegate delegate;
+	private final BeanDefinitionParserDelegate delegate; // 被适配的对象
 
 	@Nullable
 	private BeanDefinition containingBeanDefinition;

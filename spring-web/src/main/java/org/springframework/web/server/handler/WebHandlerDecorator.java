@@ -30,7 +30,7 @@ import org.springframework.web.server.WebHandler;
  */
 public class WebHandlerDecorator implements WebHandler {
 
-	private final WebHandler delegate;
+	private final WebHandler delegate; // 被适配的对象。
 
 
 	/**

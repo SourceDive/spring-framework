@@ -37,7 +37,7 @@ import org.springframework.util.Assert;
  */
 public class ConcurrentExecutorAdapter implements Executor {
 
-	private final TaskExecutor taskExecutor;
+	private final TaskExecutor taskExecutor; // 被适配的对象
 
 
 	/**

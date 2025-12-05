@@ -666,7 +666,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	 */
 	private static class AsyncRequestCallbackAdapter implements AsyncRequestCallback {
 
-		private final RequestCallback adaptee;
+		private final RequestCallback adaptee; // 被适配的对象。
 
 		/**
 		 * Create a new {@code AsyncRequestCallbackAdapter} from the given

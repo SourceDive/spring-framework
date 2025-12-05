@@ -44,7 +44,7 @@ import org.springframework.util.Assert;
  */
 public class ExecutorServiceAdapter extends AbstractExecutorService {
 
-	private final TaskExecutor taskExecutor;
+	private final TaskExecutor taskExecutor; // 被适配的对象，实际干活的对象。
 
 
 	/**

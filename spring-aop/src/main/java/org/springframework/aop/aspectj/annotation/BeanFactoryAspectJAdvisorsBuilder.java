@@ -45,7 +45,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 
 	private static final Log logger = LogFactory.getLog(BeanFactoryAspectJAdvisorsBuilder.class);
 
-	private final ListableBeanFactory beanFactory;
+	private final ListableBeanFactory beanFactory; // 被适配的对象
 
 	private final AspectJAdvisorFactory advisorFactory;
 
