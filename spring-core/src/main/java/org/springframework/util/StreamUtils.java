@@ -213,6 +213,7 @@ public abstract class StreamUtils {
 	}
 
 	/**
+	 * <p>排空给定 InputStream 的剩余内容。</p>
 	 * Drain the remaining content of the given InputStream.
 	 * <p>Leaves the InputStream open when done.
 	 * @param in the InputStream to drain
