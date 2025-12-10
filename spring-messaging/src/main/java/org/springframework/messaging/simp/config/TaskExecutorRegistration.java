@@ -21,6 +21,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.Assert;
 
 /**
+ * <p>执行器注册项。</p>
  * A registration class for customizing the properties of {@link ThreadPoolTaskExecutor}.
  *
  * @author Rossen Stoyanchev

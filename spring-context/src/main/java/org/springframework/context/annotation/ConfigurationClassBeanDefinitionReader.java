@@ -159,6 +159,8 @@ class ConfigurationClassBeanDefinitionReader {
 
 		// load xml配置文件的bean 。不关注这个
 		loadBeanDefinitionsFromImportedResources(configClass.getImportedResources());
+
+		// 从注册器中加载bean定义。
 		// 又是回调
 		loadBeanDefinitionsFromRegistrars(configClass.getImportBeanDefinitionRegistrars());
 	}

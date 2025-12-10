@@ -31,6 +31,7 @@ import org.springframework.web.util.ServletRequestPathUtils;
 import org.springframework.web.util.pattern.PathPattern;
 
 /**
+ * <p>拦截器注册项。</p>
  * Assists with the creation of a {@link MappedInterceptor}.
  *
  * @author Rossen Stoyanchev

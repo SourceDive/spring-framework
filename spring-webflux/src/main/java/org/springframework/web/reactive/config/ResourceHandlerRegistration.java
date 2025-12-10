@@ -33,6 +33,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.reactive.resource.ResourceWebHandler;
 
 /**
+ * <p>资源处理器注册项。</p>
  * Assist with creating and configuring a static resources handler.
  *
  * @author Rossen Stoyanchev

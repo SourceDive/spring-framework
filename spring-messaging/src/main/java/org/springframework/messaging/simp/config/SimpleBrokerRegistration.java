@@ -23,6 +23,7 @@ import org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler;
 import org.springframework.scheduling.TaskScheduler;
 
 /**
+ * <p>broker 注册项。</p>
  * Registration class for configuring a {@link SimpleBrokerMessageHandler}.
  *
  * @author Rossen Stoyanchev

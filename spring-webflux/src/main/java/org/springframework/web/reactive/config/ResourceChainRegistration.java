@@ -34,6 +34,7 @@ import org.springframework.web.reactive.resource.VersionResourceResolver;
 import org.springframework.web.reactive.resource.WebJarsResourceResolver;
 
 /**
+ * <p>资源链注册项。</p>
  * Assists with the registration of resource resolvers and transformers.
  *
  * @author Rossen Stoyanchev

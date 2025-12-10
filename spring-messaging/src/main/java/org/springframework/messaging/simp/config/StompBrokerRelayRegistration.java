@@ -25,6 +25,7 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.util.Assert;
 
 /**
+ * <p>broker 注册项。</p>
  * Registration class for configuring a {@link StompBrokerRelayMessageHandler}.
  *
  * @author Rossen Stoyanchev

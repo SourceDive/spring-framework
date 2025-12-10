@@ -28,6 +28,7 @@ import org.springframework.messaging.simp.broker.AbstractBrokerMessageHandler;
 import org.springframework.util.Assert;
 
 /**
+ * <p>broker 注册项。</p>
  * Base class for message broker registration classes.
  *
  * @author Rossen Stoyanchev

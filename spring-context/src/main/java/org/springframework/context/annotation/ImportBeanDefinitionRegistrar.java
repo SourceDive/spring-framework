@@ -22,6 +22,7 @@ import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.core.type.AnnotationMetadata;
 
 /**
+ * <p>导入bean定义注册器。</p>
  * Interface to be implemented by types that register additional bean definitions when
  * processing @{@link Configuration} classes. Useful when operating at the bean definition
  * level bean 定义层级(as opposed to 而不是{@code @Bean} method/instance level

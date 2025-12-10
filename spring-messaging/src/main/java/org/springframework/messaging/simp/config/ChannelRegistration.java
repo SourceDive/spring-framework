@@ -25,6 +25,7 @@ import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
+ * <p>channel 注册项。</p>
  * A registration class for customizing the configuration for a
  * {@link org.springframework.messaging.MessageChannel}.
  *
