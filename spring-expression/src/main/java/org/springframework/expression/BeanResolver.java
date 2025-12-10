@@ -17,6 +17,7 @@
 package org.springframework.expression;
 
 /**
+ * <p>bean解析器。</p>
  * A bean resolver can be registered with the evaluation context and will kick in
  * for bean references: {@code @myBeanName} and {@code &myBeanName} expressions.
  * The {@code &} variant syntax allows access to the factory bean where relevant.
@@ -27,6 +28,7 @@ package org.springframework.expression;
 public interface BeanResolver {
 
 	/**
+	 * <p>根据给定的名称查找bean.</p>
 	 * Look up a bean by the given name and return a corresponding instance for it.
 	 * For attempting access to a factory bean, the name needs a {@code &} prefix.
 	 * @param context the current evaluation context

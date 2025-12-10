@@ -40,6 +40,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
+ * <p>版本资源。</p>
  * Resolves request paths containing a version string that can be used as part
  * of an HTTP caching strategy in which a resource is cached with a date in the
  * distant future (e.g. 1 year) and cached until the version, and therefore the

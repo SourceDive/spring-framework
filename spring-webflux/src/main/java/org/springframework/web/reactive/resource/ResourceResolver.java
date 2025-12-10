@@ -26,6 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
+ * <p>资源解析器。</p>
  * A strategy for resolving a request to a server-side resource.
  *
  * <p>Provides mechanisms for resolving an incoming request to an actual

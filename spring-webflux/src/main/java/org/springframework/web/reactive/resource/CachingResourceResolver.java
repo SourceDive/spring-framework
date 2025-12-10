@@ -33,6 +33,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
+ * <p>缓存资源解析器。</p>
  * A {@link ResourceResolver} that resolves resources from a {@link Cache} or
  * otherwise delegates to the resolver chain and caches the result.
  *

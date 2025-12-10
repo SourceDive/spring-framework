@@ -36,6 +36,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.util.UriUtils;
 
 /**
+ * <p>路径资源。</p>
  * A simple {@code ResourceResolver} that tries to find a resource under the given
  * locations matching to the request path.
  *

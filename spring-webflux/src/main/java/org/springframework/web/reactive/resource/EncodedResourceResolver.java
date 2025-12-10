@@ -40,6 +40,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
+ * <p>编码资源。</p>
  * Resolver that delegates to the chain, and if a resource is found, it then
  * attempts to find an encoded (e.g. gzip, brotli) variant that is acceptable
  * based on the "Accept-Encoding" request header.

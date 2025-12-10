@@ -27,6 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
+ * <p>资源解析器基类。</p>
  * Base {@link ResourceResolver} providing consistent logging.
  *
  * @author Rossen Stoyanchev

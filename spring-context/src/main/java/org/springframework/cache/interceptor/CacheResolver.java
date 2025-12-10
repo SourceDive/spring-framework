@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.springframework.cache.Cache;
 
 /**
+ * <p>缓存解析器。</p>
  * <p>确定如何使用缓存。</p>
  * Determine the {@link Cache} instance(s) to use for an intercepted method invocation.
  *
@@ -33,6 +34,7 @@ import org.springframework.cache.Cache;
 public interface CacheResolver {
 
 	/**
+	 * <p>解析缓存。</p>
 	 * Return the cache(s) to use for the specified invocation.
 	 * @param context the context of the particular invocation
 	 * @return the cache(s) to use (never {@code null})
