@@ -55,6 +55,7 @@ public interface Joinpoint {
 
 	/**
 	 * <p>说这个是动态的？</p>
+	 * <p>获取当前代理对象。</p>
 	 * Return the object that holds the current joinpoint's static part.
 	 * <p>For instance, the target object for an invocation.
 	 * @return the object (can be null if the accessible object is static)
