@@ -1,4 +1,4 @@
-package mine.jdk.debug.atomic;
+package mine.jdk.debug.lock.atomic;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.LongAdder;

@@ -1,4 +1,4 @@
-package mine.jdk.debug.park;
+package mine.jdk.debug.lock.park;
 
 import java.util.concurrent.locks.LockSupport;
 
