@@ -77,10 +77,13 @@ public class ConcurrentLruCache<K, V> {
 		}
 
 		V cached = this.cache.get(key);
+
+		// 命中缓存，返回。
 		if (cached != null) {
 			if (this.size < this.sizeLimit) {
 				return cached;
 			}
+
 			this.lock.readLock().lock();
 			try {
 				if (this.queue.removeLastOccurrence(key)) {
@@ -93,16 +96,21 @@ public class ConcurrentLruCache<K, V> {
 			}
 		}
 
+		// 未命中，
 		this.lock.writeLock().lock();
 		try {
+			// 锁定后，再次检查
 			// Retrying in case of concurrent reads on the same key
 			cached = this.cache.get(key);
+			// 命中了,返回
 			if (cached != null) {
 				if (this.queue.removeLastOccurrence(key)) {
 					this.queue.offer(key);
 				}
 				return cached;
 			}
+
+			// 未命中，插入缓存
 			// Generate value first, to prevent size inconsistency
 			V value = this.generator.apply(key);
 			if (this.size == this.sizeLimit) {
@@ -151,6 +159,7 @@ public class ConcurrentLruCache<K, V> {
 	}
 
 	/**
+	 * <p>清空缓存。</p>
 	 * Immediately remove all entries from this cache.
 	 */
 	public void clear() {
