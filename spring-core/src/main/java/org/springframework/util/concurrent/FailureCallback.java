@@ -17,6 +17,7 @@
 package org.springframework.util.concurrent;
 
 /**
+ * <p>失败时回调。</p>
  * Failure callback for a {@link ListenableFuture}.
  *
  * @author Sebastien Deleuze

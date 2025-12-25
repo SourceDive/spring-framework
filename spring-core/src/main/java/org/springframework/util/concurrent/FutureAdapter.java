@@ -36,7 +36,7 @@ import org.springframework.util.Assert;
  */
 public abstract class FutureAdapter<T, S> implements Future<T> {
 
-	private final Future<S> adaptee;
+	private final Future<S> adaptee; // 目标对象
 
 	@Nullable
 	private Object result;
