@@ -28,7 +28,7 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>表明一个类会声明一个或多个 @Bean 方法。</p>
+ * <p>表明这个类中会声明一个或多个 @Bean 方法。</p>
  * Indicates that a class declares one or more {@link Bean @Bean} methods and
  * may be processed by the Spring container to generate bean definitions and
  * service requests for those beans at runtime, for example:
